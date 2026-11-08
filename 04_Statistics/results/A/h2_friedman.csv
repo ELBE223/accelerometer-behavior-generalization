@@ -1,5 +1,7 @@
-model,response,groups,n_blocks,chi_sq,df,p_value,kendalls_w,blocks
-rf,cross_f1,3,11,8.90909,2,0.0116256,0.404959,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
-lgbm,cross_f1,3,11,9.45455,2,0.00885058,0.429752,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
-rf,transfer_loss_f1,3,10,0.6,2,0.740818,0.03,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
-lgbm,transfer_loss_f1,3,10,0.8,2,0.67032,0.04,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+model,response,datasets,groups,n_blocks,chi_sq,df,p_value,p_holm,kendalls_w,blocks
+rf,cross_f1,all,3,11,8.90909,2,0.0116256,0.0177012,0.404959,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+lgbm,cross_f1,all,3,11,9.45455,2,0.00885058,0.0177012,0.429752,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+rf,transfer_loss_f1,all,3,10,0.6,2,0.740818,1,0.03,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+lgbm,transfer_loss_f1,all,3,10,0.8,2,0.67032,1,0.04,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+rf,transfer_loss_f1,same_test_windows,3,7,2,2,0.367879,0.735759,0.142857,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Raccoon_dataset_1
+lgbm,transfer_loss_f1,same_test_windows,3,7,2,2,0.367879,0.735759,0.142857,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Raccoon_dataset_1

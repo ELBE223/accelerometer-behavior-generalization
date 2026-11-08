@@ -23,8 +23,10 @@ The scenarios are compared descriptively with the primary analysis (Table S20).
 
 In every scenario, within-dataset Macro-F1 exceeded cross-dataset Macro-F1 for both
 classifiers (median paired differences 0.087–0.158; Wilcoxon p ≤ 0.023), compared with
-0.096–0.101 in the primary analysis. Cross-dataset F1 differed among behavioral classes
-(H2) in all scenarios except for RF with 2.4-s windows (χ²(2) = 4.91, p = 0.086). In the
+0.096–0.101 in the primary analysis. Unadjusted Friedman tests indicated differences in
+cross-dataset F1 among behavioral classes (H2) in all scenarios except for RF with 2.4-s
+windows (χ²(2) = 4.91, p = 0.086). These p-values are unadjusted; after Holm adjustment
+over the six classifiers, none of the primary Friedman tests was significant (Table 2). In the
 four-class scenario, the Friedman test compared four classes and is therefore not directly
 comparable. The association between trait distance and cross-species Macro-F1 (H3) stayed
 negative and non-significant in all scenarios (β −0.011 to −0.001 per SD; p ≥ 0.347), as

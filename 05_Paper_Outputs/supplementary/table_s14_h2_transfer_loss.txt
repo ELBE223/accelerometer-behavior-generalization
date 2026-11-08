@@ -1,13 +1,21 @@
 Table S14. Transfer loss by behavioral class (H2).
 
-Classifier	Resting	Locomotion	Foraging	Friedman χ²	p	W
-CNN	0.044 [-0.028, 0.073]	0.092 [0.020, 0.312]	0.103 [0.035, 0.166]	3.20	0.202	0.16
-ResNet	-0.002 [-0.035, 0.027]	0.129 [0.049, 0.207]	0.129 [0.037, 0.159]	8.60	0.014	0.43
-HYDRA	0.089 [0.064, 0.141]	0.175 [0.105, 0.302]	0.162 [0.119, 0.222]	2.60	0.273	0.13
-MultiRocket	0.122 [0.077, 0.175]	0.184 [0.134, 0.334]	0.188 [0.129, 0.218]	3.20	0.202	0.16
-RF	0.084 [0.043, 0.128]	0.091 [0.075, 0.272]	0.095 [0.059, 0.121]	0.80	0.670	0.04
-LightGBM	0.095 [0.043, 0.110]	0.113 [0.057, 0.269]	0.087 [0.046, 0.133]	1.80	0.407	0.09
+Test datasets	Classifier	Test datasets (n)	Resting	Locomotion	Foraging	Friedman χ²	p	p (Holm)	W
+All with a within-dataset value	CNN	10	0.044 [-0.028, 0.073]	0.092 [0.020, 0.312]	0.103 [0.035, 0.166]	3.20	0.202	1.000	0.16
+All with a within-dataset value	ResNet	10	-0.002 [-0.035, 0.027]	0.129 [0.049, 0.207]	0.129 [0.037, 0.159]	8.60	0.014	0.081	0.43
+All with a within-dataset value	HYDRA	10	0.089 [0.064, 0.141]	0.175 [0.105, 0.302]	0.162 [0.119, 0.222]	2.60	0.273	1.000	0.13
+All with a within-dataset value	MultiRocket	10	0.122 [0.077, 0.175]	0.184 [0.134, 0.334]	0.188 [0.129, 0.218]	3.20	0.202	1.000	0.16
+All with a within-dataset value	RF	10	0.084 [0.043, 0.128]	0.091 [0.075, 0.272]	0.095 [0.059, 0.121]	0.80	0.670	1.000	0.04
+All with a within-dataset value	LightGBM	10	0.095 [0.043, 0.110]	0.113 [0.057, 0.269]	0.087 [0.046, 0.133]	1.80	0.407	1.000	0.09
+Without Dog 1, Horse 2, Raccoon 2	CNN	7	0.066 [0.003, 0.072]	0.221 [0.058, 0.420]	0.117 [0.057, 0.210]	2.00	0.368	1.000	0.14
+Without Dog 1, Horse 2, Raccoon 2	ResNet	7	0.004 [-0.014, 0.021]	0.175 [0.090, 0.345]	0.149 [0.098, 0.162]	3.71	0.156	0.937	0.27
+Without Dog 1, Horse 2, Raccoon 2	HYDRA	7	0.139 [0.067, 0.193]	0.181 [0.142, 0.328]	0.166 [0.133, 0.276]	2.00	0.368	1.000	0.14
+Without Dog 1, Horse 2, Raccoon 2	MultiRocket	7	0.114 [0.078, 0.177]	0.197 [0.161, 0.422]	0.183 [0.112, 0.228]	3.43	0.180	0.937	0.24
+Without Dog 1, Horse 2, Raccoon 2	RF	7	0.109 [0.054, 0.201]	0.104 [0.077, 0.320]	0.073 [0.049, 0.152]	0.86	0.651	1.000	0.06
+Without Dog 1, Horse 2, Raccoon 2	LightGBM	7	0.096 [0.055, 0.165]	0.127 [0.080, 0.324]	0.086 [0.033, 0.159]	2.00	0.368	1.000	0.14
 
 Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.
-Tests as in Table 2. All post-hoc statistics: Table S13.
-Source: 04_Statistics/results/primary/h2_descriptives.csv, 04_Statistics/results/primary/h2_friedman.csv, 04_Statistics/results/primary/h2_posthoc.csv
+Without Dog 1, Horse 2, Raccoon 2: only datasets in which every individual is a within-dataset test unit, so within- and cross-dataset F1 score the same windows (as in Table S11); sensitivity analysis.
+Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests of a block (one per classifier).
+Post-hoc statistics: Table S13 (block of the seven datasets: 04_Statistics/results/primary/h2_posthoc.csv).
+Source: 04_Statistics/results/primary/h2_descriptives.csv, 04_Statistics/results/primary/h2_friedman.csv, 04_Statistics/results/primary/h2_posthoc.csv, 04_Statistics/results/primary/h1_values.csv

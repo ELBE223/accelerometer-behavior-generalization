@@ -55,6 +55,9 @@ H1: WITHIN VS. CROSS (Macro-F1 per dataset, mean ± SD over the seeds)
 
 H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
 
+  Friedman p: unadjusted and Holm-adjusted over the models of a response (D44); post-hoc tests
+  only interpreted if the Holm-adjusted Friedman p is below 0.05.
+
   Cross F1 per class
 
     Median over the datasets:
@@ -63,11 +66,11 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
     RF           0.619       0.634    0.856
     LGBM         0.627       0.634    0.820
 
-    RF           Friedman chi² 7.82, df 2, n 11, p 0.020, Kendall's W 0.36
+    RF           Friedman chi² 7.82, df 2, n 11, p 0.020, Holm 0.040, Kendall's W 0.36
       Foraging - Locomotion: median diff -0.029, V 22, p 0.365, Holm 0.365
       Foraging - Resting: median diff -0.131, V 5, p 0.010, Holm 0.029
       Locomotion - Resting: median diff -0.068, V 13, p 0.083, Holm 0.166
-    LGBM         Friedman chi² 7.82, df 2, n 11, p 0.020, Kendall's W 0.36
+    LGBM         Friedman chi² 7.82, df 2, n 11, p 0.020, Holm 0.040, Kendall's W 0.36
       Foraging - Locomotion: median diff -0.042, V 20, p 0.278, Holm 0.278
       Foraging - Resting: median diff -0.114, V 6, p 0.014, Holm 0.041
       Locomotion - Resting: median diff -0.080, V 15, p 0.123, Holm 0.246
@@ -80,14 +83,31 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
     RF           0.088       0.092    0.085
     LGBM         0.088       0.092    0.096
 
-    RF           Friedman chi² 0.80, df 2, n 10, p 0.670, Kendall's W 0.04
+    RF           Friedman chi² 0.80, df 2, n 10, p 0.670, Holm 1.000, Kendall's W 0.04
       Foraging - Locomotion: median diff -0.010, V 24, p 0.770, Holm 1.000  (not interpreted: Friedman not significant)
       Foraging - Resting: median diff +0.015, V 30, p 0.846, Holm 1.000  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff +0.031, V 35, p 0.492, Holm 1.000  (not interpreted: Friedman not significant)
-    LGBM         Friedman chi² 0.80, df 2, n 10, p 0.670, Kendall's W 0.04
+    LGBM         Friedman chi² 0.80, df 2, n 10, p 0.670, Holm 1.000, Kendall's W 0.04
       Foraging - Locomotion: median diff -0.011, V 22, p 0.625, Holm 1.000  (not interpreted: Friedman not significant)
       Foraging - Resting: median diff +0.015, V 30, p 0.846, Holm 1.000  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff +0.046, V 35, p 0.492, Holm 1.000  (not interpreted: Friedman not significant)
+
+  Transfer loss, only datasets with the same test windows within and cross (D44)
+
+    Median over the datasets:
+    behavior  Foraging  Locomotion  Resting
+    model                                  
+    RF           0.077       0.145    0.103
+    LGBM         0.089       0.150    0.097
+
+    RF           Friedman chi² 3.43, df 2, n 7, p 0.180, Holm 0.360, Kendall's W 0.24
+      Foraging - Locomotion: median diff -0.018, V 5, p 0.156, Holm 0.469  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.004, V 13, p 0.938, Holm 0.938  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.041, V 19, p 0.469, Holm 0.938  (not interpreted: Friedman not significant)
+    LGBM         Friedman chi² 3.43, df 2, n 7, p 0.180, Holm 0.360, Kendall's W 0.24
+      Foraging - Locomotion: median diff -0.028, V 5, p 0.156, Holm 0.469  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.011, V 13, p 0.938, Holm 0.938  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.053, V 20, p 0.375, Holm 0.750  (not interpreted: Friedman not significant)
 
 
 H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
