@@ -1,0 +1,321 @@
+DATASET REPORT: Fox_dataset_1
+Created: 2026-10-24 17:36:19 with code/dataset_report.py (pandas 3.1.0)
+Folder: 01_raw_data/Fox_dataset_1
+Generated automatically from the raw data; column roles are guesses from column names.
+
+====================================================================================================
+0. OVERVIEW
+====================================================================================================
+  Files: 4 (data 2, documentation 2)
+
+  table                                            rows    cols  columns
+  -----------------------------------------------  ------  ----  ------------------------------------------------------------
+  Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data]   44 660  9     ID, Datum, Uhrzeit, X, Y, Z, Tier, Verhalten_unterkategorie…
+  Data_Fox_Raw/Dana_ACC_master.xlsx [sheet qa]     1       7     Tier, root_dir, rows_total, files_seen, files_ok, files_fai…
+  Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]  64 458  9     ID, Datum, Uhrzeit, X, Y, Z, Tier, Verhalten_unterkategorie…
+  Data_Fox_Raw/Silva_ACC_master.xlsx [sheet qa]    1       7     Tier, root_dir, rows_total, files_seen, files_ok, files_fai…
+
+  The data tables have 2 different column sets.
+
+  Rows per value of 'Verhalten_unterkategorie' and table:
+
+    Verhalten_unterkategorie                       1Bm.5-ACC  1Bo.5-ACC  1BoK.5-ACC  1BoPkna.5-ACC  1BoPkra.5-ACC  1BoPle.5-ACC  2_mFka.6-ACC  2_mPkna.6-ACC  2_mPkra.5-ACC  2_o.7-ACC  2_oK.7-ACC  2_oPkna.4-ACC  2_oPkra.5-ACC  2_uFka.4-ACC  2_uFka.8-ACC  2_uPkna.5-ACC  2_uPle.5-ACC  34mFka.12-ACC  34mFka.8-ACC  34o.14-ACC  34oPkna.5-ACC  34uB.20-ACC  34uFka.13-ACC  34uFka.8-ACC  34uFle.11-ACC  34uFle.12-ACC  34uPkna.5-ACC  34uTri.10-ACC  34uTri.30-ACC  34uV.20-ACC  44m.18-ACC  44m.20-ACC  44mTra.7-ACC  44uSchn.15-ACC  44uSchn.20-ACC  54m.19-ACC  54m.22-ACC  54mTra.12-ACC  54mTra.8-ACC  54oTra.10-ACC  54oTra.9-ACC  DRINKING-ACC  FORAGING-ACC  GROOMING-ACC  RESTING-ACC  STOCKING-ACC  TROTTING-ACC  WALKING-ACC
+    Data_Fox_Raw/Dana_ACC_master.xlsx [sheet dat…        550        550         550            550            550           550             0              0              0        770         770              0            550           440             0            550           550           1320             0        1540            550         2200           1430             0           1210              0            550              0              0         2200           0        2200             0               0            2200           0        2420              0           880           1100             0             0          4400             0         4730             0          4400         4400
+    Data_Fox_Raw/Silva_ACC_master.xlsx [sheet da…        550        550         550            550            550           550           660            660            550        770         770            440            550             0           880            550           550              0           880        1540              0         2200              0           880              0            880            550           1100           3300         2200        1980           0           770            1650               0        2090           0           1319             0              0           990          4400          4620          5500         4730          4400          4399         4400
+
+  Rows per value of 'Verhalten_ueberkategorie' and table:
+
+    Verhalten_ueberkategorie                       DRINKING  FORAGING  GROOMING  RESTING  STOCKING  TROTTING  WALKING
+    Data_Fox_Raw/Dana_ACC_master.xlsx [sheet dat…         0      8800      4400     9460      4400      8800     8800
+    Data_Fox_Raw/Silva_ACC_master.xlsx [sheet da…      8800      8800     11000     9460      8800      8798     8800
+
+  Automatic hints:
+  - time stamps without date: Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data], Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]
+  - data in bursts (one time stamp per burst); take the sampling rate from the documentation: Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data]
+  - time goes backwards; split by recording or individual before windowing: Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data], Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]
+  - axis values look like raw sensor counts; conversion to g needed: Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data], Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]
+  - time stamps repeat (resolution coarser than the sampling interval); sampling rate from rows per time stamp: Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]
+
+====================================================================================================
+1. FILES
+====================================================================================================
+  file                                category       type   size
+  ----------------------------------  -------------  -----  ------
+  Data_Fox_Raw/Dana_ACC_master.xlsx   data           .xlsx  1.6 MB
+  Data_Fox_Raw/Silva_ACC_master.xlsx  data           .xlsx  2.2 MB
+  Mapping_table.rtf                   documentation  .rtf   650 B
+  Msc Lisa Giese fox-zoo.pdf          documentation  .pdf   5.0 MB
+
+====================================================================================================
+2. DOCUMENTATION
+====================================================================================================
+
+Mapping_table.rtf
+-----------------
+  Locomotion → Walking, Trotting
+  Resting → Resting
+  Foraging → Foraging, Digging, Stocking
+  Other → Grooming
+
+Msc Lisa Giese fox-zoo.pdf
+--------------------------
+  PDF, not read by this script.
+
+====================================================================================================
+3. DATA FILES
+====================================================================================================
+
+Data_Fox_Raw/Dana_ACC_master.xlsx [sheet data]
+----------------------------------------------
+  Excel, 2 sheet(s)
+  Rows: 44 660   Columns: 9
+
+  column                    dtype           missing  distinct  min  max    first values
+  ------------------------  --------------  -------  --------  ---  -----  -------------------------------------------------------------
+  ID                        int64           0        44 660    1    44660  1, 2, 3
+  Datum                     datetime64[us]  0        46                    2016-02-13 00:00:00, 2016-02-13 00:00:00, 2016-02-13 00:00:00
+  Uhrzeit                   str             0        215                   12:45:31, 12:45:31, 12:45:31
+  X                         int64           0        1 087     902  3470   1957, 1940, 1947
+  Y                         int64           0        1 007     3    4012   2377, 2348, 2325
+  Z                         int64           0        1 007     1    3014   1656, 1660, 1668
+  Tier                      str             0        1                     Dana, Dana, Dana
+  Verhalten_unterkategorie  str             0        29                    2_uFka.4-ACC, 2_uFka.4-ACC, 2_uFka.4-ACC
+  Verhalten_ueberkategorie  str             0        6                     FORAGING, FORAGING, FORAGING
+
+  Columns with a single value:
+    Tier: Dana
+
+  Candidate roles (from column names):
+    time        Datum, Uhrzeit
+    axis        X, Y, Z
+    label       Verhalten_unterkategorie, Verhalten_ueberkategorie
+    individual  ID, Tier
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-02-13   Last: 2015-11-27   Distinct dates: 46
+
+  Time column 'Uhrzeit':
+    Kind: time of day (no date)
+    First: 12:45:31   Last: 12:52:01   Earliest: 5:13:01   Latest: 14:52:31
+    Median step: 4710 s -> 0.0002123 Hz
+    Gaps (> 5 x median step): 7, largest 8:10:00
+    Repeated time stamps: 99.1% of steps; rows per time stamp: median 220, max 550 -> looks like bursts of about 220 samples every 4710 s
+    Time goes backwards 190 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1       median  p99      max   mean     sd
+    ----  ------  ---  -------  ------  -------  ----  -------  -------
+    x     X       902  1661     2039    2480     3470  2057.14  203.107
+    y     Y       3    1968.59  2289    2644     4012  2287.39  121.985
+    z     Z       1    1284     1609    1932.41  3014  1611.4   114.104
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3468.622, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'Tier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    Dana   44 660  100.0%
+
+  Values of 'Verhalten_unterkategorie' (29 distinct):
+    value           rows   share
+    --------------  -----  -----
+    RESTING-ACC     4 730  10.6%
+    FORAGING-ACC    4 400  9.9%
+    TROTTING-ACC    4 400  9.9%
+    WALKING-ACC     4 400  9.9%
+    54m.22-ACC      2 420  5.4%
+    34uB.20-ACC     2 200  4.9%
+    34uV.20-ACC     2 200  4.9%
+    44m.20-ACC      2 200  4.9%
+    44uSchn.20-ACC  2 200  4.9%
+    34o.14-ACC      1 540  3.4%
+    34uFka.13-ACC   1 430  3.2%
+    34mFka.12-ACC   1 320  3.0%
+    34uFle.11-ACC   1 210  2.7%
+    54oTra.10-ACC   1 100  2.5%
+    54mTra.8-ACC    880    2.0%
+    2_o.7-ACC       770    1.7%
+    2_oK.7-ACC      770    1.7%
+    1BoPkna.5-ACC   550    1.2%
+    1BoPkra.5-ACC   550    1.2%
+    1BoPle.5-ACC    550    1.2%
+    2_oPkra.5-ACC   550    1.2%
+    2_uPkna.5-ACC   550    1.2%
+    2_uPle.5-ACC    550    1.2%
+    34oPkna.5-ACC   550    1.2%
+    34uPkna.5-ACC   550    1.2%
+    1Bm.5-ACC       550    1.2%
+    1Bo.5-ACC       550    1.2%
+    1BoK.5-ACC      550    1.2%
+    2_uFka.4-ACC    440    1.0%
+
+  Values of 'Verhalten_ueberkategorie' (6 distinct):
+    value     rows   share
+    --------  -----  -----
+    RESTING   9 460  21.2%
+    FORAGING  8 800  19.7%
+    TROTTING  8 800  19.7%
+    WALKING   8 800  19.7%
+    GROOMING  4 400  9.9%
+    STOCKING  4 400  9.9%
+
+Data_Fox_Raw/Dana_ACC_master.xlsx [sheet qa]
+--------------------------------------------
+  Excel, 2 sheet(s)
+  Rows: 1   Columns: 7
+
+  column             dtype  missing  distinct  min    max    first values
+  -----------------  -----  -------  --------  -----  -----  --------------------
+  Tier               str    0        1                       Dana
+  root_dir           str    0        1                       /Users/lucasbeseler…
+  rows_total         int64  0        1         44660  44660  44660
+  files_seen         int64  0        1         29     29     29
+  files_ok           int64  0        1         29     29     29
+  files_failed       int64  0        1         0      0      0
+  behaviors_in_data  str    0        1                       FORAGING, GROOMING,…
+
+  Columns with a single value:
+    Tier: Dana
+    root_dir: /Users/lucasbeseler/Desktop/Master_Arbeit/Data/Fox/Dataset_1/Data_Raw/Dana-categories/RAW DATA
+    behaviors_in_data: FORAGING, GROOMING, RESTING, STOCKING, TROTTING, WALKING
+
+  Candidate roles (from column names):
+    time        -
+    axis        -
+    label       behaviors_in_data
+    individual  Tier
+
+Data_Fox_Raw/Silva_ACC_master.xlsx [sheet data]
+-----------------------------------------------
+  Excel, 2 sheet(s)
+  Rows: 64 458   Columns: 9
+
+  column                    dtype  missing  distinct  min    max    first values
+  ------------------------  -----  -------  --------  -----  -----  -------------------------------------------
+  ID                        int64  0        64 458    1      64458  1, 2, 3
+  Datum                     int64  0        48        42332  42534  42434, 42434, 42434
+  Uhrzeit                   str    0        3 560                   09:40:31, 09:40:31, 09:40:31
+  X                         int64  0        1 036     753    2948   1881, 1894, 1865
+  Y                         int64  0        817       1056   3432   2275, 2301, 2258
+  Z                         int64  0        802       558    3366   1565, 1593, 1658
+  Tier                      str    0        1                       Silver, Silver, Silver
+  Verhalten_unterkategorie  str    0        38                      34uTri.10-ACC, 34uTri.10-ACC, 34uTri.10-ACC
+  Verhalten_ueberkategorie  str    0        7                       DRINKING, DRINKING, DRINKING
+
+  Columns with a single value:
+    Tier: Silver
+
+  Candidate roles (from column names):
+    time        Datum, Uhrzeit
+    axis        X, Y, Z
+    label       Verhalten_unterkategorie, Verhalten_ueberkategorie
+    individual  ID, Tier
+
+  Time column 'Datum':
+    Kind: number (unit unknown)
+    First: 42434   Last: 42534   Min: 42332   Max: 42534
+    Median step: 41 (unit unknown; 0.02439 Hz if seconds, 24.39 Hz if ms)
+    Repeated time stamps: 99.2% of steps; rows per time stamp: median 1100, max 3 960
+    Time goes backwards 232 times (several recordings or individuals in one table?)
+
+  Time column 'Uhrzeit':
+    Kind: time of day (no date)
+    First: 9:40:31   Last: 6:33:31   Earliest: 5:20:01   Latest: 16:16:04.270000
+    Median step: 0.03 s -> 33.33 Hz
+    Gaps (> 5 x median step): 314, largest 9:39:00
+    Repeated time stamps: 94.0% of steps; rows per time stamp: median 1, max 660 -> about 33.33 Hz
+    Time goes backwards 271 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min   p1    median  p99   max   mean     sd
+    ----  ------  ----  ----  ------  ----  ----  -------  -------
+    x     X       753   1582  1912    2378  2948  1961.09  197.228
+    y     Y       1056  1971  2249    2501  3432  2245.06  93.0601
+    z     Z       558   1339  1614    1878  3366  1616.92  90.5815
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3371.677, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'Tier' (1 distinct):
+    value   rows    share
+    ------  ------  ------
+    Silver  64 458  100.0%
+
+  Values of 'Verhalten_unterkategorie' (38 distinct):
+    value           rows   share
+    --------------  -----  -----
+    GROOMING-ACC    5 500  8.5%
+    RESTING-ACC     4 730  7.3%
+    FORAGING-ACC    4 620  7.2%
+    DRINKING-ACC    4 400  6.8%
+    STOCKING-ACC    4 400  6.8%
+    WALKING-ACC     4 400  6.8%
+    TROTTING-ACC    4 399  6.8%
+    34uTri.30-ACC   3 300  5.1%
+    34uB.20-ACC     2 200  3.4%
+    34uV.20-ACC     2 200  3.4%
+    54m.19-ACC      2 090  3.2%
+    44m.18-ACC      1 980  3.1%
+    44uSchn.15-ACC  1 650  2.6%
+    34o.14-ACC      1 540  2.4%
+    54mTra.12-ACC   1 319  2.0%
+    34uTri.10-ACC   1 100  1.7%
+    54oTra.9-ACC    990    1.5%
+    2_uFka.8-ACC    880    1.4%
+    34mFka.8-ACC    880    1.4%
+    34uFka.8-ACC    880    1.4%
+    34uFle.12-ACC   880    1.4%
+    2_o.7-ACC       770    1.2%
+    2_oK.7-ACC      770    1.2%
+    44mTra.7-ACC    770    1.2%
+    2_mFka.6-ACC    660    1.0%
+    2_mPkna.6-ACC   660    1.0%
+    1BoPkna.5-ACC   550    0.9%
+    1BoPkra.5-ACC   550    0.9%
+    1BoPle.5-ACC    550    0.9%
+    2_mPkra.5-ACC   550    0.9%
+    2_oPkra.5-ACC   550    0.9%
+    2_uPkna.5-ACC   550    0.9%
+    2_uPle.5-ACC    550    0.9%
+    34uPkna.5-ACC   550    0.9%
+    1Bm.5-ACC       550    0.9%
+    1Bo.5-ACC       550    0.9%
+    1BoK.5-ACC      550    0.9%
+    2_oPkna.4-ACC   440    0.7%
+
+  Values of 'Verhalten_ueberkategorie' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    GROOMING  11 000  17.1%
+    RESTING   9 460   14.7%
+    DRINKING  8 800   13.7%
+    FORAGING  8 800   13.7%
+    STOCKING  8 800   13.7%
+    WALKING   8 800   13.7%
+    TROTTING  8 798   13.6%
+
+Data_Fox_Raw/Silva_ACC_master.xlsx [sheet qa]
+---------------------------------------------
+  Excel, 2 sheet(s)
+  Rows: 1   Columns: 7
+
+  column             dtype  missing  distinct  min    max    first values
+  -----------------  -----  -------  --------  -----  -----  --------------------
+  Tier               str    0        1                       Silver
+  root_dir           str    0        1                       /Users/lucasbeseler…
+  rows_total         int64  0        1         64458  64458  64458
+  files_seen         int64  0        1         38     38     38
+  files_ok           int64  0        1         38     38     38
+  files_failed       int64  0        1         0      0      0
+  behaviors_in_data  str    0        1                       DRINKING, FORAGING,…
+
+  Columns with a single value:
+    Tier: Silver
+    root_dir: /Users/lucasbeseler/Desktop/Master_Arbeit/Data/Fox/Dataset_1/Data_Raw/Silver-categories/RAW DATA
+    behaviors_in_data: DRINKING, FORAGING, GROOMING, RESTING, STOCKING, TROTTING, WALKING
+
+  Candidate roles (from column names):
+    time        -
+    axis        -
+    label       behaviors_in_data
+    individual  Tier

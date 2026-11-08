@@ -1,0 +1,13 @@
+model,response,behavior_1,behavior_2,n_pairs,n_zero,V,p_value,test_method,rank_biserial,diff_mean,diff_sd,diff_median,diff_q1,diff_q3,p_holm,friedman_significant
+rf,cross_f1,Foraging,Locomotion,11,0,22,0.365234,exact,-0.333333,-0.0648171,0.23164,-0.028646,-0.164355,0.044891,0.365234,True
+rf,cross_f1,Foraging,Resting,11,0,5,0.00976562,exact,-0.848485,-0.192667,0.207653,-0.130656,-0.314256,-0.072746,0.0292969,True
+rf,cross_f1,Locomotion,Resting,11,0,13,0.0830078,exact,-0.606061,-0.12785,0.218156,-0.067862,-0.262008,0.003074,0.166016,True
+lgbm,cross_f1,Foraging,Locomotion,11,0,20,0.27832,exact,-0.393939,-0.0772673,0.209857,-0.042392,-0.171098,0.03846,0.27832,True
+lgbm,cross_f1,Foraging,Resting,11,0,6,0.0136719,exact,-0.818182,-0.189651,0.205436,-0.113546,-0.312617,-0.078398,0.0410156,True
+lgbm,cross_f1,Locomotion,Resting,11,0,15,0.123047,exact,-0.545455,-0.112384,0.21096,-0.080208,-0.239021,0.003793,0.246094,True
+rf,transfer_loss_f1,Foraging,Locomotion,10,0,24,0.769531,exact,-0.127273,-0.0616426,0.175047,-0.010386,-0.0390015,0.028397,1,False
+rf,transfer_loss_f1,Foraging,Resting,10,0,30,0.845703,exact,0.0909091,0.0012336,0.140244,0.014975,-0.068134,0.045992,1,False
+rf,transfer_loss_f1,Locomotion,Resting,10,0,35,0.492188,exact,0.272727,0.0628762,0.196777,0.031293,-0.040752,0.225378,1,False
+lgbm,transfer_loss_f1,Foraging,Locomotion,10,0,22,0.625,exact,-0.2,-0.0532718,0.153689,-0.011017,-0.05532,0.024994,1,False
+lgbm,transfer_loss_f1,Foraging,Resting,10,0,30,0.845703,exact,0.0909091,-0.0001278,0.137587,0.015087,-0.0914045,0.0570025,1,False
+lgbm,transfer_loss_f1,Locomotion,Resting,10,0,35,0.492188,exact,0.272727,0.053144,0.189363,0.045653,-0.0506705,0.152615,1,False

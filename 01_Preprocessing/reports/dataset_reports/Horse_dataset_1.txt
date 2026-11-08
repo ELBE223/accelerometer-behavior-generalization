@@ -1,0 +1,1631 @@
+DATASET REPORT: Horse_dataset_1
+Created: 2026-10-24 17:37:01 with code/dataset_report.py (pandas 3.1.0)
+Folder: 01_raw_data/Horse_dataset_1
+Generated automatically from the raw data; column roles are guesses from column names.
+
+====================================================================================================
+0. OVERVIEW
+====================================================================================================
+  Files: 3 (data 1, documentation 2)
+
+  table                                                            rows     cols  columns
+  ---------------------------------------------------------------  -------  ----  ------------------------------------------------------------
+  Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT]  8 692    16    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet Joda 3314]                      97 088   16    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934]                   136 530  16    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]                      41 164   16    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16]        54 940   19    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet GESAMT]                         329 722  16    ID, Datum, Tag, Zeit, X, Y, Z, Verhalten, Kopf, Verhalten_K…
+  Data_Horse_Raw/Horse.xlsx [sheet ANZAHL]                         20       14    Joda 3314, Unnamed: 1, Unnamed: 2, Kalmoek 4934, Unnamed: 5…
+
+  The data tables have 7 different column sets.
+
+  Rows per value of 'Verhalten' and table:
+
+    Verhalten                                      Fressen vom Boden  Galopp  Grasen  Heu fressen  Kauen  Kopf scheuern  Kops scheuern  Liegen  Putzen  Scheuern am Baum  Schritt  Seitenlage  Stehen  Trab  Trinken  Wälzen  gegenseitige Fellpflege
+    Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sult…                  0    2050    1066            0      0              0              0       0       0                 0     1968           0    1148  2460        0       0                        0
+    Data_Horse_Raw/Horse.xlsx [sheet Joda 3314]                11152    1312    9020        19680   8118            410             82    5248    1230               902    14104           0   19926  2296      410      82                     3116
+    Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 493…              13120    1230   24354        23124   7544           1230              0    4510     574               984    19598         410   26404  2460      902       0                    10086
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]                 5002    1066   10332            0   4510            328              0    2542       0               164     4510           0   11644   984       82       0                        0
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 n…               5002     902    5658        22632   2706            656              0       0     246               328     3608           0    9922   656        0       0                     2624
+    Data_Horse_Raw/Horse.xlsx [sheet GESAMT]                   34276    4510   49364        65436  22878           2624             82   12300    2050              2378    41820         410   67896  6396     1394      82                    15826
+
+  Rows per value of 'Verhalten_Kopf' and table:
+
+    Verhalten_Kopf                                 Fressen vom Boden_tief  Galopp_normal  Grasen_tief  Heu fressen_mittig  Heu fressen_normal  Heu fressen_tief  Kauen_mittig  Kauen_normal  Kopf scheuern_normal  Kops scheuern_normal  Liegen_normal  Putzen_normal  Scheuern am Baum_normal  Schritt_normal  Seitenlage_normal  Stehen_mittig  Stehen_normal  Trab_normal  Trinken_tief  Wälzen_normal  gegenseitige Fellpflege_normal
+    Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sult…                       0           2050         1066                   0                   0                 0             0             0                     0                     0              0              0                        0            1968                  0              0           1148         2460             0              0                               0
+    Data_Horse_Raw/Horse.xlsx [sheet Joda 3314]                     11152           1312         9020                4592               10906              4182          4674          3444                   410                    82           5248           1230                      902           14104                  0           7954          11972         2296           410             82                            3116
+    Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 493…                   13120           1230        24354                5248                2870             15006          4018          3526                  1230                     0           4510            574                      984           19598                410           6068          20336         2460           902              0                           10086
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]                      5002           1066        10332                   0                   0                 0          2624          1886                   328                     0           2542              0                      164            4510                  0           2624           9020          984            82              0                               0
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 n…                    5002            902         5658                3936                7298             11398           164          2542                   656                     0              0            246                      328            3608                  0              0           9922          656             0              0                            2624
+    Data_Horse_Raw/Horse.xlsx [sheet GESAMT]                        34276           4510        49364               13776               21074             30586         11480         11398                  2624                    82          12300           2050                     2378           41820                410          16646          51250         6396          1394             82                           15826
+
+  Rows per value of 'Code' and table:
+
+    Code                                             FVB   GAL    GFP    GRA    HFM    HFN    HFT    KKM    KKN   KOS    LIN   PUT   SAB    SCH    SKM    SKN  SLN   TRB   TRK  WÄL  NaN
+    Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sult…      0  2050      0   1066      0      0      0      0      0     0      0     0     0   1968      0   1148    0  2460     0    0    0
+    Data_Horse_Raw/Horse.xlsx [sheet Joda 3314]    11152  1312   3116   9020   4592  10906   4182   4674   3444   410   5248  1230   902  14104   7954  11972    0  2296   410   82   82
+    Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 493…  13120  1230  10086  24354   5248   2870  15006   4018   3526  1230   4510   574   984  19598   6068  20336  410  2460   902    0    0
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]     5002  1066      0  10332      0      0      0   2624   1886   328   2542     0   164   4510   2624   9020    0   984    82    0    0
+    Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 n…   5002   902   2624   5658   3936   7298  11398    164   2542   656      0   246   328   3608      0   9922    0   656     0    0    0
+    Data_Horse_Raw/Horse.xlsx [sheet GESAMT]       34276  4510  15826  49364  13776  21074  30586  11480  11398  2624  12300  2050  2378  41820  16646  51250  410  6396  1394   82   82
+
+  Automatic hints:
+  - unnamed columns with values; the header may not be in the first row (all 8 data tables)
+  - time stamps without date: Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT], Data_Horse_Raw/Horse.xlsx [sheet Joda 3314], Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16] and 2 more
+  - time stamps repeat (resolution coarser than the sampling interval); sampling rate from rows per time stamp: Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT]
+  - time goes backwards; split by recording or individual before windowing: Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT], Data_Horse_Raw/Horse.xlsx [sheet Joda 3314], Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16] and 1 more
+  - axis values look like raw sensor counts; conversion to g needed: Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT], Data_Horse_Raw/Horse.xlsx [sheet Joda 3314], Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]
+  - data in bursts (one time stamp per burst); take the sampling rate from the documentation: Data_Horse_Raw/Horse.xlsx [sheet Joda 3314], Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935], Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16], Data_Horse_Raw/Horse.xlsx [sheet GESAMT]
+  - unit of the axis values unclear: Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16], Data_Horse_Raw/Horse.xlsx [sheet GESAMT]
+  - analysis failed: Data_Horse_Raw/Horse.xlsx [sheet GESAMT FERTIG]
+
+====================================================================================================
+1. FILES
+====================================================================================================
+  file                                          category       type   size
+  --------------------------------------------  -------------  -----  -------
+  Data_Horse_Raw/Horse.xlsx                     data           .xlsx  71.2 MB
+  Mapping_table_behavior.rtf                    documentation  .rtf   1.1 KB
+  Msc Claudia Sänger 2017 Wisent & PPferd.pdf  documentation  .pdf   3.6 MB
+
+====================================================================================================
+2. DOCUMENTATION
+====================================================================================================
+
+Mapping_table_behavior.rtf
+--------------------------
+  Locomotion → SCH, TRB, GAL
+  Resting → SKO, SKM, LIO, STL
+  Foraging → KKO, KKM, TRK, FvB, GRA, HFO, HFM, HFT
+  Other → PUT, SaB, KOS, GFP, WAL
+
+Msc Claudia Sänger 2017 Wisent & PPferd.pdf
+--------------------------------------------
+  PDF, not read by this script.
+
+====================================================================================================
+3. DATA FILES
+====================================================================================================
+
+Data_Horse_Raw/Horse.xlsx [sheet Pernot_Sultan NICHT IN GESAMT]
+---------------------------------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 8 692   Columns: 20
+  Empty columns (ignored): Unnamed: 12, Unnamed: 13, Unnamed: 14, Unnamed: 18
+
+  column            dtype           missing  distinct  min   max   first values
+  ----------------  --------------  -------  --------  ----  ----  -------------------------------------------------------------
+  ID                int64           0        1         3313  3313  3313, 3313, 3313
+  Datum             datetime64[us]  0        2                     2016-05-09 00:00:00, 2016-05-09 00:00:00, 2016-05-09 00:00:00
+  Tag               str             0        2                     Mo, Mo, Mo
+  Zeit              object          0        3 670                 14:25:32.0000, 14:25:32.0300, 14:25:32.0600
+  X                 int64           0        1 686     0     4016  2203, 2220, 2210
+  Y                 int64           0        1 424     0     4019  2132, 2148, 2149
+  Z                 int64           0        1 520     0     4016  1545, 1534, 1555
+  Verhalten         str             0        5                     Stehen, Stehen, Stehen
+  Kopf              str             0        2                     normal, normal, normal
+  Verhalten_Kopf    str             0        5                     Stehen_normal, Stehen_normal, Stehen_normal
+  Code              str             0        5                     SKN, SKN, SKN
+  Nr. Aufzeichnung  int64           0        82        1     82    1, 2, 3
+  Unnamed: 15       str             8 656    32                    Kauen, Kauen, Stehen
+  Unnamed: 16       str             8 656    21                    normal, mittig, normal
+  Unnamed: 17       float64         8 673    7         0     106   0.0, 0.0, 14.0
+  Unnamed: 19       str             8 691    1                     _
+
+  Columns with a single value:
+    Unnamed: 19: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 15, Unnamed: 16, Unnamed: 17, Unnamed: 19
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-05-09   Last: 2016-05-05   Distinct dates: 2
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 14:25:32   Last: 11:29:01   Earliest: 10:09:02   Latest: 15:08:04.430000
+    Median step: 0.03 s -> 33.33 Hz
+    Gaps (> 5 x median step): 104, largest 0:11:13
+    Repeated time stamps: 57.8% of steps; rows per time stamp: median 1, max 82 -> about 33.33 Hz
+    Time goes backwards 1 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1       median  p99      max   mean     sd
+    ----  ------  ---  -------  ------  -------  ----  -------  -------
+    x     X       0    1148.1   2073    3376.09  4016  2067.88  385.851
+    y     Y       0    1123.83  2116    2932.09  4019  2084.12  297.374
+    z     Z       0    726.82   1568    2386     4016  1585.51  302.809
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3370.193, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (1 distinct):
+    value  rows   share
+    -----  -----  ------
+    3313   8 692  100.0%
+
+  Values of 'Tag' (2 distinct):
+    value  rows   share
+    -----  -----  -----
+    Th     5 084  58.5%
+    Mo     3 608  41.5%
+
+  Values of 'Verhalten' (5 distinct):
+    value    rows   share
+    -------  -----  -----
+    Trab     2 460  28.3%
+    Galopp   2 050  23.6%
+    Schritt  1 968  22.6%
+    Stehen   1 148  13.2%
+    Grasen   1 066  12.3%
+
+  Values of 'Kopf' (2 distinct):
+    value   rows   share
+    ------  -----  -----
+    normal  7 626  87.7%
+    tief    1 066  12.3%
+
+  Values of 'Verhalten_Kopf' (5 distinct):
+    value           rows   share
+    --------------  -----  -----
+    Trab_normal     2 460  28.3%
+    Galopp_normal   2 050  23.6%
+    Schritt_normal  1 968  22.6%
+    Stehen_normal   1 148  13.2%
+    Grasen_tief     1 066  12.3%
+
+  Values of 'Code' (5 distinct):
+    value  rows   share
+    -----  -----  -----
+    TRB    2 460  28.3%
+    GAL    2 050  23.6%
+    SCH    1 968  22.6%
+    SKN    1 148  13.2%
+    GRA    1 066  12.3%
+
+  Values of 'Unnamed: 15' (33 distinct):
+    value                           rows   share
+    ------------------------------  -----  -----
+    nan                             8 656  99.6%
+    Heu fressen                     3      0.0%
+    Kauen                           2      0.0%
+    Stehen                          2      0.0%
+    Schritt                         1      0.0%
+    Trab                            1      0.0%
+    Galopp                          1      0.0%
+    Putzen                          1      0.0%
+    Schubbern am Baum               1      0.0%
+    gegenseitige Fellpflege         1      0.0%
+    Kopf scheuern                   1      0.0%
+    Trinken                         1      0.0%
+    Fressen vom Boden               1      0.0%
+    Grasen                          1      0.0%
+    Liegen                          1      0.0%
+    Kauen_normal                    1      0.0%
+    Kauen_mittig                    1      0.0%
+    Stehen_normal                   1      0.0%
+    Stehen_mittig                   1      0.0%
+    Schritt_normal                  1      0.0%
+    Trab_normal                     1      0.0%
+    Galopp_normal                   1      0.0%
+    Putzen_normal                   1      0.0%
+    Schubbern am Baum_normal        1      0.0%
+    gegenseitige Fellpflege_normal  1      0.0%
+    Kopf scheuern_normal            1      0.0%
+    Trinken_tief                    1      0.0%
+    Fressen vom Boden_tief          1      0.0%
+    Grasen_tief                     1      0.0%
+    Liegen_normal                   1      0.0%
+    Heu fressen_normal              1      0.0%
+    Heu fressen_mittig              1      0.0%
+    Heu fressen_tief                1      0.0%
+
+  Values of 'Unnamed: 16' (22 distinct):
+    value   rows   share
+    ------  -----  -----
+    nan     8 656  99.6%
+    normal  11     0.1%
+    tief    4      0.0%
+    mittig  3      0.0%
+    KKN     1      0.0%
+    KKM     1      0.0%
+    SKN     1      0.0%
+    SKM     1      0.0%
+    SCH     1      0.0%
+    TRB     1      0.0%
+    GAL     1      0.0%
+    PUT     1      0.0%
+    SAB     1      0.0%
+    GFP     1      0.0%
+    KOS     1      0.0%
+    TRK     1      0.0%
+    FVB     1      0.0%
+    GRA     1      0.0%
+    LIN     1      0.0%
+    HFN     1      0.0%
+    HFM     1      0.0%
+    HFT     1      0.0%
+
+  Values of 'Unnamed: 17' (8 distinct):
+    value  rows   share
+    -----  -----  -----
+    nan    8 673  99.8%
+    0.0    13     0.1%
+    14.0   1      0.0%
+    24.0   1      0.0%
+    30.0   1      0.0%
+    25.0   1      0.0%
+    13.0   1      0.0%
+    106.0  1      0.0%
+
+  Rows per 'Verhalten' (rows) and 'Unnamed: 15' (columns):
+
+    Unnamed: 15  Fressen vom Boden  Fressen vom Boden_tief  Galopp  Galopp_normal  Grasen  Grasen_tief  Heu fressen  Heu fressen_mittig  Heu fressen_normal  Heu fressen_tief  Kauen  Kauen_mittig  Kauen_normal  Kopf scheuern  Kopf scheuern_normal  Liegen  Liegen_normal    NA  Putzen  Putzen_normal  Schritt  Schritt_normal  Schubbern am Baum  Schubbern am Baum_normal  Stehen  Stehen_mittig  Stehen_normal  Trab  Trab_normal  Trinken  Trinken_tief  gegenseitige Fellpflege  gegenseitige Fellpflege_normal
+    Verhalten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    Galopp                       0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  2050       0              0        0               0                  0                         0       0              0              0     0            0        0             0                        0                               0
+    Grasen                       0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  1066       0              0        0               0                  0                         0       0              0              0     0            0        0             0                        0                               0
+    Schritt                      0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  1968       0              0        0               0                  0                         0       0              0              0     0            0        0             0                        0                               0
+    Stehen                       1                       1       1              1       1            1            3                   1                   1                 1      2             1             1              1                     1       1              1  1112       1              1        1               1                  1                         1       2              1              1     1            1        1             1                        1                               1
+    Trab                         0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  2460       0              0        0               0                  0                         0       0              0              0     0            0        0             0                        0                               0
+
+Data_Horse_Raw/Horse.xlsx [sheet Joda 3314]
+-------------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 97 088   Columns: 20
+  Empty columns (ignored): Unnamed: 12, Unnamed: 13, Unnamed: 14, Unnamed: 18
+
+  column          dtype           missing  distinct  min   max   first values
+  --------------  --------------  -------  --------  ----  ----  ----------------------------------------------------------------
+  ID              int64           0        1         3314  3314  3314, 3314, 3314
+  Datum           datetime64[us]  0        12                    2016-09-13 00:00:00, 2016-09-13 00:00:00, 2016-09-13 00:00:00
+  Tag             str             0        6                     Tu, Tu, Tu
+  Zeit            object          0        920                   10:50:12, 10:50:12, 10:50:12
+  X               int64           0        1 603     0     4020  2117, 2101, 2157
+  Y               int64           0        1 146     565   4016  2248, 2264, 2282
+  Z               int64           0        1 512     0     4020  1594, 1599, 1608
+  Verhalten       str             0        16                    Fressen vom Boden, Fressen vom Boden, Fressen vom Boden
+  Kopf            str             0        3                     tief, tief, tief
+  Verhalten_Kopf  str             0        20                    Fressen vom Boden_t…, Fressen vom Boden_t…, Fressen vom Boden_t…
+  Code            str             82       19                    FVB, FVB, FVB
+  Nr              int64           0        82        1     82    1, 2, 3
+  Wälzen          str             97 051   33                    Kauen, Kauen, Stehen
+  normal          str             97 051   22                    normal, mittig, normal
+  1               float64         97 069   18        5     1183  42.0, 57.0, 146.0
+  Unnamed: 19     str             97 087   1                     _
+
+  Columns with a single value:
+    Unnamed: 19: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 19
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-09-13   Last: 2016-10-21   Distinct dates: 12
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 10:50:12   Last: 12:43:30   Earliest: 7:16:01   Latest: 22:33:00
+    Median step: 30 s -> 0.03333 Hz
+    Gaps (> 5 x median step): 197, largest 9:57:11
+    Repeated time stamps: 98.8% of steps; rows per time stamp: median 82, max 328 -> looks like bursts of about 82 samples every 30 s
+    Time goes backwards 57 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1    median  p99   max   mean     sd
+    ----  ------  ---  ----  ------  ----  ----  -------  -------
+    x     X       0    1700  2149    2476  4020  2173.95  180.533
+    y     Y       565  2018  2248    2484  4016  2246.97  81.4728
+    z     Z       0    1245  1516    1905  4020  1535.45  106.978
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3463.451, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    3314   97 088  100.0%
+
+  Values of 'Tag' (6 distinct):
+    value  rows    share
+    -----  ------  -----
+    Fr     34 358  35.4%
+    Tu     27 798  28.6%
+    Sa     17 220  17.7%
+    Th     14 924  15.4%
+    We     2 050   2.1%
+    So     738     0.8%
+
+  Values of 'Verhalten' (16 distinct):
+    value                    rows    share
+    -----------------------  ------  -----
+    Stehen                   19 926  20.5%
+    Heu fressen              19 680  20.3%
+    Schritt                  14 104  14.5%
+    Fressen vom Boden        11 152  11.5%
+    Grasen                   9 020   9.3%
+    Kauen                    8 118   8.4%
+    Liegen                   5 248   5.4%
+    gegenseitige Fellpflege  3 116   3.2%
+    Trab                     2 296   2.4%
+    Galopp                   1 312   1.4%
+    Putzen                   1 230   1.3%
+    Scheuern am Baum         902     0.9%
+    Kopf scheuern            410     0.4%
+    Trinken                  410     0.4%
+    Kops scheuern            82      0.1%
+    Wälzen                   82      0.1%
+
+  Values of 'Kopf' (3 distinct):
+    value   rows    share
+    ------  ------  -----
+    normal  55 104  56.8%
+    tief    24 764  25.5%
+    mittig  17 220  17.7%
+
+  Values of 'Verhalten_Kopf' (20 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    Schritt_normal                  14 104  14.5%
+    Stehen_normal                   11 972  12.3%
+    Fressen vom Boden_tief          11 152  11.5%
+    Heu fressen_normal              10 906  11.2%
+    Grasen_tief                     9 020   9.3%
+    Stehen_mittig                   7 954   8.2%
+    Liegen_normal                   5 248   5.4%
+    Kauen_mittig                    4 674   4.8%
+    Heu fressen_mittig              4 592   4.7%
+    Heu fressen_tief                4 182   4.3%
+    Kauen_normal                    3 444   3.5%
+    gegenseitige Fellpflege_normal  3 116   3.2%
+    Trab_normal                     2 296   2.4%
+    Galopp_normal                   1 312   1.4%
+    Putzen_normal                   1 230   1.3%
+    Scheuern am Baum_normal         902     0.9%
+    Kopf scheuern_normal            410     0.4%
+    Trinken_tief                    410     0.4%
+    Kops scheuern_normal            82      0.1%
+    Wälzen_normal                   82      0.1%
+
+  Values of 'Code' (20 distinct):
+    value  rows    share
+    -----  ------  -----
+    SCH    14 104  14.5%
+    SKN    11 972  12.3%
+    FVB    11 152  11.5%
+    HFN    10 906  11.2%
+    GRA    9 020   9.3%
+    SKM    7 954   8.2%
+    LIN    5 248   5.4%
+    KKM    4 674   4.8%
+    HFM    4 592   4.7%
+    HFT    4 182   4.3%
+    KKN    3 444   3.5%
+    GFP    3 116   3.2%
+    TRB    2 296   2.4%
+    GAL    1 312   1.4%
+    PUT    1 230   1.3%
+    SAB    902     0.9%
+    KOS    410     0.4%
+    TRK    410     0.4%
+    nan    82      0.1%
+    WÄL    82      0.1%
+
+  Values of 'Wälzen' (34 distinct):
+    value                           rows    share
+    ------------------------------  ------  ------
+    nan                             97 051  100.0%
+    Heu fressen                     3       0.0%
+    Kauen                           2       0.0%
+    Stehen                          2       0.0%
+    Schritt                         1       0.0%
+    Trab                            1       0.0%
+    Galopp                          1       0.0%
+    Putzen                          1       0.0%
+    Scheuern am Baum                1       0.0%
+    gegenseitige Fellpflege         1       0.0%
+    Kopf scheuern                   1       0.0%
+    Trinken                         1       0.0%
+    Fressen vom Boden               1       0.0%
+    Grasen                          1       0.0%
+    Liegen                          1       0.0%
+    Wälzen_normal                   1       0.0%
+    Kauen_normal                    1       0.0%
+    Kauen_mittig                    1       0.0%
+    Stehen_normal                   1       0.0%
+    Stehen_mittig                   1       0.0%
+    Schritt_normal                  1       0.0%
+    Trab_normal                     1       0.0%
+    Galopp_normal                   1       0.0%
+    Putzen_normal                   1       0.0%
+    Scheuern am Baum_normal         1       0.0%
+    gegenseitige Fellpflege_normal  1       0.0%
+    Kopf scheuern_normal            1       0.0%
+    Trinken_tief                    1       0.0%
+    Fressen vom Boden_tief          1       0.0%
+    Grasen_tief                     1       0.0%
+    Liegen_normal                   1       0.0%
+    Heu fressen_normal              1       0.0%
+    Heu fressen_mittig              1       0.0%
+    Heu fressen_tief                1       0.0%
+
+  Values of 'normal' (23 distinct):
+    value   rows    share
+    ------  ------  ------
+    nan     97 051  100.0%
+    normal  11      0.0%
+    tief    4       0.0%
+    mittig  3       0.0%
+    WÄL     1       0.0%
+    KKN     1       0.0%
+    KKM     1       0.0%
+    SKN     1       0.0%
+    SKM     1       0.0%
+    SCH     1       0.0%
+    TRB     1       0.0%
+    GAL     1       0.0%
+    PUT     1       0.0%
+    SAB     1       0.0%
+    GFP     1       0.0%
+    KOS     1       0.0%
+    TRK     1       0.0%
+    FVB     1       0.0%
+    GRA     1       0.0%
+    LIN     1       0.0%
+    HFN     1       0.0%
+    HFM     1       0.0%
+    HFT     1       0.0%
+
+Data_Horse_Raw/Horse.xlsx [sheet Kalmoek 4934]
+----------------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 136 530   Columns: 20
+  Empty columns (ignored): Unnamed: 12, Unnamed: 13, Unnamed: 14, Unnamed: 18
+
+  column          dtype           missing  distinct  min   max   first values
+  --------------  --------------  -------  --------  ----  ----  ----------------------------------------------------------------
+  ID              int64           0        1         4934  4934  4934, 4934, 4934
+  Datum           datetime64[us]  0        16                    2016-09-13 00:00:00, 2016-09-13 00:00:00, 2016-09-13 00:00:00
+  Tag             str             0        6                     Tu, Tu, Tu
+  Zeit            object          0        725                   10:50:19, 10:50:19, 10:50:19
+  X               int64           0        1 919     0     4095  2385, 2259, 2357
+  Y               int64           0        1 404     0     4095  2089, 2157, 2258
+  Z               int64           0        1 691     0     4070  1716, 1694, 1724
+  Verhalten       str             0        15                    Fressen vom Boden, Fressen vom Boden, Fressen vom Boden
+  Kopf            str             0        3                     tief, tief, tief
+  Verhalten_Kopf  str             0        19                    Fressen vom Boden_t…, Fressen vom Boden_t…, Fressen vom Boden_t…
+  Code            str             0        19                    FVB, FVB, FVB
+  Nr              int64           0        82        1     82    1, 2, 3
+  Seitenlage      str             136 493  33                    Kauen, Kauen, Stehen
+  normal          str             136 493  22                    normal, mittig, normal
+  5               float64         136 511  18        7     1660  43.0, 49.0, 248.0
+  Unnamed: 19     str             136 529  1                     _
+
+  Columns with a single value:
+    Unnamed: 19: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 19
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-09-13   Last: 2016-10-30   Distinct dates: 16
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 10:50:19   Last: 11:27:00   Earliest: 7:15:18   Latest: 14:00:19
+    Median step: 30 s -> 0.03333 Hz
+    Gaps (> 5 x median step): 268, largest 4:54:00
+    Repeated time stamps: 98.8% of steps; rows per time stamp: median 164, max 492 -> looks like bursts of about 164 samples every 30 s
+    Time goes backwards 89 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1       median  p99   max   mean     sd
+    ----  ------  ---  -------  ------  ----  ----  -------  -------
+    x     X       0    1628     2145    2518  4095  2177.02  228.466
+    y     Y       0    1910     2179    2501  4095  2176.5   107.528
+    z     Z       0    1318.29  1618    2011  4070  1632.58  122.867
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3471.784, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (1 distinct):
+    value  rows     share
+    -----  -------  ------
+    4934   136 530  100.0%
+
+  Values of 'Tag' (6 distinct):
+    value  rows    share
+    -----  ------  -----
+    Fr     60 762  44.5%
+    Tu     47 888  35.1%
+    Mo     16 154  11.8%
+    Th     5 822   4.3%
+    Sa     5 166   3.8%
+    So     738     0.5%
+
+  Values of 'Verhalten' (15 distinct):
+    value                    rows    share
+    -----------------------  ------  -----
+    Stehen                   26 404  19.3%
+    Grasen                   24 354  17.8%
+    Heu fressen              23 124  16.9%
+    Schritt                  19 598  14.4%
+    Fressen vom Boden        13 120  9.6%
+    gegenseitige Fellpflege  10 086  7.4%
+    Kauen                    7 544   5.5%
+    Liegen                   4 510   3.3%
+    Trab                     2 460   1.8%
+    Galopp                   1 230   0.9%
+    Kopf scheuern            1 230   0.9%
+    Scheuern am Baum         984     0.7%
+    Trinken                  902     0.7%
+    Putzen                   574     0.4%
+    Seitenlage               410     0.3%
+
+  Values of 'Kopf' (3 distinct):
+    value   rows    share
+    ------  ------  -----
+    normal  67 814  49.7%
+    tief    53 382  39.1%
+    mittig  15 334  11.2%
+
+  Values of 'Verhalten_Kopf' (19 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    Grasen_tief                     24 354  17.8%
+    Stehen_normal                   20 336  14.9%
+    Schritt_normal                  19 598  14.4%
+    Heu fressen_tief                15 006  11.0%
+    Fressen vom Boden_tief          13 120  9.6%
+    gegenseitige Fellpflege_normal  10 086  7.4%
+    Stehen_mittig                   6 068   4.4%
+    Heu fressen_mittig              5 248   3.8%
+    Liegen_normal                   4 510   3.3%
+    Kauen_mittig                    4 018   2.9%
+    Kauen_normal                    3 526   2.6%
+    Heu fressen_normal              2 870   2.1%
+    Trab_normal                     2 460   1.8%
+    Galopp_normal                   1 230   0.9%
+    Kopf scheuern_normal            1 230   0.9%
+    Scheuern am Baum_normal         984     0.7%
+    Trinken_tief                    902     0.7%
+    Putzen_normal                   574     0.4%
+    Seitenlage_normal               410     0.3%
+
+  Values of 'Code' (19 distinct):
+    value  rows    share
+    -----  ------  -----
+    GRA    24 354  17.8%
+    SKN    20 336  14.9%
+    SCH    19 598  14.4%
+    HFT    15 006  11.0%
+    FVB    13 120  9.6%
+    GFP    10 086  7.4%
+    SKM    6 068   4.4%
+    HFM    5 248   3.8%
+    LIN    4 510   3.3%
+    KKM    4 018   2.9%
+    KKN    3 526   2.6%
+    HFN    2 870   2.1%
+    TRB    2 460   1.8%
+    GAL    1 230   0.9%
+    KOS    1 230   0.9%
+    SAB    984     0.7%
+    TRK    902     0.7%
+    PUT    574     0.4%
+    SLN    410     0.3%
+
+  Values of 'Seitenlage' (34 distinct):
+    value                           rows     share
+    ------------------------------  -------  ------
+    nan                             136 493  100.0%
+    Heu fressen                     3        0.0%
+    Kauen                           2        0.0%
+    Stehen                          2        0.0%
+    Schritt                         1        0.0%
+    Trab                            1        0.0%
+    Galopp                          1        0.0%
+    Putzen                          1        0.0%
+    Scheuern am Baum                1        0.0%
+    gegenseitige Fellpflege         1        0.0%
+    Kopf scheuern                   1        0.0%
+    Trinken                         1        0.0%
+    Fressen vom Boden               1        0.0%
+    Grasen                          1        0.0%
+    Liegen                          1        0.0%
+    Seitenlage_normal               1        0.0%
+    Kauen_normal                    1        0.0%
+    Kauen_mittig                    1        0.0%
+    Stehen_normal                   1        0.0%
+    Stehen_mittig                   1        0.0%
+    Schritt_normal                  1        0.0%
+    Trab_normal                     1        0.0%
+    Galopp_normal                   1        0.0%
+    Putzen_normal                   1        0.0%
+    Scheuern am Baum_normal         1        0.0%
+    gegenseitige Fellpflege_normal  1        0.0%
+    Kopf scheuern_normal            1        0.0%
+    Trinken_tief                    1        0.0%
+    Fressen vom Boden_tief          1        0.0%
+    Grasen_tief                     1        0.0%
+    Liegen_normal                   1        0.0%
+    Heu fressen_normal              1        0.0%
+    Heu fressen_mittig              1        0.0%
+    Heu fressen_tief                1        0.0%
+
+  Values of 'normal' (23 distinct):
+    value   rows     share
+    ------  -------  ------
+    nan     136 493  100.0%
+    normal  11       0.0%
+    tief    4        0.0%
+    mittig  3        0.0%
+    SLN     1        0.0%
+    KKN     1        0.0%
+    KKM     1        0.0%
+    SKN     1        0.0%
+    SKM     1        0.0%
+    SCH     1        0.0%
+    TRB     1        0.0%
+    GAL     1        0.0%
+    PUT     1        0.0%
+    SAB     1        0.0%
+    GFP     1        0.0%
+    KOS     1        0.0%
+    TRK     1        0.0%
+    FVB     1        0.0%
+    GRA     1        0.0%
+    LIN     1        0.0%
+    HFN     1        0.0%
+    HFM     1        0.0%
+    HFT     1        0.0%
+
+Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935]
+-------------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 41 164   Columns: 20
+  Empty columns (ignored): Unnamed: 12, Unnamed: 13, Unnamed: 14, Unnamed: 18
+
+  column          dtype           missing  distinct  min   max   first values
+  --------------  --------------  -------  --------  ----  ----  ----------------------------------------------------------------
+  ID              int64           0        1         4935  4935  4935, 4935, 4935
+  Datum           datetime64[us]  0        3                     2016-09-13 00:00:00, 2016-09-13 00:00:00, 2016-09-13 00:00:00
+  Tag             str             0        3                     Tu, Tu, Tu
+  Zeit            object          0        387                   10:53:00, 10:53:00, 10:53:00
+  X               int64           0        1 710     0     4095  2308, 2297, 2338
+  Y               int64           0        1 146     0     4095  2163, 2151, 2155
+  Z               int64           0        1 427     0     4095  1651, 1691, 1684
+  Verhalten       str             0        11                    Fressen vom Boden, Fressen vom Boden, Fressen vom Boden
+  Kopf            str             0        3                     tief, tief, tief
+  Verhalten_Kopf  str             0        13                    Fressen vom Boden_t…, Fressen vom Boden_t…, Fressen vom Boden_t…
+  Code            str             0        13                    FVB, FVB, FVB
+  Nr              int64           0        82        1     82    1, 2, 3
+  Unnamed: 15     str             41 128   32                    Kauen, Kauen, Stehen
+  Unnamed: 16     str             41 128   21                    normal, mittig, normal
+  Unnamed: 17     float64         41 145   14        0     502   23.0, 32.0, 110.0
+  Unnamed: 19     str             41 163   1                     _
+
+  Columns with a single value:
+    Unnamed: 19: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 15, Unnamed: 16, Unnamed: 17, Unnamed: 19
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-09-13   Last: 2016-09-02   Distinct dates: 3
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 10:53:00   Last: 8:07:30   Earliest: 7:27:00   Latest: 12:38:30
+    Median step: 30 s -> 0.03333 Hz
+    Gaps (> 5 x median step): 86, largest 3:35:00
+    Repeated time stamps: 98.8% of steps; rows per time stamp: median 82, max 246 -> looks like bursts of about 82 samples every 30 s
+    Time goes backwards 20 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1       median  p99      max   mean     sd
+    ----  ------  ---  -------  ------  -------  ----  -------  -------
+    x     X       0    1193.89  2098    2509     4095  2109.25  282.323
+    y     Y       0    1867     2162    2458.37  4095  2160.3   113.732
+    z     Z       0    1196     1596    2137     4095  1605.21  145.522
+    All axis values are non-negative integers: probably raw sensor counts
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3409.928, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    4935   41 164  100.0%
+
+  Values of 'Tag' (3 distinct):
+    value  rows    share
+    -----  ------  -----
+    Tu     23 616  57.4%
+    Fr     15 252  37.1%
+    Th     2 296   5.6%
+
+  Values of 'Verhalten' (11 distinct):
+    value              rows    share
+    -----------------  ------  -----
+    Stehen             11 644  28.3%
+    Grasen             10 332  25.1%
+    Fressen vom Boden  5 002   12.2%
+    Kauen              4 510   11.0%
+    Schritt            4 510   11.0%
+    Liegen             2 542   6.2%
+    Galopp             1 066   2.6%
+    Trab               984     2.4%
+    Kopf scheuern      328     0.8%
+    Scheuern am Baum   164     0.4%
+    Trinken            82      0.2%
+
+  Values of 'Kopf' (3 distinct):
+    value   rows    share
+    ------  ------  -----
+    normal  20 500  49.8%
+    tief    15 416  37.5%
+    mittig  5 248   12.7%
+
+  Values of 'Verhalten_Kopf' (13 distinct):
+    value                    rows    share
+    -----------------------  ------  -----
+    Grasen_tief              10 332  25.1%
+    Stehen_normal            9 020   21.9%
+    Fressen vom Boden_tief   5 002   12.2%
+    Schritt_normal           4 510   11.0%
+    Kauen_mittig             2 624   6.4%
+    Stehen_mittig            2 624   6.4%
+    Liegen_normal            2 542   6.2%
+    Kauen_normal             1 886   4.6%
+    Galopp_normal            1 066   2.6%
+    Trab_normal              984     2.4%
+    Kopf scheuern_normal     328     0.8%
+    Scheuern am Baum_normal  164     0.4%
+    Trinken_tief             82      0.2%
+
+  Values of 'Code' (13 distinct):
+    value  rows    share
+    -----  ------  -----
+    GRA    10 332  25.1%
+    SKN    9 020   21.9%
+    FVB    5 002   12.2%
+    SCH    4 510   11.0%
+    KKM    2 624   6.4%
+    SKM    2 624   6.4%
+    LIN    2 542   6.2%
+    KKN    1 886   4.6%
+    GAL    1 066   2.6%
+    TRB    984     2.4%
+    KOS    328     0.8%
+    SAB    164     0.4%
+    TRK    82      0.2%
+
+  Values of 'Unnamed: 15' (33 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    nan                             41 128  99.9%
+    Heu fressen                     3       0.0%
+    Kauen                           2       0.0%
+    Stehen                          2       0.0%
+    Schritt                         1       0.0%
+    Trab                            1       0.0%
+    Galopp                          1       0.0%
+    Putzen                          1       0.0%
+    Scheuern am Baum                1       0.0%
+    gegenseitige Fellpflege         1       0.0%
+    Kopf scheuern                   1       0.0%
+    Trinken                         1       0.0%
+    Fressen vom Boden               1       0.0%
+    Grasen                          1       0.0%
+    Liegen                          1       0.0%
+    Kauen_normal                    1       0.0%
+    Kauen_mittig                    1       0.0%
+    Stehen_normal                   1       0.0%
+    Stehen_mittig                   1       0.0%
+    Schritt_normal                  1       0.0%
+    Trab_normal                     1       0.0%
+    Galopp_normal                   1       0.0%
+    Putzen_normal                   1       0.0%
+    Scheuern am Baum_normal         1       0.0%
+    gegenseitige Fellpflege_normal  1       0.0%
+    Kopf scheuern_normal            1       0.0%
+    Trinken_tief                    1       0.0%
+    Fressen vom Boden_tief          1       0.0%
+    Grasen_tief                     1       0.0%
+    Liegen_normal                   1       0.0%
+    Heu fressen_normal              1       0.0%
+    Heu fressen_mittig              1       0.0%
+    Heu fressen_tief                1       0.0%
+
+  Values of 'Unnamed: 16' (22 distinct):
+    value   rows    share
+    ------  ------  -----
+    nan     41 128  99.9%
+    normal  11      0.0%
+    tief    4       0.0%
+    mittig  3       0.0%
+    KKN     1       0.0%
+    KKM     1       0.0%
+    SKN     1       0.0%
+    SKM     1       0.0%
+    SCH     1       0.0%
+    TRB     1       0.0%
+    GAL     1       0.0%
+    PUT     1       0.0%
+    SAB     1       0.0%
+    GFP     1       0.0%
+    KOS     1       0.0%
+    TRK     1       0.0%
+    FVB     1       0.0%
+    GRA     1       0.0%
+    LIN     1       0.0%
+    HFN     1       0.0%
+    HFM     1       0.0%
+    HFT     1       0.0%
+
+  Values of 'Unnamed: 17' (15 distinct):
+    value  rows    share
+    -----  ------  ------
+    nan    41 145  100.0%
+    0.0    5       0.0%
+    32.0   2       0.0%
+    23.0   1       0.0%
+    110.0  1       0.0%
+    55.0   1       0.0%
+    12.0   1       0.0%
+    13.0   1       0.0%
+    2.0    1       0.0%
+    4.0    1       0.0%
+    1.0    1       0.0%
+    61.0   1       0.0%
+    126.0  1       0.0%
+    31.0   1       0.0%
+    502.0  1       0.0%
+
+  Rows per 'Verhalten' (rows) and 'Unnamed: 15' (columns):
+
+    Unnamed: 15        Fressen vom Boden  Fressen vom Boden_tief  Galopp  Galopp_normal  Grasen  Grasen_tief  Heu fressen  Heu fressen_mittig  Heu fressen_normal  Heu fressen_tief  Kauen  Kauen_mittig  Kauen_normal  Kopf scheuern  Kopf scheuern_normal  Liegen  Liegen_normal     NA  Putzen  Putzen_normal  Scheuern am Baum  Scheuern am Baum_normal  Schritt  Schritt_normal  Stehen  Stehen_mittig  Stehen_normal  Trab  Trab_normal  Trinken  Trinken_tief  gegenseitige Fellpflege  gegenseitige Fellpflege_normal
+    Verhalten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+    Fressen vom Boden                  1                       1       1              1       1            1            3                   1                   1                 1      2             1             1              1                     1       1              1   4966       1              1                 1                        1        1               1       2              1              1     1            1        1             1                        1                               1
+    Galopp                             0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   1066       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Grasen                             0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  10332       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Kauen                              0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   4510       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Kopf scheuern                      0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    328       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Liegen                             0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   2542       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Scheuern am Baum                   0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    164       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Schritt                            0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   4510       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Stehen                             0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  11644       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Trab                               0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    984       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Trinken                            0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0     82       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+
+Data_Horse_Raw/Horse.xlsx [sheet Jedi 4935 nach 21.10.16]
+---------------------------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 54 940   Columns: 22
+  Empty columns (ignored): Unnamed: 12, Unnamed: 16, Unnamed: 20
+
+  column          dtype           missing  distinct  min   max   first values
+  --------------  --------------  -------  --------  ----  ----  ----------------------------------------------------------------
+  ID              int64           0        1         4935  4935  4935, 4935, 4935
+  Datum           datetime64[us]  0        9                     2017-01-10 00:00:00, 2017-01-10 00:00:00, 2017-01-10 00:00:00
+  Tag             str             0        5                     Tu, Tu, Tu
+  Zeit            object          0        507                   08:57:30, 08:57:30, 08:57:30
+  X               int64           0        1 383     -95   4000  2269, 2280, 2261
+  Y               int64           0        1 124     0     4095  2138, 2144, 2151
+  Z               int64           0        1 285     0     3959  1668, 1679, 1670
+  Verhalten       str             0        12                    Fressen vom Boden, Fressen vom Boden, Fressen vom Boden
+  Kopf            str             0        3                     tief, tief, tief
+  Verhalten_Kopf  str             0        15                    Fressen vom Boden_t…, Fressen vom Boden_t…, Fressen vom Boden_t…
+  Code            str             0        15                    FVB, FVB, FVB
+  Nr              int64           0        82        1     82    1, 2, 3
+  X original      int64           0        1 383     0     4095  1731, 1720, 1739
+  X umger.        int64           0        1 383     0     4095  1731, 1720, 1739
+  X umg. WERT     int64           0        1 383     -95   4000  2269, 2280, 2261
+  Unnamed: 17     str             54 904   32                    Kauen, Kauen, Stehen
+  Unnamed: 18     str             54 904   21                    normal, mittig, normal
+  Unnamed: 19     float64         54 921   16        0     670   31.0, 2.0, 121.0
+  Unnamed: 21     str             54 939   1                     _
+
+  Columns with a single value:
+    Unnamed: 21: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 17, Unnamed: 18, Unnamed: 19, Unnamed: 21
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2017-01-10   Last: 2016-10-29   Distinct dates: 9
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 8:57:30   Last: 8:35:11   Earliest: 7:22:00   Latest: 13:56:30
+    Median step: 30 s -> 0.03333 Hz
+    Gaps (> 5 x median step): 118, largest 4:48:00
+    Repeated time stamps: 98.8% of steps; rows per time stamp: median 82, max 246 -> looks like bursts of about 82 samples every 30 s
+    Time goes backwards 31 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1    median  p99      max   mean     sd
+    ----  ------  ---  ----  ------  -------  ----  -------  -------
+    x     X       -95  1705  2128    2417     4000  2114.19  203.656
+    y     Y       0    1904  2169    2415     4095  2163.58  94.7211
+    z     Z       0    1343  1610    1948.61  3959  1621.07  114.033
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3438.518, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    4935   54 940  100.0%
+
+  Values of 'Tag' (5 distinct):
+    value  rows    share
+    -----  ------  -----
+    Tu     24 026  43.7%
+    Th     17 302  31.5%
+    Mo     12 792  23.3%
+    Sa     738     1.3%
+    So     82      0.1%
+
+  Values of 'Verhalten' (12 distinct):
+    value                    rows    share
+    -----------------------  ------  -----
+    Heu fressen              22 632  41.2%
+    Stehen                   9 922   18.1%
+    Grasen                   5 658   10.3%
+    Fressen vom Boden        5 002   9.1%
+    Schritt                  3 608   6.6%
+    Kauen                    2 706   4.9%
+    gegenseitige Fellpflege  2 624   4.8%
+    Galopp                   902     1.6%
+    Kopf scheuern            656     1.2%
+    Trab                     656     1.2%
+    Scheuern am Baum         328     0.6%
+    Putzen                   246     0.4%
+
+  Values of 'Kopf' (3 distinct):
+    value   rows    share
+    ------  ------  -----
+    normal  28 782  52.4%
+    tief    22 058  40.1%
+    mittig  4 100   7.5%
+
+  Values of 'Verhalten_Kopf' (15 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    Heu fressen_tief                11 398  20.7%
+    Stehen_normal                   9 922   18.1%
+    Heu fressen_normal              7 298   13.3%
+    Grasen_tief                     5 658   10.3%
+    Fressen vom Boden_tief          5 002   9.1%
+    Heu fressen_mittig              3 936   7.2%
+    Schritt_normal                  3 608   6.6%
+    gegenseitige Fellpflege_normal  2 624   4.8%
+    Kauen_normal                    2 542   4.6%
+    Galopp_normal                   902     1.6%
+    Kopf scheuern_normal            656     1.2%
+    Trab_normal                     656     1.2%
+    Scheuern am Baum_normal         328     0.6%
+    Putzen_normal                   246     0.4%
+    Kauen_mittig                    164     0.3%
+
+  Values of 'Code' (15 distinct):
+    value  rows    share
+    -----  ------  -----
+    HFT    11 398  20.7%
+    SKN    9 922   18.1%
+    HFN    7 298   13.3%
+    GRA    5 658   10.3%
+    FVB    5 002   9.1%
+    HFM    3 936   7.2%
+    SCH    3 608   6.6%
+    GFP    2 624   4.8%
+    KKN    2 542   4.6%
+    GAL    902     1.6%
+    KOS    656     1.2%
+    TRB    656     1.2%
+    SAB    328     0.6%
+    PUT    246     0.4%
+    KKM    164     0.3%
+
+  Values of 'Unnamed: 17' (33 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    nan                             54 904  99.9%
+    Heu fressen                     3       0.0%
+    Kauen                           2       0.0%
+    Stehen                          2       0.0%
+    Schritt                         1       0.0%
+    Trab                            1       0.0%
+    Galopp                          1       0.0%
+    Putzen                          1       0.0%
+    Scheuern am Baum                1       0.0%
+    gegenseitige Fellpflege         1       0.0%
+    Kopf scheuern                   1       0.0%
+    Trinken                         1       0.0%
+    Fressen vom Boden               1       0.0%
+    Grasen                          1       0.0%
+    Liegen                          1       0.0%
+    Kauen_normal                    1       0.0%
+    Kauen_mittig                    1       0.0%
+    Stehen_normal                   1       0.0%
+    Stehen_mittig                   1       0.0%
+    Schritt_normal                  1       0.0%
+    Trab_normal                     1       0.0%
+    Galopp_normal                   1       0.0%
+    Putzen_normal                   1       0.0%
+    Scheuern am Baum_normal         1       0.0%
+    gegenseitige Fellpflege_normal  1       0.0%
+    Kopf scheuern_normal            1       0.0%
+    Trinken_tief                    1       0.0%
+    Fressen vom Boden_tief          1       0.0%
+    Grasen_tief                     1       0.0%
+    Liegen_normal                   1       0.0%
+    Heu fressen_normal              1       0.0%
+    Heu fressen_mittig              1       0.0%
+    Heu fressen_tief                1       0.0%
+
+  Values of 'Unnamed: 18' (22 distinct):
+    value   rows    share
+    ------  ------  -----
+    nan     54 904  99.9%
+    normal  11      0.0%
+    tief    4       0.0%
+    mittig  3       0.0%
+    KKN     1       0.0%
+    KKM     1       0.0%
+    SKN     1       0.0%
+    SKM     1       0.0%
+    SCH     1       0.0%
+    TRB     1       0.0%
+    GAL     1       0.0%
+    PUT     1       0.0%
+    SAB     1       0.0%
+    GFP     1       0.0%
+    KOS     1       0.0%
+    TRK     1       0.0%
+    FVB     1       0.0%
+    GRA     1       0.0%
+    LIN     1       0.0%
+    HFN     1       0.0%
+    HFM     1       0.0%
+    HFT     1       0.0%
+
+  Values of 'Unnamed: 19' (17 distinct):
+    value  rows    share
+    -----  ------  ------
+    nan    54 921  100.0%
+    0.0    3       0.0%
+    8.0    2       0.0%
+    31.0   1       0.0%
+    2.0    1       0.0%
+    121.0  1       0.0%
+    44.0   1       0.0%
+    11.0   1       0.0%
+    3.0    1       0.0%
+    4.0    1       0.0%
+    32.0   1       0.0%
+    61.0   1       0.0%
+    69.0   1       0.0%
+    89.0   1       0.0%
+    48.0   1       0.0%
+    139.0  1       0.0%
+    670.0  1       0.0%
+
+  Rows per 'Verhalten' (rows) and 'Unnamed: 17' (columns):
+
+    Unnamed: 17              Fressen vom Boden  Fressen vom Boden_tief  Galopp  Galopp_normal  Grasen  Grasen_tief  Heu fressen  Heu fressen_mittig  Heu fressen_normal  Heu fressen_tief  Kauen  Kauen_mittig  Kauen_normal  Kopf scheuern  Kopf scheuern_normal  Liegen  Liegen_normal     NA  Putzen  Putzen_normal  Scheuern am Baum  Scheuern am Baum_normal  Schritt  Schritt_normal  Stehen  Stehen_mittig  Stehen_normal  Trab  Trab_normal  Trinken  Trinken_tief  gegenseitige Fellpflege  gegenseitige Fellpflege_normal
+    Verhalten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    Fressen vom Boden                        1                       1       1              1       1            1            3                   1                   1                 1      2             1             1              1                     1       1              1   4966       1              1                 1                        1        1               1       2              1              1     1            1        1             1                        1                               1
+    Galopp                                   0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    902       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Grasen                                   0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   5658       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Heu fressen                              0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0  22632       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Kauen                                    0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   2706       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Kopf scheuern                            0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    656       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Putzen                                   0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    246       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Scheuern am Baum                         0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    328       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Schritt                                  0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   3608       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Stehen                                   0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   9922       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    Trab                                     0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0    656       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+    gegenseitige Fellpflege                  0                       0       0              0       0            0            0                   0                   0                 0      0             0             0              0                     0       0              0   2624       0              0                 0                        0        0               0       0              0              0     0            0        0             0                        0                               0
+
+Data_Horse_Raw/Horse.xlsx [sheet GESAMT]
+----------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 329 722   Columns: 20
+  Empty columns (ignored): Unnamed: 12, Unnamed: 13, Unnamed: 14, Unnamed: 18
+
+  column            dtype           missing  distinct  min   max   first values
+  ----------------  --------------  -------  --------  ----  ----  ----------------------------------------------------------------
+  ID                int64           0        3         3314  4935  3314, 3314, 3314
+  Datum             datetime64[us]  0        17                    2016-09-13 00:00:00, 2016-09-13 00:00:00, 2016-09-13 00:00:00
+  Tag               str             0        7                     Tu, Tu, Tu
+  Zeit              object          0        1 366                 10:50:12, 10:50:12, 10:50:12
+  X                 int64           0        2 643     -95   4095  2117, 2101, 2157
+  Y                 int64           0        1 863     0     4095  2248, 2264, 2282
+  Z                 int64           0        2 222     0     4095  1594, 1599, 1608
+  Verhalten         str             0        17                    Fressen vom Boden, Fressen vom Boden, Fressen vom Boden
+  Kopf              str             0        3                     tief, tief, tief
+  Verhalten_Kopf    str             0        21                    Fressen vom Boden_t…, Fressen vom Boden_t…, Fressen vom Boden_t…
+  Code              str             82       20                    FVB, FVB, FVB
+  Nr. Aufzeichnung  int64           0        82        1     82    1, 2, 3
+  Seitenlage        str             329 683  35                    Kauen, Kauen, Stehen
+  normal            str             329 683  23                    normal, mittig, normal
+  5                 object          329 688  28                    139, 140, 625
+  Unnamed: 19       str             329 721  1                     _
+
+  Columns with a single value:
+    Unnamed: 19: _
+
+  Candidate roles (from column names):
+    time        Datum, Zeit
+    axis        X, Y, Z
+    label       Verhalten, Verhalten_Kopf, Code
+    individual  ID, Unnamed: 19
+
+  Time column 'Datum':
+    Kind: date only (no time of day)
+    First: 2016-09-13   Last: 2016-10-21   Distinct dates: 17
+
+  Time column 'Zeit':
+    Kind: time of day (no date)
+    First: 10:50:12   Last: 12:43:30   Earliest: 7:15:18   Latest: 22:33:00
+    Median step: 30 s -> 0.03333 Hz
+    Gaps (> 5 x median step): 666, largest 9:57:11
+    Repeated time stamps: 98.8% of steps; rows per time stamp: median 164, max 902 -> looks like bursts of about 164 samples every 30 s
+    Time goes backwards 202 times (several recordings or individuals in one table?)
+
+  Acceleration axes:
+    axis  column  min  p1    median  p99   max   mean     sd
+    ----  ------  ---  ----  ------  ----  ----  -------  -------
+    x     X       -95  1628  2144    2503  4095  2157.19  221.161
+    y     Y       0    1924  2192    2486  4095  2193.08  105.356
+    z     Z       0    1285  1583    1982  4095  1598.65  127.173
+    Median vector magnitude sqrt(x^2+y^2+z^2) = 3458.876, neither 1 (g) nor 9.81 (m/s^2): unit or offset to be checked
+
+  Values of 'ID' (3 distinct):
+    value  rows     share
+    -----  -------  -----
+    4934   136 530  41.4%
+    3314   97 088   29.4%
+    4935   96 104   29.1%
+
+  Values of 'Tag' (7 distinct):
+    value  rows     share
+    -----  -------  -----
+    Tu     123 328  37.4%
+    Fr     110 372  33.5%
+    Th     40 344   12.2%
+    Mo     28 946   8.8%
+    Sa     23 124   7.0%
+    We     2 050    0.6%
+    So     1 558    0.5%
+
+  Values of 'Verhalten' (17 distinct):
+    value                    rows    share
+    -----------------------  ------  -----
+    Stehen                   67 896  20.6%
+    Heu fressen              65 436  19.8%
+    Grasen                   49 364  15.0%
+    Schritt                  41 820  12.7%
+    Fressen vom Boden        34 276  10.4%
+    Kauen                    22 878  6.9%
+    gegenseitige Fellpflege  15 826  4.8%
+    Liegen                   12 300  3.7%
+    Trab                     6 396   1.9%
+    Galopp                   4 510   1.4%
+    Kopf scheuern            2 624   0.8%
+    Scheuern am Baum         2 378   0.7%
+    Putzen                   2 050   0.6%
+    Trinken                  1 394   0.4%
+    Seitenlage               410     0.1%
+    Kops scheuern            82      0.0%
+    Wälzen                   82      0.0%
+
+  Values of 'Kopf' (3 distinct):
+    value   rows     share
+    ------  -------  -----
+    normal  172 200  52.2%
+    tief    115 620  35.1%
+    mittig  41 902   12.7%
+
+  Values of 'Verhalten_Kopf' (21 distinct):
+    value                           rows    share
+    ------------------------------  ------  -----
+    Stehen_normal                   51 250  15.5%
+    Grasen_tief                     49 364  15.0%
+    Schritt_normal                  41 820  12.7%
+    Fressen vom Boden_tief          34 276  10.4%
+    Heu fressen_tief                30 586  9.3%
+    Heu fressen_normal              21 074  6.4%
+    Stehen_mittig                   16 646  5.0%
+    gegenseitige Fellpflege_normal  15 826  4.8%
+    Heu fressen_mittig              13 776  4.2%
+    Liegen_normal                   12 300  3.7%
+    Kauen_mittig                    11 480  3.5%
+    Kauen_normal                    11 398  3.5%
+    Trab_normal                     6 396   1.9%
+    Galopp_normal                   4 510   1.4%
+    Kopf scheuern_normal            2 624   0.8%
+    Scheuern am Baum_normal         2 378   0.7%
+    Putzen_normal                   2 050   0.6%
+    Trinken_tief                    1 394   0.4%
+    Seitenlage_normal               410     0.1%
+    Kops scheuern_normal            82      0.0%
+    Wälzen_normal                   82      0.0%
+
+  Values of 'Code' (21 distinct):
+    value  rows    share
+    -----  ------  -----
+    SKN    51 250  15.5%
+    GRA    49 364  15.0%
+    SCH    41 820  12.7%
+    FVB    34 276  10.4%
+    HFT    30 586  9.3%
+    HFN    21 074  6.4%
+    SKM    16 646  5.0%
+    GFP    15 826  4.8%
+    HFM    13 776  4.2%
+    LIN    12 300  3.7%
+    KKM    11 480  3.5%
+    KKN    11 398  3.5%
+    TRB    6 396   1.9%
+    GAL    4 510   1.4%
+    KOS    2 624   0.8%
+    SAB    2 378   0.7%
+    PUT    2 050   0.6%
+    TRK    1 394   0.4%
+    SLN    410     0.1%
+    nan    82      0.0%
+    WÄL    82      0.0%
+
+  Values of 'Seitenlage' (36 distinct):
+    value                           rows     share
+    ------------------------------  -------  ------
+    nan                             329 683  100.0%
+    Heu fressen                     3        0.0%
+    Kauen                           2        0.0%
+    Stehen                          2        0.0%
+    Schritt                         1        0.0%
+    Trab                            1        0.0%
+    Galopp                          1        0.0%
+    Putzen                          1        0.0%
+    Scheuern am Baum                1        0.0%
+    gegenseitige Fellpflege         1        0.0%
+    Kopf scheuern                   1        0.0%
+    Trinken                         1        0.0%
+    Fressen vom Boden               1        0.0%
+    Grasen                          1        0.0%
+    Liegen                          1        0.0%
+    Wälzen                          1        0.0%
+    Seitenlage_normal               1        0.0%
+    Kauen_normal                    1        0.0%
+    Kauen_mittig                    1        0.0%
+    Stehen_normal                   1        0.0%
+    Stehen_mittig                   1        0.0%
+    Schritt_normal                  1        0.0%
+    Trab_normal                     1        0.0%
+    Galopp_normal                   1        0.0%
+    Putzen_normal                   1        0.0%
+    Scheuern am Baum_normal         1        0.0%
+    gegenseitige Fellpflege_normal  1        0.0%
+    Kopf scheuern_normal            1        0.0%
+    Trinken_tief                    1        0.0%
+    Fressen vom Boden_tief          1        0.0%
+    Grasen_tief                     1        0.0%
+    Liegen_normal                   1        0.0%
+    Heu fressen_normal              1        0.0%
+    Heu fressen_mittig              1        0.0%
+    Heu fressen_tief                1        0.0%
+    Wälzen_normal                   1        0.0%
+
+  Values of 'normal' (24 distinct):
+    value   rows     share
+    ------  -------  ------
+    nan     329 683  100.0%
+    normal  12       0.0%
+    tief    4        0.0%
+    mittig  3        0.0%
+    SLN     1        0.0%
+    KKN     1        0.0%
+    KKM     1        0.0%
+    SKN     1        0.0%
+    SKM     1        0.0%
+    SCH     1        0.0%
+    TRB     1        0.0%
+    GAL     1        0.0%
+    PUT     1        0.0%
+    SAB     1        0.0%
+    GFP     1        0.0%
+    KOS     1        0.0%
+    TRK     1        0.0%
+    FVB     1        0.0%
+    GRA     1        0.0%
+    LIN     1        0.0%
+    HFN     1        0.0%
+    HFM     1        0.0%
+    HFT     1        0.0%
+    WÄL     1        0.0%
+
+  Values of '5' (29 distinct):
+    value  rows     share
+    -----  -------  ------
+    nan    329 688  100.0%
+    RUH    3        0.0%
+    FKT    3        0.0%
+    FKN    2        0.0%
+    FKM    2        0.0%
+    139    1        0.0%
+    140    1        0.0%
+    625    1        0.0%
+    203    1        0.0%
+    510    1        0.0%
+    78     1        0.0%
+    55     1        0.0%
+    25     1        0.0%
+    29     1        0.0%
+    193    1        0.0%
+    32     1        0.0%
+    17     1        0.0%
+    418    1        0.0%
+    602    1        0.0%
+    150    1        0.0%
+    257    1        0.0%
+    168    1        0.0%
+    373    1        0.0%
+    1      1        0.0%
+    4015   1        0.0%
+    SLN    1        0.0%
+    SCH    1        0.0%
+    TRB    1        0.0%
+    GAL    1        0.0%
+
+  Rows per 'Verhalten' (rows) and 'ID' (columns):
+
+    ID                        3314   4934   4935
+    Verhalten                                   
+    Fressen vom Boden        11152  13120  10004
+    Galopp                    1312   1230   1968
+    Grasen                    9020  24354  15990
+    Heu fressen              19680  23124  22632
+    Kauen                     8118   7544   7216
+    Kopf scheuern              410   1230    984
+    Kops scheuern               82      0      0
+    Liegen                    5248   4510   2542
+    Putzen                    1230    574    246
+    Scheuern am Baum           902    984    492
+    Schritt                  14104  19598   8118
+    Seitenlage                   0    410      0
+    Stehen                   19926  26404  21566
+    Trab                      2296   2460   1640
+    Trinken                    410    902     82
+    Wälzen                      82      0      0
+    gegenseitige Fellpflege   3116  10086   2624
+
+Data_Horse_Raw/Horse.xlsx [sheet ANZAHL]
+----------------------------------------
+  Excel, 8 sheet(s)
+  Rows: 20   Columns: 18
+  Empty columns (ignored): Unnamed: 3, Unnamed: 7, Unnamed: 11, Unnamed: 15
+
+  column        dtype    missing  distinct  min  max   first values
+  ------------  -------  -------  --------  ---  ----  ---------------------------------------------------------------
+  Joda 3314     str      1        15                   Wälzen, Kauen, Kauen
+  Unnamed: 1    str      1        3                    normal, normal, mittig
+  Unnamed: 2    int64    0        19        1    1183  1, 42, 57
+  Kalmoek 4934  str      1        15                   Seitenlage, Kauen, Kauen
+  Unnamed: 5    str      1        3                    normal, normal, mittig
+  Unnamed: 6    int64    0        19        5    1660  5, 43, 49
+  Jedi 4935     str      2        14                   Kauen, Kauen, Stehen
+  Unnamed: 9    str      2        3                    normal, mittig, normal
+  Unnamed: 10   float64  1        18        1    1172  53.0, 34.0, 231.0
+  Seitenlage    str      1        15                   Wälzen, Kauen, Kauen
+  normal        str      1        3                    normal, normal, mittig
+  5             int64    0        20        1    4015  1, 139, 140
+  Unnamed: 16   object   7        13                   VON ALLEN JE 20 (60), VON ALLEN JE 15 (45), VON ZWEI je 10 (20)
+  Unnamed: 17   str      15       5                    VON ALLEN JE 20 (60), VON ALLEN JE 15 (45), VON ZWEI je 10 (20)
+
+  Candidate roles (from column names):
+    time        -
+    axis        -
+    label       -
+    individual  Unnamed: 1, Unnamed: 2, Unnamed: 5, Unnamed: 6, Unnamed: 9, Unnamed: 10, Unnamed: 16, Unnamed: 17
+
+  Values of 'Joda 3314' (16 distinct):
+    value                    rows  share
+    -----------------------  ----  -----
+    Heu fressen              3     15.0%
+    Kauen                    2     10.0%
+    Stehen                   2     10.0%
+    Wälzen                   1     5.0%
+    Schritt                  1     5.0%
+    Trab                     1     5.0%
+    Galopp                   1     5.0%
+    Putzen                   1     5.0%
+    Scheuern am Baum         1     5.0%
+    gegenseitige Fellpflege  1     5.0%
+    Kopf scheuern            1     5.0%
+    Trinken                  1     5.0%
+    Fressen vom Boden        1     5.0%
+    Grasen                   1     5.0%
+    Liegen                   1     5.0%
+    nan                      1     5.0%
+
+  Values of 'Unnamed: 1' (4 distinct):
+    value   rows  share
+    ------  ----  -----
+    normal  12    60.0%
+    tief    4     20.0%
+    mittig  3     15.0%
+    nan     1     5.0%
+
+  Values of 'Unnamed: 2' (19 distinct):
+    value  rows  share
+    -----  ----  -----
+    5      2     10.0%
+    1      1     5.0%
+    42     1     5.0%
+    57     1     5.0%
+    146    1     5.0%
+    97     1     5.0%
+    172    1     5.0%
+    28     1     5.0%
+    16     1     5.0%
+    15     1     5.0%
+    11     1     5.0%
+    38     1     5.0%
+    136    1     5.0%
+    110    1     5.0%
+    64     1     5.0%
+    133    1     5.0%
+    56     1     5.0%
+    51     1     5.0%
+    1183   1     5.0%
+
+  Values of 'Kalmoek 4934' (16 distinct):
+    value                    rows  share
+    -----------------------  ----  -----
+    Heu fressen              3     15.0%
+    Kauen                    2     10.0%
+    Stehen                   2     10.0%
+    Seitenlage               1     5.0%
+    Schritt                  1     5.0%
+    Trab                     1     5.0%
+    Galopp                   1     5.0%
+    Putzen                   1     5.0%
+    Scheuern am Baum         1     5.0%
+    gegenseitige Fellpflege  1     5.0%
+    Kopf scheuern            1     5.0%
+    Trinken                  1     5.0%
+    Fressen vom Boden        1     5.0%
+    Grasen                   1     5.0%
+    Liegen                   1     5.0%
+    nan                      1     5.0%
+
+  Values of 'Unnamed: 5' (4 distinct):
+    value   rows  share
+    ------  ----  -----
+    normal  12    60.0%
+    tief    4     20.0%
+    mittig  3     15.0%
+    nan     1     5.0%
+
+  Values of 'Unnamed: 6' (19 distinct):
+    value  rows  share
+    -----  ----  -----
+    15     2     10.0%
+    5      1     5.0%
+    43     1     5.0%
+    49     1     5.0%
+    248    1     5.0%
+    74     1     5.0%
+    239    1     5.0%
+    30     1     5.0%
+    7      1     5.0%
+    12     1     5.0%
+    123    1     5.0%
+    11     1     5.0%
+    160    1     5.0%
+    297    1     5.0%
+    55     1     5.0%
+    35     1     5.0%
+    64     1     5.0%
+    183    1     5.0%
+    1660   1     5.0%
+
+  Values of 'Jedi 4935' (15 distinct):
+    value                    rows  share
+    -----------------------  ----  -----
+    Heu fressen              3     15.0%
+    nan                      2     10.0%
+    Kauen                    2     10.0%
+    Stehen                   2     10.0%
+    Schritt                  1     5.0%
+    Trab                     1     5.0%
+    Galopp                   1     5.0%
+    Putzen                   1     5.0%
+    Scheuern am Baum         1     5.0%
+    gegenseitige Fellpflege  1     5.0%
+    Kopf scheuern            1     5.0%
+    Trinken                  1     5.0%
+    Fressen vom Boden        1     5.0%
+    Grasen                   1     5.0%
+    Liegen                   1     5.0%
+
+  Values of 'Unnamed: 9' (4 distinct):
+    value   rows  share
+    ------  ----  -----
+    normal  11    55.0%
+    tief    4     20.0%
+    mittig  3     15.0%
+    nan     2     10.0%
+
+  Values of 'Unnamed: 10' (19 distinct):
+    value   rows  share
+    ------  ----  -----
+    32.0    2     10.0%
+    nan     1     5.0%
+    53.0    1     5.0%
+    34.0    1     5.0%
+    231.0   1     5.0%
+    99.0    1     5.0%
+    20.0    1     5.0%
+    24.0    1     5.0%
+    3.0     1     5.0%
+    6.0     1     5.0%
+    12.0    1     5.0%
+    1.0     1     5.0%
+    122.0   1     5.0%
+    195.0   1     5.0%
+    31.0    1     5.0%
+    89.0    1     5.0%
+    48.0    1     5.0%
+    139.0   1     5.0%
+    1172.0  1     5.0%
+
+  Values of 'Seitenlage' (16 distinct):
+    value                    rows  share
+    -----------------------  ----  -----
+    Heu fressen              3     15.0%
+    Kauen                    2     10.0%
+    Stehen                   2     10.0%
+    Wälzen                   1     5.0%
+    Schritt                  1     5.0%
+    Trab                     1     5.0%
+    Galopp                   1     5.0%
+    Putzen                   1     5.0%
+    Scheuern am Baum         1     5.0%
+    gegenseitige Fellpflege  1     5.0%
+    Kopf scheuern            1     5.0%
+    Trinken                  1     5.0%
+    Fressen vom Boden        1     5.0%
+    Grasen                   1     5.0%
+    Liegen                   1     5.0%
+    nan                      1     5.0%
+
+  Values of 'normal' (4 distinct):
+    value   rows  share
+    ------  ----  -----
+    normal  12    60.0%
+    tief    4     20.0%
+    mittig  3     15.0%
+    nan     1     5.0%
+
+Data_Horse_Raw/Horse.xlsx [sheet GESAMT FERTIG]
+-----------------------------------------------
+  Excel, 8 sheet(s)
+  Analysis failed: TypeError: '<' not supported between instances of 'float' and 'datetime.time'

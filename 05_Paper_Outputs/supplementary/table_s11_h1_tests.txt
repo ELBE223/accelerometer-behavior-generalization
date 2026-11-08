@@ -1,0 +1,32 @@
+Table S11. Wilcoxon tests for both metrics (H1).
+
+Metric	Test datasets	Classifier	Test datasets (n)	Within-dataset	Cross-dataset	Difference (within − cross)	Wilcoxon V	p	Rank-biserial r	p-value
+Macro-F1	All with a within-dataset value	CNN	10	0.79 [0.64, 0.82]	0.65 [0.56, 0.73]	0.10 [0.01, 0.18]	44	0.105	0.60	exact
+Macro-F1	All with a within-dataset value	ResNet	10	0.77 [0.62, 0.79]	0.67 [0.57, 0.69]	0.10 [0.02, 0.14]	42	0.160	0.53	exact
+Macro-F1	All with a within-dataset value	HYDRA	10	0.83 [0.80, 0.89]	0.66 [0.57, 0.72]	0.15 [0.12, 0.23]	54	0.004	0.96	exact
+Macro-F1	All with a within-dataset value	MultiRocket	10	0.84 [0.82, 0.89]	0.68 [0.54, 0.72]	0.17 [0.12, 0.22]	55	0.002	1.00	exact
+Macro-F1	All with a within-dataset value	RF	10	0.84 [0.78, 0.85]	0.71 [0.62, 0.76]	0.10 [0.08, 0.11]	55	0.002	1.00	exact
+Macro-F1	All with a within-dataset value	LightGBM	10	0.82 [0.77, 0.85]	0.70 [0.63, 0.75]	0.10 [0.06, 0.12]	55	0.002	1.00	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	CNN	7	0.80 [0.71, 0.83]	0.63 [0.52, 0.71]	0.12 [0.06, 0.22]	27	0.031	0.93	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	ResNet	7	0.78 [0.69, 0.83]	0.67 [0.53, 0.70]	0.11 [0.07, 0.18]	26	0.047	0.86	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	HYDRA	7	0.85 [0.83, 0.90]	0.66 [0.53, 0.71]	0.16 [0.13, 0.26]	28	0.016	1.00	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	MultiRocket	7	0.85 [0.83, 0.91]	0.67 [0.49, 0.71]	0.16 [0.13, 0.27]	28	0.016	1.00	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	RF	7	0.81 [0.74, 0.88]	0.69 [0.52, 0.72]	0.11 [0.09, 0.16]	28	0.016	1.00	exact
+Macro-F1	Without Dog 1, Horse 2, Raccoon 2	LightGBM	7	0.82 [0.73, 0.89]	0.69 [0.54, 0.71]	0.10 [0.07, 0.17]	28	0.016	1.00	exact
+Accuracy	All with a within-dataset value	CNN	10	0.80 [0.65, 0.82]	0.72 [0.62, 0.77]	0.07 [0.03, 0.10]	44	0.105	0.60	exact
+Accuracy	All with a within-dataset value	ResNet	10	0.78 [0.65, 0.83]	0.70 [0.64, 0.77]	0.05 [0.01, 0.12]	41	0.193	0.49	exact
+Accuracy	All with a within-dataset value	HYDRA	10	0.83 [0.82, 0.89]	0.71 [0.62, 0.74]	0.15 [0.11, 0.17]	54	0.004	0.96	exact
+Accuracy	All with a within-dataset value	MultiRocket	10	0.85 [0.84, 0.90]	0.70 [0.63, 0.77]	0.16 [0.11, 0.18]	55	0.002	1.00	exact
+Accuracy	All with a within-dataset value	RF	10	0.84 [0.81, 0.87]	0.75 [0.69, 0.80]	0.09 [0.07, 0.12]	55	0.002	1.00	exact
+Accuracy	All with a within-dataset value	LightGBM	10	0.84 [0.81, 0.86]	0.74 [0.69, 0.80]	0.08 [0.06, 0.13]	55	0.002	1.00	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	CNN	7	0.82 [0.73, 0.84]	0.74 [0.60, 0.77]	0.07 [0.05, 0.11]	27	0.031	0.93	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	ResNet	7	0.79 [0.71, 0.85]	0.71 [0.60, 0.78]	0.07 [0.02, 0.13]	25	0.078	0.79	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	HYDRA	7	0.89 [0.83, 0.90]	0.73 [0.59, 0.74]	0.17 [0.12, 0.17]	28	0.016	1.00	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	MultiRocket	7	0.89 [0.83, 0.91]	0.71 [0.60, 0.75]	0.15 [0.12, 0.18]	28	0.016	1.00	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	RF	7	0.82 [0.79, 0.87]	0.71 [0.60, 0.80]	0.10 [0.08, 0.12]	28	0.016	1.00	exact
+Accuracy	Without Dog 1, Horse 2, Raccoon 2	LightGBM	7	0.82 [0.78, 0.88]	0.71 [0.61, 0.80]	0.09 [0.07, 0.12]	28	0.016	1.00	exact
+
+Values: median [interquartile range] over the test datasets; the value of a dataset is the mean over five training seeds.
+Without Dog 1, Horse 2, Raccoon 2: only datasets in which every individual is a within-dataset test unit, so both tests score the same windows.
+Two-sided p, exact, or the normal approximation with continuity correction if there are ties or zero differences; rank-biserial r: matched-pairs rank-biserial correlation.
+Source: 04_Statistics/results/primary/h1_tests.csv, 04_Statistics/results/primary/h1_values.csv

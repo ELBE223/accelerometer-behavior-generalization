@@ -1,0 +1,1 @@
+Figure S3. Transfer loss by behavioral class and classifier. Within- minus cross-dataset F1; points: test datasets (n = 10), mean of five training seeds; boxes: median and IQR. Statistics: Table S14.

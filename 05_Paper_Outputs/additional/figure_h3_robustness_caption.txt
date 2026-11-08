@@ -1,0 +1,1 @@
+Additional figure. Robustness of the distance effect (H3). Upper block: model variants; lower block: alternative distances. Points: β per SD; lines: 95% CI. Values: Table S9.

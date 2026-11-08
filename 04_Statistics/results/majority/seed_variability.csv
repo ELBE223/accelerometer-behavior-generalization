@@ -1,0 +1,9 @@
+model,mode,rows,n_seeds_min,n_seeds_max,sd_macro_f1_median,sd_macro_f1_max,max_at
+rf,cross,11,5,5,0.00907182,0.0187108,all except Giraffe_dataset_1 -> Giraffe_dataset_1
+rf,global,12,5,5,0.0399408,0.105191,pooled -> Raccoon_dataset_1
+rf,pairwise,110,5,5,0.0155449,0.128909,Giraffe_dataset_1 -> Dog_dataset_1
+rf,within,10,5,5,0.00631885,0.0180676,Cattle_dataset_1 -> Cattle_dataset_1
+lgbm,cross,11,5,5,0.00919694,0.0408874,all except Giraffe_dataset_1 -> Giraffe_dataset_1
+lgbm,global,12,5,5,0.0317984,0.104442,pooled -> Raccoon_dataset_1
+lgbm,pairwise,110,5,5,0.0179912,0.0954035,Giraffe_dataset_1 -> Dog_dataset_1
+lgbm,within,10,5,5,0.00563747,0.0181963,Cattle_dataset_1 -> Cattle_dataset_1

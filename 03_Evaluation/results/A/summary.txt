@@ -1,0 +1,82 @@
+MODEL RESULTS: scenario A
+Updated: 2026-10-27 18:40:57 with code/train_models.py
+Values: Macro-F1, mean ± SD over the seeds. Runs:
+  lgbm: Created: 2026-10-27 18:40:56 with code/train_models.py (rf, lgbm; 6.6 min); Seeds: 42, 43, 44, 45, 46; modes: within, cross, pairwise, global; Windows: 82,028 (54,987 evaluation windows); individuals meeting the thesis rule: 50 of 61; skipped runs: 15
+  rf: Created: 2026-10-27 18:40:56 with code/train_models.py (rf, lgbm; 6.6 min); Seeds: 42, 43, 44, 45, 46; modes: within, cross, pairwise, global; Windows: 82,028 (54,987 evaluation windows); individuals meeting the thesis rule: 50 of 61; skipped runs: 15
+
+WITHIN (leave one individual out) AND CROSS (train on all other datasets) PER DATASET
+
+  mode                        cross                        within               
+  model                        lgbm             rf           lgbm             rf
+  test                                                                          
+  Bison_dataset_1     0.699 ± 0.010  0.705 ± 0.013  0.917 ± 0.005  0.916 ± 0.003
+  Cattle_dataset_1    0.602 ± 0.005  0.590 ± 0.011  0.701 ± 0.018  0.691 ± 0.015
+  Dog_dataset_1       0.762 ± 0.006  0.759 ± 0.003  0.839 ± 0.003  0.842 ± 0.003
+  Dog_dataset_2       0.452 ± 0.005  0.446 ± 0.003  0.510 ± 0.009  0.539 ± 0.003
+  Fox_dataset_1       0.730 ± 0.009  0.723 ± 0.017  0.825 ± 0.000  0.833 ± 0.007
+  Giraffe_dataset_1   0.473 ± 0.041  0.431 ± 0.031  0.818 ± 0.006  0.814 ± 0.008
+  Hedgehog_dataset_1  0.464 ± 0.015  0.469 ± 0.009            NaN            NaN
+  Horse_dataset_1     0.857 ± 0.009  0.863 ± 0.006  0.942 ± 0.004  0.937 ± 0.003
+  Horse_dataset_2     0.705 ± 0.013  0.707 ± 0.010  0.829 ± 0.007  0.836 ± 0.005
+  Raccoon_dataset_1   0.702 ± 0.005  0.697 ± 0.015  0.756 ± 0.000  0.775 ± 0.007
+  Raccoon_dataset_2   0.785 ± 0.014  0.786 ± 0.015  0.860 ± 0.008  0.877 ± 0.015
+
+  Within: individuals / meeting the rule / folds: Bison_dataset_1 3/3/3; Cattle_dataset_1 6/6/6; Dog_dataset_1 14/13/13; Dog_dataset_2 8/8/8; Fox_dataset_1 2/2/2; Giraffe_dataset_1 3/3/3; Horse_dataset_1 3/3/3; Horse_dataset_2 11/7/7; Raccoon_dataset_1 2/2/2; Raccoon_dataset_2 3/2/1
+
+PAIRWISE (rows: training dataset, columns: test dataset), Macro-F1 mean over seeds
+
+  lgbm
+
+  test                Bison_dataset_1  Cattle_dataset_1  Dog_dataset_1  Dog_dataset_2  Fox_dataset_1  Giraffe_dataset_1  Hedgehog_dataset_1  Horse_dataset_1  Horse_dataset_2  Raccoon_dataset_1  Raccoon_dataset_2
+  train                                                                                                                                                                                                            
+  Bison_dataset_1                 NaN              0.55           0.67           0.36           0.76               0.41                0.52             0.91             0.54               0.65               0.78
+  Cattle_dataset_1               0.62               NaN           0.64           0.36           0.73               0.50                0.49             0.82             0.56               0.62               0.79
+  Dog_dataset_1                  0.55              0.51            NaN           0.55           0.71               0.34                0.41             0.71             0.78               0.70               0.75
+  Dog_dataset_2                  0.34              0.31           0.69            NaN           0.48               0.33                0.32             0.43             0.64               0.61               0.47
+  Fox_dataset_1                  0.69              0.55           0.73           0.39            NaN               0.51                0.45             0.80             0.66               0.62               0.68
+  Giraffe_dataset_1              0.65              0.57           0.59           0.35           0.68                NaN                0.47             0.75             0.56               0.53               0.70
+  Hedgehog_dataset_1             0.53              0.56           0.48           0.33           0.62               0.44                 NaN             0.54             0.31               0.56               0.55
+  Horse_dataset_1                0.82              0.60           0.72           0.41           0.79               0.47                0.50              NaN             0.59               0.67               0.72
+  Horse_dataset_2                0.59              0.50           0.80           0.55           0.61               0.28                0.43             0.63              NaN               0.71               0.81
+  Raccoon_dataset_1              0.69              0.55           0.80           0.53           0.67               0.28                0.44             0.69             0.68                NaN               0.77
+  Raccoon_dataset_2              0.71              0.60           0.75           0.44           0.74               0.47                0.48             0.82             0.70               0.65                NaN
+
+  rf
+
+  test                Bison_dataset_1  Cattle_dataset_1  Dog_dataset_1  Dog_dataset_2  Fox_dataset_1  Giraffe_dataset_1  Hedgehog_dataset_1  Horse_dataset_1  Horse_dataset_2  Raccoon_dataset_1  Raccoon_dataset_2
+  train                                                                                                                                                                                                            
+  Bison_dataset_1                 NaN              0.58           0.65           0.36           0.77               0.42                0.51             0.91             0.50               0.67               0.76
+  Cattle_dataset_1               0.67               NaN           0.63           0.36           0.74               0.50                0.50             0.84             0.53               0.66               0.79
+  Dog_dataset_1                  0.56              0.50            NaN           0.54           0.68               0.33                0.41             0.72             0.80               0.70               0.76
+  Dog_dataset_2                  0.33              0.32           0.71            NaN           0.47               0.30                0.32             0.42             0.71               0.61               0.46
+  Fox_dataset_1                  0.67              0.55           0.72           0.38            NaN               0.52                0.38             0.83             0.66               0.58               0.68
+  Giraffe_dataset_1              0.65              0.58           0.54           0.32           0.64                NaN                0.44             0.72             0.55               0.49               0.65
+  Hedgehog_dataset_1             0.61              0.60           0.48           0.31           0.65               0.43                 NaN             0.58             0.33               0.54               0.54
+  Horse_dataset_1                0.84              0.60           0.72           0.42           0.79               0.50                0.50              NaN             0.60               0.66               0.72
+  Horse_dataset_2                0.61              0.51           0.79           0.54           0.57               0.27                0.42             0.64              NaN               0.68               0.81
+  Raccoon_dataset_1              0.68              0.57           0.80           0.53           0.65               0.29                0.46             0.72             0.66                NaN               0.76
+  Raccoon_dataset_2              0.74              0.57           0.75           0.44           0.72               0.46                0.47             0.84             0.72               0.66                NaN
+
+  Mean over pairs: same species vs. different species
+
+  same_species  False  True 
+  model                     
+  lgbm          0.583  0.646
+  rf            0.580  0.652
+
+GLOBAL (all datasets pooled, 25 % of the individuals of each dataset held out)
+
+  model                        lgbm             rf
+  test                                            
+  Bison_dataset_1     0.814 ± 0.030  0.820 ± 0.029
+  Cattle_dataset_1    0.673 ± 0.037  0.666 ± 0.030
+  Dog_dataset_1       0.793 ± 0.021  0.788 ± 0.018
+  Dog_dataset_2       0.505 ± 0.089  0.497 ± 0.082
+  Fox_dataset_1       0.748 ± 0.021  0.725 ± 0.045
+  Giraffe_dataset_1   0.762 ± 0.030  0.764 ± 0.034
+  Hedgehog_dataset_1  0.471 ± 0.071  0.484 ± 0.051
+  Horse_dataset_1     0.872 ± 0.038  0.872 ± 0.052
+  Horse_dataset_2     0.783 ± 0.059  0.784 ± 0.079
+  Raccoon_dataset_1   0.768 ± 0.110  0.781 ± 0.111
+  Raccoon_dataset_2   0.755 ± 0.086  0.762 ± 0.096
+  all                 0.779 ± 0.020  0.776 ± 0.024

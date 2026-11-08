@@ -1,0 +1,57 @@
+WINDOW REPORT: Hedgehog_dataset_1 (variant C)
+Created: 2026-10-27 18:33:28 with code/make_windows.py (2 s)
+Settings: 25 Hz, window 2.4 s (60 samples), step 2.4 s (60 samples), padtype line
+
+====================================================================================================
+1. SEGMENTS
+====================================================================================================
+  Segments: 2,473; duration min 0.16 s, median 1.94 s, max 2.64 s
+  Segments shorter than one window (no window): 1,485, holding 198,106 of 455,402 samples (43.5%) and 198,106 of 455,402 labeled samples (43.5%)
+  Resampling: 100 Hz x 1/4 (2,473 segments)
+
+====================================================================================================
+2. WINDOWS
+====================================================================================================
+  all windows (training): 988
+    pure: 988; mixed labels: 0; with unlabeled samples: 0
+  non-overlapping (evaluation): 988
+    pure: 988; mixed labels: 0; with unlabeled samples: 0
+
+====================================================================================================
+3. PURE WINDOWS PER ORIGINAL LABEL
+====================================================================================================
+                    windows  non_overlapping  segments  individuals
+  label                                                            
+  gehen                 342              342       342            5
+  ruhend                240              240       240            6
+  rennen                140              140       140            4
+  rennend                51               51        51            1
+  wird getragen          51               51        51            4
+  laufend                32               32        32            1
+  wird bewegt            32               32        32            2
+  schnuppern             27               27        27            3
+  schnuppert             22               22        22            3
+  STARTSHAKE             18               18        18            4
+  eingekugelt            16               16        16            4
+  ENDSHAKE                7                7         7            5
+  wird geschüttelt        6                6         6            2
+  schüttelt sich          2                2         2            2
+  fressen                 1                1         1            1
+  kratzt sich             1                1         1            1
+
+====================================================================================================
+4. EXCLUDED WINDOWS PER MAJORITY LABEL (mixed or unlabeled)
+====================================================================================================
+  (none)
+
+====================================================================================================
+5. PURE WINDOWS PER INDIVIDUAL AND LABEL
+====================================================================================================
+  label          ENDSHAKE  STARTSHAKE  eingekugelt  fressen  gehen  kratzt sich  laufend  rennen  rennend  ruhend  schnuppern  schnuppert  schüttelt sich  wird bewegt  wird geschüttelt  wird getragen
+  individual_id                                                                                                                                                                                        
+  Bea                   1           1            2        0     74            0        0      16        0       5           7           0               0            0                 0              0
+  Christopher           0           0            0        0      0            1       32       0       51      17           0           0               1            0                 0              0
+  Fred                  3          15            7        0     74            0        0       0        0      63          19          12               0           30                 5             13
+  Ramon                 1           1            0        1     49            0        0      44        0       8           0           5               1            0                 1             16
+  Sinah                 1           1            5        0     64            0        0      44        0     104           1           0               0            2                 0              6
+  Tine                  1           0            2        0     81            0        0      36        0      43           0           5               0            0                 0             16

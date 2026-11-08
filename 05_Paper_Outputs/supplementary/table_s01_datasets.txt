@@ -1,0 +1,20 @@
+Table S1. Datasets and sample sizes.
+
+Dataset	Species	Source	Public	Setting	Sensor position	Sensor and sampling	Individuals	Within-dataset test units	Training windows	Evaluation windows Resting	Evaluation windows Locomotion	Evaluation windows Foraging	Evaluation windows total
+Bison 1	Bison	Sänger (2017), MSc thesis	no	acclimatization enclosure (50 ha), Döberitzer Heide	collar, nape	e-obs, 33.33 Hz, 2.46-s bursts every 30 s	3	3	6,908	4,138	749	2,021	6,908
+Cattle 1	Cattle	Ito et al. (2022)	yes	farm: grass field and pens	neck	Kionix KX122 on Sony Spresense, 25 Hz, continuous	6	6	10,262	3,680	782	704	5,166
+Dog 1	Dog	Szangolies (2017), BSc thesis	no	privately owned; familiar surroundings with owners (Berlin area)	own collar, nape	e-obs, 33.33 Hz, 3.3-s bursts every 5 s	14	13	11,536	2,341	1,953	1,474	5,768
+Dog 2	Dog	Groth (2020), MSc thesis	no	privately owned; mostly outdoors with owners (Berlin, Brandenburg)	collar	e-obs (sensor 6568), 20 Hz, 6-s bursts	8	8	6,567	1,902	1,383	654	3,939
+Fox 1	Red fox	Giese (2016), MSc thesis; Rast et al. (2020)	no	game park enclosure (Germendorf, Brandenburg)	collar	e-obs 1C light, 33.33 Hz, 3.3-s bursts every 30 s	2	2	894	86	160	201	447
+Giraffe 1	Giraffe	Brandes (2018), MSc thesis; Brandes et al. (2021)	no	zoo (Zoological Garden Berlin)	head (halter)	e-obs, 33.33 Hz, 2.46-s bursts every 20 s	3	3	11,218	3,886	2,418	4,914	11,218
+Hedgehog 1	Hedgehog	Cibis (2017), MSc thesis	no	free-ranging, urban park (Berlin); one in an allotment garden	back (glued to trimmed spines)	e-obs, 100 Hz, 2.64-s bursts every 20 s	6	–	1,055	371	624	60	1,055
+Horse 1	Przewalski's horse	Sänger (2017), MSc thesis	no	acclimatization enclosure (50 ha), Döberitzer Heide	collar, nape	e-obs, 33.33 Hz, 2.46-s bursts every 30 s	3	3	3,740	983	643	2,114	3,740
+Horse 2	Horse	Kamminga (2019)	yes	riding stable: riding and pasture	collar (neck)	IMU, 100 Hz, continuous	11	7	27,255	2,968	2,121	10,077	15,166
+Raccoon 1	Raccoon	Mardaus (2017), MSc thesis	no	near-natural enclosure (c. 1500 m²)	collar	e-obs, 33.33 Hz, 2.88-s bursts every 30 s	2	2	567	162	243	162	567
+Raccoon 2	Raccoon	Geiger (2023), BSc thesis	no	enclosure (24 m²); juvenile on leash	collar (2); back harness (1 juvenile)	e-obs, 33.3 Hz, 3.3-s bursts every 60 s	3	2	2,026	596	193	224	1,013
+Total							61		82,028	21,113	11,269	22,605	54,987
+
+Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.
+Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual).
+A second fox dataset was left out because the provenance of its labels is unclear.
+Source: 00_Documentation/datasets.csv, 00_Documentation/sensor_settings.csv, 01_Preprocessing/reports/pipeline_reports/class_summary.csv, 04_Statistics/results/primary/h1_values.csv

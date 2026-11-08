@@ -1,0 +1,31 @@
+Additional table. Seed variability of Macro-F1.
+
+Classifier	Evaluation	Evaluations (n)	Seeds (n)	Median SD of Macro-F1	Largest SD of Macro-F1	Largest SD at (training → test)
+CNN	Within-dataset	10	5	0.028	0.038	Cattle 1 → Cattle 1
+CNN	Cross-dataset	11	5	0.030	0.050	all except Fox 1 → Fox 1
+CNN	Pairwise	110	5	0.047	0.183	Dog 1 → Raccoon 1
+CNN	Pooled datasets	12	5	0.073	0.164	pooled → Horse 2
+ResNet	Within-dataset	10	5	0.028	0.086	Raccoon 2 → Raccoon 2
+ResNet	Cross-dataset	11	5	0.040	0.068	all except Horse 2 → Horse 2
+ResNet	Pairwise	110	5	0.050	0.234	Dog 1 → Fox 1
+ResNet	Pooled datasets	12	5	0.055	0.196	pooled → Horse 2
+HYDRA	Within-dataset	10	5	0.008	0.011	Dog 1 → Dog 1
+HYDRA	Cross-dataset	11	5	0.012	0.024	all except Horse 2 → Horse 2
+HYDRA	Pairwise	110	5	0.031	0.109	Hedgehog 1 → Cattle 1
+HYDRA	Pooled datasets	12	5	0.040	0.095	pooled → Horse 2
+MultiRocket	Within-dataset	10	5	0.006	0.012	Dog 2 → Dog 2
+MultiRocket	Cross-dataset	11	5	0.010	0.033	all except Giraffe 1 → Giraffe 1
+MultiRocket	Pairwise	110	5	0.036	0.137	Cattle 1 → Horse 1
+MultiRocket	Pooled datasets	12	5	0.041	0.110	pooled → Raccoon 1
+RF	Within-dataset	10	5	0.006	0.018	Cattle 1 → Cattle 1
+RF	Cross-dataset	11	5	0.006	0.014	all except Raccoon 1 → Raccoon 1
+RF	Pairwise	110	5	0.016	0.129	Giraffe 1 → Dog 1
+RF	Pooled datasets	12	5	0.044	0.111	pooled → Raccoon 1
+LightGBM	Within-dataset	10	5	0.006	0.012	Cattle 1 → Cattle 1
+LightGBM	Cross-dataset	11	5	0.009	0.019	all except Giraffe 1 → Giraffe 1
+LightGBM	Pairwise	110	5	0.018	0.095	Giraffe 1 → Dog 1
+LightGBM	Pooled datasets	12	5	0.037	0.106	pooled → Raccoon 1
+
+SD of Macro-F1 over the seeds for each evaluation (dataset or dataset pair); median and largest value over the evaluations of a type.
+Within-dataset: leave one individual out; cross-dataset: all other datasets → one; pairwise: one dataset → another; pooled datasets: all datasets pooled, 25 % of the individuals held out.
+Source: 04_Statistics/results/primary/seed_variability.csv

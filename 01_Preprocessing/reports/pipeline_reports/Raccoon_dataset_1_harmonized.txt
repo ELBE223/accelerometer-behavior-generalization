@@ -1,0 +1,60 @@
+HARMONIZATION REPORT: Raccoon_dataset_1
+Created: 2026-10-24 19:49:21 with code/harmonize.py (1 s)
+Output: 02_processed_data/Raccoon_dataset_1/samples.parquet, segments.parquet
+
+====================================================================================================
+1. OVERVIEW
+====================================================================================================
+  Samples: 57,022 (100.0% labeled)
+  Individuals: 2
+  Segments: 594; duration min 2.85, median 2.88, max 2.88 s
+  Native rate(s): 33.33 Hz (594 segments)
+
+====================================================================================================
+2. LOADER NOTES
+====================================================================================================
+  Data_Raccoon_Raw/R-Daten_3.xlsx: 57,022 rows, 0 with unreadable date or time
+  57,022 rows; 0 without individual, time or acceleration dropped
+  Burst starts from a change of the key column alone (same time): 0
+  Rows per burst before splitting (rows: bursts): 96: 592, 95: 2
+  Runs longer than 96 samples (bursts with the same time) split into 96-sample pieces: 0; of these not a multiple of 96 (piece borders uncertain): 0
+  Bursts with identical acceleration values (copies): 0 groups, 0 bursts dropped (0 groups with different labels, all copies dropped; 0 groups across individuals)
+  Bursts of different individuals with the same key and start time (recorded at once): 14
+    Lisa + Ottilie (key 3529, 3530, 3532, 3536, 3537): 14 bursts, 2016-10-31 11:45:30 to 2016-11-08 13:34:01
+  594 bursts at 33.33 Hz; samples per burst min 95, median 96, max 96; most common (samples: bursts): 96: 592, 95: 2
+  Bursts by setting (from length): setting 2: 594
+
+====================================================================================================
+3. ACCELERATION (g)
+====================================================================================================
+  x: min -3.967, p1 -1.330, median -0.334, p99 1.186, max 2.893
+  y: min -1.451, p1 -0.408, median 0.377, p99 1.242, max 3.318
+  z: min -3.104, p1 -1.553, median -0.748, p99 0.270, max 1.289
+  Median vector magnitude: 0.987 g (about 1 g expected)
+
+====================================================================================================
+4. LABELS (original, samples)
+====================================================================================================
+  WGeN                                  5,184    9.1%
+  KlHoH                                 5,184    9.1%
+  StFrBoT                               5,184    9.1%
+  StB                                   5,184    9.1%
+  StN                                   5,184    9.1%
+  SuM                                   3,648    6.4%
+  SuW                                   3,360    5.9%
+  SuG                                   3,300    5.8%
+  GaW                                   2,592    4.5%
+  MGeT                                  2,592    4.5%
+  WGeT                                  2,592    4.5%
+  StT                                   2,592    4.5%
+  StAHKr                                2,592    4.5%
+  StH                                   2,592    4.5%
+  KlRuH                                 2,591    4.5%
+  LaW                                   2,591    4.5%
+  Su                                       60    0.1%
+
+====================================================================================================
+5. INDIVIDUALS
+====================================================================================================
+  Lisa                     36,287 samples  100.0% labeled      378 segments    0.30 h
+  Ottilie                  20,735 samples  100.0% labeled      216 segments    0.17 h

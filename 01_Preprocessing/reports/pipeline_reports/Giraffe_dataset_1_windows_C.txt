@@ -1,0 +1,89 @@
+WINDOW REPORT: Giraffe_dataset_1 (variant C)
+Created: 2026-10-27 18:33:26 with code/make_windows.py (15 s)
+Settings: 25 Hz, window 2.4 s (60 samples), step 2.4 s (60 samples), padtype line
+
+====================================================================================================
+1. SEGMENTS
+====================================================================================================
+  Segments: 11,997; duration min 2.46 s, median 2.46 s, max 2.46 s
+  Segments shorter than one window (no window): 0, holding 0 of 983,754 samples (0.0%) and 0 of 983,754 labeled samples (0.0%)
+  Resampling: 33.33 Hz x 3/4 (11,997 segments)
+
+====================================================================================================
+2. WINDOWS
+====================================================================================================
+  all windows (training): 11,997
+    pure: 11,997; mixed labels: 0; with unlabeled samples: 0
+  non-overlapping (evaluation): 11,997
+    pure: 11,997; mixed labels: 0; with unlabeled samples: 0
+
+====================================================================================================
+3. PURE WINDOWS PER ORIGINAL LABEL
+====================================================================================================
+                  windows  non_overlapping  segments  individuals
+  label                                                          
+  WAL/6Ge            2227             2227      2227            3
+  RUM/4Wk            1415             1415      1415            3
+  FTM/3Ka            1256             1256      1256            3
+  RUM/4WkMi          1214             1214      1214            3
+  FTM/3Fa             995              995       995            3
+  FTM/3FuMi           495              495       495            3
+  FTM/3Fra            475              475       475            3
+  STA/1St             379              379       379            3
+  FTM/3KaMi           333              333       333            3
+  RUM/4Wk_GuMi        310              310       310            3
+  FTM/3Ka_Gu          288              288       288            3
+  FEG/3FuBo           259              259       259            3
+  FED/3FuTi           233              233       233            3
+  STA/1St_Gu          195              195       195            3
+  FTM/3FruMi          167              167       167            3
+  RUM/4Wk_Gu          156              156       156            3
+  FEA/3Fo             152              152       152            2
+  FIG/10Ne            142              142       142            1
+  WAL/6GeMi           124              124       124            3
+  SLE/11Sr            118              118       118            1
+  STA/1StMi           110              110       110            3
+  FIG/10Tp            100              100       100            1
+  STA/1St_GuMi         99               99        99            3
+  SLE/11Sl             90               90        90            1
+  LIE/2Li_Wk           84               84        84            2
+  FED/3FruTi           59               59        59            3
+  STA/1St_GuTi         56               56        56            3
+  WAL/6GeTi            56               56        56            3
+  DRI/5TrBo            54               54        54            3
+  FTM/3Ka_GuMi         47               47        47            3
+  FEA/3Fro             38               38        38            3
+  FIG/10GrTi           34               34        34            1
+  FEA/3Kao             34               34        34            3
+  FIG/10Ge             33               33        33            1
+  GRO/8Kp              31               31        31            3
+  SOC/9So              16               16        16            3
+  FED/3KaTi            16               16        16            3
+  SOC/9SoTi            15               15        15            2
+  SOC/9So_SchnMi       15               15        15            3
+  SOC/9So_SchnTi       15               15        15            3
+  SOC/9So_Schn         13               13        13            3
+  RUN/7Re              11               11        11            2
+  FEG/3FuTi             9                9         9            1
+  SOC/9SoMi             9                9         9            3
+  LIE/2Li_WkMi          6                6         6            1
+  GRO/8Kp_Ba            6                6         6            1
+  FED/3Ka_GuTi          4                4         4            2
+  RUM/1St_GuTi          1                1         1            1
+  LIE/2Li               1                1         1            1
+  LIE/2Li_GuTi          1                1         1            1
+  LIE/2Li_Gu            1                1         1            1
+
+====================================================================================================
+4. EXCLUDED WINDOWS PER MAJORITY LABEL (mixed or unlabeled)
+====================================================================================================
+  (none)
+
+====================================================================================================
+5. PURE WINDOWS PER INDIVIDUAL AND LABEL
+====================================================================================================
+  label          DRI/5TrBo  FEA/3Fo  FEA/3Fro  FEA/3Kao  FED/3FruTi  FED/3FuTi  FED/3KaTi  FED/3Ka_GuTi  FEG/3FuBo  FEG/3FuTi  FIG/10Ge  FIG/10GrTi  FIG/10Ne  FIG/10Tp  FTM/3Fa  FTM/3Fra  FTM/3FruMi  FTM/3FuMi  FTM/3Ka  FTM/3KaMi  FTM/3Ka_Gu  FTM/3Ka_GuMi  GRO/8Kp  GRO/8Kp_Ba  LIE/2Li  LIE/2Li_Gu  LIE/2Li_GuTi  LIE/2Li_Wk  LIE/2Li_WkMi  RUM/1St_GuTi  RUM/4Wk  RUM/4WkMi  RUM/4Wk_Gu  RUM/4Wk_GuMi  RUN/7Re  SLE/11Sl  SLE/11Sr  SOC/9So  SOC/9SoMi  SOC/9SoTi  SOC/9So_Schn  SOC/9So_SchnMi  SOC/9So_SchnTi  STA/1St  STA/1StMi  STA/1St_Gu  STA/1St_GuMi  STA/1St_GuTi  WAL/6Ge  WAL/6GeMi  WAL/6GeTi
+  individual_id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+  Farrah                31       48        13        12           4         33          7             2        169          0         0           0         0         0       82       149          47         48      801        259         112            17        7           0        1           1             1          27             6             1      268        197           6             6        3         0         0        8          4         13             4               6               8      140         38          75            19            16      951         81         44
+  Jaffa                  7        0         8         1           6         32          6             2         60          0         0           0         0         0       39       170          97        110      289         57          40             6        3           0        0           0             0           0             0             0      530        397          16            58        8         0         0        4          3          0             6               8               2       86         21          35            13            10      577         15          8
+  Max                   16      104        17        21          49        168          3             0         30          9        33          34       142       100      874       156          23        337      166         17         136            24       21           6        0           0             0          57             0             0      617        620         134           246        0        90       118        4          2          2             3               1               5      153         51          85            67            30      699         28          4

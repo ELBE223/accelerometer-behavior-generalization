@@ -1,0 +1,25 @@
+Table S16. Primary mixed model (H3).
+
+Component	Term	Estimate [95 % CI]	SE	df	t	p
+Fixed effects	Intercept (CNN, mean distance)	0.328 [0.252, 0.404]	0.030	5.5	10.84	< 0.001
+Fixed effects	Trait distance (per SD)	-0.024 [-0.060, 0.011]	0.017	34.8	-1.39	0.172
+Fixed effects	Classifier: ResNet vs. CNN	-0.013 [-0.037, 0.012]	0.013	355.0	-1.01	0.311
+Fixed effects	Classifier: HYDRA vs. CNN	0.099 [0.075, 0.124]	0.013	355.0	7.94	< 0.001
+Fixed effects	Classifier: MultiRocket vs. CNN	0.174 [0.150, 0.199]	0.013	355.0	13.92	< 0.001
+Fixed effects	Classifier: RF vs. CNN	0.254 [0.229, 0.278]	0.013	355.0	20.26	< 0.001
+Fixed effects	Classifier: LightGBM vs. CNN	0.252 [0.227, 0.276]	0.013	355.0	20.10	< 0.001
+Random intercepts (SD)	Unordered species pair	0.079				
+Random intercepts (SD)	Ordered species pair	0.040				
+Random intercepts (SD)	Source species	0.042				
+Random intercepts (SD)	Target species	0.063				
+Random intercepts (SD)	Residual	0.075				
+Tests and fit	Trait distance (likelihood-ratio test)	χ²(1) = 2.58				0.108
+Tests and fit	Distance × classifier interaction (likelihood-ratio test)	χ²(5) = 2.09				0.836
+Tests and fit	R² marginal / conditional	0.39 / 0.82				
+Tests and fit	Records	432 (72 ordered pairs of 9 species, 6 classifiers)				
+
+Model: Macro-F1 ~ trait distance (z-scored) + classifier + random intercepts of the unordered species pair, the ordered species pair, the source and the target species.
+One record per classifier and ordered pair of source and target species (pairs of the same species left out); Macro-F1 as mean over the dataset pairs and five training seeds. Trait distance: Gower distance of five core traits (Table S7).
+Estimates, 95 % CI and t tests from the REML fit (Satterthwaite df); likelihood-ratio tests of ML fits against the model without the distance (interaction: against this model); R² after Nakagawa.
+Summary: Table 3; variants: Table S9; leave one species out: Table S18; slopes per classifier: Table S17.
+Source: 04_Statistics/results/primary/h3_fixed_effects.csv, 04_Statistics/results/primary/h3_models.csv, 04_Statistics/results/primary/h3_random_effects.csv

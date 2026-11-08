@@ -1,0 +1,1 @@
+Additional figure. Sensitivity scenarios with RF and LightGBM. (a) H1: within- minus cross-dataset Macro-F1, median and IQR; circles: RF, triangles: LightGBM. (b) H3: β per SD with 95% CI. Values: Table S20.

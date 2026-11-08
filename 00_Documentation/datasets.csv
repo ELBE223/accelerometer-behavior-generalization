@@ -1,0 +1,13 @@
+dataset_id,species,scientific_name,source,public,doi,setting,sensor_position,raw_unit,dataset_rules
+Bison_dataset_1,Bison,Bison bonasus,"Sänger (2017), MSc thesis",no,,"acclimatization enclosure (50 ha), Döberitzer Heide","collar, nape",eobs_counts,
+Cattle_dataset_1,Cattle,Bos taurus,Ito et al. (2022),yes,,farm: grass field and pens,neck,g,Segments split at repeated time stamps; label ETC (unspecified mix) excluded
+Dog_dataset_1,Dog,Canis lupus familiaris,"Szangolies (2017), BSc thesis",no,,privately owned; familiar surroundings with owners (Berlin area),"own collar, nape",eobs_counts,Rows coded for another dog removed; clock times HH.MM:SS repaired
+Dog_dataset_2,Dog,Canis lupus familiaris,"Groth (2020), MSc thesis",no,,"privately owned; mostly outdoors with owners (Berlin, Brandenburg)",collar,eobs_counts,"Only sensor 6568 in the data (124-sample bursts); duplicated recordings read once, one unit per recording"
+Fox_dataset_1,Fox,Vulpes vulpes,"Giese (2016), MSc thesis; Rast et al. (2020)",no,,"game park enclosure (Germendorf, Brandenburg)",collar,eobs_counts,
+Fox_dataset_2,Fox,Vulpes vulpes,"unclear (not used, D14)",no,,,,eobs_counts,Not used: provenance of the labels unclear (D14)
+Giraffe_dataset_1,Giraffe,Giraffa camelopardalis,"Brandes (2018), MSc thesis; Brandes et al. (2021)",no,,zoo (Zoological Garden Berlin),head (halter),eobs_counts,Label = behaviour category and code
+Hedgehog_dataset_1,Hedgehog,Erinaceus europaeus,"Cibis (2017), MSc thesis",no,,"free-ranging, urban park (Berlin); one in an allotment garden",back (glued to trimmed spines),eobs_counts,Many bursts shorter than 264 samples; calibration markers and handling by people excluded
+Horse_dataset_1,Horse,Equus ferus przewalskii,"Sänger (2017), MSc thesis",no,,"acclimatization enclosure (50 ha), Döberitzer Heide","collar, nape",eobs_counts,Sheet excluded by the author not read; two sheets of one horse merged
+Horse_dataset_2,Horse,Equus caballus,Kamminga (2019),yes,10.4121/uuid:2e08745c-4178-4183-8551-f248c992cb14,riding stable: riding and pasture,collar (neck),m_s2,Ridden gaits excluded (Locomotion in scenario E)
+Raccoon_dataset_1,Raccoon,Procyon lotor,"Mardaus (2017), MSc thesis",no,,near-natural enclosure (c. 1500 m²),collar,eobs_counts,Only setting 2 (2.88-s bursts) in the data
+Raccoon_dataset_2,Raccoon,Procyon lotor,"Geiger (2023), BSc thesis",no,,enclosure (24 m²); juvenile on leash,collar (2); back harness (1 juvenile),eobs_counts,

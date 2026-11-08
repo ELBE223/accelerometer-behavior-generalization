@@ -1,0 +1,64 @@
+WINDOW REPORT: Horse_dataset_2
+Created: 2026-10-24 19:50:44 with code/make_windows.py (37 s)
+Settings: 25 Hz, window 2.0 s (50 samples), step 1.0 s (25 samples), padtype line
+
+====================================================================================================
+1. SEGMENTS
+====================================================================================================
+  Segments: 23,685; duration min 0.55 s, median 10.00 s, max 10.00 s
+  Segments shorter than one window (no window): 9, holding 1,201 of 21,578,554 samples (0.0%) and 1,201 of 21,578,554 labeled samples (0.0%)
+  Resampling: 100 Hz x 1/4 (23,685 segments)
+
+====================================================================================================
+2. WINDOWS
+====================================================================================================
+  all windows (training): 190,049
+    pure: 190,049; mixed labels: 0; with unlabeled samples: 0
+  non-overlapping (evaluation): 105,836
+    pure: 105,836; mixed labels: 0; with unlabeled samples: 0
+
+====================================================================================================
+3. PURE WINDOWS PER ORIGINAL LABEL
+====================================================================================================
+                     windows  non_overlapping  segments  individuals
+  label                                                             
+  unknown              96674            53809     11572           11
+  walking-rider        35433            19683      4275            8
+  trotting-rider       25695            14275      3070            7
+  grazing              18085            10050      2388            8
+  standing              5306             2968       770           11
+  galloping-rider       3939             2194       499            7
+  walking-natural       3620             2011       566           10
+  head-shake             624              464       384            7
+  scratch-biting         287              162        57            7
+  galloping-natural      102               58        21            7
+  trotting-natural        94               52        26            6
+  rolling                 67               37         9            3
+  eating                  48               27         7            3
+  fighting                31               17         7            2
+  shaking                 22               14        12            3
+  jumping                 13                9         9            1
+  rubbing                  6                3         1            1
+  scared                   3                3         3            2
+
+====================================================================================================
+4. EXCLUDED WINDOWS PER MAJORITY LABEL (mixed or unlabeled)
+====================================================================================================
+  (none)
+
+====================================================================================================
+5. PURE WINDOWS PER INDIVIDUAL AND LABEL
+====================================================================================================
+  label          eating  fighting  galloping-natural  galloping-rider  grazing  head-shake  jumping  rolling  rubbing  scared  scratch-biting  shaking  standing  trotting-natural  trotting-rider  unknown  walking-natural  walking-rider
+  individual_id                                                                                                                                                                                                                            
+  Bacardi             0         0                 40              288     1117           0        0        0        6       0              22       14       246                 0            1981     9845              363           1318
+  Driekus            31         0                 13              310     2467          57        0       23        0       0              14        4       342                 3            2670    11277              271           4023
+  Galoway            16        25                 13             1030     4322          59        0       13        0       0             171        4      1752                49            6376    23264             1406           9659
+  Happy               1         0                  7              689     5066         240        0        0        0       0               8        0      1188                 6            7033    13607              748           8896
+  Niro                0         0                  0                0       85           0        0        0        0       0               0        0        20                 0               0     2740                2              0
+  Noortje             0         0                  0                0        0           0        0        0        0       0               0        0        31                 0               0     2878                0              0
+  Pan                 0         0                  0                0        0           0        0        0        0       0               0        0        36                 0               0     1575               44            241
+  Patron              0         0                  5              712     1953          37        0       31        0       0               0        0      1245                17            3388    15153              388           5150
+  Sense               0         6                 15                0     1979         121        0        0        0       2              45        0        39                 6               0     1569              157              0
+  Viva                0         0                  0               82        0           5        0        0        0       1               4        0        58                 0             700     4409               80           1066
+  Zafir               0         0                  9              828     1096         105       13        0        0       0              23        0       349                13            3547    10357              161           5080

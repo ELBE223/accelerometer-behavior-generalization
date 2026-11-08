@@ -1,0 +1,83 @@
+HARMONIZATION REPORT: Dog_dataset_1
+Created: 2026-10-24 19:38:48 with code/harmonize.py (3 s)
+Output: 02_processed_data/Dog_dataset_1/samples.parquet, segments.parquet
+
+====================================================================================================
+1. OVERVIEW
+====================================================================================================
+  Samples: 674,850 (100.0% labeled)
+  Individuals: 14
+  Segments: 6,135; duration min 3.3, median 3.3, max 3.3 s
+  Native rate(s): 33.333 Hz (6,135 segments)
+
+====================================================================================================
+2. LOADER NOTES
+====================================================================================================
+  674,850 rows; 0 without individual, time or acceleration dropped
+  Burst starts from a change of the key column alone (same time): 0
+  Rows per burst before splitting (rows: bursts): 110: 6,135
+  Runs longer than 110 samples (bursts with the same time) split into 110-sample pieces: 0; of these not a multiple of 110 (piece borders uncertain): 0
+  Bursts with identical acceleration values (copies): 0 groups, 0 bursts dropped (0 groups with different labels, all copies dropped; 0 groups across individuals)
+  Bursts of different individuals with the same key and start time (recorded at once): 1,153
+    Mio + Timba (key 3680): 433 bursts, 2017-03-31 12:12:10 to 2017-03-31 15:52:40
+    Chica + Zaini (key 3680, 3681, 3682): 318 bursts, 2017-03-31 21:01:05 to 2017-04-02 11:39:15
+    Fibo + Lumpi (key 3679, 3680): 289 bursts, 2017-03-30 11:11:50 to 2017-03-31 10:45:10
+    Dexter + Lumpi (key 3680): 60 bursts, 2017-03-31 10:50:50 to 2017-03-31 10:56:15
+    Lumpi + Mio + Timba (key 3680): 51 bursts, 2017-03-31 12:26:50 to 2017-03-31 12:32:55
+    Lumpi + Mio (key 3680): 2 bursts, 2017-03-31 12:28:05 to 2017-03-31 12:30:36
+  6,135 bursts at 33.333 Hz; samples per burst min 110, median 110, max 110; most common (samples: bursts): 110: 6,135
+  Abby Achsen.txt: 36,300 rows, Tier code ABB (36,300 rows), Burst 3692
+  BigFoot Achsen.txt: 36,190 rows, Tier code BIG (36,190 rows), Burst 3692
+  Chica Achsen.txt: 72,600 rows, Tier code CHI (72,600 rows), Burst 3680, 3681, 3682, 3701
+  Dexter Achsen.txt: 45,760 rows, Tier code DEX (45,760 rows), Nummer 3680
+  Duke Achsen.txt: 24,530 rows, Tier code DUK (24,530 rows), Nummer 3706
+  Emi Achsen.txt: 42,130 rows, Tier code EMI (33,440 rows), HEL (8,690 rows), Nummer 3694
+  Fibo Achsen.txt: 61,820 rows, Tier code FIB (61,820 rows), Nummer 3679, 3680
+  Helena Achsen.txt: 31,020 rows, Tier code HEL (31,020 rows), Nummer 3694
+  Lulu Achsen.txt: 52,470 rows, Tier code LUL (52,470 rows), Burst 3708
+  Lumpi Achsen.txt: 60,170 rows, Tier code LUM (60,170 rows), Nummer 3679, 3680
+    clock times HH.MM:SS read as HH:MM:SS: 48,400 rows (e.g. 10.38:45, 10.38:50, 10.38:55)
+  Malka Achsen.txt: 37,620 rows, Tier code MAL (37,620 rows), Burst 3700
+  Mio Achsen.txt: 53,680 rows, Tier code MIO (53,680 rows), Nummer 3680
+  Timba Achsen.txt: 62,260 rows, Tier code TIM (62,260 rows), Nummer 3680
+  Zaini Achsen.txt: 66,990 rows, Tier code ZAI (66,990 rows), Nummer 3680, 3681, 3682
+  Left out: 8,690 rows coded HEL in the file of Emi (2017-04-14 09:40:55 to 2017-04-14 09:47:25; labels KNA (8,690)); 79 bursts, 79 at a time that also occurs in Data_Dog_Raw/Helena Achsen.txt; of these 0 with identical values, 79 with the same label, median mean |difference| 262.0 counts
+
+====================================================================================================
+3. ACCELERATION (g)
+====================================================================================================
+  x: min -4.000, p1 -1.287, median 0.314, p99 1.490, max 4.000
+  y: min -4.000, p1 -1.457, median 0.055, p99 1.451, max 4.000
+  z: min -4.000, p1 -0.828, median 0.670, p99 2.387, max 4.000
+  Median vector magnitude: 1.007 g (about 1 g expected)
+
+====================================================================================================
+4. LABELS (original, samples)
+====================================================================================================
+  KNA                                 108,350   16.1%
+  LIG                                  91,190   13.5%
+  STE                                  90,640   13.4%
+  GEH                                  87,010   12.9%
+  REN                                  75,680   11.2%
+  SIT                                  75,680   11.2%
+  SCH                                  53,790    8.0%
+  SPR                                  52,140    7.7%
+  BUD                                  40,370    6.0%
+
+====================================================================================================
+5. INDIVIDUALS
+====================================================================================================
+  Abby                     36,300 samples  100.0% labeled      330 segments    0.30 h
+  BigFoot                  36,190 samples  100.0% labeled      329 segments    0.30 h
+  Chica                    72,600 samples  100.0% labeled      660 segments    0.61 h
+  Dexter                   45,760 samples  100.0% labeled      416 segments    0.38 h
+  Duke                     24,530 samples  100.0% labeled      223 segments    0.20 h
+  Emi                      33,440 samples  100.0% labeled      304 segments    0.28 h
+  Fibo                     61,820 samples  100.0% labeled      562 segments    0.52 h
+  Helena                   31,020 samples  100.0% labeled      282 segments    0.26 h
+  Lulu                     52,470 samples  100.0% labeled      477 segments    0.44 h
+  Lumpi                    60,170 samples  100.0% labeled      547 segments    0.50 h
+  Malka                    37,620 samples  100.0% labeled      342 segments    0.31 h
+  Mio                      53,680 samples  100.0% labeled      488 segments    0.45 h
+  Timba                    62,260 samples  100.0% labeled      566 segments    0.52 h
+  Zaini                    66,990 samples  100.0% labeled      609 segments    0.56 h

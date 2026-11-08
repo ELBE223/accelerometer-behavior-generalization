@@ -1,0 +1,58 @@
+HARMONIZATION REPORT: Cattle_dataset_1
+Created: 2026-10-24 19:52:05 with code/harmonize.py (3 s)
+Output: 02_processed_data/Cattle_dataset_1/samples.parquet, segments.parquet
+
+====================================================================================================
+1. OVERVIEW
+====================================================================================================
+  Samples: 1,391,224 (61.1% labeled)
+  Individuals: 6
+  Segments: 1,064; duration min 0.04, median 2, max 1.12e+03 s
+  Native rate(s): 25 Hz (1,064 segments)
+
+====================================================================================================
+2. LOADER NOTES
+====================================================================================================
+  cow1.csv: 311,876 rows, 0 without acceleration or time dropped, 217 segments (breaks: gaps 209, time backwards 7, repeated time 0, gaps of 2 intervals (1 missing sample) 184, gaps of 3-5 intervals 12, gaps of 6-25 intervals 5, gaps of more than 25 intervals 8)
+  cow2.csv: 269,772 rows, 0 without acceleration or time dropped, 300 segments (breaks: gaps 295, time backwards 4, repeated time 0, gaps of 2 intervals (1 missing sample) 264, gaps of 3-5 intervals 17, gaps of 6-25 intervals 9, gaps of more than 25 intervals 5)
+  cow3.csv: 269,903 rows, 0 without acceleration or time dropped, 124 segments (breaks: gaps 119, time backwards 4, repeated time 0, gaps of 2 intervals (1 missing sample) 96, gaps of 3-5 intervals 11, gaps of 6-25 intervals 7, gaps of more than 25 intervals 5)
+  cow4.csv: 224,912 rows, 0 without acceleration or time dropped, 133 segments (breaks: gaps 127, time backwards 5, repeated time 0, gaps of 2 intervals (1 missing sample) 105, gaps of 3-5 intervals 8, gaps of 6-25 intervals 9, gaps of more than 25 intervals 5)
+  cow5.csv: 134,904 rows, 0 without acceleration or time dropped, 147 segments (breaks: gaps 144, time backwards 2, repeated time 0, gaps of 2 intervals (1 missing sample) 127, gaps of 3-5 intervals 10, gaps of 6-25 intervals 5, gaps of more than 25 intervals 2)
+  cow6.csv: 179,857 rows, 0 without acceleration or time dropped, 143 segments (breaks: gaps 137, time backwards 5, repeated time 0, gaps of 2 intervals (1 missing sample) 112, gaps of 3-5 intervals 13, gaps of 6-25 intervals 7, gaps of more than 25 intervals 5)
+
+====================================================================================================
+3. ACCELERATION (g)
+====================================================================================================
+  x: min -2.823, p1 -0.909, median -0.051, p99 0.614, max 3.210
+  y: min -2.340, p1 -0.645, median 0.815, p99 1.400, max 3.960
+  z: min -2.336, p1 -1.040, median 0.484, p99 1.085, max 3.924
+  Median vector magnitude: 1.026 g (about 1 g expected)
+
+====================================================================================================
+4. LABELS (original, samples)
+====================================================================================================
+  ETC                                 554,855   39.9%
+  (unlabeled)                         540,695   38.9%
+  RES                                 150,130   10.8%
+  RUS                                  53,229    3.8%
+  MOV                                  50,199    3.6%
+  GRZ                                  17,613    1.3%
+  SLT                                  10,858    0.8%
+  FES                                   7,934    0.6%
+  DRN                                   2,476    0.2%
+  LCK                                   1,302    0.1%
+  REL                                     764    0.1%
+  URI                                     621    0.0%
+  ATT                                     366    0.0%
+  ESC                                     128    0.0%
+  BMN                                      54    0.0%
+
+====================================================================================================
+5. INDIVIDUALS
+====================================================================================================
+  cow1                    311,876 samples   51.5% labeled      217 segments    3.47 h
+  cow2                    269,772 samples   69.4% labeled      300 segments    3.00 h
+  cow3                    269,903 samples   67.2% labeled      124 segments    3.00 h
+  cow4                    224,912 samples   50.3% labeled      133 segments    2.50 h
+  cow5                    134,904 samples   54.4% labeled      147 segments    1.50 h
+  cow6                    179,857 samples   74.9% labeled      143 segments    2.00 h

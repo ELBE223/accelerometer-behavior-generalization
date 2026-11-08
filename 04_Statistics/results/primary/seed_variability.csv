@@ -1,0 +1,25 @@
+model,mode,rows,n_seeds_min,n_seeds_max,sd_macro_f1_median,sd_macro_f1_max,max_at
+cnn,cross,11,5,5,0.0303688,0.0495457,all except Fox_dataset_1 -> Fox_dataset_1
+cnn,global,12,5,5,0.0728445,0.163671,pooled -> Horse_dataset_2
+cnn,pairwise,110,5,5,0.0474811,0.182735,Dog_dataset_1 -> Raccoon_dataset_1
+cnn,within,10,5,5,0.0279601,0.0375576,Cattle_dataset_1 -> Cattle_dataset_1
+resnet,cross,11,5,5,0.0395205,0.0675144,all except Horse_dataset_2 -> Horse_dataset_2
+resnet,global,12,5,5,0.055486,0.195799,pooled -> Horse_dataset_2
+resnet,pairwise,110,5,5,0.0501385,0.234411,Dog_dataset_1 -> Fox_dataset_1
+resnet,within,10,5,5,0.0283806,0.0863946,Raccoon_dataset_2 -> Raccoon_dataset_2
+hydra,cross,11,5,5,0.0118254,0.0241689,all except Horse_dataset_2 -> Horse_dataset_2
+hydra,global,12,5,5,0.0397746,0.0949375,pooled -> Horse_dataset_2
+hydra,pairwise,110,5,5,0.0313679,0.10941,Hedgehog_dataset_1 -> Cattle_dataset_1
+hydra,within,10,5,5,0.00787808,0.010799,Dog_dataset_1 -> Dog_dataset_1
+multirocket,cross,11,5,5,0.0101684,0.0334815,all except Giraffe_dataset_1 -> Giraffe_dataset_1
+multirocket,global,12,5,5,0.0413646,0.110485,pooled -> Raccoon_dataset_1
+multirocket,pairwise,110,5,5,0.0358806,0.136683,Cattle_dataset_1 -> Horse_dataset_1
+multirocket,within,10,5,5,0.00592869,0.0115773,Dog_dataset_2 -> Dog_dataset_2
+rf,cross,11,5,5,0.00601028,0.0144728,all except Raccoon_dataset_1 -> Raccoon_dataset_1
+rf,global,12,5,5,0.0439935,0.11122,pooled -> Raccoon_dataset_1
+rf,pairwise,110,5,5,0.0160237,0.128909,Giraffe_dataset_1 -> Dog_dataset_1
+rf,within,10,5,5,0.00631885,0.0180421,Cattle_dataset_1 -> Cattle_dataset_1
+lgbm,cross,11,5,5,0.00867606,0.0191297,all except Giraffe_dataset_1 -> Giraffe_dataset_1
+lgbm,global,12,5,5,0.0367443,0.106407,pooled -> Raccoon_dataset_1
+lgbm,pairwise,110,5,5,0.0179912,0.0954035,Giraffe_dataset_1 -> Dog_dataset_1
+lgbm,within,10,5,5,0.00563747,0.0117033,Cattle_dataset_1 -> Cattle_dataset_1

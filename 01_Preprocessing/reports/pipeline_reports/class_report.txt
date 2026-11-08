@@ -1,0 +1,197 @@
+CLASS REPORT
+Updated: 2026-10-27 18:32:37 with code/assign_classes.py (datasets of this run: Bison_dataset_1, Cattle_dataset_1, Dog_dataset_1, Dog_dataset_2, Fox_dataset_1, Giraffe_dataset_1, Hedgehog_dataset_1, Horse_dataset_1, Horse_dataset_2, Raccoon_dataset_1, Raccoon_dataset_2)
+Mapping: 00_documentation/behavior_mapping.csv (D10); a window has a class if all its samples map to it.
+
+====================================================================================================
+Bison_dataset_1
+====================================================================================================
+  all windows (training): 7,290; with class: Foraging 2,021, Locomotion 749, Resting 4,138, Other 379; without class: unlabeled samples 3
+  non-overlapping (evaluation): 7,290; with class: Foraging 2,021, Locomotion 749, Resting 4,138, Other 379; without class: unlabeled samples 3
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Arena               636         259     1657    128        kept
+  Döschi              659         248     1298    161        kept
+  Flake               726         242     1183     90        kept
+  Individuals kept by the thesis rule: 3 of 3
+
+====================================================================================================
+Cattle_dataset_1
+====================================================================================================
+  all windows (training): 54,246; with class: Foraging 1,398, Locomotion 1,547, Resting 7,317, Other 61; without class: Exclude label 22,480, unlabeled samples 21,382, two or more classes 61
+  non-overlapping (evaluation): 27,261; with class: Foraging 704, Locomotion 782, Resting 3,680, Other 28; without class: Exclude label 11,308, unlabeled samples 10,729, two or more classes 30
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  cow1                195          95      679      4        kept
+  cow2                 32         131     1348      0        kept
+  cow3                228         115      563     14        kept
+  cow4                 43         272      537      5        kept
+  cow5                 63          68      195      0        kept
+  cow6                143         101      358      5        kept
+  Individuals kept by the thesis rule: 6 of 6
+
+====================================================================================================
+Dog_dataset_1
+====================================================================================================
+  all windows (training): 12,270; with class: Foraging 2,948, Locomotion 3,906, Resting 4,682, Other 734; without class: 0
+  non-overlapping (evaluation): 6,135; with class: Foraging 1,474, Locomotion 1,953, Resting 2,341, Other 367; without class: 0
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Abby                 50         116      164      0        kept
+  BigFoot              52          57      160     60        kept
+  Chica               194         190      197     79        kept
+  Dexter              112         127      177      0        kept
+  Duke                  0         109      114      0    LEFT OUT
+  Emi                  66          61      177      0        kept
+  Fibo                106         186      206     64        kept
+  Helena               79         115       88      0        kept
+  Lulu                134         175      168      0        kept
+  Lumpi               151         173      172     51        kept
+  Malka                65         113      164      0        kept
+  Mio                 148         159      181      0        kept
+  Timba               148         174      182     62        kept
+  Zaini               169         198      191     51        kept
+  Individuals kept by the thesis rule: 13 of 14
+
+====================================================================================================
+Dog_dataset_2
+====================================================================================================
+  all windows (training): 6,567; with class: Foraging 1,090, Locomotion 2,305, Resting 3,172, Other 0; without class: 0
+  non-overlapping (evaluation): 3,939; with class: Foraging 654, Locomotion 1,383, Resting 1,902, Other 0; without class: 0
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class                    Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                            
+  Ami+Winston                    81         171      234      0        kept
+  Amy+Dexter                     87         162      213      0        kept
+  Cooper+Dorle                   84         150      225      0        kept
+  Emily+Frida+Trude             105         198      294      0        kept
+  Gaucho+Harvey+Kalle            84         219      243      0        kept
+  Jeanne+Lulu+Nelo+Pipper        90         171      252      0        kept
+  Käthe+Knut                    78         162      240      0        kept
+  Marley+Ziva                    45         150      201      0        kept
+  Individuals kept by the thesis rule: 8 of 8
+
+====================================================================================================
+Fox_dataset_1
+====================================================================================================
+  all windows (training): 1,074; with class: Foraging 402, Locomotion 320, Resting 172, Other 180; without class: 0
+  non-overlapping (evaluation): 537; with class: Foraging 201, Locomotion 160, Resting 86, Other 90; without class: 0
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Dana                 80          80       43     40        kept
+  Silver              121          80       43     50        kept
+  Individuals kept by the thesis rule: 2 of 2
+
+====================================================================================================
+Giraffe_dataset_1
+====================================================================================================
+  all windows (training): 11,997; with class: Foraging 4,914, Locomotion 2,418, Resting 3,886, Other 779; without class: 0
+  non-overlapping (evaluation): 11,997; with class: Foraging 4,914, Locomotion 2,418, Resting 3,886, Other 779; without class: 0
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Farrah             1834        1079      692    160        kept
+  Jaffa               930         608     1108     84        kept
+  Max                2150         731     2086    535        kept
+  Individuals kept by the thesis rule: 3 of 3
+
+====================================================================================================
+Hedgehog_dataset_1
+====================================================================================================
+  all windows (training): 1,225; with class: Foraging 60, Locomotion 624, Resting 371, Other 26; without class: Exclude label 144
+  non-overlapping (evaluation): 1,225; with class: Foraging 60, Locomotion 624, Resting 371, Other 26; without class: Exclude label 144
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Bea                   8         107       17      2    LEFT OUT
+  Christopher           0          83       24      3    LEFT OUT
+  Fred                 40          84      118      9        kept
+  Ramon                 6          94       17      1    LEFT OUT
+  Sinah                 1         120      139      9    LEFT OUT
+  Tine                  5         136       56      2    LEFT OUT
+  Individuals kept by the thesis rule: 1 of 6
+
+====================================================================================================
+Horse_dataset_1
+====================================================================================================
+  all windows (training): 4,021; with class: Foraging 2,114, Locomotion 643, Resting 983, Other 280; without class: unlabeled samples 1
+  non-overlapping (evaluation): 4,021; with class: Foraging 2,114, Locomotion 643, Resting 983, Other 280; without class: unlabeled samples 1
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Jedi                682         143      294     53        kept
+  Joda                590         216      307     70        kept
+  Kalmoek             842         284      382    157        kept
+  Individuals kept by the thesis rule: 3 of 3
+
+====================================================================================================
+Horse_dataset_2
+====================================================================================================
+  all windows (training): 190,049; with class: Foraging 18,133, Locomotion 3,816, Resting 5,306, Other 1,053; without class: Exclude label 161,741
+  non-overlapping (evaluation): 105,836; with class: Foraging 10,077, Locomotion 2,121, Resting 2,968, Other 709; without class: Exclude label 89,961
+  sensitivity mapping, non-overlapping: Foraging 10,077, Locomotion 38,282, Resting 2,968, Other 700 (65,080 windows change)
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Bacardi             622         223      139     23        kept
+  Driekus            1385         157      188     77        kept
+  Galoway            2409         819      978    169        kept
+  Happy              2818         422      664    181        kept
+  Niro                 48           1       11      0    LEFT OUT
+  Noortje               0           0       18      0    LEFT OUT
+  Pan                   0          24       20      0    LEFT OUT
+  Patron             1086         227      694     49        kept
+  Sense              1101         101       23    119        kept
+  Viva                  0          45       36      6    LEFT OUT
+  Zafir               608         102      197     85        kept
+  Individuals kept by the thesis rule: 7 of 11
+
+====================================================================================================
+Raccoon_dataset_1
+====================================================================================================
+  all windows (training): 594; with class: Foraging 162, Locomotion 243, Resting 162, Other 27; without class: 0
+  non-overlapping (evaluation): 594; with class: Foraging 162, Locomotion 243, Resting 162, Other 27; without class: 0
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Lisa                108         162       81     27        kept
+  Ottilie              54          81       81      0        kept
+  Individuals kept by the thesis rule: 2 of 2
+
+====================================================================================================
+Raccoon_dataset_2
+====================================================================================================
+  all windows (training): 2,416; with class: Foraging 448, Locomotion 386, Resting 1,192, Other 350; without class: Exclude label 40
+  non-overlapping (evaluation): 1,208; with class: Foraging 224, Locomotion 193, Resting 596, Other 175; without class: Exclude label 20
+
+  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main classes with at least 10 windows):
+
+  class          Foraging  Locomotion  Resting  Other thesis_rule
+  individual_id                                                  
+  Carlo                61          24      318     69        kept
+  Emma                 12           0      160     29    LEFT OUT
+  Wilbert             151         169      118     77        kept
+  Individuals kept by the thesis rule: 2 of 3

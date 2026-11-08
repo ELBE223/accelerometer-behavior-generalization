@@ -1,0 +1,27 @@
+# 01_Preprocessing
+
+From the raw data to labeled windows and window features (Methods 2.1–2.2).
+Settings: `config/pipeline_settings.json` (25 Hz, 2.0-s windows every 1.0 s; variant C:
+2.4-s windows every 2.4 s). Decisions: D02–D21 in `00_Documentation/decisions.md`.
+
+| Step | Script | Input | Output |
+|---|---|---|---|
+| 0 | `prepare_raw_data.py` | — | downloads Horse_dataset_2 (4TU), sorts converted thesis files out of the raw folders |
+| 0 | `dataset_report.py` | `data/raw/<dataset>/` | `reports/dataset_reports/<dataset>.txt` (what the raw data contain) |
+| 1 | `harmonize.py` + `loaders/` | `data/raw/<dataset>/` | `data/processed/<dataset>/samples.parquet`, `segments.parquet` (x/y/z in g, labels, individuals, segments) |
+| 2 | `make_windows.py` | `data/processed/` | `data/windows/<dataset>/windows.parquet` (resampled to 25 Hz, windows within segments) |
+| 3 | `assign_classes.py` | windows, `00_Documentation/behavior_mapping.csv` | `data/windows/<dataset>/classes.parquet`; `reports/pipeline_reports/class_summary.csv` |
+| 4 | `features.py` | windows | `data/features/<dataset>/features.parquet` (26 features, Table S4) |
+| check | `checks/check_activity.py` | windows, features, classes | `reports/pipeline_reports/activity_check.txt`: movement intensity per class and individual |
+| check | `checks/check_thesis_windows.py` | windowed thesis data (local) | `reports/thesis_checks/thesis_windows_check.txt` |
+
+`loaders/` has one loader per dataset (`<dataset_id lower case>.py`) that reads its raw
+format into the common format; `common.py`, `bursts.py` and `saenger_sheets.py` are
+shared helpers. `make_windows.py`, `assign_classes.py` and `features.py` take
+`--variant C` for sensitivity scenario C (into `data/windows_C/`, `data/features_C/`).
+
+`reports/` is generated: one report per dataset and step, plus the summaries used in the
+paper (`class_summary.csv`: Table S1, Figure S1).
+
+Run all steps: `bash update_local.sh` (pipeline) or each script from the project folder,
+e.g. `python 01_Preprocessing/harmonize.py Cattle_dataset_1`.

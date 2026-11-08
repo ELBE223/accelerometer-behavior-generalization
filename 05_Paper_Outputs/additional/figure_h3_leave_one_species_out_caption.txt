@@ -1,0 +1,1 @@
+Additional figure. Leave-one-species-out refits (H3). Points: β per SD without the named species; lines: 95% CI; dashed: all species. Values: Table S18.

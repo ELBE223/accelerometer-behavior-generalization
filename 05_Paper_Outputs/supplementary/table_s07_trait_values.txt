@@ -1,0 +1,17 @@
+Table S7. Core trait values.
+
+Species	Scientific name	Body mass (ln g)	Locomotor specialization	Body configuration	Relative neck length	Food acquisition and handling
+Bison	Bison bonasus	13.122	cursorial	robust quadruped	intermediate	vegetation cropping
+Cattle	Bos taurus	13.710	cursorial	robust quadruped	intermediate	vegetation cropping
+Dog	Canis lupus familiaris	10.194	cursorial	standard quadruped	intermediate	oral item acquisition
+Horse	Equus caballus	12.429	cursorial	standard quadruped	long	vegetation cropping
+Przewalski's horse	Equus ferus przewalskii	12.612	cursorial	standard quadruped	long	vegetation cropping
+Hedgehog	Erinaceus europaeus	6.939	terrestrial generalist	compact low-profile body	short	oral item acquisition
+Giraffe	Giraffa camelopardalis	13.710	cursorial	tall long-necked quadruped	very long	vegetation cropping
+Raccoon	Procyon lotor	8.617	scansorial	standard quadruped	short	manual food handling
+Red fox	Vulpes vulpes	8.608	cursorial	standard quadruped	intermediate	oral item acquisition
+
+Gower distance with equal weights; relative neck length ordinal (short < intermediate < long < very long), body mass numeric, the other traits nominal.
+Relative neck length: hedgehog by expert judgement (intermediate as alternative); raccoon supported indirectly (Davis 1964).
+Definitions and sources: Table S6.
+Source: 00_Documentation/traits/species_traits_core.csv

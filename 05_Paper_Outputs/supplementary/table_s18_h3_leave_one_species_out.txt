@@ -1,0 +1,15 @@
+Table S18. Leave-one-species-out refits (H3).
+
+Species left out	Scientific name	Records (n)	Ordered species pairs	β per SD [95 % CI]	SE	LR χ² (df)	p	R² marginal	R² conditional	Singular fit
+Bison	Bison bonasus	336	56	-0.022 [-0.054, 0.010]	0.016	1.93 (1)	0.165	0.41	0.80	no
+Cattle	Bos taurus	336	56	-0.039 [-0.084, 0.006]	0.022	3.21 (1)	0.073	0.37	0.85	yes
+Dog	Canis lupus familiaris	336	56	-0.022 [-0.065, 0.021]	0.021	2.33 (1)	0.126	0.40	0.83	no
+Horse	Equus caballus	336	56	-0.028 [-0.066, 0.010]	0.018	2.34 (1)	0.126	0.41	0.83	no
+Przewalski's horse	Equus ferus przewalskii	336	56	-0.013 [-0.042, 0.017]	0.014	0.83 (1)	0.363	0.38	0.79	no
+Hedgehog	Erinaceus europaeus	336	56	-0.004 [-0.050, 0.042]	0.022	0.03 (1)	0.861	0.36	0.83	yes
+Giraffe	Giraffa camelopardalis	336	56	-0.032 [-0.075, 0.012]	0.021	2.25 (1)	0.134	0.39	0.82	no
+Raccoon	Procyon lotor	336	56	-0.046 [-0.087, -0.005]	0.020	5.28 (1)	0.022	0.44	0.81	yes
+Red fox	Vulpes vulpes	336	56	-0.029 [-0.074, 0.017]	0.022	1.73 (1)	0.188	0.38	0.84	yes
+
+Distance z-scored again in each refit. Range of β: -0.046 to -0.004; p < 0.05 in 1 of 9 refits.
+Source: 04_Statistics/results/primary/h3_loso.csv

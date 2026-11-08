@@ -1,0 +1,881 @@
+DATASET REPORT: Fox_dataset_2
+Created: 2026-10-24 17:57:35 with code/dataset_report.py (pandas 3.1.0)
+Folder: 01_raw_data/Fox_dataset_2
+Generated automatically from the raw data; column roles are guesses from column names.
+
+====================================================================================================
+0. OVERVIEW
+====================================================================================================
+  Files: 17 (data 15, documentation 2)
+
+  table                                    rows     cols  columns
+  ---------------------------------------  -------  ----  ------------------------------------------------------------
+  Data_Fox_Raw/1639_ACC_movebank.csv       11 323   11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/1644_ACC_movebank.csv       18 940   11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/4142_ACC_movebank.csv       25 535   11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/5009_ACC_movebank.csv       33 438   11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/5010_ACC_movebank.csv       127 629  11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/5011_ACC_movebank.csv       45 397   11    event-id, visible, timestamp, eobs:acceleration-axes, eobs:…
+  Data_Fox_Raw/ACC_QC_summary.csv          6        22    Name, tag_id, file, n_bursts, first_timestamp, last_timesta…
+  Data_Fox_Raw/fox_1639_behaviour.csv      11 293   2     timestamp, bev
+  Data_Fox_Raw/fox_1644_180_behaviour.csv  18 184   2     timestamp, bev
+  Data_Fox_Raw/fox_1644_82_behaviour.csv   755      2     timestamp, bev
+  Data_Fox_Raw/fox_1644_behaviour.csv      18 939   2     timestamp, bev
+  Data_Fox_Raw/fox_4142_behaviour.csv      25 535   2     timestamp, bev
+  Data_Fox_Raw/fox_5009_behaviour.csv      33 438   2     timestamp, bev
+  Data_Fox_Raw/fox_5010_behaviour.csv      127 581  2     timestamp, bev
+  Data_Fox_Raw/fox_5011_behaviour.csv      45 349   2     timestamp, bev
+
+  The data tables have 3 different column sets.
+
+  Rows per value of 'bev' and table:
+
+    bev                                      eating  grooming  other  resting  stocking  trotting  walking
+    Data_Fox_Raw/fox_1639_behaviour.csv          50      5195    244     5715        13        40       36
+    Data_Fox_Raw/fox_1644_180_behaviour.csv      79      5848    339    11886        17        11        4
+    Data_Fox_Raw/fox_1644_82_behaviour.csv        8       141     25      560         5        11        5
+    Data_Fox_Raw/fox_1644_behaviour.csv          87      5989    364    12446        22        22        9
+    Data_Fox_Raw/fox_4142_behaviour.csv         253      7224    218    15075       212      2318      235
+    Data_Fox_Raw/fox_5009_behaviour.csv         289      8408    243    17908       715      5607      268
+    Data_Fox_Raw/fox_5010_behaviour.csv        2061     31924    960    78258       267     10910     3201
+    Data_Fox_Raw/fox_5011_behaviour.csv        1277      9498    580    24764       750      5366     3114
+
+  Automatic hints:
+  - acceleration stored as e-obs bursts in one text column; split bursts and convert raw counts to g: Data_Fox_Raw/1639_ACC_movebank.csv, Data_Fox_Raw/1644_ACC_movebank.csv, Data_Fox_Raw/4142_ACC_movebank.csv, Data_Fox_Raw/5009_ACC_movebank.csv, Data_Fox_Raw/5010_ACC_movebank.csv and 1 more
+  - time goes backwards; split by recording or individual before windowing: Data_Fox_Raw/ACC_QC_summary.csv
+  - labels without acceleration values; join them to the acceleration table by time: Data_Fox_Raw/fox_1639_behaviour.csv, Data_Fox_Raw/fox_1644_180_behaviour.csv, Data_Fox_Raw/fox_1644_82_behaviour.csv, Data_Fox_Raw/fox_1644_behaviour.csv, Data_Fox_Raw/fox_4142_behaviour.csv and 3 more
+  - Data_Fox_Raw/fox_1644_behaviour.csv contains the rows of Data_Fox_Raw/fox_1644_180_behaviour.csv + Data_Fox_Raw/fox_1644_82_behaviour.csv; use either the parts or the combined table
+
+====================================================================================================
+1. FILES
+====================================================================================================
+  file                                     category       type  size
+  ---------------------------------------  -------------  ----  --------
+  Data_Fox_Raw/1639_ACC_movebank.csv       data           .csv  31.1 MB
+  Data_Fox_Raw/1644_ACC_movebank.csv       data           .csv  51.0 MB
+  Data_Fox_Raw/4142_ACC_movebank.csv       data           .csv  100.8 MB
+  Data_Fox_Raw/5009_ACC_movebank.csv       data           .csv  58.4 MB
+  Data_Fox_Raw/5010_ACC_movebank.csv       data           .csv  216.4 MB
+  Data_Fox_Raw/5011_ACC_movebank.csv       data           .csv  79.3 MB
+  Data_Fox_Raw/ACC_QC_summary.csv          data           .csv  1.3 KB
+  Data_Fox_Raw/fox_1639_behaviour.csv      data           .csv  423.9 KB
+  Data_Fox_Raw/fox_1644_180_behaviour.csv  data           .csv  686.7 KB
+  Data_Fox_Raw/fox_1644_82_behaviour.csv   data           .csv  27.3 KB
+  Data_Fox_Raw/fox_1644_behaviour.csv      data           .csv  714.0 KB
+  Data_Fox_Raw/fox_4142_behaviour.csv      data           .csv  970.6 KB
+  Data_Fox_Raw/fox_5009_behaviour.csv      data           .csv  1.2 MB
+  Data_Fox_Raw/fox_5010_behaviour.csv      data           .csv  4.8 MB
+  Data_Fox_Raw/fox_5011_behaviour.csv      data           .csv  1.7 MB
+  Informationen.rtf                        documentation  .rtf  433 B
+  Mapping_table.rtf                        documentation  .rtf  697 B
+
+====================================================================================================
+2. DOCUMENTATION
+====================================================================================================
+
+Informationen.rtf
+-----------------
+  Verschiedene Quellen, verschiedene Frequenzen!
+
+Mapping_table.rtf
+-----------------
+  Locomotion → Walking, Trotting
+  Resting → Resting
+  Foraging → Eating, Stocking
+  Other → Grooming, Other
+
+====================================================================================================
+3. DATA FILES
+====================================================================================================
+
+Data_Fox_Raw/1639_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 11 323   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        11 323    5741114314  5741421213  5741114314, 5741114315, 5741114316
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        11 310                            2011-04-13 06:22:00…, 2011-04-13 06:24:00…, 2011-04-13 06:26:00…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         18.74       18.74       18.74, 18.74, 18.74
+  eobs:accelerations-raw                    str      0        11 323                            2180 1861 1960 2178…, 2180 1862 1970 2180…, 1429 1907 1896 1434…
+  eobs:key-bin-checksum                     int64    0        11 323    621481      4293627886  3025488037, 234385277, 515472211
+  eobs:start-timestamp                      str      0        11 310                            2011-04-13 06:22:00…, 2011-04-13 06:24:00…, 2011-04-13 06:26:00…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         1639        1639        1639, 1639, 1639
+  study-name                                str      0        1                                 Movement ecology of…, Movement ecology of…, Movement ecology of…
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Movement ecology of red foxes in dynamic agricultural landscapes
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 11 323; values per burst: 540 (11 319x), 246 (4x)
+    Raw values (first 2000 bursts): min 0, max 4032, median 1762
+    eobs:acceleration-axes: XYZ (11 323x)
+    eobs:acceleration-sampling-frequency-per-axis: 18.74 (11 323x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-04-13 06:22:00   Last: 2011-05-20 02:06:00   Span: 36 days, 19:44:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 1, largest 21 days, 1:44:00
+    Repeated time stamps: 0.1% of steps; rows per time stamp: median 1, max 2
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-04-13 06:22:00   Last: 2011-05-20 02:06:00   Span: 36 days, 19:44:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 1, largest 21 days, 1:44:00
+    Repeated time stamps: 0.1% of steps; rows per time stamp: median 1, max 2
+
+  Values of 'visible' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    True   11 323  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    XYZ    11 323  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows    share
+    ------------  ------  ------
+    acceleration  11 323  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    1639   11 323  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value                                     rows    share
+    ----------------------------------------  ------  ------
+    Movement ecology of red foxes in dynami…  11 323  100.0%
+
+Data_Fox_Raw/1644_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 18 940   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        18 940    5741123969  5741989550  5741989517, 5741989518, 5741989519
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        18 940                            2011-04-19 14:28:06…, 2011-06-03 07:03:00…, 2011-06-03 07:16:30…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         18.74       18.74       18.74, 18.74, 18.74
+  eobs:accelerations-raw                    str      0        18 940                            1885 2184 1976 1884…, 1974 2026 1676 1981…, 1973 2025 1672 1977…
+  eobs:key-bin-checksum                     int64    0        18 940    321133      4294852503  1164527673, 1557675845, 933470749
+  eobs:start-timestamp                      str      0        18 940                            2011-04-19 14:28:06…, 2011-06-03 07:03:00…, 2011-06-03 07:16:30…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         1644        1644        1644, 1644, 1644
+  study-name                                str      0        1                                 Movement ecology of…, Movement ecology of…, Movement ecology of…
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Movement ecology of red foxes in dynamic agricultural landscapes
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 18 940; values per burst: 540 (18 184x), 246 (756x)
+    Raw values (first 2000 bursts): min 0, max 4026, median 1725
+    eobs:acceleration-axes: XYZ (18 940x)
+    eobs:acceleration-sampling-frequency-per-axis: 18.74 (18 940x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-04-19 14:28:06   Last: 2011-07-06 08:40:29   Span: 77 days, 18:12:23
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 757, largest 44 days, 16:34:54
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-04-19 14:28:06   Last: 2011-07-06 08:40:29   Span: 77 days, 18:12:23
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 757, largest 44 days, 16:34:54
+
+  Values of 'visible' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    True   18 940  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    XYZ    18 940  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows    share
+    ------------  ------  ------
+    acceleration  18 940  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    1644   18 940  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value                                     rows    share
+    ----------------------------------------  ------  ------
+    Movement ecology of red foxes in dynami…  18 940  100.0%
+
+Data_Fox_Raw/4142_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 25 535   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        25 535    3625767768  4958095082  3625783682, 3625783683, 3625783684
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        25 535                            2016-12-19 20:08:00…, 2016-12-19 20:10:00…, 2016-12-19 20:12:00…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         33.33       33.33       33.33, 33.33, 33.33
+  eobs:accelerations-raw                    str      0        25 535                            2447 2139 1714 2445…, 1543 2077 2065 1542…, 1543 2076 2065 1542…
+  eobs:key-bin-checksum                     int64    0        25 535    149756      4294763080  2277842094, 1422128132, 752656958
+  eobs:start-timestamp                      str      0        25 535                            2016-12-19 20:08:00…, 2016-12-19 20:10:00…, 2016-12-19 20:12:00…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         4142        4142        4142, 4142, 4142
+  study-name                                str      0        1                                 Movement ecology of…, Movement ecology of…, Movement ecology of…
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Movement ecology of red foxes in dynamic agricultural landscapes
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 25 535; values per burst: 792 (25 535x)
+    Raw values (first 2000 bursts): min 0, max 4095, median 1907
+    eobs:acceleration-axes: XYZ (25 535x)
+    eobs:acceleration-sampling-frequency-per-axis: 33.33 (25 535x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2016-12-19 20:08:00   Last: 2017-01-24 07:22:00   Span: 35 days, 11:14:00
+    Median step: 120 s -> 0.008333 Hz
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2016-12-19 20:08:00   Last: 2017-01-24 07:22:00   Span: 35 days, 11:14:00
+    Median step: 120 s -> 0.008333 Hz
+
+  Values of 'visible' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    True   25 535  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    XYZ    25 535  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows    share
+    ------------  ------  ------
+    acceleration  25 535  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    4142   25 535  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value                                     rows    share
+    ----------------------------------------  ------  ------
+    Movement ecology of red foxes in dynami…  25 535  100.0%
+
+Data_Fox_Raw/5009_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 33 438   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        33 438    4894607580  4958084654  4958073051, 4958073052, 4958073053
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        33 438                            2017-09-27 00:36:00…, 2017-09-27 00:38:00…, 2017-09-27 00:40:00…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         33.33       33.33       33.33, 33.33, 33.33
+  eobs:accelerations-raw                    str      0        33 438                            1838 2490 1904 1832…, 1859 2489 1915 1832…, 1865 2502 1939 1865…
+  eobs:key-bin-checksum                     int64    0        33 438    323636      4294802716  2338805961, 1263225195, 3288545200
+  eobs:start-timestamp                      str      0        33 438                            2017-09-27 00:36:00…, 2017-09-27 00:38:00…, 2017-09-27 00:40:00…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         5009        5009        5009, 5009, 5009
+  study-name                                str      0        1                                 Movement ecology of…, Movement ecology of…, Movement ecology of…
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Movement ecology of red foxes in dynamic agricultural landscapes
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 33 438; values per burst: 330 (33 438x)
+    Raw values (first 2000 bursts): min 0, max 4095, median 1896
+    eobs:acceleration-axes: XYZ (33 438x)
+    eobs:acceleration-sampling-frequency-per-axis: 33.33 (33 438x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-09-27 00:36:00   Last: 2017-12-10 17:06:00   Span: 74 days, 16:30:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 23 days, 22:50:00
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-09-27 00:36:00   Last: 2017-12-10 17:06:00   Span: 74 days, 16:30:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 23 days, 22:50:00
+
+  Values of 'visible' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    True   33 438  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    XYZ    33 438  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows    share
+    ------------  ------  ------
+    acceleration  33 438  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    5009   33 438  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value                                     rows    share
+    ----------------------------------------  ------  ------
+    Movement ecology of red foxes in dynami…  33 438  100.0%
+
+Data_Fox_Raw/5010_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 127 629   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        127 629   9146305013  9146432641  9146305013, 9146305014, 9146305015
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        127 608                           2017-10-18 15:25:41…, 2017-10-18 15:26:00…, 2017-10-18 15:28:00…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         33.33       33.33       33.33, 33.33, 33.33
+  eobs:accelerations-raw                    str      0        127 629                           2554 1996 2002 2556…, 2554 1996 2002 2556…, 2553 1992 1989 2553…
+  eobs:key-bin-checksum                     int64    0        127 629   146100      4294964646  2906893379, 843755909, 3683552895
+  eobs:start-timestamp                      str      0        127 608                           2017-10-18 15:25:41…, 2017-10-18 15:26:00…, 2017-10-18 15:28:00…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         5010        5010        5010, 5010, 5010
+  study-name                                str      0        1                                 Test_Gerhard, Test_Gerhard, Test_Gerhard
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Test_Gerhard
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 127 629; values per burst: 330 (127 629x)
+    Raw values (first 2000 bursts): min 0, max 3979, median 2047
+    eobs:acceleration-axes: XYZ (127 629x)
+    eobs:acceleration-sampling-frequency-per-axis: 33.33 (127 629x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-10-18 15:25:41   Last: 2019-01-28 16:01:41   Span: 467 days, 0:36:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 3, largest 170 days, 22:43:07
+    Repeated time stamps: 0.0% of steps; rows per time stamp: median 1, max 2
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-10-18 15:25:41   Last: 2019-01-28 16:01:41   Span: 467 days, 0:36:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 3, largest 170 days, 22:43:07
+    Repeated time stamps: 0.0% of steps; rows per time stamp: median 1, max 2
+
+  Values of 'visible' (1 distinct):
+    value  rows     share
+    -----  -------  ------
+    True   127 629  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows     share
+    -----  -------  ------
+    XYZ    127 629  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows     share
+    ------------  -------  ------
+    acceleration  127 629  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows     share
+    -----  -------  ------
+    5010   127 629  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value         rows     share
+    ------------  -------  ------
+    Test_Gerhard  127 629  100.0%
+
+Data_Fox_Raw/5011_ACC_movebank.csv
+----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 45 397   Columns: 13
+  Empty columns (ignored): individual-taxon-canonical-name, individual-local-identifier
+
+  column                                    dtype    missing  distinct  min         max         first values
+  ----------------------------------------  -------  -------  --------  ----------  ----------  ----------------------------------------------------------------
+  event-id                                  int64    0        45 397    9062187814  9062471941  9062465755, 9062465756, 9062465757
+  visible                                   bool     0        1                                 True, True, True
+  timestamp                                 str      0        45 391                            2017-10-18 10:10:12…, 2017-10-18 10:10:22…, 2017-10-18 10:10:32…
+  eobs:acceleration-axes                    str      0        1                                 XYZ, XYZ, XYZ
+  eobs:acceleration-sampling-frequency-pe…  float64  0        1         33.33       33.33       33.33, 33.33, 33.33
+  eobs:accelerations-raw                    str      0        45 397                            1991 1675 1711 1995…, 2082 2142 1556 2054…, 2073 2162 1548 2064…
+  eobs:key-bin-checksum                     int64    0        45 397    79872       4294885713  2610865857, 2885505379, 2935225319
+  eobs:start-timestamp                      str      0        45 391                            2017-10-18 10:10:12…, 2017-10-18 10:10:22…, 2017-10-18 10:10:32…
+  sensor-type                               str      0        1                                 acceleration, acceleration, acceleration
+  tag-local-identifier                      int64    0        1         5011        5011        5011, 5011, 5011
+  study-name                                str      0        1                                 Movement ecology of…, Movement ecology of…, Movement ecology of…
+
+  Columns with a single value:
+    visible: True
+    eobs:acceleration-axes: XYZ
+    sensor-type: acceleration
+    study-name: Movement ecology of red foxes in dynamic agricultural landscapes
+
+  Candidate roles (from column names):
+    time        timestamp, eobs:start-timestamp
+    axis        -
+    label       -
+    individual  tag-local-identifier, study-name
+
+  Acceleration bursts:
+    Movebank e-obs format: one row per burst, samples in one text column
+    Bursts: 45 397; values per burst: 330 (45 361x), 792 (36x)
+    Raw values (first 2000 bursts): min 0, max 4095, median 2097
+    eobs:acceleration-axes: XYZ (45 397x)
+    eobs:acceleration-sampling-frequency-per-axis: 33.33 (45 397x)
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-10-18 10:10:12   Last: 2018-12-30 14:44:00   Span: 438 days, 4:33:48
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 372 days, 22:10:32
+    Repeated time stamps: 0.0% of steps; rows per time stamp: median 1, max 2
+
+  Time column 'eobs:start-timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-10-18 10:10:12   Last: 2018-12-30 14:44:00   Span: 438 days, 4:33:48
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 372 days, 22:10:32
+    Repeated time stamps: 0.0% of steps; rows per time stamp: median 1, max 2
+
+  Values of 'visible' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    True   45 397  100.0%
+
+  Values of 'eobs:acceleration-axes' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    XYZ    45 397  100.0%
+
+  Values of 'sensor-type' (1 distinct):
+    value         rows    share
+    ------------  ------  ------
+    acceleration  45 397  100.0%
+
+  Values of 'tag-local-identifier' (1 distinct):
+    value  rows    share
+    -----  ------  ------
+    5011   45 397  100.0%
+
+  Values of 'study-name' (1 distinct):
+    value                                     rows    share
+    ----------------------------------------  ------  ------
+    Movement ecology of red foxes in dynami…  45 397  100.0%
+
+Data_Fox_Raw/ACC_QC_summary.csv
+-------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 6   Columns: 22
+
+  column                   dtype    missing  distinct  min     max       first values
+  -----------------------  -------  -------  --------  ------  --------  ----------------------------------------------------------------
+  Name                     str      0        6                           FOX01, FOX02, FOX03
+  tag_id                   int64    0        6         1639    5011      1639, 1644, 4142
+  file                     str      0        6                           1639_ACC_movebank.c…, 1644_ACC_movebank.c…, 4142_ACC_movebank.c…
+  n_bursts                 int64    0        6         11323   127629    11323, 18940, 25535
+  first_timestamp          str      0        6                           2011-04-13 06:22:00, 2011-04-19 14:28:06, 2016-12-19 20:08:00
+  last_timestamp           str      0        6                           2011-05-20 02:06:00, 2011-07-06 08:40:29, 2017-01-24 07:22:00
+  n_unique_hz              int64    0        1         1       1         1, 1, 1
+  hz_values                float64  0        2         18.74   33.33     18.74, 18.74, 33.33
+  median_hz                float64  0        2         18.74   33.33     18.74, 18.74, 33.33
+  n_unique_samples         int64    0        2         1       2         2, 2, 1
+  samples_values           str      0        4                           82; 180, 82; 180, 264
+  median_samples           int64    0        3         110     264       180, 180, 264
+  median_burst_length_s    float64  0        3         3.3003  9.6051    9.6051, 9.6051, 7.9208
+  min_burst_length_s       float64  0        3         3.3003  7.9208    4.3757, 4.3757, 7.9208
+  max_burst_length_s       float64  0        3         3.3003  9.6051    9.6051, 9.6051, 7.9208
+  median_burst_interval_s  int64    0        1         120     120       120, 120, 120
+  min_burst_interval_s     int64    0        4         0       18        0, 11, 16
+  max_burst_interval_s     int64    0        6         274     32220632  1820640, 3861294, 274
+  invalid_triplets         int64    0        1         0       0         0, 0, 0
+  missing_raw              int64    0        1         0       0         0, 0, 0
+  missing_timestamp        int64    0        1         0       0         0, 0, 0
+  missing_hz               int64    0        1         0       0         0, 0, 0
+
+  Candidate roles (from column names):
+    time        first_timestamp, last_timestamp, missing_timestamp
+    axis        -
+    label       -
+    individual  Name, tag_id
+
+  Time column 'first_timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-04-13 06:22:00   Last: 2017-10-18 10:10:12   Span: 2380 days, 9:03:41
+    Median step: 1.308e+07 s -> 7.645e-08 Hz
+    Gaps (> 5 x median step): 1, largest 2071 days, 5:39:54
+    Time goes backwards 1 times (several recordings or individuals in one table?)
+
+  Time column 'last_timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-05-20 02:06:00   Last: 2018-12-30 14:44:00   Span: 2810 days, 13:55:41
+    Median step: 3.172e+07 s -> 3.152e-08 Hz
+    Gaps (> 5 x median step): 1, largest 2028 days, 22:41:31
+    Time goes backwards 1 times (several recordings or individuals in one table?)
+
+  Time column 'missing_timestamp':
+    Kind: number (unit unknown)
+    First: 0   Last: 0   Min: 0   Max: 0
+    Repeated time stamps: 100.0% of steps; rows per time stamp: median 6, max 6
+
+  Values of 'samples_values' (4 distinct):
+    value     rows  share
+    --------  ----  -----
+    82; 180   2     33.3%
+    110       2     33.3%
+    264       1     16.7%
+    110; 264  1     16.7%
+
+Data_Fox_Raw/fox_1639_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 11 293   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        11 293              2011-05-04 08:12:00, 2011-05-04 08:14:00, 2011-05-04 08:16:00
+  bev        str    0        7                   resting, grooming, resting
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-05-04 08:12:00   Last: 2011-05-20 02:06:00   Span: 15 days, 17:54:00
+    Median step: 120 s -> 0.008333 Hz
+
+  Values of 'bev' (7 distinct):
+    value     rows   share
+    --------  -----  -----
+    resting   5 715  50.6%
+    grooming  5 195  46.0%
+    other     244    2.2%
+    eating    50     0.4%
+    trotting  40     0.4%
+    walking   36     0.3%
+    stocking  13     0.1%
+
+Data_Fox_Raw/fox_1644_180_behaviour.csv
+---------------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 18 184   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        18 184              2011-06-10 08:54:00, 2011-06-10 08:56:15, 2011-06-10 08:58:00
+  bev        str    0        7                   grooming, grooming, grooming
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-06-10 08:54:00   Last: 2011-07-06 08:40:29   Span: 25 days, 23:46:29
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 1, largest 16:12:00
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   11 886  65.4%
+    grooming  5 848   32.2%
+    other     339     1.9%
+    eating    79      0.4%
+    stocking  17      0.1%
+    trotting  11      0.1%
+    walking   4       0.0%
+
+Data_Fox_Raw/fox_1644_82_behaviour.csv
+--------------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 755   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        755                 2011-06-03 07:03:00, 2011-06-03 07:16:30, 2011-06-03 07:30:00
+  bev        str    0        7                   resting, resting, resting
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-06-03 07:03:00   Last: 2011-06-10 08:42:00   Span: 7 days, 1:39:00
+    Median step: 810 s -> 0.001235 Hz
+
+  Values of 'bev' (7 distinct):
+    value     rows  share
+    --------  ----  -----
+    resting   560   74.2%
+    grooming  141   18.7%
+    other     25    3.3%
+    trotting  11    1.5%
+    eating    8     1.1%
+    walking   5     0.7%
+    stocking  5     0.7%
+
+Data_Fox_Raw/fox_1644_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 18 939   Columns: 3
+  Row-number column (ignored): X
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        18 939              2011-06-03 07:03:00, 2011-06-03 07:16:30, 2011-06-03 07:30:00
+  bev        str    0        7                   resting, resting, resting
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2011-06-03 07:03:00   Last: 2011-07-06 08:40:29   Span: 33 days, 1:37:29
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 756, largest 16:12:00
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   12 446  65.7%
+    grooming  5 989   31.6%
+    other     364     1.9%
+    eating    87      0.5%
+    trotting  22      0.1%
+    stocking  22      0.1%
+    walking   9       0.0%
+
+Data_Fox_Raw/fox_4142_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 25 535   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        25 535              2016-12-19 20:08:00, 2016-12-19 20:10:00, 2016-12-19 20:12:00
+  bev        str    0        7                   grooming, resting, resting
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2016-12-19 20:08:00   Last: 2017-01-24 07:22:00   Span: 35 days, 11:14:00
+    Median step: 120 s -> 0.008333 Hz
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   15 075  59.0%
+    grooming  7 224   28.3%
+    trotting  2 318   9.1%
+    eating    253     1.0%
+    walking   235     0.9%
+    other     218     0.9%
+    stocking  212     0.8%
+
+Data_Fox_Raw/fox_5009_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 33 438   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        33 438              2017-09-27 00:36:00, 2017-09-27 00:38:00, 2017-09-27 00:40:00
+  bev        str    0        7                   resting, resting, other
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2017-09-27 00:36:00   Last: 2017-12-10 17:06:00   Span: 74 days, 16:30:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 23 days, 22:50:00
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   17 908  53.6%
+    grooming  8 408   25.1%
+    trotting  5 607   16.8%
+    stocking  715     2.1%
+    eating    289     0.9%
+    walking   268     0.8%
+    other     243     0.7%
+
+Data_Fox_Raw/fox_5010_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 127 581   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        127 581             2018-02-14 11:14:00, 2018-02-14 11:17:41, 2018-02-14 11:18:00
+  bev        str    0        7                   resting, grooming, grooming
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2018-02-14 11:14:00   Last: 2019-01-28 16:01:41   Span: 348 days, 4:47:41
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 2, largest 170 days, 22:43:07
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   78 258  61.3%
+    grooming  31 924  25.0%
+    trotting  10 910  8.6%
+    walking   3 201   2.5%
+    eating    2 061   1.6%
+    other     960     0.8%
+    stocking  267     0.2%
+
+Data_Fox_Raw/fox_5011_behaviour.csv
+-----------------------------------
+  Text: delimiter ',', decimal '.', encoding utf-8-sig, lines skipped before the header: 0
+  Rows: 45 349   Columns: 3
+  Row-number column (ignored): Unnamed: 0
+
+  column     dtype  missing  distinct  min  max  first values
+  ---------  -----  -------  --------  ---  ---  -------------------------------------------------------------
+  timestamp  str    0        45 349              2018-10-26 08:30:00, 2018-10-26 08:32:00, 2018-10-26 08:34:00
+  bev        str    0        7                   resting, resting, resting
+
+  Candidate roles (from column names):
+    time        timestamp
+    axis        -
+    label       bev
+    individual  -
+
+  Time column 'timestamp':
+    Kind: text parsed as date-time (100% parsed)
+    First: 2018-10-26 08:30:00   Last: 2018-12-30 14:44:00   Span: 65 days, 6:14:00
+    Median step: 120 s -> 0.008333 Hz
+    Gaps (> 5 x median step): 1, largest 2 days, 6:26:00
+
+  Values of 'bev' (7 distinct):
+    value     rows    share
+    --------  ------  -----
+    resting   24 764  54.6%
+    grooming  9 498   20.9%
+    trotting  5 366   11.8%
+    walking   3 114   6.9%
+    eating    1 277   2.8%
+    stocking  750     1.7%
+    other     580     1.3%

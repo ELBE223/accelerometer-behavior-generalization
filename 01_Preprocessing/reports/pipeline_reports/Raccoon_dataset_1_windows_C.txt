@@ -1,0 +1,55 @@
+WINDOW REPORT: Raccoon_dataset_1 (variant C)
+Created: 2026-10-27 18:34:14 with code/make_windows.py (1 s)
+Settings: 25 Hz, window 2.4 s (60 samples), step 2.4 s (60 samples), padtype line
+
+====================================================================================================
+1. SEGMENTS
+====================================================================================================
+  Segments: 594; duration min 2.85 s, median 2.88 s, max 2.88 s
+  Segments shorter than one window (no window): 0, holding 0 of 57,022 samples (0.0%) and 0 of 57,022 labeled samples (0.0%)
+  Resampling: 33.33 Hz x 3/4 (594 segments)
+
+====================================================================================================
+2. WINDOWS
+====================================================================================================
+  all windows (training): 594
+    pure: 593; mixed labels: 1; with unlabeled samples: 0
+  non-overlapping (evaluation): 594
+    pure: 593; mixed labels: 1; with unlabeled samples: 0
+
+====================================================================================================
+3. PURE WINDOWS PER ORIGINAL LABEL
+====================================================================================================
+           windows  non_overlapping  segments  individuals
+  label                                                   
+  KlHoH         54               54        54            2
+  StB           54               54        54            2
+  StFrBoT       54               54        54            2
+  StN           54               54        54            2
+  WGeN          54               54        54            2
+  SuM           38               38        38            2
+  SuW           35               35        35            2
+  SuG           34               34        34            2
+  GaW           27               27        27            1
+  KlRuH         27               27        27            1
+  LaW           27               27        27            1
+  MGeT          27               27        27            1
+  StAHKr        27               27        27            1
+  StH           27               27        27            1
+  StT           27               27        27            1
+  WGeT          27               27        27            1
+
+====================================================================================================
+4. EXCLUDED WINDOWS PER MAJORITY LABEL (mixed or unlabeled)
+====================================================================================================
+                  windows  median_share
+  label_majority                       
+  Su                    1          0.75
+
+====================================================================================================
+5. PURE WINDOWS PER INDIVIDUAL AND LABEL
+====================================================================================================
+  label          GaW  KlHoH  KlRuH  LaW  MGeT  StAHKr  StB  StFrBoT  StH  StN  StT  SuG  SuM  SuW  WGeN  WGeT
+  individual_id                                                                                              
+  Lisa            27     27     27    0    27      27   27       27    0   27   27   27   27   27    27    27
+  Ottilie          0     27      0   27     0       0   27       27   27   27    0    7   11    8    27     0

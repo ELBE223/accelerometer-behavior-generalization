@@ -1,0 +1,18 @@
+Table S3. Dataset-specific preprocessing.
+
+Dataset	Conversion to g	Segments	Native rate (Hz)	Dataset-specific steps
+Bison 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	–
+Cattle 1	g (as recorded)	continuous, split at gaps	25	Segments split at repeated time stamps; label ETC (unspecified mix) excluded
+Dog 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	Rows coded for another dog removed; clock times HH.MM:SS repaired
+Dog 2	e-obs counts: (raw − 2048) / 512	one per burst	20	Only sensor 6568 in the data (124-sample bursts); duplicated recordings read once, one unit per recording
+Fox 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	–
+Giraffe 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	Label = behaviour category and code
+Hedgehog 1	e-obs counts: (raw − 2048) / 512	one per burst	100	Many bursts shorter than 264 samples; calibration markers and handling by people excluded
+Horse 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	Sheet excluded by the author not read; two sheets of one horse merged
+Horse 2	m s⁻² / 9.80665	dataset segments (≤ 10 s)	100	Ridden gaits excluded (Locomotion in scenario E)
+Raccoon 1	e-obs counts: (raw − 2048) / 512	one per burst	33.33	Only setting 2 (2.88-s bursts) in the data
+Raccoon 2	e-obs counts: (raw − 2048) / 512	one per burst	33.3	–
+
+All datasets: each segment resampled to 25 Hz (polyphase filter with anti-aliasing); 2 s windows with 1 s step within segments; segments shorter than 2 s give no window.
+Labels assigned after windowing: only windows whose samples all belong to one class (primary analysis). e-obs: 12-bit counts, ±4 g.
+Source: 00_Documentation/datasets.csv, 00_Documentation/sensor_settings.csv, 00_Documentation/decisions.md (D03-D07, D15, D19, D20)

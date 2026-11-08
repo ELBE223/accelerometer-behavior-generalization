@@ -1,0 +1,1 @@
+Figure 2. Cross-dataset F1 by behavioral class. Points: test datasets (n = 11), mean of five training seeds; boxes: median and IQR. Statistics: Table 2.

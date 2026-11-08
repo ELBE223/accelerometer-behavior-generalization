@@ -1,0 +1,67 @@
+HARMONIZATION REPORT: Fox_dataset_1
+Created: 2026-10-24 19:38:50 with code/harmonize.py (1 s)
+Output: 02_processed_data/Fox_dataset_1/samples.parquet, segments.parquet
+
+====================================================================================================
+1. OVERVIEW
+====================================================================================================
+  Samples: 59,069 (100.0% labeled)
+  Individuals: 2
+  Segments: 537; duration min 3.27, median 3.3, max 3.3 s
+  Native rate(s): 33.33 Hz (537 segments)
+
+====================================================================================================
+2. LOADER NOTES
+====================================================================================================
+  109,118 rows; 0 without individual, time or acceleration dropped
+  Burst starts from a change of the key column alone (same time): 0
+  Rows per burst before splitting (rows: bursts): 110: 990, 109: 2
+  Runs longer than 110 samples (bursts with the same time) split into 110-sample pieces: 0; of these not a multiple of 110 (piece borders uncertain): 0
+  Time stamps per sample: median step 0.03000 s (33.33 Hz), 5-95 % 0.03000-0.03000 s
+  Bursts with identical acceleration values (copies): 453 groups, 455 bursts dropped (0 groups with different labels, all copies dropped; 0 groups across individuals)
+    Where the copies are (first burst <- copy: bursts):
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 34uTri.30-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] DRINKING-ACC: 29
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 54m.22-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] TROTTING-ACC: 22
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 44m.20-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] WALKING-ACC: 20
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 44uSchn.20-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] WALKING-ACC: 20
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 34uB.20-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] STOCKING-ACC: 20
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 34uV.20-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] STOCKING-ACC: 20
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 54m.19-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] TROTTING-ACC: 19
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 44m.18-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] WALKING-ACC: 18
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 44uSchn.15-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] WALKING-ACC: 15
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 34o.14-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] RESTING-ACC: 14
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 34o.14-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] RESTING-ACC: 14
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 34uFka.13-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] FORAGING-ACC: 13
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 34mFka.12-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] FORAGING-ACC: 12
+      Data_Fox_Raw/Silva_ACC_master.xlsx [data] 54mTra.12-ACC <- Data_Fox_Raw/Silva_ACC_master.xlsx [data] TROTTING-ACC: 12
+      Data_Fox_Raw/Dana_ACC_master.xlsx [data] 34uFle.11-ACC <- Data_Fox_Raw/Dana_ACC_master.xlsx [data] FORAGING-ACC: 11
+      ... and 32 more pairs
+  Bursts of different individuals with the same key and start time (recorded at once): 0
+  537 bursts at 33.33 Hz; samples per burst min 109, median 110, max 110; most common (samples: bursts): 110: 536, 109: 1
+  Dana_ACC_master.xlsx: 44,660 rows, fox Dana, 29 recording files, 0 rows with unreadable date or time
+  Silva_ACC_master.xlsx: 64,458 rows, fox Silver, 38 recording files, 0 rows with unreadable date or time
+
+====================================================================================================
+3. ACCELERATION (g)
+====================================================================================================
+  x: min -2.529, p1 -0.859, median -0.170, p99 0.797, max 2.777
+  y: min -3.994, p1 -0.176, median 0.422, p99 1.016, max 3.836
+  z: min -3.998, p1 -1.422, median -0.850, p99 -0.260, max 2.574
+  Median vector magnitude: 1.039 g (about 1 g expected)
+
+====================================================================================================
+4. LABELS (original, samples)
+====================================================================================================
+  GROOMING                              9,900   16.8%
+  RESTING                               9,460   16.0%
+  FORAGING                              9,020   15.3%
+  STOCKING                              8,800   14.9%
+  WALKING                               8,800   14.9%
+  TROTTING                              8,799   14.9%
+  DRINKING                              4,290    7.3%
+
+====================================================================================================
+5. INDIVIDUALS
+====================================================================================================
+  Dana                     26,730 samples  100.0% labeled      243 segments    0.22 h
+  Silver                   32,339 samples  100.0% labeled      294 segments    0.27 h

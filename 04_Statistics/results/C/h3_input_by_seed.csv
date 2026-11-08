@@ -1,0 +1,1101 @@
+model,train,test,seed,macro_f1,train_species,test_species,same_species,source_within_macro_f1,target_within_macro_f1
+LGBM,Bison_dataset_1,Cattle_dataset_1,42,0.55242,Bison bonasus,Bos taurus,False,0.917984,0.691096
+LGBM,Bison_dataset_1,Dog_dataset_1,42,0.65456,Bison bonasus,Canis lupus familiaris,False,0.917984,0.84028
+LGBM,Bison_dataset_1,Dog_dataset_2,42,0.35662,Bison bonasus,Canis lupus familiaris,False,0.917984,0.510204
+LGBM,Bison_dataset_1,Fox_dataset_1,42,0.70009,Bison bonasus,Vulpes vulpes,False,0.917984,0.8329
+LGBM,Bison_dataset_1,Giraffe_dataset_1,42,0.35635,Bison bonasus,Giraffa camelopardalis,False,0.917984,0.829998
+LGBM,Bison_dataset_1,Hedgehog_dataset_1,42,0.49016,Bison bonasus,Erinaceus europaeus,False,0.917984,
+LGBM,Bison_dataset_1,Horse_dataset_1,42,0.90305,Bison bonasus,Equus ferus przewalskii,False,0.917984,0.94541
+LGBM,Bison_dataset_1,Horse_dataset_2,42,0.55988,Bison bonasus,Equus caballus,False,0.917984,0.835636
+LGBM,Bison_dataset_1,Raccoon_dataset_1,42,0.65634,Bison bonasus,Procyon lotor,False,0.917984,0.77921
+LGBM,Bison_dataset_1,Raccoon_dataset_2,42,0.76102,Bison bonasus,Procyon lotor,False,0.917984,0.863074
+LGBM,Cattle_dataset_1,Bison_dataset_1,42,0.63011,Bos taurus,Bison bonasus,False,0.691096,0.917984
+LGBM,Cattle_dataset_1,Dog_dataset_1,42,0.65009,Bos taurus,Canis lupus familiaris,False,0.691096,0.84028
+LGBM,Cattle_dataset_1,Dog_dataset_2,42,0.36569,Bos taurus,Canis lupus familiaris,False,0.691096,0.510204
+LGBM,Cattle_dataset_1,Fox_dataset_1,42,0.73821,Bos taurus,Vulpes vulpes,False,0.691096,0.8329
+LGBM,Cattle_dataset_1,Giraffe_dataset_1,42,0.4992,Bos taurus,Giraffa camelopardalis,False,0.691096,0.829998
+LGBM,Cattle_dataset_1,Hedgehog_dataset_1,42,0.47711,Bos taurus,Erinaceus europaeus,False,0.691096,
+LGBM,Cattle_dataset_1,Horse_dataset_1,42,0.83415,Bos taurus,Equus ferus przewalskii,False,0.691096,0.94541
+LGBM,Cattle_dataset_1,Horse_dataset_2,42,0.503,Bos taurus,Equus caballus,False,0.691096,0.835636
+LGBM,Cattle_dataset_1,Raccoon_dataset_1,42,0.64808,Bos taurus,Procyon lotor,False,0.691096,0.77921
+LGBM,Cattle_dataset_1,Raccoon_dataset_2,42,0.80269,Bos taurus,Procyon lotor,False,0.691096,0.863074
+LGBM,Dog_dataset_1,Bison_dataset_1,42,0.51673,Canis lupus familiaris,Bison bonasus,False,0.84028,0.917984
+LGBM,Dog_dataset_1,Cattle_dataset_1,42,0.48755,Canis lupus familiaris,Bos taurus,False,0.84028,0.691096
+LGBM,Dog_dataset_1,Dog_dataset_2,42,0.54379,Canis lupus familiaris,Canis lupus familiaris,True,0.84028,0.510204
+LGBM,Dog_dataset_1,Fox_dataset_1,42,0.68372,Canis lupus familiaris,Vulpes vulpes,False,0.84028,0.8329
+LGBM,Dog_dataset_1,Giraffe_dataset_1,42,0.34513,Canis lupus familiaris,Giraffa camelopardalis,False,0.84028,0.829998
+LGBM,Dog_dataset_1,Hedgehog_dataset_1,42,0.39698,Canis lupus familiaris,Erinaceus europaeus,False,0.84028,
+LGBM,Dog_dataset_1,Horse_dataset_1,42,0.65928,Canis lupus familiaris,Equus ferus przewalskii,False,0.84028,0.94541
+LGBM,Dog_dataset_1,Horse_dataset_2,42,0.75779,Canis lupus familiaris,Equus caballus,False,0.84028,0.835636
+LGBM,Dog_dataset_1,Raccoon_dataset_1,42,0.69403,Canis lupus familiaris,Procyon lotor,False,0.84028,0.77921
+LGBM,Dog_dataset_1,Raccoon_dataset_2,42,0.72422,Canis lupus familiaris,Procyon lotor,False,0.84028,0.863074
+LGBM,Dog_dataset_2,Bison_dataset_1,42,0.36306,Canis lupus familiaris,Bison bonasus,False,0.510204,0.917984
+LGBM,Dog_dataset_2,Cattle_dataset_1,42,0.38631,Canis lupus familiaris,Bos taurus,False,0.510204,0.691096
+LGBM,Dog_dataset_2,Dog_dataset_1,42,0.73656,Canis lupus familiaris,Canis lupus familiaris,True,0.510204,0.84028
+LGBM,Dog_dataset_2,Fox_dataset_1,42,0.60185,Canis lupus familiaris,Vulpes vulpes,False,0.510204,0.8329
+LGBM,Dog_dataset_2,Giraffe_dataset_1,42,0.30527,Canis lupus familiaris,Giraffa camelopardalis,False,0.510204,0.829998
+LGBM,Dog_dataset_2,Hedgehog_dataset_1,42,0.37415,Canis lupus familiaris,Erinaceus europaeus,False,0.510204,
+LGBM,Dog_dataset_2,Horse_dataset_1,42,0.48246,Canis lupus familiaris,Equus ferus przewalskii,False,0.510204,0.94541
+LGBM,Dog_dataset_2,Horse_dataset_2,42,0.72472,Canis lupus familiaris,Equus caballus,False,0.510204,0.835636
+LGBM,Dog_dataset_2,Raccoon_dataset_1,42,0.6717,Canis lupus familiaris,Procyon lotor,False,0.510204,0.77921
+LGBM,Dog_dataset_2,Raccoon_dataset_2,42,0.60357,Canis lupus familiaris,Procyon lotor,False,0.510204,0.863074
+LGBM,Fox_dataset_1,Bison_dataset_1,42,0.67311,Vulpes vulpes,Bison bonasus,False,0.8329,0.917984
+LGBM,Fox_dataset_1,Cattle_dataset_1,42,0.58922,Vulpes vulpes,Bos taurus,False,0.8329,0.691096
+LGBM,Fox_dataset_1,Dog_dataset_1,42,0.71915,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.84028
+LGBM,Fox_dataset_1,Dog_dataset_2,42,0.38395,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.510204
+LGBM,Fox_dataset_1,Giraffe_dataset_1,42,0.55837,Vulpes vulpes,Giraffa camelopardalis,False,0.8329,0.829998
+LGBM,Fox_dataset_1,Hedgehog_dataset_1,42,0.46562,Vulpes vulpes,Erinaceus europaeus,False,0.8329,
+LGBM,Fox_dataset_1,Horse_dataset_1,42,0.80096,Vulpes vulpes,Equus ferus przewalskii,False,0.8329,0.94541
+LGBM,Fox_dataset_1,Horse_dataset_2,42,0.6768,Vulpes vulpes,Equus caballus,False,0.8329,0.835636
+LGBM,Fox_dataset_1,Raccoon_dataset_1,42,0.60728,Vulpes vulpes,Procyon lotor,False,0.8329,0.77921
+LGBM,Fox_dataset_1,Raccoon_dataset_2,42,0.74652,Vulpes vulpes,Procyon lotor,False,0.8329,0.863074
+LGBM,Giraffe_dataset_1,Bison_dataset_1,42,0.73214,Giraffa camelopardalis,Bison bonasus,False,0.829998,0.917984
+LGBM,Giraffe_dataset_1,Cattle_dataset_1,42,0.56884,Giraffa camelopardalis,Bos taurus,False,0.829998,0.691096
+LGBM,Giraffe_dataset_1,Dog_dataset_1,42,0.55786,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.84028
+LGBM,Giraffe_dataset_1,Dog_dataset_2,42,0.36436,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.510204
+LGBM,Giraffe_dataset_1,Fox_dataset_1,42,0.63093,Giraffa camelopardalis,Vulpes vulpes,False,0.829998,0.8329
+LGBM,Giraffe_dataset_1,Hedgehog_dataset_1,42,0.47576,Giraffa camelopardalis,Erinaceus europaeus,False,0.829998,
+LGBM,Giraffe_dataset_1,Horse_dataset_1,42,0.74629,Giraffa camelopardalis,Equus ferus przewalskii,False,0.829998,0.94541
+LGBM,Giraffe_dataset_1,Horse_dataset_2,42,0.58277,Giraffa camelopardalis,Equus caballus,False,0.829998,0.835636
+LGBM,Giraffe_dataset_1,Raccoon_dataset_1,42,0.51346,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.77921
+LGBM,Giraffe_dataset_1,Raccoon_dataset_2,42,0.74995,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.863074
+LGBM,Hedgehog_dataset_1,Bison_dataset_1,42,0.52534,Erinaceus europaeus,Bison bonasus,False,,0.917984
+LGBM,Hedgehog_dataset_1,Cattle_dataset_1,42,0.55379,Erinaceus europaeus,Bos taurus,False,,0.691096
+LGBM,Hedgehog_dataset_1,Dog_dataset_1,42,0.49784,Erinaceus europaeus,Canis lupus familiaris,False,,0.84028
+LGBM,Hedgehog_dataset_1,Dog_dataset_2,42,0.33264,Erinaceus europaeus,Canis lupus familiaris,False,,0.510204
+LGBM,Hedgehog_dataset_1,Fox_dataset_1,42,0.65222,Erinaceus europaeus,Vulpes vulpes,False,,0.8329
+LGBM,Hedgehog_dataset_1,Giraffe_dataset_1,42,0.33948,Erinaceus europaeus,Giraffa camelopardalis,False,,0.829998
+LGBM,Hedgehog_dataset_1,Horse_dataset_1,42,0.52833,Erinaceus europaeus,Equus ferus przewalskii,False,,0.94541
+LGBM,Hedgehog_dataset_1,Horse_dataset_2,42,0.34955,Erinaceus europaeus,Equus caballus,False,,0.835636
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_1,42,0.57213,Erinaceus europaeus,Procyon lotor,False,,0.77921
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_2,42,0.566,Erinaceus europaeus,Procyon lotor,False,,0.863074
+LGBM,Horse_dataset_1,Bison_dataset_1,42,0.80011,Equus ferus przewalskii,Bison bonasus,False,0.94541,0.917984
+LGBM,Horse_dataset_1,Cattle_dataset_1,42,0.59035,Equus ferus przewalskii,Bos taurus,False,0.94541,0.691096
+LGBM,Horse_dataset_1,Dog_dataset_1,42,0.73103,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.84028
+LGBM,Horse_dataset_1,Dog_dataset_2,42,0.42706,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.510204
+LGBM,Horse_dataset_1,Fox_dataset_1,42,0.77464,Equus ferus przewalskii,Vulpes vulpes,False,0.94541,0.8329
+LGBM,Horse_dataset_1,Giraffe_dataset_1,42,0.4504,Equus ferus przewalskii,Giraffa camelopardalis,False,0.94541,0.829998
+LGBM,Horse_dataset_1,Hedgehog_dataset_1,42,0.48346,Equus ferus przewalskii,Erinaceus europaeus,False,0.94541,
+LGBM,Horse_dataset_1,Horse_dataset_2,42,0.59833,Equus ferus przewalskii,Equus caballus,False,0.94541,0.835636
+LGBM,Horse_dataset_1,Raccoon_dataset_1,42,0.68624,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.77921
+LGBM,Horse_dataset_1,Raccoon_dataset_2,42,0.73614,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.863074
+LGBM,Horse_dataset_2,Bison_dataset_1,42,0.55413,Equus caballus,Bison bonasus,False,0.835636,0.917984
+LGBM,Horse_dataset_2,Cattle_dataset_1,42,0.50449,Equus caballus,Bos taurus,False,0.835636,0.691096
+LGBM,Horse_dataset_2,Dog_dataset_1,42,0.8041,Equus caballus,Canis lupus familiaris,False,0.835636,0.84028
+LGBM,Horse_dataset_2,Dog_dataset_2,42,0.56957,Equus caballus,Canis lupus familiaris,False,0.835636,0.510204
+LGBM,Horse_dataset_2,Fox_dataset_1,42,0.57407,Equus caballus,Vulpes vulpes,False,0.835636,0.8329
+LGBM,Horse_dataset_2,Giraffe_dataset_1,42,0.23338,Equus caballus,Giraffa camelopardalis,False,0.835636,0.829998
+LGBM,Horse_dataset_2,Hedgehog_dataset_1,42,0.39696,Equus caballus,Erinaceus europaeus,False,0.835636,
+LGBM,Horse_dataset_2,Horse_dataset_1,42,0.6091,Equus caballus,Equus ferus przewalskii,False,0.835636,0.94541
+LGBM,Horse_dataset_2,Raccoon_dataset_1,42,0.70203,Equus caballus,Procyon lotor,False,0.835636,0.77921
+LGBM,Horse_dataset_2,Raccoon_dataset_2,42,0.80666,Equus caballus,Procyon lotor,False,0.835636,0.863074
+LGBM,Raccoon_dataset_1,Bison_dataset_1,42,0.64498,Procyon lotor,Bison bonasus,False,0.77921,0.917984
+LGBM,Raccoon_dataset_1,Cattle_dataset_1,42,0.53245,Procyon lotor,Bos taurus,False,0.77921,0.691096
+LGBM,Raccoon_dataset_1,Dog_dataset_1,42,0.82967,Procyon lotor,Canis lupus familiaris,False,0.77921,0.84028
+LGBM,Raccoon_dataset_1,Dog_dataset_2,42,0.54989,Procyon lotor,Canis lupus familiaris,False,0.77921,0.510204
+LGBM,Raccoon_dataset_1,Fox_dataset_1,42,0.66616,Procyon lotor,Vulpes vulpes,False,0.77921,0.8329
+LGBM,Raccoon_dataset_1,Giraffe_dataset_1,42,0.30383,Procyon lotor,Giraffa camelopardalis,False,0.77921,0.829998
+LGBM,Raccoon_dataset_1,Hedgehog_dataset_1,42,0.43405,Procyon lotor,Erinaceus europaeus,False,0.77921,
+LGBM,Raccoon_dataset_1,Horse_dataset_1,42,0.70695,Procyon lotor,Equus ferus przewalskii,False,0.77921,0.94541
+LGBM,Raccoon_dataset_1,Horse_dataset_2,42,0.71808,Procyon lotor,Equus caballus,False,0.77921,0.835636
+LGBM,Raccoon_dataset_1,Raccoon_dataset_2,42,0.77291,Procyon lotor,Procyon lotor,True,0.77921,0.863074
+LGBM,Raccoon_dataset_2,Bison_dataset_1,42,0.65936,Procyon lotor,Bison bonasus,False,0.863074,0.917984
+LGBM,Raccoon_dataset_2,Cattle_dataset_1,42,0.58016,Procyon lotor,Bos taurus,False,0.863074,0.691096
+LGBM,Raccoon_dataset_2,Dog_dataset_1,42,0.74564,Procyon lotor,Canis lupus familiaris,False,0.863074,0.84028
+LGBM,Raccoon_dataset_2,Dog_dataset_2,42,0.45044,Procyon lotor,Canis lupus familiaris,False,0.863074,0.510204
+LGBM,Raccoon_dataset_2,Fox_dataset_1,42,0.72873,Procyon lotor,Vulpes vulpes,False,0.863074,0.8329
+LGBM,Raccoon_dataset_2,Giraffe_dataset_1,42,0.59741,Procyon lotor,Giraffa camelopardalis,False,0.863074,0.829998
+LGBM,Raccoon_dataset_2,Hedgehog_dataset_1,42,0.47292,Procyon lotor,Erinaceus europaeus,False,0.863074,
+LGBM,Raccoon_dataset_2,Horse_dataset_1,42,0.79912,Procyon lotor,Equus ferus przewalskii,False,0.863074,0.94541
+LGBM,Raccoon_dataset_2,Horse_dataset_2,42,0.7049,Procyon lotor,Equus caballus,False,0.863074,0.835636
+LGBM,Raccoon_dataset_2,Raccoon_dataset_1,42,0.62362,Procyon lotor,Procyon lotor,True,0.863074,0.77921
+LGBM,Bison_dataset_1,Cattle_dataset_1,43,0.52466,Bison bonasus,Bos taurus,False,0.917984,0.691096
+LGBM,Bison_dataset_1,Dog_dataset_1,43,0.65373,Bison bonasus,Canis lupus familiaris,False,0.917984,0.84028
+LGBM,Bison_dataset_1,Dog_dataset_2,43,0.35855,Bison bonasus,Canis lupus familiaris,False,0.917984,0.510204
+LGBM,Bison_dataset_1,Fox_dataset_1,43,0.70514,Bison bonasus,Vulpes vulpes,False,0.917984,0.8329
+LGBM,Bison_dataset_1,Giraffe_dataset_1,43,0.34809,Bison bonasus,Giraffa camelopardalis,False,0.917984,0.829998
+LGBM,Bison_dataset_1,Hedgehog_dataset_1,43,0.46913,Bison bonasus,Erinaceus europaeus,False,0.917984,
+LGBM,Bison_dataset_1,Horse_dataset_1,43,0.88089,Bison bonasus,Equus ferus przewalskii,False,0.917984,0.94541
+LGBM,Bison_dataset_1,Horse_dataset_2,43,0.62971,Bison bonasus,Equus caballus,False,0.917984,0.835636
+LGBM,Bison_dataset_1,Raccoon_dataset_1,43,0.64215,Bison bonasus,Procyon lotor,False,0.917984,0.77921
+LGBM,Bison_dataset_1,Raccoon_dataset_2,43,0.80948,Bison bonasus,Procyon lotor,False,0.917984,0.863074
+LGBM,Cattle_dataset_1,Bison_dataset_1,43,0.6335,Bos taurus,Bison bonasus,False,0.691096,0.917984
+LGBM,Cattle_dataset_1,Dog_dataset_1,43,0.63131,Bos taurus,Canis lupus familiaris,False,0.691096,0.84028
+LGBM,Cattle_dataset_1,Dog_dataset_2,43,0.35964,Bos taurus,Canis lupus familiaris,False,0.691096,0.510204
+LGBM,Cattle_dataset_1,Fox_dataset_1,43,0.71048,Bos taurus,Vulpes vulpes,False,0.691096,0.8329
+LGBM,Cattle_dataset_1,Giraffe_dataset_1,43,0.48708,Bos taurus,Giraffa camelopardalis,False,0.691096,0.829998
+LGBM,Cattle_dataset_1,Hedgehog_dataset_1,43,0.49114,Bos taurus,Erinaceus europaeus,False,0.691096,
+LGBM,Cattle_dataset_1,Horse_dataset_1,43,0.824,Bos taurus,Equus ferus przewalskii,False,0.691096,0.94541
+LGBM,Cattle_dataset_1,Horse_dataset_2,43,0.52948,Bos taurus,Equus caballus,False,0.691096,0.835636
+LGBM,Cattle_dataset_1,Raccoon_dataset_1,43,0.6278,Bos taurus,Procyon lotor,False,0.691096,0.77921
+LGBM,Cattle_dataset_1,Raccoon_dataset_2,43,0.79712,Bos taurus,Procyon lotor,False,0.691096,0.863074
+LGBM,Dog_dataset_1,Bison_dataset_1,43,0.5426,Canis lupus familiaris,Bison bonasus,False,0.84028,0.917984
+LGBM,Dog_dataset_1,Cattle_dataset_1,43,0.51061,Canis lupus familiaris,Bos taurus,False,0.84028,0.691096
+LGBM,Dog_dataset_1,Dog_dataset_2,43,0.5502,Canis lupus familiaris,Canis lupus familiaris,True,0.84028,0.510204
+LGBM,Dog_dataset_1,Fox_dataset_1,43,0.74816,Canis lupus familiaris,Vulpes vulpes,False,0.84028,0.8329
+LGBM,Dog_dataset_1,Giraffe_dataset_1,43,0.36368,Canis lupus familiaris,Giraffa camelopardalis,False,0.84028,0.829998
+LGBM,Dog_dataset_1,Hedgehog_dataset_1,43,0.3874,Canis lupus familiaris,Erinaceus europaeus,False,0.84028,
+LGBM,Dog_dataset_1,Horse_dataset_1,43,0.75778,Canis lupus familiaris,Equus ferus przewalskii,False,0.84028,0.94541
+LGBM,Dog_dataset_1,Horse_dataset_2,43,0.78502,Canis lupus familiaris,Equus caballus,False,0.84028,0.835636
+LGBM,Dog_dataset_1,Raccoon_dataset_1,43,0.69341,Canis lupus familiaris,Procyon lotor,False,0.84028,0.77921
+LGBM,Dog_dataset_1,Raccoon_dataset_2,43,0.7402,Canis lupus familiaris,Procyon lotor,False,0.84028,0.863074
+LGBM,Dog_dataset_2,Bison_dataset_1,43,0.27125,Canis lupus familiaris,Bison bonasus,False,0.510204,0.917984
+LGBM,Dog_dataset_2,Cattle_dataset_1,43,0.32051,Canis lupus familiaris,Bos taurus,False,0.510204,0.691096
+LGBM,Dog_dataset_2,Dog_dataset_1,43,0.67011,Canis lupus familiaris,Canis lupus familiaris,True,0.510204,0.84028
+LGBM,Dog_dataset_2,Fox_dataset_1,43,0.4731,Canis lupus familiaris,Vulpes vulpes,False,0.510204,0.8329
+LGBM,Dog_dataset_2,Giraffe_dataset_1,43,0.27218,Canis lupus familiaris,Giraffa camelopardalis,False,0.510204,0.829998
+LGBM,Dog_dataset_2,Hedgehog_dataset_1,43,0.31898,Canis lupus familiaris,Erinaceus europaeus,False,0.510204,
+LGBM,Dog_dataset_2,Horse_dataset_1,43,0.36097,Canis lupus familiaris,Equus ferus przewalskii,False,0.510204,0.94541
+LGBM,Dog_dataset_2,Horse_dataset_2,43,0.66815,Canis lupus familiaris,Equus caballus,False,0.510204,0.835636
+LGBM,Dog_dataset_2,Raccoon_dataset_1,43,0.60722,Canis lupus familiaris,Procyon lotor,False,0.510204,0.77921
+LGBM,Dog_dataset_2,Raccoon_dataset_2,43,0.44983,Canis lupus familiaris,Procyon lotor,False,0.510204,0.863074
+LGBM,Fox_dataset_1,Bison_dataset_1,43,0.67311,Vulpes vulpes,Bison bonasus,False,0.8329,0.917984
+LGBM,Fox_dataset_1,Cattle_dataset_1,43,0.58922,Vulpes vulpes,Bos taurus,False,0.8329,0.691096
+LGBM,Fox_dataset_1,Dog_dataset_1,43,0.71915,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.84028
+LGBM,Fox_dataset_1,Dog_dataset_2,43,0.38395,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.510204
+LGBM,Fox_dataset_1,Giraffe_dataset_1,43,0.55837,Vulpes vulpes,Giraffa camelopardalis,False,0.8329,0.829998
+LGBM,Fox_dataset_1,Hedgehog_dataset_1,43,0.46562,Vulpes vulpes,Erinaceus europaeus,False,0.8329,
+LGBM,Fox_dataset_1,Horse_dataset_1,43,0.80096,Vulpes vulpes,Equus ferus przewalskii,False,0.8329,0.94541
+LGBM,Fox_dataset_1,Horse_dataset_2,43,0.6768,Vulpes vulpes,Equus caballus,False,0.8329,0.835636
+LGBM,Fox_dataset_1,Raccoon_dataset_1,43,0.60728,Vulpes vulpes,Procyon lotor,False,0.8329,0.77921
+LGBM,Fox_dataset_1,Raccoon_dataset_2,43,0.74652,Vulpes vulpes,Procyon lotor,False,0.8329,0.863074
+LGBM,Giraffe_dataset_1,Bison_dataset_1,43,0.6518,Giraffa camelopardalis,Bison bonasus,False,0.829998,0.917984
+LGBM,Giraffe_dataset_1,Cattle_dataset_1,43,0.55312,Giraffa camelopardalis,Bos taurus,False,0.829998,0.691096
+LGBM,Giraffe_dataset_1,Dog_dataset_1,43,0.56567,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.84028
+LGBM,Giraffe_dataset_1,Dog_dataset_2,43,0.35015,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.510204
+LGBM,Giraffe_dataset_1,Fox_dataset_1,43,0.62743,Giraffa camelopardalis,Vulpes vulpes,False,0.829998,0.8329
+LGBM,Giraffe_dataset_1,Hedgehog_dataset_1,43,0.49113,Giraffa camelopardalis,Erinaceus europaeus,False,0.829998,
+LGBM,Giraffe_dataset_1,Horse_dataset_1,43,0.77589,Giraffa camelopardalis,Equus ferus przewalskii,False,0.829998,0.94541
+LGBM,Giraffe_dataset_1,Horse_dataset_2,43,0.5144,Giraffa camelopardalis,Equus caballus,False,0.829998,0.835636
+LGBM,Giraffe_dataset_1,Raccoon_dataset_1,43,0.46362,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.77921
+LGBM,Giraffe_dataset_1,Raccoon_dataset_2,43,0.71985,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.863074
+LGBM,Hedgehog_dataset_1,Bison_dataset_1,43,0.57052,Erinaceus europaeus,Bison bonasus,False,,0.917984
+LGBM,Hedgehog_dataset_1,Cattle_dataset_1,43,0.57015,Erinaceus europaeus,Bos taurus,False,,0.691096
+LGBM,Hedgehog_dataset_1,Dog_dataset_1,43,0.50623,Erinaceus europaeus,Canis lupus familiaris,False,,0.84028
+LGBM,Hedgehog_dataset_1,Dog_dataset_2,43,0.34746,Erinaceus europaeus,Canis lupus familiaris,False,,0.510204
+LGBM,Hedgehog_dataset_1,Fox_dataset_1,43,0.66589,Erinaceus europaeus,Vulpes vulpes,False,,0.8329
+LGBM,Hedgehog_dataset_1,Giraffe_dataset_1,43,0.4439,Erinaceus europaeus,Giraffa camelopardalis,False,,0.829998
+LGBM,Hedgehog_dataset_1,Horse_dataset_1,43,0.54084,Erinaceus europaeus,Equus ferus przewalskii,False,,0.94541
+LGBM,Hedgehog_dataset_1,Horse_dataset_2,43,0.34632,Erinaceus europaeus,Equus caballus,False,,0.835636
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_1,43,0.56954,Erinaceus europaeus,Procyon lotor,False,,0.77921
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_2,43,0.57512,Erinaceus europaeus,Procyon lotor,False,,0.863074
+LGBM,Horse_dataset_1,Bison_dataset_1,43,0.85365,Equus ferus przewalskii,Bison bonasus,False,0.94541,0.917984
+LGBM,Horse_dataset_1,Cattle_dataset_1,43,0.59144,Equus ferus przewalskii,Bos taurus,False,0.94541,0.691096
+LGBM,Horse_dataset_1,Dog_dataset_1,43,0.7037,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.84028
+LGBM,Horse_dataset_1,Dog_dataset_2,43,0.39796,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.510204
+LGBM,Horse_dataset_1,Fox_dataset_1,43,0.79917,Equus ferus przewalskii,Vulpes vulpes,False,0.94541,0.8329
+LGBM,Horse_dataset_1,Giraffe_dataset_1,43,0.42669,Equus ferus przewalskii,Giraffa camelopardalis,False,0.94541,0.829998
+LGBM,Horse_dataset_1,Hedgehog_dataset_1,43,0.50425,Equus ferus przewalskii,Erinaceus europaeus,False,0.94541,
+LGBM,Horse_dataset_1,Horse_dataset_2,43,0.5658,Equus ferus przewalskii,Equus caballus,False,0.94541,0.835636
+LGBM,Horse_dataset_1,Raccoon_dataset_1,43,0.67634,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.77921
+LGBM,Horse_dataset_1,Raccoon_dataset_2,43,0.72625,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.863074
+LGBM,Horse_dataset_2,Bison_dataset_1,43,0.55147,Equus caballus,Bison bonasus,False,0.835636,0.917984
+LGBM,Horse_dataset_2,Cattle_dataset_1,43,0.50945,Equus caballus,Bos taurus,False,0.835636,0.691096
+LGBM,Horse_dataset_2,Dog_dataset_1,43,0.80823,Equus caballus,Canis lupus familiaris,False,0.835636,0.84028
+LGBM,Horse_dataset_2,Dog_dataset_2,43,0.5496,Equus caballus,Canis lupus familiaris,False,0.835636,0.510204
+LGBM,Horse_dataset_2,Fox_dataset_1,43,0.58539,Equus caballus,Vulpes vulpes,False,0.835636,0.8329
+LGBM,Horse_dataset_2,Giraffe_dataset_1,43,0.2945,Equus caballus,Giraffa camelopardalis,False,0.835636,0.829998
+LGBM,Horse_dataset_2,Hedgehog_dataset_1,43,0.40119,Equus caballus,Erinaceus europaeus,False,0.835636,
+LGBM,Horse_dataset_2,Horse_dataset_1,43,0.6379,Equus caballus,Equus ferus przewalskii,False,0.835636,0.94541
+LGBM,Horse_dataset_2,Raccoon_dataset_1,43,0.7087,Equus caballus,Procyon lotor,False,0.835636,0.77921
+LGBM,Horse_dataset_2,Raccoon_dataset_2,43,0.80436,Equus caballus,Procyon lotor,False,0.835636,0.863074
+LGBM,Raccoon_dataset_1,Bison_dataset_1,43,0.64498,Procyon lotor,Bison bonasus,False,0.77921,0.917984
+LGBM,Raccoon_dataset_1,Cattle_dataset_1,43,0.53245,Procyon lotor,Bos taurus,False,0.77921,0.691096
+LGBM,Raccoon_dataset_1,Dog_dataset_1,43,0.82967,Procyon lotor,Canis lupus familiaris,False,0.77921,0.84028
+LGBM,Raccoon_dataset_1,Dog_dataset_2,43,0.54989,Procyon lotor,Canis lupus familiaris,False,0.77921,0.510204
+LGBM,Raccoon_dataset_1,Fox_dataset_1,43,0.66616,Procyon lotor,Vulpes vulpes,False,0.77921,0.8329
+LGBM,Raccoon_dataset_1,Giraffe_dataset_1,43,0.30383,Procyon lotor,Giraffa camelopardalis,False,0.77921,0.829998
+LGBM,Raccoon_dataset_1,Hedgehog_dataset_1,43,0.43405,Procyon lotor,Erinaceus europaeus,False,0.77921,
+LGBM,Raccoon_dataset_1,Horse_dataset_1,43,0.70695,Procyon lotor,Equus ferus przewalskii,False,0.77921,0.94541
+LGBM,Raccoon_dataset_1,Horse_dataset_2,43,0.71808,Procyon lotor,Equus caballus,False,0.77921,0.835636
+LGBM,Raccoon_dataset_1,Raccoon_dataset_2,43,0.77291,Procyon lotor,Procyon lotor,True,0.77921,0.863074
+LGBM,Raccoon_dataset_2,Bison_dataset_1,43,0.65553,Procyon lotor,Bison bonasus,False,0.863074,0.917984
+LGBM,Raccoon_dataset_2,Cattle_dataset_1,43,0.57071,Procyon lotor,Bos taurus,False,0.863074,0.691096
+LGBM,Raccoon_dataset_2,Dog_dataset_1,43,0.74331,Procyon lotor,Canis lupus familiaris,False,0.863074,0.84028
+LGBM,Raccoon_dataset_2,Dog_dataset_2,43,0.44834,Procyon lotor,Canis lupus familiaris,False,0.863074,0.510204
+LGBM,Raccoon_dataset_2,Fox_dataset_1,43,0.73119,Procyon lotor,Vulpes vulpes,False,0.863074,0.8329
+LGBM,Raccoon_dataset_2,Giraffe_dataset_1,43,0.59631,Procyon lotor,Giraffa camelopardalis,False,0.863074,0.829998
+LGBM,Raccoon_dataset_2,Hedgehog_dataset_1,43,0.46596,Procyon lotor,Erinaceus europaeus,False,0.863074,
+LGBM,Raccoon_dataset_2,Horse_dataset_1,43,0.79792,Procyon lotor,Equus ferus przewalskii,False,0.863074,0.94541
+LGBM,Raccoon_dataset_2,Horse_dataset_2,43,0.7101,Procyon lotor,Equus caballus,False,0.863074,0.835636
+LGBM,Raccoon_dataset_2,Raccoon_dataset_1,43,0.64378,Procyon lotor,Procyon lotor,True,0.863074,0.77921
+LGBM,Bison_dataset_1,Cattle_dataset_1,44,0.54096,Bison bonasus,Bos taurus,False,0.917984,0.691096
+LGBM,Bison_dataset_1,Dog_dataset_1,44,0.65954,Bison bonasus,Canis lupus familiaris,False,0.917984,0.84028
+LGBM,Bison_dataset_1,Dog_dataset_2,44,0.35424,Bison bonasus,Canis lupus familiaris,False,0.917984,0.510204
+LGBM,Bison_dataset_1,Fox_dataset_1,44,0.75206,Bison bonasus,Vulpes vulpes,False,0.917984,0.8329
+LGBM,Bison_dataset_1,Giraffe_dataset_1,44,0.42936,Bison bonasus,Giraffa camelopardalis,False,0.917984,0.829998
+LGBM,Bison_dataset_1,Hedgehog_dataset_1,44,0.49513,Bison bonasus,Erinaceus europaeus,False,0.917984,
+LGBM,Bison_dataset_1,Horse_dataset_1,44,0.90811,Bison bonasus,Equus ferus przewalskii,False,0.917984,0.94541
+LGBM,Bison_dataset_1,Horse_dataset_2,44,0.5208,Bison bonasus,Equus caballus,False,0.917984,0.835636
+LGBM,Bison_dataset_1,Raccoon_dataset_1,44,0.65386,Bison bonasus,Procyon lotor,False,0.917984,0.77921
+LGBM,Bison_dataset_1,Raccoon_dataset_2,44,0.80127,Bison bonasus,Procyon lotor,False,0.917984,0.863074
+LGBM,Cattle_dataset_1,Bison_dataset_1,44,0.61329,Bos taurus,Bison bonasus,False,0.691096,0.917984
+LGBM,Cattle_dataset_1,Dog_dataset_1,44,0.63738,Bos taurus,Canis lupus familiaris,False,0.691096,0.84028
+LGBM,Cattle_dataset_1,Dog_dataset_2,44,0.35461,Bos taurus,Canis lupus familiaris,False,0.691096,0.510204
+LGBM,Cattle_dataset_1,Fox_dataset_1,44,0.71517,Bos taurus,Vulpes vulpes,False,0.691096,0.8329
+LGBM,Cattle_dataset_1,Giraffe_dataset_1,44,0.46025,Bos taurus,Giraffa camelopardalis,False,0.691096,0.829998
+LGBM,Cattle_dataset_1,Hedgehog_dataset_1,44,0.47176,Bos taurus,Erinaceus europaeus,False,0.691096,
+LGBM,Cattle_dataset_1,Horse_dataset_1,44,0.83289,Bos taurus,Equus ferus przewalskii,False,0.691096,0.94541
+LGBM,Cattle_dataset_1,Horse_dataset_2,44,0.55104,Bos taurus,Equus caballus,False,0.691096,0.835636
+LGBM,Cattle_dataset_1,Raccoon_dataset_1,44,0.60454,Bos taurus,Procyon lotor,False,0.691096,0.77921
+LGBM,Cattle_dataset_1,Raccoon_dataset_2,44,0.80115,Bos taurus,Procyon lotor,False,0.691096,0.863074
+LGBM,Dog_dataset_1,Bison_dataset_1,44,0.57165,Canis lupus familiaris,Bison bonasus,False,0.84028,0.917984
+LGBM,Dog_dataset_1,Cattle_dataset_1,44,0.51341,Canis lupus familiaris,Bos taurus,False,0.84028,0.691096
+LGBM,Dog_dataset_1,Dog_dataset_2,44,0.54951,Canis lupus familiaris,Canis lupus familiaris,True,0.84028,0.510204
+LGBM,Dog_dataset_1,Fox_dataset_1,44,0.70021,Canis lupus familiaris,Vulpes vulpes,False,0.84028,0.8329
+LGBM,Dog_dataset_1,Giraffe_dataset_1,44,0.33462,Canis lupus familiaris,Giraffa camelopardalis,False,0.84028,0.829998
+LGBM,Dog_dataset_1,Hedgehog_dataset_1,44,0.39962,Canis lupus familiaris,Erinaceus europaeus,False,0.84028,
+LGBM,Dog_dataset_1,Horse_dataset_1,44,0.71761,Canis lupus familiaris,Equus ferus przewalskii,False,0.84028,0.94541
+LGBM,Dog_dataset_1,Horse_dataset_2,44,0.76839,Canis lupus familiaris,Equus caballus,False,0.84028,0.835636
+LGBM,Dog_dataset_1,Raccoon_dataset_1,44,0.71417,Canis lupus familiaris,Procyon lotor,False,0.84028,0.77921
+LGBM,Dog_dataset_1,Raccoon_dataset_2,44,0.77463,Canis lupus familiaris,Procyon lotor,False,0.84028,0.863074
+LGBM,Dog_dataset_2,Bison_dataset_1,44,0.3163,Canis lupus familiaris,Bison bonasus,False,0.510204,0.917984
+LGBM,Dog_dataset_2,Cattle_dataset_1,44,0.29713,Canis lupus familiaris,Bos taurus,False,0.510204,0.691096
+LGBM,Dog_dataset_2,Dog_dataset_1,44,0.69061,Canis lupus familiaris,Canis lupus familiaris,True,0.510204,0.84028
+LGBM,Dog_dataset_2,Fox_dataset_1,44,0.42448,Canis lupus familiaris,Vulpes vulpes,False,0.510204,0.8329
+LGBM,Dog_dataset_2,Giraffe_dataset_1,44,0.33125,Canis lupus familiaris,Giraffa camelopardalis,False,0.510204,0.829998
+LGBM,Dog_dataset_2,Hedgehog_dataset_1,44,0.32216,Canis lupus familiaris,Erinaceus europaeus,False,0.510204,
+LGBM,Dog_dataset_2,Horse_dataset_1,44,0.43684,Canis lupus familiaris,Equus ferus przewalskii,False,0.510204,0.94541
+LGBM,Dog_dataset_2,Horse_dataset_2,44,0.67336,Canis lupus familiaris,Equus caballus,False,0.510204,0.835636
+LGBM,Dog_dataset_2,Raccoon_dataset_1,44,0.60387,Canis lupus familiaris,Procyon lotor,False,0.510204,0.77921
+LGBM,Dog_dataset_2,Raccoon_dataset_2,44,0.4841,Canis lupus familiaris,Procyon lotor,False,0.510204,0.863074
+LGBM,Fox_dataset_1,Bison_dataset_1,44,0.67311,Vulpes vulpes,Bison bonasus,False,0.8329,0.917984
+LGBM,Fox_dataset_1,Cattle_dataset_1,44,0.58922,Vulpes vulpes,Bos taurus,False,0.8329,0.691096
+LGBM,Fox_dataset_1,Dog_dataset_1,44,0.71915,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.84028
+LGBM,Fox_dataset_1,Dog_dataset_2,44,0.38395,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.510204
+LGBM,Fox_dataset_1,Giraffe_dataset_1,44,0.55837,Vulpes vulpes,Giraffa camelopardalis,False,0.8329,0.829998
+LGBM,Fox_dataset_1,Hedgehog_dataset_1,44,0.46562,Vulpes vulpes,Erinaceus europaeus,False,0.8329,
+LGBM,Fox_dataset_1,Horse_dataset_1,44,0.80096,Vulpes vulpes,Equus ferus przewalskii,False,0.8329,0.94541
+LGBM,Fox_dataset_1,Horse_dataset_2,44,0.6768,Vulpes vulpes,Equus caballus,False,0.8329,0.835636
+LGBM,Fox_dataset_1,Raccoon_dataset_1,44,0.60728,Vulpes vulpes,Procyon lotor,False,0.8329,0.77921
+LGBM,Fox_dataset_1,Raccoon_dataset_2,44,0.74652,Vulpes vulpes,Procyon lotor,False,0.8329,0.863074
+LGBM,Giraffe_dataset_1,Bison_dataset_1,44,0.7512,Giraffa camelopardalis,Bison bonasus,False,0.829998,0.917984
+LGBM,Giraffe_dataset_1,Cattle_dataset_1,44,0.56705,Giraffa camelopardalis,Bos taurus,False,0.829998,0.691096
+LGBM,Giraffe_dataset_1,Dog_dataset_1,44,0.64152,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.84028
+LGBM,Giraffe_dataset_1,Dog_dataset_2,44,0.37678,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.510204
+LGBM,Giraffe_dataset_1,Fox_dataset_1,44,0.72327,Giraffa camelopardalis,Vulpes vulpes,False,0.829998,0.8329
+LGBM,Giraffe_dataset_1,Hedgehog_dataset_1,44,0.48693,Giraffa camelopardalis,Erinaceus europaeus,False,0.829998,
+LGBM,Giraffe_dataset_1,Horse_dataset_1,44,0.81348,Giraffa camelopardalis,Equus ferus przewalskii,False,0.829998,0.94541
+LGBM,Giraffe_dataset_1,Horse_dataset_2,44,0.51924,Giraffa camelopardalis,Equus caballus,False,0.829998,0.835636
+LGBM,Giraffe_dataset_1,Raccoon_dataset_1,44,0.58655,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.77921
+LGBM,Giraffe_dataset_1,Raccoon_dataset_2,44,0.70368,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.863074
+LGBM,Hedgehog_dataset_1,Bison_dataset_1,44,0.52204,Erinaceus europaeus,Bison bonasus,False,,0.917984
+LGBM,Hedgehog_dataset_1,Cattle_dataset_1,44,0.57177,Erinaceus europaeus,Bos taurus,False,,0.691096
+LGBM,Hedgehog_dataset_1,Dog_dataset_1,44,0.49243,Erinaceus europaeus,Canis lupus familiaris,False,,0.84028
+LGBM,Hedgehog_dataset_1,Dog_dataset_2,44,0.35205,Erinaceus europaeus,Canis lupus familiaris,False,,0.510204
+LGBM,Hedgehog_dataset_1,Fox_dataset_1,44,0.66108,Erinaceus europaeus,Vulpes vulpes,False,,0.8329
+LGBM,Hedgehog_dataset_1,Giraffe_dataset_1,44,0.46293,Erinaceus europaeus,Giraffa camelopardalis,False,,0.829998
+LGBM,Hedgehog_dataset_1,Horse_dataset_1,44,0.55113,Erinaceus europaeus,Equus ferus przewalskii,False,,0.94541
+LGBM,Hedgehog_dataset_1,Horse_dataset_2,44,0.33483,Erinaceus europaeus,Equus caballus,False,,0.835636
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_1,44,0.53104,Erinaceus europaeus,Procyon lotor,False,,0.77921
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_2,44,0.56222,Erinaceus europaeus,Procyon lotor,False,,0.863074
+LGBM,Horse_dataset_1,Bison_dataset_1,44,0.79959,Equus ferus przewalskii,Bison bonasus,False,0.94541,0.917984
+LGBM,Horse_dataset_1,Cattle_dataset_1,44,0.59412,Equus ferus przewalskii,Bos taurus,False,0.94541,0.691096
+LGBM,Horse_dataset_1,Dog_dataset_1,44,0.71014,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.84028
+LGBM,Horse_dataset_1,Dog_dataset_2,44,0.4135,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.510204
+LGBM,Horse_dataset_1,Fox_dataset_1,44,0.79197,Equus ferus przewalskii,Vulpes vulpes,False,0.94541,0.8329
+LGBM,Horse_dataset_1,Giraffe_dataset_1,44,0.49145,Equus ferus przewalskii,Giraffa camelopardalis,False,0.94541,0.829998
+LGBM,Horse_dataset_1,Hedgehog_dataset_1,44,0.51249,Equus ferus przewalskii,Erinaceus europaeus,False,0.94541,
+LGBM,Horse_dataset_1,Horse_dataset_2,44,0.59602,Equus ferus przewalskii,Equus caballus,False,0.94541,0.835636
+LGBM,Horse_dataset_1,Raccoon_dataset_1,44,0.70046,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.77921
+LGBM,Horse_dataset_1,Raccoon_dataset_2,44,0.74065,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.863074
+LGBM,Horse_dataset_2,Bison_dataset_1,44,0.53146,Equus caballus,Bison bonasus,False,0.835636,0.917984
+LGBM,Horse_dataset_2,Cattle_dataset_1,44,0.47903,Equus caballus,Bos taurus,False,0.835636,0.691096
+LGBM,Horse_dataset_2,Dog_dataset_1,44,0.79888,Equus caballus,Canis lupus familiaris,False,0.835636,0.84028
+LGBM,Horse_dataset_2,Dog_dataset_2,44,0.54639,Equus caballus,Canis lupus familiaris,False,0.835636,0.510204
+LGBM,Horse_dataset_2,Fox_dataset_1,44,0.58485,Equus caballus,Vulpes vulpes,False,0.835636,0.8329
+LGBM,Horse_dataset_2,Giraffe_dataset_1,44,0.28255,Equus caballus,Giraffa camelopardalis,False,0.835636,0.829998
+LGBM,Horse_dataset_2,Hedgehog_dataset_1,44,0.40548,Equus caballus,Erinaceus europaeus,False,0.835636,
+LGBM,Horse_dataset_2,Horse_dataset_1,44,0.63431,Equus caballus,Equus ferus przewalskii,False,0.835636,0.94541
+LGBM,Horse_dataset_2,Raccoon_dataset_1,44,0.71915,Equus caballus,Procyon lotor,False,0.835636,0.77921
+LGBM,Horse_dataset_2,Raccoon_dataset_2,44,0.81131,Equus caballus,Procyon lotor,False,0.835636,0.863074
+LGBM,Raccoon_dataset_1,Bison_dataset_1,44,0.64498,Procyon lotor,Bison bonasus,False,0.77921,0.917984
+LGBM,Raccoon_dataset_1,Cattle_dataset_1,44,0.53245,Procyon lotor,Bos taurus,False,0.77921,0.691096
+LGBM,Raccoon_dataset_1,Dog_dataset_1,44,0.82967,Procyon lotor,Canis lupus familiaris,False,0.77921,0.84028
+LGBM,Raccoon_dataset_1,Dog_dataset_2,44,0.54989,Procyon lotor,Canis lupus familiaris,False,0.77921,0.510204
+LGBM,Raccoon_dataset_1,Fox_dataset_1,44,0.66616,Procyon lotor,Vulpes vulpes,False,0.77921,0.8329
+LGBM,Raccoon_dataset_1,Giraffe_dataset_1,44,0.30383,Procyon lotor,Giraffa camelopardalis,False,0.77921,0.829998
+LGBM,Raccoon_dataset_1,Hedgehog_dataset_1,44,0.43405,Procyon lotor,Erinaceus europaeus,False,0.77921,
+LGBM,Raccoon_dataset_1,Horse_dataset_1,44,0.70695,Procyon lotor,Equus ferus przewalskii,False,0.77921,0.94541
+LGBM,Raccoon_dataset_1,Horse_dataset_2,44,0.71808,Procyon lotor,Equus caballus,False,0.77921,0.835636
+LGBM,Raccoon_dataset_1,Raccoon_dataset_2,44,0.77291,Procyon lotor,Procyon lotor,True,0.77921,0.863074
+LGBM,Raccoon_dataset_2,Bison_dataset_1,44,0.64735,Procyon lotor,Bison bonasus,False,0.863074,0.917984
+LGBM,Raccoon_dataset_2,Cattle_dataset_1,44,0.60157,Procyon lotor,Bos taurus,False,0.863074,0.691096
+LGBM,Raccoon_dataset_2,Dog_dataset_1,44,0.7535,Procyon lotor,Canis lupus familiaris,False,0.863074,0.84028
+LGBM,Raccoon_dataset_2,Dog_dataset_2,44,0.45838,Procyon lotor,Canis lupus familiaris,False,0.863074,0.510204
+LGBM,Raccoon_dataset_2,Fox_dataset_1,44,0.73394,Procyon lotor,Vulpes vulpes,False,0.863074,0.8329
+LGBM,Raccoon_dataset_2,Giraffe_dataset_1,44,0.5747,Procyon lotor,Giraffa camelopardalis,False,0.863074,0.829998
+LGBM,Raccoon_dataset_2,Hedgehog_dataset_1,44,0.46009,Procyon lotor,Erinaceus europaeus,False,0.863074,
+LGBM,Raccoon_dataset_2,Horse_dataset_1,44,0.79277,Procyon lotor,Equus ferus przewalskii,False,0.863074,0.94541
+LGBM,Raccoon_dataset_2,Horse_dataset_2,44,0.71884,Procyon lotor,Equus caballus,False,0.863074,0.835636
+LGBM,Raccoon_dataset_2,Raccoon_dataset_1,44,0.64583,Procyon lotor,Procyon lotor,True,0.863074,0.77921
+LGBM,Bison_dataset_1,Cattle_dataset_1,45,0.52854,Bison bonasus,Bos taurus,False,0.917984,0.691096
+LGBM,Bison_dataset_1,Dog_dataset_1,45,0.67233,Bison bonasus,Canis lupus familiaris,False,0.917984,0.84028
+LGBM,Bison_dataset_1,Dog_dataset_2,45,0.35744,Bison bonasus,Canis lupus familiaris,False,0.917984,0.510204
+LGBM,Bison_dataset_1,Fox_dataset_1,45,0.74739,Bison bonasus,Vulpes vulpes,False,0.917984,0.8329
+LGBM,Bison_dataset_1,Giraffe_dataset_1,45,0.38791,Bison bonasus,Giraffa camelopardalis,False,0.917984,0.829998
+LGBM,Bison_dataset_1,Hedgehog_dataset_1,45,0.50015,Bison bonasus,Erinaceus europaeus,False,0.917984,
+LGBM,Bison_dataset_1,Horse_dataset_1,45,0.9159,Bison bonasus,Equus ferus przewalskii,False,0.917984,0.94541
+LGBM,Bison_dataset_1,Horse_dataset_2,45,0.59186,Bison bonasus,Equus caballus,False,0.917984,0.835636
+LGBM,Bison_dataset_1,Raccoon_dataset_1,45,0.66042,Bison bonasus,Procyon lotor,False,0.917984,0.77921
+LGBM,Bison_dataset_1,Raccoon_dataset_2,45,0.79103,Bison bonasus,Procyon lotor,False,0.917984,0.863074
+LGBM,Cattle_dataset_1,Bison_dataset_1,45,0.58207,Bos taurus,Bison bonasus,False,0.691096,0.917984
+LGBM,Cattle_dataset_1,Dog_dataset_1,45,0.62966,Bos taurus,Canis lupus familiaris,False,0.691096,0.84028
+LGBM,Cattle_dataset_1,Dog_dataset_2,45,0.36479,Bos taurus,Canis lupus familiaris,False,0.691096,0.510204
+LGBM,Cattle_dataset_1,Fox_dataset_1,45,0.70803,Bos taurus,Vulpes vulpes,False,0.691096,0.8329
+LGBM,Cattle_dataset_1,Giraffe_dataset_1,45,0.47562,Bos taurus,Giraffa camelopardalis,False,0.691096,0.829998
+LGBM,Cattle_dataset_1,Hedgehog_dataset_1,45,0.47003,Bos taurus,Erinaceus europaeus,False,0.691096,
+LGBM,Cattle_dataset_1,Horse_dataset_1,45,0.81868,Bos taurus,Equus ferus przewalskii,False,0.691096,0.94541
+LGBM,Cattle_dataset_1,Horse_dataset_2,45,0.54763,Bos taurus,Equus caballus,False,0.691096,0.835636
+LGBM,Cattle_dataset_1,Raccoon_dataset_1,45,0.64471,Bos taurus,Procyon lotor,False,0.691096,0.77921
+LGBM,Cattle_dataset_1,Raccoon_dataset_2,45,0.78866,Bos taurus,Procyon lotor,False,0.691096,0.863074
+LGBM,Dog_dataset_1,Bison_dataset_1,45,0.49418,Canis lupus familiaris,Bison bonasus,False,0.84028,0.917984
+LGBM,Dog_dataset_1,Cattle_dataset_1,45,0.49463,Canis lupus familiaris,Bos taurus,False,0.84028,0.691096
+LGBM,Dog_dataset_1,Dog_dataset_2,45,0.55072,Canis lupus familiaris,Canis lupus familiaris,True,0.84028,0.510204
+LGBM,Dog_dataset_1,Fox_dataset_1,45,0.68723,Canis lupus familiaris,Vulpes vulpes,False,0.84028,0.8329
+LGBM,Dog_dataset_1,Giraffe_dataset_1,45,0.31051,Canis lupus familiaris,Giraffa camelopardalis,False,0.84028,0.829998
+LGBM,Dog_dataset_1,Hedgehog_dataset_1,45,0.41058,Canis lupus familiaris,Erinaceus europaeus,False,0.84028,
+LGBM,Dog_dataset_1,Horse_dataset_1,45,0.65823,Canis lupus familiaris,Equus ferus przewalskii,False,0.84028,0.94541
+LGBM,Dog_dataset_1,Horse_dataset_2,45,0.78936,Canis lupus familiaris,Equus caballus,False,0.84028,0.835636
+LGBM,Dog_dataset_1,Raccoon_dataset_1,45,0.70557,Canis lupus familiaris,Procyon lotor,False,0.84028,0.77921
+LGBM,Dog_dataset_1,Raccoon_dataset_2,45,0.71663,Canis lupus familiaris,Procyon lotor,False,0.84028,0.863074
+LGBM,Dog_dataset_2,Bison_dataset_1,45,0.41176,Canis lupus familiaris,Bison bonasus,False,0.510204,0.917984
+LGBM,Dog_dataset_2,Cattle_dataset_1,45,0.4184,Canis lupus familiaris,Bos taurus,False,0.510204,0.691096
+LGBM,Dog_dataset_2,Dog_dataset_1,45,0.70656,Canis lupus familiaris,Canis lupus familiaris,True,0.510204,0.84028
+LGBM,Dog_dataset_2,Fox_dataset_1,45,0.40421,Canis lupus familiaris,Vulpes vulpes,False,0.510204,0.8329
+LGBM,Dog_dataset_2,Giraffe_dataset_1,45,0.28382,Canis lupus familiaris,Giraffa camelopardalis,False,0.510204,0.829998
+LGBM,Dog_dataset_2,Hedgehog_dataset_1,45,0.33723,Canis lupus familiaris,Erinaceus europaeus,False,0.510204,
+LGBM,Dog_dataset_2,Horse_dataset_1,45,0.43297,Canis lupus familiaris,Equus ferus przewalskii,False,0.510204,0.94541
+LGBM,Dog_dataset_2,Horse_dataset_2,45,0.67102,Canis lupus familiaris,Equus caballus,False,0.510204,0.835636
+LGBM,Dog_dataset_2,Raccoon_dataset_1,45,0.62305,Canis lupus familiaris,Procyon lotor,False,0.510204,0.77921
+LGBM,Dog_dataset_2,Raccoon_dataset_2,45,0.53808,Canis lupus familiaris,Procyon lotor,False,0.510204,0.863074
+LGBM,Fox_dataset_1,Bison_dataset_1,45,0.67311,Vulpes vulpes,Bison bonasus,False,0.8329,0.917984
+LGBM,Fox_dataset_1,Cattle_dataset_1,45,0.58922,Vulpes vulpes,Bos taurus,False,0.8329,0.691096
+LGBM,Fox_dataset_1,Dog_dataset_1,45,0.71915,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.84028
+LGBM,Fox_dataset_1,Dog_dataset_2,45,0.38395,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.510204
+LGBM,Fox_dataset_1,Giraffe_dataset_1,45,0.55837,Vulpes vulpes,Giraffa camelopardalis,False,0.8329,0.829998
+LGBM,Fox_dataset_1,Hedgehog_dataset_1,45,0.46562,Vulpes vulpes,Erinaceus europaeus,False,0.8329,
+LGBM,Fox_dataset_1,Horse_dataset_1,45,0.80096,Vulpes vulpes,Equus ferus przewalskii,False,0.8329,0.94541
+LGBM,Fox_dataset_1,Horse_dataset_2,45,0.6768,Vulpes vulpes,Equus caballus,False,0.8329,0.835636
+LGBM,Fox_dataset_1,Raccoon_dataset_1,45,0.60728,Vulpes vulpes,Procyon lotor,False,0.8329,0.77921
+LGBM,Fox_dataset_1,Raccoon_dataset_2,45,0.74652,Vulpes vulpes,Procyon lotor,False,0.8329,0.863074
+LGBM,Giraffe_dataset_1,Bison_dataset_1,45,0.53915,Giraffa camelopardalis,Bison bonasus,False,0.829998,0.917984
+LGBM,Giraffe_dataset_1,Cattle_dataset_1,45,0.48511,Giraffa camelopardalis,Bos taurus,False,0.829998,0.691096
+LGBM,Giraffe_dataset_1,Dog_dataset_1,45,0.3847,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.84028
+LGBM,Giraffe_dataset_1,Dog_dataset_2,45,0.2182,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.510204
+LGBM,Giraffe_dataset_1,Fox_dataset_1,45,0.52883,Giraffa camelopardalis,Vulpes vulpes,False,0.829998,0.8329
+LGBM,Giraffe_dataset_1,Hedgehog_dataset_1,45,0.27047,Giraffa camelopardalis,Erinaceus europaeus,False,0.829998,
+LGBM,Giraffe_dataset_1,Horse_dataset_1,45,0.61319,Giraffa camelopardalis,Equus ferus przewalskii,False,0.829998,0.94541
+LGBM,Giraffe_dataset_1,Horse_dataset_2,45,0.52957,Giraffa camelopardalis,Equus caballus,False,0.829998,0.835636
+LGBM,Giraffe_dataset_1,Raccoon_dataset_1,45,0.38118,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.77921
+LGBM,Giraffe_dataset_1,Raccoon_dataset_2,45,0.56409,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.863074
+LGBM,Hedgehog_dataset_1,Bison_dataset_1,45,0.54616,Erinaceus europaeus,Bison bonasus,False,,0.917984
+LGBM,Hedgehog_dataset_1,Cattle_dataset_1,45,0.55967,Erinaceus europaeus,Bos taurus,False,,0.691096
+LGBM,Hedgehog_dataset_1,Dog_dataset_1,45,0.51821,Erinaceus europaeus,Canis lupus familiaris,False,,0.84028
+LGBM,Hedgehog_dataset_1,Dog_dataset_2,45,0.38031,Erinaceus europaeus,Canis lupus familiaris,False,,0.510204
+LGBM,Hedgehog_dataset_1,Fox_dataset_1,45,0.64318,Erinaceus europaeus,Vulpes vulpes,False,,0.8329
+LGBM,Hedgehog_dataset_1,Giraffe_dataset_1,45,0.50184,Erinaceus europaeus,Giraffa camelopardalis,False,,0.829998
+LGBM,Hedgehog_dataset_1,Horse_dataset_1,45,0.54155,Erinaceus europaeus,Equus ferus przewalskii,False,,0.94541
+LGBM,Hedgehog_dataset_1,Horse_dataset_2,45,0.34565,Erinaceus europaeus,Equus caballus,False,,0.835636
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_1,45,0.58523,Erinaceus europaeus,Procyon lotor,False,,0.77921
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_2,45,0.55576,Erinaceus europaeus,Procyon lotor,False,,0.863074
+LGBM,Horse_dataset_1,Bison_dataset_1,45,0.86376,Equus ferus przewalskii,Bison bonasus,False,0.94541,0.917984
+LGBM,Horse_dataset_1,Cattle_dataset_1,45,0.59931,Equus ferus przewalskii,Bos taurus,False,0.94541,0.691096
+LGBM,Horse_dataset_1,Dog_dataset_1,45,0.70324,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.84028
+LGBM,Horse_dataset_1,Dog_dataset_2,45,0.42081,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.510204
+LGBM,Horse_dataset_1,Fox_dataset_1,45,0.74064,Equus ferus przewalskii,Vulpes vulpes,False,0.94541,0.8329
+LGBM,Horse_dataset_1,Giraffe_dataset_1,45,0.4733,Equus ferus przewalskii,Giraffa camelopardalis,False,0.94541,0.829998
+LGBM,Horse_dataset_1,Hedgehog_dataset_1,45,0.48097,Equus ferus przewalskii,Erinaceus europaeus,False,0.94541,
+LGBM,Horse_dataset_1,Horse_dataset_2,45,0.54175,Equus ferus przewalskii,Equus caballus,False,0.94541,0.835636
+LGBM,Horse_dataset_1,Raccoon_dataset_1,45,0.69301,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.77921
+LGBM,Horse_dataset_1,Raccoon_dataset_2,45,0.71345,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.863074
+LGBM,Horse_dataset_2,Bison_dataset_1,45,0.55636,Equus caballus,Bison bonasus,False,0.835636,0.917984
+LGBM,Horse_dataset_2,Cattle_dataset_1,45,0.49854,Equus caballus,Bos taurus,False,0.835636,0.691096
+LGBM,Horse_dataset_2,Dog_dataset_1,45,0.78976,Equus caballus,Canis lupus familiaris,False,0.835636,0.84028
+LGBM,Horse_dataset_2,Dog_dataset_2,45,0.55364,Equus caballus,Canis lupus familiaris,False,0.835636,0.510204
+LGBM,Horse_dataset_2,Fox_dataset_1,45,0.57146,Equus caballus,Vulpes vulpes,False,0.835636,0.8329
+LGBM,Horse_dataset_2,Giraffe_dataset_1,45,0.25217,Equus caballus,Giraffa camelopardalis,False,0.835636,0.829998
+LGBM,Horse_dataset_2,Hedgehog_dataset_1,45,0.43055,Equus caballus,Erinaceus europaeus,False,0.835636,
+LGBM,Horse_dataset_2,Horse_dataset_1,45,0.60113,Equus caballus,Equus ferus przewalskii,False,0.835636,0.94541
+LGBM,Horse_dataset_2,Raccoon_dataset_1,45,0.72229,Equus caballus,Procyon lotor,False,0.835636,0.77921
+LGBM,Horse_dataset_2,Raccoon_dataset_2,45,0.79426,Equus caballus,Procyon lotor,False,0.835636,0.863074
+LGBM,Raccoon_dataset_1,Bison_dataset_1,45,0.64498,Procyon lotor,Bison bonasus,False,0.77921,0.917984
+LGBM,Raccoon_dataset_1,Cattle_dataset_1,45,0.53245,Procyon lotor,Bos taurus,False,0.77921,0.691096
+LGBM,Raccoon_dataset_1,Dog_dataset_1,45,0.82967,Procyon lotor,Canis lupus familiaris,False,0.77921,0.84028
+LGBM,Raccoon_dataset_1,Dog_dataset_2,45,0.54989,Procyon lotor,Canis lupus familiaris,False,0.77921,0.510204
+LGBM,Raccoon_dataset_1,Fox_dataset_1,45,0.66616,Procyon lotor,Vulpes vulpes,False,0.77921,0.8329
+LGBM,Raccoon_dataset_1,Giraffe_dataset_1,45,0.30383,Procyon lotor,Giraffa camelopardalis,False,0.77921,0.829998
+LGBM,Raccoon_dataset_1,Hedgehog_dataset_1,45,0.43405,Procyon lotor,Erinaceus europaeus,False,0.77921,
+LGBM,Raccoon_dataset_1,Horse_dataset_1,45,0.70695,Procyon lotor,Equus ferus przewalskii,False,0.77921,0.94541
+LGBM,Raccoon_dataset_1,Horse_dataset_2,45,0.71808,Procyon lotor,Equus caballus,False,0.77921,0.835636
+LGBM,Raccoon_dataset_1,Raccoon_dataset_2,45,0.77291,Procyon lotor,Procyon lotor,True,0.77921,0.863074
+LGBM,Raccoon_dataset_2,Bison_dataset_1,45,0.64822,Procyon lotor,Bison bonasus,False,0.863074,0.917984
+LGBM,Raccoon_dataset_2,Cattle_dataset_1,45,0.58099,Procyon lotor,Bos taurus,False,0.863074,0.691096
+LGBM,Raccoon_dataset_2,Dog_dataset_1,45,0.75002,Procyon lotor,Canis lupus familiaris,False,0.863074,0.84028
+LGBM,Raccoon_dataset_2,Dog_dataset_2,45,0.45041,Procyon lotor,Canis lupus familiaris,False,0.863074,0.510204
+LGBM,Raccoon_dataset_2,Fox_dataset_1,45,0.74527,Procyon lotor,Vulpes vulpes,False,0.863074,0.8329
+LGBM,Raccoon_dataset_2,Giraffe_dataset_1,45,0.56087,Procyon lotor,Giraffa camelopardalis,False,0.863074,0.829998
+LGBM,Raccoon_dataset_2,Hedgehog_dataset_1,45,0.47195,Procyon lotor,Erinaceus europaeus,False,0.863074,
+LGBM,Raccoon_dataset_2,Horse_dataset_1,45,0.78802,Procyon lotor,Equus ferus przewalskii,False,0.863074,0.94541
+LGBM,Raccoon_dataset_2,Horse_dataset_2,45,0.71237,Procyon lotor,Equus caballus,False,0.863074,0.835636
+LGBM,Raccoon_dataset_2,Raccoon_dataset_1,45,0.63578,Procyon lotor,Procyon lotor,True,0.863074,0.77921
+LGBM,Bison_dataset_1,Cattle_dataset_1,46,0.52265,Bison bonasus,Bos taurus,False,0.917984,0.691096
+LGBM,Bison_dataset_1,Dog_dataset_1,46,0.66899,Bison bonasus,Canis lupus familiaris,False,0.917984,0.84028
+LGBM,Bison_dataset_1,Dog_dataset_2,46,0.35852,Bison bonasus,Canis lupus familiaris,False,0.917984,0.510204
+LGBM,Bison_dataset_1,Fox_dataset_1,46,0.76523,Bison bonasus,Vulpes vulpes,False,0.917984,0.8329
+LGBM,Bison_dataset_1,Giraffe_dataset_1,46,0.39764,Bison bonasus,Giraffa camelopardalis,False,0.917984,0.829998
+LGBM,Bison_dataset_1,Hedgehog_dataset_1,46,0.4694,Bison bonasus,Erinaceus europaeus,False,0.917984,
+LGBM,Bison_dataset_1,Horse_dataset_1,46,0.88388,Bison bonasus,Equus ferus przewalskii,False,0.917984,0.94541
+LGBM,Bison_dataset_1,Horse_dataset_2,46,0.5689,Bison bonasus,Equus caballus,False,0.917984,0.835636
+LGBM,Bison_dataset_1,Raccoon_dataset_1,46,0.64789,Bison bonasus,Procyon lotor,False,0.917984,0.77921
+LGBM,Bison_dataset_1,Raccoon_dataset_2,46,0.82045,Bison bonasus,Procyon lotor,False,0.917984,0.863074
+LGBM,Cattle_dataset_1,Bison_dataset_1,46,0.63018,Bos taurus,Bison bonasus,False,0.691096,0.917984
+LGBM,Cattle_dataset_1,Dog_dataset_1,46,0.6403,Bos taurus,Canis lupus familiaris,False,0.691096,0.84028
+LGBM,Cattle_dataset_1,Dog_dataset_2,46,0.34473,Bos taurus,Canis lupus familiaris,False,0.691096,0.510204
+LGBM,Cattle_dataset_1,Fox_dataset_1,46,0.72934,Bos taurus,Vulpes vulpes,False,0.691096,0.8329
+LGBM,Cattle_dataset_1,Giraffe_dataset_1,46,0.50639,Bos taurus,Giraffa camelopardalis,False,0.691096,0.829998
+LGBM,Cattle_dataset_1,Hedgehog_dataset_1,46,0.48113,Bos taurus,Erinaceus europaeus,False,0.691096,
+LGBM,Cattle_dataset_1,Horse_dataset_1,46,0.82013,Bos taurus,Equus ferus przewalskii,False,0.691096,0.94541
+LGBM,Cattle_dataset_1,Horse_dataset_2,46,0.54137,Bos taurus,Equus caballus,False,0.691096,0.835636
+LGBM,Cattle_dataset_1,Raccoon_dataset_1,46,0.60835,Bos taurus,Procyon lotor,False,0.691096,0.77921
+LGBM,Cattle_dataset_1,Raccoon_dataset_2,46,0.80068,Bos taurus,Procyon lotor,False,0.691096,0.863074
+LGBM,Dog_dataset_1,Bison_dataset_1,46,0.61128,Canis lupus familiaris,Bison bonasus,False,0.84028,0.917984
+LGBM,Dog_dataset_1,Cattle_dataset_1,46,0.50938,Canis lupus familiaris,Bos taurus,False,0.84028,0.691096
+LGBM,Dog_dataset_1,Dog_dataset_2,46,0.54139,Canis lupus familiaris,Canis lupus familiaris,True,0.84028,0.510204
+LGBM,Dog_dataset_1,Fox_dataset_1,46,0.73195,Canis lupus familiaris,Vulpes vulpes,False,0.84028,0.8329
+LGBM,Dog_dataset_1,Giraffe_dataset_1,46,0.36366,Canis lupus familiaris,Giraffa camelopardalis,False,0.84028,0.829998
+LGBM,Dog_dataset_1,Hedgehog_dataset_1,46,0.41942,Canis lupus familiaris,Erinaceus europaeus,False,0.84028,
+LGBM,Dog_dataset_1,Horse_dataset_1,46,0.75634,Canis lupus familiaris,Equus ferus przewalskii,False,0.84028,0.94541
+LGBM,Dog_dataset_1,Horse_dataset_2,46,0.78937,Canis lupus familiaris,Equus caballus,False,0.84028,0.835636
+LGBM,Dog_dataset_1,Raccoon_dataset_1,46,0.71458,Canis lupus familiaris,Procyon lotor,False,0.84028,0.77921
+LGBM,Dog_dataset_1,Raccoon_dataset_2,46,0.7533,Canis lupus familiaris,Procyon lotor,False,0.84028,0.863074
+LGBM,Dog_dataset_2,Bison_dataset_1,46,0.32205,Canis lupus familiaris,Bison bonasus,False,0.510204,0.917984
+LGBM,Dog_dataset_2,Cattle_dataset_1,46,0.32502,Canis lupus familiaris,Bos taurus,False,0.510204,0.691096
+LGBM,Dog_dataset_2,Dog_dataset_1,46,0.68759,Canis lupus familiaris,Canis lupus familiaris,True,0.510204,0.84028
+LGBM,Dog_dataset_2,Fox_dataset_1,46,0.40821,Canis lupus familiaris,Vulpes vulpes,False,0.510204,0.8329
+LGBM,Dog_dataset_2,Giraffe_dataset_1,46,0.27573,Canis lupus familiaris,Giraffa camelopardalis,False,0.510204,0.829998
+LGBM,Dog_dataset_2,Hedgehog_dataset_1,46,0.30557,Canis lupus familiaris,Erinaceus europaeus,False,0.510204,
+LGBM,Dog_dataset_2,Horse_dataset_1,46,0.39809,Canis lupus familiaris,Equus ferus przewalskii,False,0.510204,0.94541
+LGBM,Dog_dataset_2,Horse_dataset_2,46,0.67499,Canis lupus familiaris,Equus caballus,False,0.510204,0.835636
+LGBM,Dog_dataset_2,Raccoon_dataset_1,46,0.56763,Canis lupus familiaris,Procyon lotor,False,0.510204,0.77921
+LGBM,Dog_dataset_2,Raccoon_dataset_2,46,0.48684,Canis lupus familiaris,Procyon lotor,False,0.510204,0.863074
+LGBM,Fox_dataset_1,Bison_dataset_1,46,0.67311,Vulpes vulpes,Bison bonasus,False,0.8329,0.917984
+LGBM,Fox_dataset_1,Cattle_dataset_1,46,0.58922,Vulpes vulpes,Bos taurus,False,0.8329,0.691096
+LGBM,Fox_dataset_1,Dog_dataset_1,46,0.71915,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.84028
+LGBM,Fox_dataset_1,Dog_dataset_2,46,0.38395,Vulpes vulpes,Canis lupus familiaris,False,0.8329,0.510204
+LGBM,Fox_dataset_1,Giraffe_dataset_1,46,0.55837,Vulpes vulpes,Giraffa camelopardalis,False,0.8329,0.829998
+LGBM,Fox_dataset_1,Hedgehog_dataset_1,46,0.46562,Vulpes vulpes,Erinaceus europaeus,False,0.8329,
+LGBM,Fox_dataset_1,Horse_dataset_1,46,0.80096,Vulpes vulpes,Equus ferus przewalskii,False,0.8329,0.94541
+LGBM,Fox_dataset_1,Horse_dataset_2,46,0.6768,Vulpes vulpes,Equus caballus,False,0.8329,0.835636
+LGBM,Fox_dataset_1,Raccoon_dataset_1,46,0.60728,Vulpes vulpes,Procyon lotor,False,0.8329,0.77921
+LGBM,Fox_dataset_1,Raccoon_dataset_2,46,0.74652,Vulpes vulpes,Procyon lotor,False,0.8329,0.863074
+LGBM,Giraffe_dataset_1,Bison_dataset_1,46,0.63327,Giraffa camelopardalis,Bison bonasus,False,0.829998,0.917984
+LGBM,Giraffe_dataset_1,Cattle_dataset_1,46,0.59778,Giraffa camelopardalis,Bos taurus,False,0.829998,0.691096
+LGBM,Giraffe_dataset_1,Dog_dataset_1,46,0.56039,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.84028
+LGBM,Giraffe_dataset_1,Dog_dataset_2,46,0.344,Giraffa camelopardalis,Canis lupus familiaris,False,0.829998,0.510204
+LGBM,Giraffe_dataset_1,Fox_dataset_1,46,0.59645,Giraffa camelopardalis,Vulpes vulpes,False,0.829998,0.8329
+LGBM,Giraffe_dataset_1,Hedgehog_dataset_1,46,0.44696,Giraffa camelopardalis,Erinaceus europaeus,False,0.829998,
+LGBM,Giraffe_dataset_1,Horse_dataset_1,46,0.70923,Giraffa camelopardalis,Equus ferus przewalskii,False,0.829998,0.94541
+LGBM,Giraffe_dataset_1,Horse_dataset_2,46,0.66146,Giraffa camelopardalis,Equus caballus,False,0.829998,0.835636
+LGBM,Giraffe_dataset_1,Raccoon_dataset_1,46,0.47331,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.77921
+LGBM,Giraffe_dataset_1,Raccoon_dataset_2,46,0.72068,Giraffa camelopardalis,Procyon lotor,False,0.829998,0.863074
+LGBM,Hedgehog_dataset_1,Bison_dataset_1,46,0.57093,Erinaceus europaeus,Bison bonasus,False,,0.917984
+LGBM,Hedgehog_dataset_1,Cattle_dataset_1,46,0.58489,Erinaceus europaeus,Bos taurus,False,,0.691096
+LGBM,Hedgehog_dataset_1,Dog_dataset_1,46,0.49688,Erinaceus europaeus,Canis lupus familiaris,False,,0.84028
+LGBM,Hedgehog_dataset_1,Dog_dataset_2,46,0.34357,Erinaceus europaeus,Canis lupus familiaris,False,,0.510204
+LGBM,Hedgehog_dataset_1,Fox_dataset_1,46,0.64377,Erinaceus europaeus,Vulpes vulpes,False,,0.8329
+LGBM,Hedgehog_dataset_1,Giraffe_dataset_1,46,0.51977,Erinaceus europaeus,Giraffa camelopardalis,False,,0.829998
+LGBM,Hedgehog_dataset_1,Horse_dataset_1,46,0.56988,Erinaceus europaeus,Equus ferus przewalskii,False,,0.94541
+LGBM,Hedgehog_dataset_1,Horse_dataset_2,46,0.34794,Erinaceus europaeus,Equus caballus,False,,0.835636
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_1,46,0.58476,Erinaceus europaeus,Procyon lotor,False,,0.77921
+LGBM,Hedgehog_dataset_1,Raccoon_dataset_2,46,0.57226,Erinaceus europaeus,Procyon lotor,False,,0.863074
+LGBM,Horse_dataset_1,Bison_dataset_1,46,0.84698,Equus ferus przewalskii,Bison bonasus,False,0.94541,0.917984
+LGBM,Horse_dataset_1,Cattle_dataset_1,46,0.59576,Equus ferus przewalskii,Bos taurus,False,0.94541,0.691096
+LGBM,Horse_dataset_1,Dog_dataset_1,46,0.69618,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.84028
+LGBM,Horse_dataset_1,Dog_dataset_2,46,0.39001,Equus ferus przewalskii,Canis lupus familiaris,False,0.94541,0.510204
+LGBM,Horse_dataset_1,Fox_dataset_1,46,0.79594,Equus ferus przewalskii,Vulpes vulpes,False,0.94541,0.8329
+LGBM,Horse_dataset_1,Giraffe_dataset_1,46,0.44141,Equus ferus przewalskii,Giraffa camelopardalis,False,0.94541,0.829998
+LGBM,Horse_dataset_1,Hedgehog_dataset_1,46,0.47594,Equus ferus przewalskii,Erinaceus europaeus,False,0.94541,
+LGBM,Horse_dataset_1,Horse_dataset_2,46,0.54535,Equus ferus przewalskii,Equus caballus,False,0.94541,0.835636
+LGBM,Horse_dataset_1,Raccoon_dataset_1,46,0.67762,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.77921
+LGBM,Horse_dataset_1,Raccoon_dataset_2,46,0.72684,Equus ferus przewalskii,Procyon lotor,False,0.94541,0.863074
+LGBM,Horse_dataset_2,Bison_dataset_1,46,0.49668,Equus caballus,Bison bonasus,False,0.835636,0.917984
+LGBM,Horse_dataset_2,Cattle_dataset_1,46,0.49778,Equus caballus,Bos taurus,False,0.835636,0.691096
+LGBM,Horse_dataset_2,Dog_dataset_1,46,0.80207,Equus caballus,Canis lupus familiaris,False,0.835636,0.84028
+LGBM,Horse_dataset_2,Dog_dataset_2,46,0.55274,Equus caballus,Canis lupus familiaris,False,0.835636,0.510204
+LGBM,Horse_dataset_2,Fox_dataset_1,46,0.58383,Equus caballus,Vulpes vulpes,False,0.835636,0.8329
+LGBM,Horse_dataset_2,Giraffe_dataset_1,46,0.24301,Equus caballus,Giraffa camelopardalis,False,0.835636,0.829998
+LGBM,Horse_dataset_2,Hedgehog_dataset_1,46,0.40942,Equus caballus,Erinaceus europaeus,False,0.835636,
+LGBM,Horse_dataset_2,Horse_dataset_1,46,0.58664,Equus caballus,Equus ferus przewalskii,False,0.835636,0.94541
+LGBM,Horse_dataset_2,Raccoon_dataset_1,46,0.71411,Equus caballus,Procyon lotor,False,0.835636,0.77921
+LGBM,Horse_dataset_2,Raccoon_dataset_2,46,0.80845,Equus caballus,Procyon lotor,False,0.835636,0.863074
+LGBM,Raccoon_dataset_1,Bison_dataset_1,46,0.64498,Procyon lotor,Bison bonasus,False,0.77921,0.917984
+LGBM,Raccoon_dataset_1,Cattle_dataset_1,46,0.53245,Procyon lotor,Bos taurus,False,0.77921,0.691096
+LGBM,Raccoon_dataset_1,Dog_dataset_1,46,0.82967,Procyon lotor,Canis lupus familiaris,False,0.77921,0.84028
+LGBM,Raccoon_dataset_1,Dog_dataset_2,46,0.54989,Procyon lotor,Canis lupus familiaris,False,0.77921,0.510204
+LGBM,Raccoon_dataset_1,Fox_dataset_1,46,0.66616,Procyon lotor,Vulpes vulpes,False,0.77921,0.8329
+LGBM,Raccoon_dataset_1,Giraffe_dataset_1,46,0.30383,Procyon lotor,Giraffa camelopardalis,False,0.77921,0.829998
+LGBM,Raccoon_dataset_1,Hedgehog_dataset_1,46,0.43405,Procyon lotor,Erinaceus europaeus,False,0.77921,
+LGBM,Raccoon_dataset_1,Horse_dataset_1,46,0.70695,Procyon lotor,Equus ferus przewalskii,False,0.77921,0.94541
+LGBM,Raccoon_dataset_1,Horse_dataset_2,46,0.71808,Procyon lotor,Equus caballus,False,0.77921,0.835636
+LGBM,Raccoon_dataset_1,Raccoon_dataset_2,46,0.77291,Procyon lotor,Procyon lotor,True,0.77921,0.863074
+LGBM,Raccoon_dataset_2,Bison_dataset_1,46,0.66573,Procyon lotor,Bison bonasus,False,0.863074,0.917984
+LGBM,Raccoon_dataset_2,Cattle_dataset_1,46,0.56988,Procyon lotor,Bos taurus,False,0.863074,0.691096
+LGBM,Raccoon_dataset_2,Dog_dataset_1,46,0.74129,Procyon lotor,Canis lupus familiaris,False,0.863074,0.84028
+LGBM,Raccoon_dataset_2,Dog_dataset_2,46,0.44107,Procyon lotor,Canis lupus familiaris,False,0.863074,0.510204
+LGBM,Raccoon_dataset_2,Fox_dataset_1,46,0.72367,Procyon lotor,Vulpes vulpes,False,0.863074,0.8329
+LGBM,Raccoon_dataset_2,Giraffe_dataset_1,46,0.62037,Procyon lotor,Giraffa camelopardalis,False,0.863074,0.829998
+LGBM,Raccoon_dataset_2,Hedgehog_dataset_1,46,0.46984,Procyon lotor,Erinaceus europaeus,False,0.863074,
+LGBM,Raccoon_dataset_2,Horse_dataset_1,46,0.80858,Procyon lotor,Equus ferus przewalskii,False,0.863074,0.94541
+LGBM,Raccoon_dataset_2,Horse_dataset_2,46,0.71528,Procyon lotor,Equus caballus,False,0.863074,0.835636
+LGBM,Raccoon_dataset_2,Raccoon_dataset_1,46,0.62143,Procyon lotor,Procyon lotor,True,0.863074,0.77921
+RF,Bison_dataset_1,Cattle_dataset_1,42,0.57433,Bison bonasus,Bos taurus,False,0.914642,0.69521
+RF,Bison_dataset_1,Dog_dataset_1,42,0.62057,Bison bonasus,Canis lupus familiaris,False,0.914642,0.842788
+RF,Bison_dataset_1,Dog_dataset_2,42,0.34392,Bison bonasus,Canis lupus familiaris,False,0.914642,0.536338
+RF,Bison_dataset_1,Fox_dataset_1,42,0.74392,Bison bonasus,Vulpes vulpes,False,0.914642,0.809782
+RF,Bison_dataset_1,Giraffe_dataset_1,42,0.42484,Bison bonasus,Giraffa camelopardalis,False,0.914642,0.822862
+RF,Bison_dataset_1,Hedgehog_dataset_1,42,0.4867,Bison bonasus,Erinaceus europaeus,False,0.914642,
+RF,Bison_dataset_1,Horse_dataset_1,42,0.90581,Bison bonasus,Equus ferus przewalskii,False,0.914642,0.940488
+RF,Bison_dataset_1,Horse_dataset_2,42,0.45595,Bison bonasus,Equus caballus,False,0.914642,0.844102
+RF,Bison_dataset_1,Raccoon_dataset_1,42,0.65215,Bison bonasus,Procyon lotor,False,0.914642,0.780756
+RF,Bison_dataset_1,Raccoon_dataset_2,42,0.74771,Bison bonasus,Procyon lotor,False,0.914642,0.863298
+RF,Cattle_dataset_1,Bison_dataset_1,42,0.6621,Bos taurus,Bison bonasus,False,0.69521,0.914642
+RF,Cattle_dataset_1,Dog_dataset_1,42,0.60807,Bos taurus,Canis lupus familiaris,False,0.69521,0.842788
+RF,Cattle_dataset_1,Dog_dataset_2,42,0.34841,Bos taurus,Canis lupus familiaris,False,0.69521,0.536338
+RF,Cattle_dataset_1,Fox_dataset_1,42,0.73514,Bos taurus,Vulpes vulpes,False,0.69521,0.809782
+RF,Cattle_dataset_1,Giraffe_dataset_1,42,0.47571,Bos taurus,Giraffa camelopardalis,False,0.69521,0.822862
+RF,Cattle_dataset_1,Hedgehog_dataset_1,42,0.47844,Bos taurus,Erinaceus europaeus,False,0.69521,
+RF,Cattle_dataset_1,Horse_dataset_1,42,0.83565,Bos taurus,Equus ferus przewalskii,False,0.69521,0.940488
+RF,Cattle_dataset_1,Horse_dataset_2,42,0.49523,Bos taurus,Equus caballus,False,0.69521,0.844102
+RF,Cattle_dataset_1,Raccoon_dataset_1,42,0.6799,Bos taurus,Procyon lotor,False,0.69521,0.780756
+RF,Cattle_dataset_1,Raccoon_dataset_2,42,0.78491,Bos taurus,Procyon lotor,False,0.69521,0.863298
+RF,Dog_dataset_1,Bison_dataset_1,42,0.52273,Canis lupus familiaris,Bison bonasus,False,0.842788,0.914642
+RF,Dog_dataset_1,Cattle_dataset_1,42,0.50262,Canis lupus familiaris,Bos taurus,False,0.842788,0.69521
+RF,Dog_dataset_1,Dog_dataset_2,42,0.54107,Canis lupus familiaris,Canis lupus familiaris,True,0.842788,0.536338
+RF,Dog_dataset_1,Fox_dataset_1,42,0.63749,Canis lupus familiaris,Vulpes vulpes,False,0.842788,0.809782
+RF,Dog_dataset_1,Giraffe_dataset_1,42,0.31917,Canis lupus familiaris,Giraffa camelopardalis,False,0.842788,0.822862
+RF,Dog_dataset_1,Hedgehog_dataset_1,42,0.39367,Canis lupus familiaris,Erinaceus europaeus,False,0.842788,
+RF,Dog_dataset_1,Horse_dataset_1,42,0.70845,Canis lupus familiaris,Equus ferus przewalskii,False,0.842788,0.940488
+RF,Dog_dataset_1,Horse_dataset_2,42,0.78972,Canis lupus familiaris,Equus caballus,False,0.842788,0.844102
+RF,Dog_dataset_1,Raccoon_dataset_1,42,0.70832,Canis lupus familiaris,Procyon lotor,False,0.842788,0.780756
+RF,Dog_dataset_1,Raccoon_dataset_2,42,0.72576,Canis lupus familiaris,Procyon lotor,False,0.842788,0.863298
+RF,Dog_dataset_2,Bison_dataset_1,42,0.33339,Canis lupus familiaris,Bison bonasus,False,0.536338,0.914642
+RF,Dog_dataset_2,Cattle_dataset_1,42,0.3633,Canis lupus familiaris,Bos taurus,False,0.536338,0.69521
+RF,Dog_dataset_2,Dog_dataset_1,42,0.76211,Canis lupus familiaris,Canis lupus familiaris,True,0.536338,0.842788
+RF,Dog_dataset_2,Fox_dataset_1,42,0.56996,Canis lupus familiaris,Vulpes vulpes,False,0.536338,0.809782
+RF,Dog_dataset_2,Giraffe_dataset_1,42,0.30722,Canis lupus familiaris,Giraffa camelopardalis,False,0.536338,0.822862
+RF,Dog_dataset_2,Hedgehog_dataset_1,42,0.36314,Canis lupus familiaris,Erinaceus europaeus,False,0.536338,
+RF,Dog_dataset_2,Horse_dataset_1,42,0.47076,Canis lupus familiaris,Equus ferus przewalskii,False,0.536338,0.940488
+RF,Dog_dataset_2,Horse_dataset_2,42,0.79135,Canis lupus familiaris,Equus caballus,False,0.536338,0.844102
+RF,Dog_dataset_2,Raccoon_dataset_1,42,0.65445,Canis lupus familiaris,Procyon lotor,False,0.536338,0.780756
+RF,Dog_dataset_2,Raccoon_dataset_2,42,0.51699,Canis lupus familiaris,Procyon lotor,False,0.536338,0.863298
+RF,Fox_dataset_1,Bison_dataset_1,42,0.70455,Vulpes vulpes,Bison bonasus,False,0.809782,0.914642
+RF,Fox_dataset_1,Cattle_dataset_1,42,0.57086,Vulpes vulpes,Bos taurus,False,0.809782,0.69521
+RF,Fox_dataset_1,Dog_dataset_1,42,0.71921,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.842788
+RF,Fox_dataset_1,Dog_dataset_2,42,0.37704,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.536338
+RF,Fox_dataset_1,Giraffe_dataset_1,42,0.56607,Vulpes vulpes,Giraffa camelopardalis,False,0.809782,0.822862
+RF,Fox_dataset_1,Hedgehog_dataset_1,42,0.41489,Vulpes vulpes,Erinaceus europaeus,False,0.809782,
+RF,Fox_dataset_1,Horse_dataset_1,42,0.84817,Vulpes vulpes,Equus ferus przewalskii,False,0.809782,0.940488
+RF,Fox_dataset_1,Horse_dataset_2,42,0.67439,Vulpes vulpes,Equus caballus,False,0.809782,0.844102
+RF,Fox_dataset_1,Raccoon_dataset_1,42,0.61018,Vulpes vulpes,Procyon lotor,False,0.809782,0.780756
+RF,Fox_dataset_1,Raccoon_dataset_2,42,0.74148,Vulpes vulpes,Procyon lotor,False,0.809782,0.863298
+RF,Giraffe_dataset_1,Bison_dataset_1,42,0.71925,Giraffa camelopardalis,Bison bonasus,False,0.822862,0.914642
+RF,Giraffe_dataset_1,Cattle_dataset_1,42,0.55264,Giraffa camelopardalis,Bos taurus,False,0.822862,0.69521
+RF,Giraffe_dataset_1,Dog_dataset_1,42,0.52816,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.842788
+RF,Giraffe_dataset_1,Dog_dataset_2,42,0.32824,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.536338
+RF,Giraffe_dataset_1,Fox_dataset_1,42,0.63578,Giraffa camelopardalis,Vulpes vulpes,False,0.822862,0.809782
+RF,Giraffe_dataset_1,Hedgehog_dataset_1,42,0.47728,Giraffa camelopardalis,Erinaceus europaeus,False,0.822862,
+RF,Giraffe_dataset_1,Horse_dataset_1,42,0.73892,Giraffa camelopardalis,Equus ferus przewalskii,False,0.822862,0.940488
+RF,Giraffe_dataset_1,Horse_dataset_2,42,0.61363,Giraffa camelopardalis,Equus caballus,False,0.822862,0.844102
+RF,Giraffe_dataset_1,Raccoon_dataset_1,42,0.50733,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.780756
+RF,Giraffe_dataset_1,Raccoon_dataset_2,42,0.68431,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.863298
+RF,Hedgehog_dataset_1,Bison_dataset_1,42,0.6039,Erinaceus europaeus,Bison bonasus,False,,0.914642
+RF,Hedgehog_dataset_1,Cattle_dataset_1,42,0.5732,Erinaceus europaeus,Bos taurus,False,,0.69521
+RF,Hedgehog_dataset_1,Dog_dataset_1,42,0.47212,Erinaceus europaeus,Canis lupus familiaris,False,,0.842788
+RF,Hedgehog_dataset_1,Dog_dataset_2,42,0.34486,Erinaceus europaeus,Canis lupus familiaris,False,,0.536338
+RF,Hedgehog_dataset_1,Fox_dataset_1,42,0.61967,Erinaceus europaeus,Vulpes vulpes,False,,0.809782
+RF,Hedgehog_dataset_1,Giraffe_dataset_1,42,0.34972,Erinaceus europaeus,Giraffa camelopardalis,False,,0.822862
+RF,Hedgehog_dataset_1,Horse_dataset_1,42,0.54049,Erinaceus europaeus,Equus ferus przewalskii,False,,0.940488
+RF,Hedgehog_dataset_1,Horse_dataset_2,42,0.33824,Erinaceus europaeus,Equus caballus,False,,0.844102
+RF,Hedgehog_dataset_1,Raccoon_dataset_1,42,0.55121,Erinaceus europaeus,Procyon lotor,False,,0.780756
+RF,Hedgehog_dataset_1,Raccoon_dataset_2,42,0.5591,Erinaceus europaeus,Procyon lotor,False,,0.863298
+RF,Horse_dataset_1,Bison_dataset_1,42,0.82209,Equus ferus przewalskii,Bison bonasus,False,0.940488,0.914642
+RF,Horse_dataset_1,Cattle_dataset_1,42,0.59397,Equus ferus przewalskii,Bos taurus,False,0.940488,0.69521
+RF,Horse_dataset_1,Dog_dataset_1,42,0.70956,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.842788
+RF,Horse_dataset_1,Dog_dataset_2,42,0.41213,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.536338
+RF,Horse_dataset_1,Fox_dataset_1,42,0.77795,Equus ferus przewalskii,Vulpes vulpes,False,0.940488,0.809782
+RF,Horse_dataset_1,Giraffe_dataset_1,42,0.49464,Equus ferus przewalskii,Giraffa camelopardalis,False,0.940488,0.822862
+RF,Horse_dataset_1,Hedgehog_dataset_1,42,0.48063,Equus ferus przewalskii,Erinaceus europaeus,False,0.940488,
+RF,Horse_dataset_1,Horse_dataset_2,42,0.58775,Equus ferus przewalskii,Equus caballus,False,0.940488,0.844102
+RF,Horse_dataset_1,Raccoon_dataset_1,42,0.6533,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.780756
+RF,Horse_dataset_1,Raccoon_dataset_2,42,0.73409,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.863298
+RF,Horse_dataset_2,Bison_dataset_1,42,0.50057,Equus caballus,Bison bonasus,False,0.844102,0.914642
+RF,Horse_dataset_2,Cattle_dataset_1,42,0.49987,Equus caballus,Bos taurus,False,0.844102,0.69521
+RF,Horse_dataset_2,Dog_dataset_1,42,0.79844,Equus caballus,Canis lupus familiaris,False,0.844102,0.842788
+RF,Horse_dataset_2,Dog_dataset_2,42,0.55389,Equus caballus,Canis lupus familiaris,False,0.844102,0.536338
+RF,Horse_dataset_2,Fox_dataset_1,42,0.57534,Equus caballus,Vulpes vulpes,False,0.844102,0.809782
+RF,Horse_dataset_2,Giraffe_dataset_1,42,0.23568,Equus caballus,Giraffa camelopardalis,False,0.844102,0.822862
+RF,Horse_dataset_2,Hedgehog_dataset_1,42,0.40133,Equus caballus,Erinaceus europaeus,False,0.844102,
+RF,Horse_dataset_2,Horse_dataset_1,42,0.6065,Equus caballus,Equus ferus przewalskii,False,0.844102,0.940488
+RF,Horse_dataset_2,Raccoon_dataset_1,42,0.6855,Equus caballus,Procyon lotor,False,0.844102,0.780756
+RF,Horse_dataset_2,Raccoon_dataset_2,42,0.81933,Equus caballus,Procyon lotor,False,0.844102,0.863298
+RF,Raccoon_dataset_1,Bison_dataset_1,42,0.64936,Procyon lotor,Bison bonasus,False,0.780756,0.914642
+RF,Raccoon_dataset_1,Cattle_dataset_1,42,0.55801,Procyon lotor,Bos taurus,False,0.780756,0.69521
+RF,Raccoon_dataset_1,Dog_dataset_1,42,0.80943,Procyon lotor,Canis lupus familiaris,False,0.780756,0.842788
+RF,Raccoon_dataset_1,Dog_dataset_2,42,0.54144,Procyon lotor,Canis lupus familiaris,False,0.780756,0.536338
+RF,Raccoon_dataset_1,Fox_dataset_1,42,0.64546,Procyon lotor,Vulpes vulpes,False,0.780756,0.809782
+RF,Raccoon_dataset_1,Giraffe_dataset_1,42,0.29722,Procyon lotor,Giraffa camelopardalis,False,0.780756,0.822862
+RF,Raccoon_dataset_1,Hedgehog_dataset_1,42,0.44467,Procyon lotor,Erinaceus europaeus,False,0.780756,
+RF,Raccoon_dataset_1,Horse_dataset_1,42,0.72237,Procyon lotor,Equus ferus przewalskii,False,0.780756,0.940488
+RF,Raccoon_dataset_1,Horse_dataset_2,42,0.69033,Procyon lotor,Equus caballus,False,0.780756,0.844102
+RF,Raccoon_dataset_1,Raccoon_dataset_2,42,0.76638,Procyon lotor,Procyon lotor,True,0.780756,0.863298
+RF,Raccoon_dataset_2,Bison_dataset_1,42,0.71105,Procyon lotor,Bison bonasus,False,0.863298,0.914642
+RF,Raccoon_dataset_2,Cattle_dataset_1,42,0.54468,Procyon lotor,Bos taurus,False,0.863298,0.69521
+RF,Raccoon_dataset_2,Dog_dataset_1,42,0.74887,Procyon lotor,Canis lupus familiaris,False,0.863298,0.842788
+RF,Raccoon_dataset_2,Dog_dataset_2,42,0.4427,Procyon lotor,Canis lupus familiaris,False,0.863298,0.536338
+RF,Raccoon_dataset_2,Fox_dataset_1,42,0.71175,Procyon lotor,Vulpes vulpes,False,0.863298,0.809782
+RF,Raccoon_dataset_2,Giraffe_dataset_1,42,0.51102,Procyon lotor,Giraffa camelopardalis,False,0.863298,0.822862
+RF,Raccoon_dataset_2,Hedgehog_dataset_1,42,0.46329,Procyon lotor,Erinaceus europaeus,False,0.863298,
+RF,Raccoon_dataset_2,Horse_dataset_1,42,0.83167,Procyon lotor,Equus ferus przewalskii,False,0.863298,0.940488
+RF,Raccoon_dataset_2,Horse_dataset_2,42,0.72169,Procyon lotor,Equus caballus,False,0.863298,0.844102
+RF,Raccoon_dataset_2,Raccoon_dataset_1,42,0.63174,Procyon lotor,Procyon lotor,True,0.863298,0.780756
+RF,Bison_dataset_1,Cattle_dataset_1,43,0.56632,Bison bonasus,Bos taurus,False,0.914642,0.69521
+RF,Bison_dataset_1,Dog_dataset_1,43,0.65798,Bison bonasus,Canis lupus familiaris,False,0.914642,0.842788
+RF,Bison_dataset_1,Dog_dataset_2,43,0.35939,Bison bonasus,Canis lupus familiaris,False,0.914642,0.536338
+RF,Bison_dataset_1,Fox_dataset_1,43,0.7702,Bison bonasus,Vulpes vulpes,False,0.914642,0.809782
+RF,Bison_dataset_1,Giraffe_dataset_1,43,0.38248,Bison bonasus,Giraffa camelopardalis,False,0.914642,0.822862
+RF,Bison_dataset_1,Hedgehog_dataset_1,43,0.4655,Bison bonasus,Erinaceus europaeus,False,0.914642,
+RF,Bison_dataset_1,Horse_dataset_1,43,0.91947,Bison bonasus,Equus ferus przewalskii,False,0.914642,0.940488
+RF,Bison_dataset_1,Horse_dataset_2,43,0.5536,Bison bonasus,Equus caballus,False,0.914642,0.844102
+RF,Bison_dataset_1,Raccoon_dataset_1,43,0.67252,Bison bonasus,Procyon lotor,False,0.914642,0.780756
+RF,Bison_dataset_1,Raccoon_dataset_2,43,0.77498,Bison bonasus,Procyon lotor,False,0.914642,0.863298
+RF,Cattle_dataset_1,Bison_dataset_1,43,0.63184,Bos taurus,Bison bonasus,False,0.69521,0.914642
+RF,Cattle_dataset_1,Dog_dataset_1,43,0.59691,Bos taurus,Canis lupus familiaris,False,0.69521,0.842788
+RF,Cattle_dataset_1,Dog_dataset_2,43,0.34039,Bos taurus,Canis lupus familiaris,False,0.69521,0.536338
+RF,Cattle_dataset_1,Fox_dataset_1,43,0.69437,Bos taurus,Vulpes vulpes,False,0.69521,0.809782
+RF,Cattle_dataset_1,Giraffe_dataset_1,43,0.45368,Bos taurus,Giraffa camelopardalis,False,0.69521,0.822862
+RF,Cattle_dataset_1,Hedgehog_dataset_1,43,0.48623,Bos taurus,Erinaceus europaeus,False,0.69521,
+RF,Cattle_dataset_1,Horse_dataset_1,43,0.81126,Bos taurus,Equus ferus przewalskii,False,0.69521,0.940488
+RF,Cattle_dataset_1,Horse_dataset_2,43,0.49261,Bos taurus,Equus caballus,False,0.69521,0.844102
+RF,Cattle_dataset_1,Raccoon_dataset_1,43,0.67874,Bos taurus,Procyon lotor,False,0.69521,0.780756
+RF,Cattle_dataset_1,Raccoon_dataset_2,43,0.79368,Bos taurus,Procyon lotor,False,0.69521,0.863298
+RF,Dog_dataset_1,Bison_dataset_1,43,0.55749,Canis lupus familiaris,Bison bonasus,False,0.842788,0.914642
+RF,Dog_dataset_1,Cattle_dataset_1,43,0.51214,Canis lupus familiaris,Bos taurus,False,0.842788,0.69521
+RF,Dog_dataset_1,Dog_dataset_2,43,0.5483,Canis lupus familiaris,Canis lupus familiaris,True,0.842788,0.536338
+RF,Dog_dataset_1,Fox_dataset_1,43,0.72571,Canis lupus familiaris,Vulpes vulpes,False,0.842788,0.809782
+RF,Dog_dataset_1,Giraffe_dataset_1,43,0.37077,Canis lupus familiaris,Giraffa camelopardalis,False,0.842788,0.822862
+RF,Dog_dataset_1,Hedgehog_dataset_1,43,0.38733,Canis lupus familiaris,Erinaceus europaeus,False,0.842788,
+RF,Dog_dataset_1,Horse_dataset_1,43,0.75602,Canis lupus familiaris,Equus ferus przewalskii,False,0.842788,0.940488
+RF,Dog_dataset_1,Horse_dataset_2,43,0.78088,Canis lupus familiaris,Equus caballus,False,0.842788,0.844102
+RF,Dog_dataset_1,Raccoon_dataset_1,43,0.69555,Canis lupus familiaris,Procyon lotor,False,0.842788,0.780756
+RF,Dog_dataset_1,Raccoon_dataset_2,43,0.75283,Canis lupus familiaris,Procyon lotor,False,0.842788,0.863298
+RF,Dog_dataset_2,Bison_dataset_1,43,0.25078,Canis lupus familiaris,Bison bonasus,False,0.536338,0.914642
+RF,Dog_dataset_2,Cattle_dataset_1,43,0.32408,Canis lupus familiaris,Bos taurus,False,0.536338,0.69521
+RF,Dog_dataset_2,Dog_dataset_1,43,0.69757,Canis lupus familiaris,Canis lupus familiaris,True,0.536338,0.842788
+RF,Dog_dataset_2,Fox_dataset_1,43,0.4637,Canis lupus familiaris,Vulpes vulpes,False,0.536338,0.809782
+RF,Dog_dataset_2,Giraffe_dataset_1,43,0.25193,Canis lupus familiaris,Giraffa camelopardalis,False,0.536338,0.822862
+RF,Dog_dataset_2,Hedgehog_dataset_1,43,0.32526,Canis lupus familiaris,Erinaceus europaeus,False,0.536338,
+RF,Dog_dataset_2,Horse_dataset_1,43,0.36068,Canis lupus familiaris,Equus ferus przewalskii,False,0.536338,0.940488
+RF,Dog_dataset_2,Horse_dataset_2,43,0.76946,Canis lupus familiaris,Equus caballus,False,0.536338,0.844102
+RF,Dog_dataset_2,Raccoon_dataset_1,43,0.59731,Canis lupus familiaris,Procyon lotor,False,0.536338,0.780756
+RF,Dog_dataset_2,Raccoon_dataset_2,43,0.4714,Canis lupus familiaris,Procyon lotor,False,0.536338,0.863298
+RF,Fox_dataset_1,Bison_dataset_1,43,0.67807,Vulpes vulpes,Bison bonasus,False,0.809782,0.914642
+RF,Fox_dataset_1,Cattle_dataset_1,43,0.5667,Vulpes vulpes,Bos taurus,False,0.809782,0.69521
+RF,Fox_dataset_1,Dog_dataset_1,43,0.72468,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.842788
+RF,Fox_dataset_1,Dog_dataset_2,43,0.38422,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.536338
+RF,Fox_dataset_1,Giraffe_dataset_1,43,0.59835,Vulpes vulpes,Giraffa camelopardalis,False,0.809782,0.822862
+RF,Fox_dataset_1,Hedgehog_dataset_1,43,0.41205,Vulpes vulpes,Erinaceus europaeus,False,0.809782,
+RF,Fox_dataset_1,Horse_dataset_1,43,0.83065,Vulpes vulpes,Equus ferus przewalskii,False,0.809782,0.940488
+RF,Fox_dataset_1,Horse_dataset_2,43,0.68418,Vulpes vulpes,Equus caballus,False,0.809782,0.844102
+RF,Fox_dataset_1,Raccoon_dataset_1,43,0.61187,Vulpes vulpes,Procyon lotor,False,0.809782,0.780756
+RF,Fox_dataset_1,Raccoon_dataset_2,43,0.73888,Vulpes vulpes,Procyon lotor,False,0.809782,0.863298
+RF,Giraffe_dataset_1,Bison_dataset_1,43,0.76085,Giraffa camelopardalis,Bison bonasus,False,0.822862,0.914642
+RF,Giraffe_dataset_1,Cattle_dataset_1,43,0.58777,Giraffa camelopardalis,Bos taurus,False,0.822862,0.69521
+RF,Giraffe_dataset_1,Dog_dataset_1,43,0.62861,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.842788
+RF,Giraffe_dataset_1,Dog_dataset_2,43,0.37315,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.536338
+RF,Giraffe_dataset_1,Fox_dataset_1,43,0.68108,Giraffa camelopardalis,Vulpes vulpes,False,0.822862,0.809782
+RF,Giraffe_dataset_1,Hedgehog_dataset_1,43,0.50553,Giraffa camelopardalis,Erinaceus europaeus,False,0.822862,
+RF,Giraffe_dataset_1,Horse_dataset_1,43,0.83318,Giraffa camelopardalis,Equus ferus przewalskii,False,0.822862,0.940488
+RF,Giraffe_dataset_1,Horse_dataset_2,43,0.45094,Giraffa camelopardalis,Equus caballus,False,0.822862,0.844102
+RF,Giraffe_dataset_1,Raccoon_dataset_1,43,0.53938,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.780756
+RF,Giraffe_dataset_1,Raccoon_dataset_2,43,0.66298,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.863298
+RF,Hedgehog_dataset_1,Bison_dataset_1,43,0.62922,Erinaceus europaeus,Bison bonasus,False,,0.914642
+RF,Hedgehog_dataset_1,Cattle_dataset_1,43,0.62012,Erinaceus europaeus,Bos taurus,False,,0.69521
+RF,Hedgehog_dataset_1,Dog_dataset_1,43,0.52113,Erinaceus europaeus,Canis lupus familiaris,False,,0.842788
+RF,Hedgehog_dataset_1,Dog_dataset_2,43,0.35456,Erinaceus europaeus,Canis lupus familiaris,False,,0.536338
+RF,Hedgehog_dataset_1,Fox_dataset_1,43,0.674,Erinaceus europaeus,Vulpes vulpes,False,,0.809782
+RF,Hedgehog_dataset_1,Giraffe_dataset_1,43,0.47028,Erinaceus europaeus,Giraffa camelopardalis,False,,0.822862
+RF,Hedgehog_dataset_1,Horse_dataset_1,43,0.58586,Erinaceus europaeus,Equus ferus przewalskii,False,,0.940488
+RF,Hedgehog_dataset_1,Horse_dataset_2,43,0.37147,Erinaceus europaeus,Equus caballus,False,,0.844102
+RF,Hedgehog_dataset_1,Raccoon_dataset_1,43,0.57267,Erinaceus europaeus,Procyon lotor,False,,0.780756
+RF,Hedgehog_dataset_1,Raccoon_dataset_2,43,0.57789,Erinaceus europaeus,Procyon lotor,False,,0.863298
+RF,Horse_dataset_1,Bison_dataset_1,43,0.85976,Equus ferus przewalskii,Bison bonasus,False,0.940488,0.914642
+RF,Horse_dataset_1,Cattle_dataset_1,43,0.58879,Equus ferus przewalskii,Bos taurus,False,0.940488,0.69521
+RF,Horse_dataset_1,Dog_dataset_1,43,0.70479,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.842788
+RF,Horse_dataset_1,Dog_dataset_2,43,0.39519,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.536338
+RF,Horse_dataset_1,Fox_dataset_1,43,0.79297,Equus ferus przewalskii,Vulpes vulpes,False,0.940488,0.809782
+RF,Horse_dataset_1,Giraffe_dataset_1,43,0.44843,Equus ferus przewalskii,Giraffa camelopardalis,False,0.940488,0.822862
+RF,Horse_dataset_1,Hedgehog_dataset_1,43,0.51385,Equus ferus przewalskii,Erinaceus europaeus,False,0.940488,
+RF,Horse_dataset_1,Horse_dataset_2,43,0.57607,Equus ferus przewalskii,Equus caballus,False,0.940488,0.844102
+RF,Horse_dataset_1,Raccoon_dataset_1,43,0.65421,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.780756
+RF,Horse_dataset_1,Raccoon_dataset_2,43,0.74405,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.863298
+RF,Horse_dataset_2,Bison_dataset_1,43,0.50093,Equus caballus,Bison bonasus,False,0.844102,0.914642
+RF,Horse_dataset_2,Cattle_dataset_1,43,0.50051,Equus caballus,Bos taurus,False,0.844102,0.69521
+RF,Horse_dataset_2,Dog_dataset_1,43,0.7986,Equus caballus,Canis lupus familiaris,False,0.844102,0.842788
+RF,Horse_dataset_2,Dog_dataset_2,43,0.53897,Equus caballus,Canis lupus familiaris,False,0.844102,0.536338
+RF,Horse_dataset_2,Fox_dataset_1,43,0.58841,Equus caballus,Vulpes vulpes,False,0.844102,0.809782
+RF,Horse_dataset_2,Giraffe_dataset_1,43,0.25524,Equus caballus,Giraffa camelopardalis,False,0.844102,0.822862
+RF,Horse_dataset_2,Hedgehog_dataset_1,43,0.40317,Equus caballus,Erinaceus europaeus,False,0.844102,
+RF,Horse_dataset_2,Horse_dataset_1,43,0.6065,Equus caballus,Equus ferus przewalskii,False,0.844102,0.940488
+RF,Horse_dataset_2,Raccoon_dataset_1,43,0.68022,Equus caballus,Procyon lotor,False,0.844102,0.780756
+RF,Horse_dataset_2,Raccoon_dataset_2,43,0.80968,Equus caballus,Procyon lotor,False,0.844102,0.863298
+RF,Raccoon_dataset_1,Bison_dataset_1,43,0.64485,Procyon lotor,Bison bonasus,False,0.780756,0.914642
+RF,Raccoon_dataset_1,Cattle_dataset_1,43,0.55375,Procyon lotor,Bos taurus,False,0.780756,0.69521
+RF,Raccoon_dataset_1,Dog_dataset_1,43,0.81185,Procyon lotor,Canis lupus familiaris,False,0.780756,0.842788
+RF,Raccoon_dataset_1,Dog_dataset_2,43,0.54079,Procyon lotor,Canis lupus familiaris,False,0.780756,0.536338
+RF,Raccoon_dataset_1,Fox_dataset_1,43,0.62119,Procyon lotor,Vulpes vulpes,False,0.780756,0.809782
+RF,Raccoon_dataset_1,Giraffe_dataset_1,43,0.27683,Procyon lotor,Giraffa camelopardalis,False,0.780756,0.822862
+RF,Raccoon_dataset_1,Hedgehog_dataset_1,43,0.45092,Procyon lotor,Erinaceus europaeus,False,0.780756,
+RF,Raccoon_dataset_1,Horse_dataset_1,43,0.70985,Procyon lotor,Equus ferus przewalskii,False,0.780756,0.940488
+RF,Raccoon_dataset_1,Horse_dataset_2,43,0.68142,Procyon lotor,Equus caballus,False,0.780756,0.844102
+RF,Raccoon_dataset_1,Raccoon_dataset_2,43,0.77107,Procyon lotor,Procyon lotor,True,0.780756,0.863298
+RF,Raccoon_dataset_2,Bison_dataset_1,43,0.70775,Procyon lotor,Bison bonasus,False,0.863298,0.914642
+RF,Raccoon_dataset_2,Cattle_dataset_1,43,0.55223,Procyon lotor,Bos taurus,False,0.863298,0.69521
+RF,Raccoon_dataset_2,Dog_dataset_1,43,0.73873,Procyon lotor,Canis lupus familiaris,False,0.863298,0.842788
+RF,Raccoon_dataset_2,Dog_dataset_2,43,0.43049,Procyon lotor,Canis lupus familiaris,False,0.863298,0.536338
+RF,Raccoon_dataset_2,Fox_dataset_1,43,0.72026,Procyon lotor,Vulpes vulpes,False,0.863298,0.809782
+RF,Raccoon_dataset_2,Giraffe_dataset_1,43,0.54516,Procyon lotor,Giraffa camelopardalis,False,0.863298,0.822862
+RF,Raccoon_dataset_2,Hedgehog_dataset_1,43,0.45742,Procyon lotor,Erinaceus europaeus,False,0.863298,
+RF,Raccoon_dataset_2,Horse_dataset_1,43,0.82338,Procyon lotor,Equus ferus przewalskii,False,0.863298,0.940488
+RF,Raccoon_dataset_2,Horse_dataset_2,43,0.72709,Procyon lotor,Equus caballus,False,0.863298,0.844102
+RF,Raccoon_dataset_2,Raccoon_dataset_1,43,0.6432,Procyon lotor,Procyon lotor,True,0.863298,0.780756
+RF,Bison_dataset_1,Cattle_dataset_1,44,0.54877,Bison bonasus,Bos taurus,False,0.914642,0.69521
+RF,Bison_dataset_1,Dog_dataset_1,44,0.62913,Bison bonasus,Canis lupus familiaris,False,0.914642,0.842788
+RF,Bison_dataset_1,Dog_dataset_2,44,0.3452,Bison bonasus,Canis lupus familiaris,False,0.914642,0.536338
+RF,Bison_dataset_1,Fox_dataset_1,44,0.74683,Bison bonasus,Vulpes vulpes,False,0.914642,0.809782
+RF,Bison_dataset_1,Giraffe_dataset_1,44,0.41699,Bison bonasus,Giraffa camelopardalis,False,0.914642,0.822862
+RF,Bison_dataset_1,Hedgehog_dataset_1,44,0.49302,Bison bonasus,Erinaceus europaeus,False,0.914642,
+RF,Bison_dataset_1,Horse_dataset_1,44,0.91435,Bison bonasus,Equus ferus przewalskii,False,0.914642,0.940488
+RF,Bison_dataset_1,Horse_dataset_2,44,0.46406,Bison bonasus,Equus caballus,False,0.914642,0.844102
+RF,Bison_dataset_1,Raccoon_dataset_1,44,0.65532,Bison bonasus,Procyon lotor,False,0.914642,0.780756
+RF,Bison_dataset_1,Raccoon_dataset_2,44,0.77049,Bison bonasus,Procyon lotor,False,0.914642,0.863298
+RF,Cattle_dataset_1,Bison_dataset_1,44,0.62918,Bos taurus,Bison bonasus,False,0.69521,0.914642
+RF,Cattle_dataset_1,Dog_dataset_1,44,0.60495,Bos taurus,Canis lupus familiaris,False,0.69521,0.842788
+RF,Cattle_dataset_1,Dog_dataset_2,44,0.34661,Bos taurus,Canis lupus familiaris,False,0.69521,0.536338
+RF,Cattle_dataset_1,Fox_dataset_1,44,0.71647,Bos taurus,Vulpes vulpes,False,0.69521,0.809782
+RF,Cattle_dataset_1,Giraffe_dataset_1,44,0.44689,Bos taurus,Giraffa camelopardalis,False,0.69521,0.822862
+RF,Cattle_dataset_1,Hedgehog_dataset_1,44,0.48665,Bos taurus,Erinaceus europaeus,False,0.69521,
+RF,Cattle_dataset_1,Horse_dataset_1,44,0.81421,Bos taurus,Equus ferus przewalskii,False,0.69521,0.940488
+RF,Cattle_dataset_1,Horse_dataset_2,44,0.50928,Bos taurus,Equus caballus,False,0.69521,0.844102
+RF,Cattle_dataset_1,Raccoon_dataset_1,44,0.67714,Bos taurus,Procyon lotor,False,0.69521,0.780756
+RF,Cattle_dataset_1,Raccoon_dataset_2,44,0.77706,Bos taurus,Procyon lotor,False,0.69521,0.863298
+RF,Dog_dataset_1,Bison_dataset_1,44,0.5739,Canis lupus familiaris,Bison bonasus,False,0.842788,0.914642
+RF,Dog_dataset_1,Cattle_dataset_1,44,0.50431,Canis lupus familiaris,Bos taurus,False,0.842788,0.69521
+RF,Dog_dataset_1,Dog_dataset_2,44,0.55098,Canis lupus familiaris,Canis lupus familiaris,True,0.842788,0.536338
+RF,Dog_dataset_1,Fox_dataset_1,44,0.63291,Canis lupus familiaris,Vulpes vulpes,False,0.842788,0.809782
+RF,Dog_dataset_1,Giraffe_dataset_1,44,0.33306,Canis lupus familiaris,Giraffa camelopardalis,False,0.842788,0.822862
+RF,Dog_dataset_1,Hedgehog_dataset_1,44,0.40505,Canis lupus familiaris,Erinaceus europaeus,False,0.842788,
+RF,Dog_dataset_1,Horse_dataset_1,44,0.74016,Canis lupus familiaris,Equus ferus przewalskii,False,0.842788,0.940488
+RF,Dog_dataset_1,Horse_dataset_2,44,0.78769,Canis lupus familiaris,Equus caballus,False,0.842788,0.844102
+RF,Dog_dataset_1,Raccoon_dataset_1,44,0.72662,Canis lupus familiaris,Procyon lotor,False,0.842788,0.780756
+RF,Dog_dataset_1,Raccoon_dataset_2,44,0.7865,Canis lupus familiaris,Procyon lotor,False,0.842788,0.863298
+RF,Dog_dataset_2,Bison_dataset_1,44,0.28934,Canis lupus familiaris,Bison bonasus,False,0.536338,0.914642
+RF,Dog_dataset_2,Cattle_dataset_1,44,0.32209,Canis lupus familiaris,Bos taurus,False,0.536338,0.69521
+RF,Dog_dataset_2,Dog_dataset_1,44,0.70661,Canis lupus familiaris,Canis lupus familiaris,True,0.536338,0.842788
+RF,Dog_dataset_2,Fox_dataset_1,44,0.39499,Canis lupus familiaris,Vulpes vulpes,False,0.536338,0.809782
+RF,Dog_dataset_2,Giraffe_dataset_1,44,0.29444,Canis lupus familiaris,Giraffa camelopardalis,False,0.536338,0.822862
+RF,Dog_dataset_2,Hedgehog_dataset_1,44,0.32024,Canis lupus familiaris,Erinaceus europaeus,False,0.536338,
+RF,Dog_dataset_2,Horse_dataset_1,44,0.39762,Canis lupus familiaris,Equus ferus przewalskii,False,0.536338,0.940488
+RF,Dog_dataset_2,Horse_dataset_2,44,0.73638,Canis lupus familiaris,Equus caballus,False,0.536338,0.844102
+RF,Dog_dataset_2,Raccoon_dataset_1,44,0.56678,Canis lupus familiaris,Procyon lotor,False,0.536338,0.780756
+RF,Dog_dataset_2,Raccoon_dataset_2,44,0.48161,Canis lupus familiaris,Procyon lotor,False,0.536338,0.863298
+RF,Fox_dataset_1,Bison_dataset_1,44,0.69439,Vulpes vulpes,Bison bonasus,False,0.809782,0.914642
+RF,Fox_dataset_1,Cattle_dataset_1,44,0.55935,Vulpes vulpes,Bos taurus,False,0.809782,0.69521
+RF,Fox_dataset_1,Dog_dataset_1,44,0.71469,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.842788
+RF,Fox_dataset_1,Dog_dataset_2,44,0.37922,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.536338
+RF,Fox_dataset_1,Giraffe_dataset_1,44,0.57407,Vulpes vulpes,Giraffa camelopardalis,False,0.809782,0.822862
+RF,Fox_dataset_1,Hedgehog_dataset_1,44,0.41227,Vulpes vulpes,Erinaceus europaeus,False,0.809782,
+RF,Fox_dataset_1,Horse_dataset_1,44,0.83209,Vulpes vulpes,Equus ferus przewalskii,False,0.809782,0.940488
+RF,Fox_dataset_1,Horse_dataset_2,44,0.66903,Vulpes vulpes,Equus caballus,False,0.809782,0.844102
+RF,Fox_dataset_1,Raccoon_dataset_1,44,0.61655,Vulpes vulpes,Procyon lotor,False,0.809782,0.780756
+RF,Fox_dataset_1,Raccoon_dataset_2,44,0.72325,Vulpes vulpes,Procyon lotor,False,0.809782,0.863298
+RF,Giraffe_dataset_1,Bison_dataset_1,44,0.77426,Giraffa camelopardalis,Bison bonasus,False,0.822862,0.914642
+RF,Giraffe_dataset_1,Cattle_dataset_1,44,0.61567,Giraffa camelopardalis,Bos taurus,False,0.822862,0.69521
+RF,Giraffe_dataset_1,Dog_dataset_1,44,0.63906,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.842788
+RF,Giraffe_dataset_1,Dog_dataset_2,44,0.3727,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.536338
+RF,Giraffe_dataset_1,Fox_dataset_1,44,0.70208,Giraffa camelopardalis,Vulpes vulpes,False,0.822862,0.809782
+RF,Giraffe_dataset_1,Hedgehog_dataset_1,44,0.50369,Giraffa camelopardalis,Erinaceus europaeus,False,0.822862,
+RF,Giraffe_dataset_1,Horse_dataset_1,44,0.84537,Giraffa camelopardalis,Equus ferus przewalskii,False,0.822862,0.940488
+RF,Giraffe_dataset_1,Horse_dataset_2,44,0.47913,Giraffa camelopardalis,Equus caballus,False,0.822862,0.844102
+RF,Giraffe_dataset_1,Raccoon_dataset_1,44,0.5538,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.780756
+RF,Giraffe_dataset_1,Raccoon_dataset_2,44,0.68118,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.863298
+RF,Hedgehog_dataset_1,Bison_dataset_1,44,0.60365,Erinaceus europaeus,Bison bonasus,False,,0.914642
+RF,Hedgehog_dataset_1,Cattle_dataset_1,44,0.62693,Erinaceus europaeus,Bos taurus,False,,0.69521
+RF,Hedgehog_dataset_1,Dog_dataset_1,44,0.48944,Erinaceus europaeus,Canis lupus familiaris,False,,0.842788
+RF,Hedgehog_dataset_1,Dog_dataset_2,44,0.347,Erinaceus europaeus,Canis lupus familiaris,False,,0.536338
+RF,Hedgehog_dataset_1,Fox_dataset_1,44,0.62514,Erinaceus europaeus,Vulpes vulpes,False,,0.809782
+RF,Hedgehog_dataset_1,Giraffe_dataset_1,44,0.45553,Erinaceus europaeus,Giraffa camelopardalis,False,,0.822862
+RF,Hedgehog_dataset_1,Horse_dataset_1,44,0.52974,Erinaceus europaeus,Equus ferus przewalskii,False,,0.940488
+RF,Hedgehog_dataset_1,Horse_dataset_2,44,0.35616,Erinaceus europaeus,Equus caballus,False,,0.844102
+RF,Hedgehog_dataset_1,Raccoon_dataset_1,44,0.53928,Erinaceus europaeus,Procyon lotor,False,,0.780756
+RF,Hedgehog_dataset_1,Raccoon_dataset_2,44,0.55777,Erinaceus europaeus,Procyon lotor,False,,0.863298
+RF,Horse_dataset_1,Bison_dataset_1,44,0.84895,Equus ferus przewalskii,Bison bonasus,False,0.940488,0.914642
+RF,Horse_dataset_1,Cattle_dataset_1,44,0.6001,Equus ferus przewalskii,Bos taurus,False,0.940488,0.69521
+RF,Horse_dataset_1,Dog_dataset_1,44,0.71165,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.842788
+RF,Horse_dataset_1,Dog_dataset_2,44,0.40845,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.536338
+RF,Horse_dataset_1,Fox_dataset_1,44,0.78015,Equus ferus przewalskii,Vulpes vulpes,False,0.940488,0.809782
+RF,Horse_dataset_1,Giraffe_dataset_1,44,0.52526,Equus ferus przewalskii,Giraffa camelopardalis,False,0.940488,0.822862
+RF,Horse_dataset_1,Hedgehog_dataset_1,44,0.51078,Equus ferus przewalskii,Erinaceus europaeus,False,0.940488,
+RF,Horse_dataset_1,Horse_dataset_2,44,0.58632,Equus ferus przewalskii,Equus caballus,False,0.940488,0.844102
+RF,Horse_dataset_1,Raccoon_dataset_1,44,0.6895,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.780756
+RF,Horse_dataset_1,Raccoon_dataset_2,44,0.7475,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.863298
+RF,Horse_dataset_2,Bison_dataset_1,44,0.59253,Equus caballus,Bison bonasus,False,0.844102,0.914642
+RF,Horse_dataset_2,Cattle_dataset_1,44,0.50439,Equus caballus,Bos taurus,False,0.844102,0.69521
+RF,Horse_dataset_2,Dog_dataset_1,44,0.79704,Equus caballus,Canis lupus familiaris,False,0.844102,0.842788
+RF,Horse_dataset_2,Dog_dataset_2,44,0.53239,Equus caballus,Canis lupus familiaris,False,0.844102,0.536338
+RF,Horse_dataset_2,Fox_dataset_1,44,0.58454,Equus caballus,Vulpes vulpes,False,0.844102,0.809782
+RF,Horse_dataset_2,Giraffe_dataset_1,44,0.27401,Equus caballus,Giraffa camelopardalis,False,0.844102,0.822862
+RF,Horse_dataset_2,Hedgehog_dataset_1,44,0.40921,Equus caballus,Erinaceus europaeus,False,0.844102,
+RF,Horse_dataset_2,Horse_dataset_1,44,0.65596,Equus caballus,Equus ferus przewalskii,False,0.844102,0.940488
+RF,Horse_dataset_2,Raccoon_dataset_1,44,0.69322,Equus caballus,Procyon lotor,False,0.844102,0.780756
+RF,Horse_dataset_2,Raccoon_dataset_2,44,0.7983,Equus caballus,Procyon lotor,False,0.844102,0.863298
+RF,Raccoon_dataset_1,Bison_dataset_1,44,0.64459,Procyon lotor,Bison bonasus,False,0.780756,0.914642
+RF,Raccoon_dataset_1,Cattle_dataset_1,44,0.55601,Procyon lotor,Bos taurus,False,0.780756,0.69521
+RF,Raccoon_dataset_1,Dog_dataset_1,44,0.8087,Procyon lotor,Canis lupus familiaris,False,0.780756,0.842788
+RF,Raccoon_dataset_1,Dog_dataset_2,44,0.53799,Procyon lotor,Canis lupus familiaris,False,0.780756,0.536338
+RF,Raccoon_dataset_1,Fox_dataset_1,44,0.62495,Procyon lotor,Vulpes vulpes,False,0.780756,0.809782
+RF,Raccoon_dataset_1,Giraffe_dataset_1,44,0.28052,Procyon lotor,Giraffa camelopardalis,False,0.780756,0.822862
+RF,Raccoon_dataset_1,Hedgehog_dataset_1,44,0.44776,Procyon lotor,Erinaceus europaeus,False,0.780756,
+RF,Raccoon_dataset_1,Horse_dataset_1,44,0.71543,Procyon lotor,Equus ferus przewalskii,False,0.780756,0.940488
+RF,Raccoon_dataset_1,Horse_dataset_2,44,0.6663,Procyon lotor,Equus caballus,False,0.780756,0.844102
+RF,Raccoon_dataset_1,Raccoon_dataset_2,44,0.76357,Procyon lotor,Procyon lotor,True,0.780756,0.863298
+RF,Raccoon_dataset_2,Bison_dataset_1,44,0.71503,Procyon lotor,Bison bonasus,False,0.863298,0.914642
+RF,Raccoon_dataset_2,Cattle_dataset_1,44,0.56579,Procyon lotor,Bos taurus,False,0.863298,0.69521
+RF,Raccoon_dataset_2,Dog_dataset_1,44,0.75126,Procyon lotor,Canis lupus familiaris,False,0.863298,0.842788
+RF,Raccoon_dataset_2,Dog_dataset_2,44,0.44363,Procyon lotor,Canis lupus familiaris,False,0.863298,0.536338
+RF,Raccoon_dataset_2,Fox_dataset_1,44,0.72595,Procyon lotor,Vulpes vulpes,False,0.863298,0.809782
+RF,Raccoon_dataset_2,Giraffe_dataset_1,44,0.48833,Procyon lotor,Giraffa camelopardalis,False,0.863298,0.822862
+RF,Raccoon_dataset_2,Hedgehog_dataset_1,44,0.45716,Procyon lotor,Erinaceus europaeus,False,0.863298,
+RF,Raccoon_dataset_2,Horse_dataset_1,44,0.83477,Procyon lotor,Equus ferus przewalskii,False,0.863298,0.940488
+RF,Raccoon_dataset_2,Horse_dataset_2,44,0.73892,Procyon lotor,Equus caballus,False,0.863298,0.844102
+RF,Raccoon_dataset_2,Raccoon_dataset_1,44,0.64301,Procyon lotor,Procyon lotor,True,0.863298,0.780756
+RF,Bison_dataset_1,Cattle_dataset_1,45,0.55654,Bison bonasus,Bos taurus,False,0.914642,0.69521
+RF,Bison_dataset_1,Dog_dataset_1,45,0.6338,Bison bonasus,Canis lupus familiaris,False,0.914642,0.842788
+RF,Bison_dataset_1,Dog_dataset_2,45,0.34734,Bison bonasus,Canis lupus familiaris,False,0.914642,0.536338
+RF,Bison_dataset_1,Fox_dataset_1,45,0.76862,Bison bonasus,Vulpes vulpes,False,0.914642,0.809782
+RF,Bison_dataset_1,Giraffe_dataset_1,45,0.42448,Bison bonasus,Giraffa camelopardalis,False,0.914642,0.822862
+RF,Bison_dataset_1,Hedgehog_dataset_1,45,0.50778,Bison bonasus,Erinaceus europaeus,False,0.914642,
+RF,Bison_dataset_1,Horse_dataset_1,45,0.91453,Bison bonasus,Equus ferus przewalskii,False,0.914642,0.940488
+RF,Bison_dataset_1,Horse_dataset_2,45,0.47414,Bison bonasus,Equus caballus,False,0.914642,0.844102
+RF,Bison_dataset_1,Raccoon_dataset_1,45,0.64029,Bison bonasus,Procyon lotor,False,0.914642,0.780756
+RF,Bison_dataset_1,Raccoon_dataset_2,45,0.74461,Bison bonasus,Procyon lotor,False,0.914642,0.863298
+RF,Cattle_dataset_1,Bison_dataset_1,45,0.62995,Bos taurus,Bison bonasus,False,0.69521,0.914642
+RF,Cattle_dataset_1,Dog_dataset_1,45,0.58963,Bos taurus,Canis lupus familiaris,False,0.69521,0.842788
+RF,Cattle_dataset_1,Dog_dataset_2,45,0.33992,Bos taurus,Canis lupus familiaris,False,0.69521,0.536338
+RF,Cattle_dataset_1,Fox_dataset_1,45,0.70225,Bos taurus,Vulpes vulpes,False,0.69521,0.809782
+RF,Cattle_dataset_1,Giraffe_dataset_1,45,0.43674,Bos taurus,Giraffa camelopardalis,False,0.69521,0.822862
+RF,Cattle_dataset_1,Hedgehog_dataset_1,45,0.47491,Bos taurus,Erinaceus europaeus,False,0.69521,
+RF,Cattle_dataset_1,Horse_dataset_1,45,0.82011,Bos taurus,Equus ferus przewalskii,False,0.69521,0.940488
+RF,Cattle_dataset_1,Horse_dataset_2,45,0.50955,Bos taurus,Equus caballus,False,0.69521,0.844102
+RF,Cattle_dataset_1,Raccoon_dataset_1,45,0.67841,Bos taurus,Procyon lotor,False,0.69521,0.780756
+RF,Cattle_dataset_1,Raccoon_dataset_2,45,0.77005,Bos taurus,Procyon lotor,False,0.69521,0.863298
+RF,Dog_dataset_1,Bison_dataset_1,45,0.53048,Canis lupus familiaris,Bison bonasus,False,0.842788,0.914642
+RF,Dog_dataset_1,Cattle_dataset_1,45,0.49674,Canis lupus familiaris,Bos taurus,False,0.842788,0.69521
+RF,Dog_dataset_1,Dog_dataset_2,45,0.54515,Canis lupus familiaris,Canis lupus familiaris,True,0.842788,0.536338
+RF,Dog_dataset_1,Fox_dataset_1,45,0.6654,Canis lupus familiaris,Vulpes vulpes,False,0.842788,0.809782
+RF,Dog_dataset_1,Giraffe_dataset_1,45,0.29881,Canis lupus familiaris,Giraffa camelopardalis,False,0.842788,0.822862
+RF,Dog_dataset_1,Hedgehog_dataset_1,45,0.40581,Canis lupus familiaris,Erinaceus europaeus,False,0.842788,
+RF,Dog_dataset_1,Horse_dataset_1,45,0.69355,Canis lupus familiaris,Equus ferus przewalskii,False,0.842788,0.940488
+RF,Dog_dataset_1,Horse_dataset_2,45,0.82664,Canis lupus familiaris,Equus caballus,False,0.842788,0.844102
+RF,Dog_dataset_1,Raccoon_dataset_1,45,0.67441,Canis lupus familiaris,Procyon lotor,False,0.842788,0.780756
+RF,Dog_dataset_1,Raccoon_dataset_2,45,0.76556,Canis lupus familiaris,Procyon lotor,False,0.842788,0.863298
+RF,Dog_dataset_2,Bison_dataset_1,45,0.36307,Canis lupus familiaris,Bison bonasus,False,0.536338,0.914642
+RF,Dog_dataset_2,Cattle_dataset_1,45,0.40277,Canis lupus familiaris,Bos taurus,False,0.536338,0.69521
+RF,Dog_dataset_2,Dog_dataset_1,45,0.71249,Canis lupus familiaris,Canis lupus familiaris,True,0.536338,0.842788
+RF,Dog_dataset_2,Fox_dataset_1,45,0.4163,Canis lupus familiaris,Vulpes vulpes,False,0.536338,0.809782
+RF,Dog_dataset_2,Giraffe_dataset_1,45,0.27634,Canis lupus familiaris,Giraffa camelopardalis,False,0.536338,0.822862
+RF,Dog_dataset_2,Hedgehog_dataset_1,45,0.3377,Canis lupus familiaris,Erinaceus europaeus,False,0.536338,
+RF,Dog_dataset_2,Horse_dataset_1,45,0.44235,Canis lupus familiaris,Equus ferus przewalskii,False,0.536338,0.940488
+RF,Dog_dataset_2,Horse_dataset_2,45,0.73076,Canis lupus familiaris,Equus caballus,False,0.536338,0.844102
+RF,Dog_dataset_2,Raccoon_dataset_1,45,0.63172,Canis lupus familiaris,Procyon lotor,False,0.536338,0.780756
+RF,Dog_dataset_2,Raccoon_dataset_2,45,0.49593,Canis lupus familiaris,Procyon lotor,False,0.536338,0.863298
+RF,Fox_dataset_1,Bison_dataset_1,45,0.69786,Vulpes vulpes,Bison bonasus,False,0.809782,0.914642
+RF,Fox_dataset_1,Cattle_dataset_1,45,0.5582,Vulpes vulpes,Bos taurus,False,0.809782,0.69521
+RF,Fox_dataset_1,Dog_dataset_1,45,0.71582,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.842788
+RF,Fox_dataset_1,Dog_dataset_2,45,0.37301,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.536338
+RF,Fox_dataset_1,Giraffe_dataset_1,45,0.54418,Vulpes vulpes,Giraffa camelopardalis,False,0.809782,0.822862
+RF,Fox_dataset_1,Hedgehog_dataset_1,45,0.40405,Vulpes vulpes,Erinaceus europaeus,False,0.809782,
+RF,Fox_dataset_1,Horse_dataset_1,45,0.84055,Vulpes vulpes,Equus ferus przewalskii,False,0.809782,0.940488
+RF,Fox_dataset_1,Horse_dataset_2,45,0.66738,Vulpes vulpes,Equus caballus,False,0.809782,0.844102
+RF,Fox_dataset_1,Raccoon_dataset_1,45,0.5999,Vulpes vulpes,Procyon lotor,False,0.809782,0.780756
+RF,Fox_dataset_1,Raccoon_dataset_2,45,0.71475,Vulpes vulpes,Procyon lotor,False,0.809782,0.863298
+RF,Giraffe_dataset_1,Bison_dataset_1,45,0.53637,Giraffa camelopardalis,Bison bonasus,False,0.822862,0.914642
+RF,Giraffe_dataset_1,Cattle_dataset_1,45,0.49176,Giraffa camelopardalis,Bos taurus,False,0.822862,0.69521
+RF,Giraffe_dataset_1,Dog_dataset_1,45,0.39262,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.842788
+RF,Giraffe_dataset_1,Dog_dataset_2,45,0.20948,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.536338
+RF,Giraffe_dataset_1,Fox_dataset_1,45,0.56698,Giraffa camelopardalis,Vulpes vulpes,False,0.822862,0.809782
+RF,Giraffe_dataset_1,Hedgehog_dataset_1,45,0.25311,Giraffa camelopardalis,Erinaceus europaeus,False,0.822862,
+RF,Giraffe_dataset_1,Horse_dataset_1,45,0.61076,Giraffa camelopardalis,Equus ferus przewalskii,False,0.822862,0.940488
+RF,Giraffe_dataset_1,Horse_dataset_2,45,0.54776,Giraffa camelopardalis,Equus caballus,False,0.822862,0.844102
+RF,Giraffe_dataset_1,Raccoon_dataset_1,45,0.39553,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.780756
+RF,Giraffe_dataset_1,Raccoon_dataset_2,45,0.54929,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.863298
+RF,Hedgehog_dataset_1,Bison_dataset_1,45,0.62731,Erinaceus europaeus,Bison bonasus,False,,0.914642
+RF,Hedgehog_dataset_1,Cattle_dataset_1,45,0.61898,Erinaceus europaeus,Bos taurus,False,,0.69521
+RF,Hedgehog_dataset_1,Dog_dataset_1,45,0.51866,Erinaceus europaeus,Canis lupus familiaris,False,,0.842788
+RF,Hedgehog_dataset_1,Dog_dataset_2,45,0.3444,Erinaceus europaeus,Canis lupus familiaris,False,,0.536338
+RF,Hedgehog_dataset_1,Fox_dataset_1,45,0.66078,Erinaceus europaeus,Vulpes vulpes,False,,0.809782
+RF,Hedgehog_dataset_1,Giraffe_dataset_1,45,0.53085,Erinaceus europaeus,Giraffa camelopardalis,False,,0.822862
+RF,Hedgehog_dataset_1,Horse_dataset_1,45,0.58958,Erinaceus europaeus,Equus ferus przewalskii,False,,0.940488
+RF,Hedgehog_dataset_1,Horse_dataset_2,45,0.36932,Erinaceus europaeus,Equus caballus,False,,0.844102
+RF,Hedgehog_dataset_1,Raccoon_dataset_1,45,0.57387,Erinaceus europaeus,Procyon lotor,False,,0.780756
+RF,Hedgehog_dataset_1,Raccoon_dataset_2,45,0.56363,Erinaceus europaeus,Procyon lotor,False,,0.863298
+RF,Horse_dataset_1,Bison_dataset_1,45,0.8628,Equus ferus przewalskii,Bison bonasus,False,0.940488,0.914642
+RF,Horse_dataset_1,Cattle_dataset_1,45,0.59813,Equus ferus przewalskii,Bos taurus,False,0.940488,0.69521
+RF,Horse_dataset_1,Dog_dataset_1,45,0.70564,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.842788
+RF,Horse_dataset_1,Dog_dataset_2,45,0.41563,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.536338
+RF,Horse_dataset_1,Fox_dataset_1,45,0.74859,Equus ferus przewalskii,Vulpes vulpes,False,0.940488,0.809782
+RF,Horse_dataset_1,Giraffe_dataset_1,45,0.52334,Equus ferus przewalskii,Giraffa camelopardalis,False,0.940488,0.822862
+RF,Horse_dataset_1,Hedgehog_dataset_1,45,0.49077,Equus ferus przewalskii,Erinaceus europaeus,False,0.940488,
+RF,Horse_dataset_1,Horse_dataset_2,45,0.57002,Equus ferus przewalskii,Equus caballus,False,0.940488,0.844102
+RF,Horse_dataset_1,Raccoon_dataset_1,45,0.70629,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.780756
+RF,Horse_dataset_1,Raccoon_dataset_2,45,0.72797,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.863298
+RF,Horse_dataset_2,Bison_dataset_1,45,0.56612,Equus caballus,Bison bonasus,False,0.844102,0.914642
+RF,Horse_dataset_2,Cattle_dataset_1,45,0.5055,Equus caballus,Bos taurus,False,0.844102,0.69521
+RF,Horse_dataset_2,Dog_dataset_1,45,0.80229,Equus caballus,Canis lupus familiaris,False,0.844102,0.842788
+RF,Horse_dataset_2,Dog_dataset_2,45,0.54422,Equus caballus,Canis lupus familiaris,False,0.844102,0.536338
+RF,Horse_dataset_2,Fox_dataset_1,45,0.56049,Equus caballus,Vulpes vulpes,False,0.844102,0.809782
+RF,Horse_dataset_2,Giraffe_dataset_1,45,0.23709,Equus caballus,Giraffa camelopardalis,False,0.844102,0.822862
+RF,Horse_dataset_2,Hedgehog_dataset_1,45,0.42649,Equus caballus,Erinaceus europaeus,False,0.844102,
+RF,Horse_dataset_2,Horse_dataset_1,45,0.61914,Equus caballus,Equus ferus przewalskii,False,0.844102,0.940488
+RF,Horse_dataset_2,Raccoon_dataset_1,45,0.67158,Equus caballus,Procyon lotor,False,0.844102,0.780756
+RF,Horse_dataset_2,Raccoon_dataset_2,45,0.81376,Equus caballus,Procyon lotor,False,0.844102,0.863298
+RF,Raccoon_dataset_1,Bison_dataset_1,45,0.6243,Procyon lotor,Bison bonasus,False,0.780756,0.914642
+RF,Raccoon_dataset_1,Cattle_dataset_1,45,0.54876,Procyon lotor,Bos taurus,False,0.780756,0.69521
+RF,Raccoon_dataset_1,Dog_dataset_1,45,0.81121,Procyon lotor,Canis lupus familiaris,False,0.780756,0.842788
+RF,Raccoon_dataset_1,Dog_dataset_2,45,0.54006,Procyon lotor,Canis lupus familiaris,False,0.780756,0.536338
+RF,Raccoon_dataset_1,Fox_dataset_1,45,0.62955,Procyon lotor,Vulpes vulpes,False,0.780756,0.809782
+RF,Raccoon_dataset_1,Giraffe_dataset_1,45,0.28216,Procyon lotor,Giraffa camelopardalis,False,0.780756,0.822862
+RF,Raccoon_dataset_1,Hedgehog_dataset_1,45,0.44552,Procyon lotor,Erinaceus europaeus,False,0.780756,
+RF,Raccoon_dataset_1,Horse_dataset_1,45,0.70712,Procyon lotor,Equus ferus przewalskii,False,0.780756,0.940488
+RF,Raccoon_dataset_1,Horse_dataset_2,45,0.70892,Procyon lotor,Equus caballus,False,0.780756,0.844102
+RF,Raccoon_dataset_1,Raccoon_dataset_2,45,0.77986,Procyon lotor,Procyon lotor,True,0.780756,0.863298
+RF,Raccoon_dataset_2,Bison_dataset_1,45,0.70251,Procyon lotor,Bison bonasus,False,0.863298,0.914642
+RF,Raccoon_dataset_2,Cattle_dataset_1,45,0.53919,Procyon lotor,Bos taurus,False,0.863298,0.69521
+RF,Raccoon_dataset_2,Dog_dataset_1,45,0.75103,Procyon lotor,Canis lupus familiaris,False,0.863298,0.842788
+RF,Raccoon_dataset_2,Dog_dataset_2,45,0.44418,Procyon lotor,Canis lupus familiaris,False,0.863298,0.536338
+RF,Raccoon_dataset_2,Fox_dataset_1,45,0.71762,Procyon lotor,Vulpes vulpes,False,0.863298,0.809782
+RF,Raccoon_dataset_2,Giraffe_dataset_1,45,0.48035,Procyon lotor,Giraffa camelopardalis,False,0.863298,0.822862
+RF,Raccoon_dataset_2,Hedgehog_dataset_1,45,0.4673,Procyon lotor,Erinaceus europaeus,False,0.863298,
+RF,Raccoon_dataset_2,Horse_dataset_1,45,0.81437,Procyon lotor,Equus ferus przewalskii,False,0.863298,0.940488
+RF,Raccoon_dataset_2,Horse_dataset_2,45,0.73468,Procyon lotor,Equus caballus,False,0.863298,0.844102
+RF,Raccoon_dataset_2,Raccoon_dataset_1,45,0.6404,Procyon lotor,Procyon lotor,True,0.863298,0.780756
+RF,Bison_dataset_1,Cattle_dataset_1,46,0.55983,Bison bonasus,Bos taurus,False,0.914642,0.69521
+RF,Bison_dataset_1,Dog_dataset_1,46,0.64192,Bison bonasus,Canis lupus familiaris,False,0.914642,0.842788
+RF,Bison_dataset_1,Dog_dataset_2,46,0.34918,Bison bonasus,Canis lupus familiaris,False,0.914642,0.536338
+RF,Bison_dataset_1,Fox_dataset_1,46,0.76155,Bison bonasus,Vulpes vulpes,False,0.914642,0.809782
+RF,Bison_dataset_1,Giraffe_dataset_1,46,0.40953,Bison bonasus,Giraffa camelopardalis,False,0.914642,0.822862
+RF,Bison_dataset_1,Hedgehog_dataset_1,46,0.46636,Bison bonasus,Erinaceus europaeus,False,0.914642,
+RF,Bison_dataset_1,Horse_dataset_1,46,0.90501,Bison bonasus,Equus ferus przewalskii,False,0.914642,0.940488
+RF,Bison_dataset_1,Horse_dataset_2,46,0.48697,Bison bonasus,Equus caballus,False,0.914642,0.844102
+RF,Bison_dataset_1,Raccoon_dataset_1,46,0.67687,Bison bonasus,Procyon lotor,False,0.914642,0.780756
+RF,Bison_dataset_1,Raccoon_dataset_2,46,0.77683,Bison bonasus,Procyon lotor,False,0.914642,0.863298
+RF,Cattle_dataset_1,Bison_dataset_1,46,0.65979,Bos taurus,Bison bonasus,False,0.69521,0.914642
+RF,Cattle_dataset_1,Dog_dataset_1,46,0.61008,Bos taurus,Canis lupus familiaris,False,0.69521,0.842788
+RF,Cattle_dataset_1,Dog_dataset_2,46,0.34558,Bos taurus,Canis lupus familiaris,False,0.69521,0.536338
+RF,Cattle_dataset_1,Fox_dataset_1,46,0.72106,Bos taurus,Vulpes vulpes,False,0.69521,0.809782
+RF,Cattle_dataset_1,Giraffe_dataset_1,46,0.44725,Bos taurus,Giraffa camelopardalis,False,0.69521,0.822862
+RF,Cattle_dataset_1,Hedgehog_dataset_1,46,0.48532,Bos taurus,Erinaceus europaeus,False,0.69521,
+RF,Cattle_dataset_1,Horse_dataset_1,46,0.83229,Bos taurus,Equus ferus przewalskii,False,0.69521,0.940488
+RF,Cattle_dataset_1,Horse_dataset_2,46,0.50235,Bos taurus,Equus caballus,False,0.69521,0.844102
+RF,Cattle_dataset_1,Raccoon_dataset_1,46,0.64647,Bos taurus,Procyon lotor,False,0.69521,0.780756
+RF,Cattle_dataset_1,Raccoon_dataset_2,46,0.7881,Bos taurus,Procyon lotor,False,0.69521,0.863298
+RF,Dog_dataset_1,Bison_dataset_1,46,0.64044,Canis lupus familiaris,Bison bonasus,False,0.842788,0.914642
+RF,Dog_dataset_1,Cattle_dataset_1,46,0.5204,Canis lupus familiaris,Bos taurus,False,0.842788,0.69521
+RF,Dog_dataset_1,Dog_dataset_2,46,0.53725,Canis lupus familiaris,Canis lupus familiaris,True,0.842788,0.536338
+RF,Dog_dataset_1,Fox_dataset_1,46,0.6949,Canis lupus familiaris,Vulpes vulpes,False,0.842788,0.809782
+RF,Dog_dataset_1,Giraffe_dataset_1,46,0.36699,Canis lupus familiaris,Giraffa camelopardalis,False,0.842788,0.822862
+RF,Dog_dataset_1,Hedgehog_dataset_1,46,0.4031,Canis lupus familiaris,Erinaceus europaeus,False,0.842788,
+RF,Dog_dataset_1,Horse_dataset_1,46,0.77757,Canis lupus familiaris,Equus ferus przewalskii,False,0.842788,0.940488
+RF,Dog_dataset_1,Horse_dataset_2,46,0.80617,Canis lupus familiaris,Equus caballus,False,0.842788,0.844102
+RF,Dog_dataset_1,Raccoon_dataset_1,46,0.71439,Canis lupus familiaris,Procyon lotor,False,0.842788,0.780756
+RF,Dog_dataset_1,Raccoon_dataset_2,46,0.77806,Canis lupus familiaris,Procyon lotor,False,0.842788,0.863298
+RF,Dog_dataset_2,Bison_dataset_1,46,0.29494,Canis lupus familiaris,Bison bonasus,False,0.536338,0.914642
+RF,Dog_dataset_2,Cattle_dataset_1,46,0.32528,Canis lupus familiaris,Bos taurus,False,0.536338,0.69521
+RF,Dog_dataset_2,Dog_dataset_1,46,0.70323,Canis lupus familiaris,Canis lupus familiaris,True,0.536338,0.842788
+RF,Dog_dataset_2,Fox_dataset_1,46,0.4545,Canis lupus familiaris,Vulpes vulpes,False,0.536338,0.809782
+RF,Dog_dataset_2,Giraffe_dataset_1,46,0.25329,Canis lupus familiaris,Giraffa camelopardalis,False,0.536338,0.822862
+RF,Dog_dataset_2,Hedgehog_dataset_1,46,0.34216,Canis lupus familiaris,Erinaceus europaeus,False,0.536338,
+RF,Dog_dataset_2,Horse_dataset_1,46,0.40608,Canis lupus familiaris,Equus ferus przewalskii,False,0.536338,0.940488
+RF,Dog_dataset_2,Horse_dataset_2,46,0.7664,Canis lupus familiaris,Equus caballus,False,0.536338,0.844102
+RF,Dog_dataset_2,Raccoon_dataset_1,46,0.62744,Canis lupus familiaris,Procyon lotor,False,0.536338,0.780756
+RF,Dog_dataset_2,Raccoon_dataset_2,46,0.47074,Canis lupus familiaris,Procyon lotor,False,0.536338,0.863298
+RF,Fox_dataset_1,Bison_dataset_1,46,0.68334,Vulpes vulpes,Bison bonasus,False,0.809782,0.914642
+RF,Fox_dataset_1,Cattle_dataset_1,46,0.56679,Vulpes vulpes,Bos taurus,False,0.809782,0.69521
+RF,Fox_dataset_1,Dog_dataset_1,46,0.72127,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.842788
+RF,Fox_dataset_1,Dog_dataset_2,46,0.38147,Vulpes vulpes,Canis lupus familiaris,False,0.809782,0.536338
+RF,Fox_dataset_1,Giraffe_dataset_1,46,0.64202,Vulpes vulpes,Giraffa camelopardalis,False,0.809782,0.822862
+RF,Fox_dataset_1,Hedgehog_dataset_1,46,0.42247,Vulpes vulpes,Erinaceus europaeus,False,0.809782,
+RF,Fox_dataset_1,Horse_dataset_1,46,0.82883,Vulpes vulpes,Equus ferus przewalskii,False,0.809782,0.940488
+RF,Fox_dataset_1,Horse_dataset_2,46,0.67566,Vulpes vulpes,Equus caballus,False,0.809782,0.844102
+RF,Fox_dataset_1,Raccoon_dataset_1,46,0.60279,Vulpes vulpes,Procyon lotor,False,0.809782,0.780756
+RF,Fox_dataset_1,Raccoon_dataset_2,46,0.71518,Vulpes vulpes,Procyon lotor,False,0.809782,0.863298
+RF,Giraffe_dataset_1,Bison_dataset_1,46,0.60375,Giraffa camelopardalis,Bison bonasus,False,0.822862,0.914642
+RF,Giraffe_dataset_1,Cattle_dataset_1,46,0.5839,Giraffa camelopardalis,Bos taurus,False,0.822862,0.69521
+RF,Giraffe_dataset_1,Dog_dataset_1,46,0.60897,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.842788
+RF,Giraffe_dataset_1,Dog_dataset_2,46,0.36405,Giraffa camelopardalis,Canis lupus familiaris,False,0.822862,0.536338
+RF,Giraffe_dataset_1,Fox_dataset_1,46,0.56317,Giraffa camelopardalis,Vulpes vulpes,False,0.822862,0.809782
+RF,Giraffe_dataset_1,Hedgehog_dataset_1,46,0.43314,Giraffa camelopardalis,Erinaceus europaeus,False,0.822862,
+RF,Giraffe_dataset_1,Horse_dataset_1,46,0.69275,Giraffa camelopardalis,Equus ferus przewalskii,False,0.822862,0.940488
+RF,Giraffe_dataset_1,Horse_dataset_2,46,0.67233,Giraffa camelopardalis,Equus caballus,False,0.822862,0.844102
+RF,Giraffe_dataset_1,Raccoon_dataset_1,46,0.49941,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.780756
+RF,Giraffe_dataset_1,Raccoon_dataset_2,46,0.72037,Giraffa camelopardalis,Procyon lotor,False,0.822862,0.863298
+RF,Hedgehog_dataset_1,Bison_dataset_1,46,0.61048,Erinaceus europaeus,Bison bonasus,False,,0.914642
+RF,Hedgehog_dataset_1,Cattle_dataset_1,46,0.64895,Erinaceus europaeus,Bos taurus,False,,0.69521
+RF,Hedgehog_dataset_1,Dog_dataset_1,46,0.51076,Erinaceus europaeus,Canis lupus familiaris,False,,0.842788
+RF,Hedgehog_dataset_1,Dog_dataset_2,46,0.35119,Erinaceus europaeus,Canis lupus familiaris,False,,0.536338
+RF,Hedgehog_dataset_1,Fox_dataset_1,46,0.66993,Erinaceus europaeus,Vulpes vulpes,False,,0.809782
+RF,Hedgehog_dataset_1,Giraffe_dataset_1,46,0.52999,Erinaceus europaeus,Giraffa camelopardalis,False,,0.822862
+RF,Hedgehog_dataset_1,Horse_dataset_1,46,0.59015,Erinaceus europaeus,Equus ferus przewalskii,False,,0.940488
+RF,Hedgehog_dataset_1,Horse_dataset_2,46,0.37804,Erinaceus europaeus,Equus caballus,False,,0.844102
+RF,Hedgehog_dataset_1,Raccoon_dataset_1,46,0.57602,Erinaceus europaeus,Procyon lotor,False,,0.780756
+RF,Hedgehog_dataset_1,Raccoon_dataset_2,46,0.58206,Erinaceus europaeus,Procyon lotor,False,,0.863298
+RF,Horse_dataset_1,Bison_dataset_1,46,0.82061,Equus ferus przewalskii,Bison bonasus,False,0.940488,0.914642
+RF,Horse_dataset_1,Cattle_dataset_1,46,0.5931,Equus ferus przewalskii,Bos taurus,False,0.940488,0.69521
+RF,Horse_dataset_1,Dog_dataset_1,46,0.69958,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.842788
+RF,Horse_dataset_1,Dog_dataset_2,46,0.38893,Equus ferus przewalskii,Canis lupus familiaris,False,0.940488,0.536338
+RF,Horse_dataset_1,Fox_dataset_1,46,0.78949,Equus ferus przewalskii,Vulpes vulpes,False,0.940488,0.809782
+RF,Horse_dataset_1,Giraffe_dataset_1,46,0.48444,Equus ferus przewalskii,Giraffa camelopardalis,False,0.940488,0.822862
+RF,Horse_dataset_1,Hedgehog_dataset_1,46,0.48322,Equus ferus przewalskii,Erinaceus europaeus,False,0.940488,
+RF,Horse_dataset_1,Horse_dataset_2,46,0.57113,Equus ferus przewalskii,Equus caballus,False,0.940488,0.844102
+RF,Horse_dataset_1,Raccoon_dataset_1,46,0.66095,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.780756
+RF,Horse_dataset_1,Raccoon_dataset_2,46,0.72673,Equus ferus przewalskii,Procyon lotor,False,0.940488,0.863298
+RF,Horse_dataset_2,Bison_dataset_1,46,0.54446,Equus caballus,Bison bonasus,False,0.844102,0.914642
+RF,Horse_dataset_2,Cattle_dataset_1,46,0.49288,Equus caballus,Bos taurus,False,0.844102,0.69521
+RF,Horse_dataset_2,Dog_dataset_1,46,0.78057,Equus caballus,Canis lupus familiaris,False,0.844102,0.842788
+RF,Horse_dataset_2,Dog_dataset_2,46,0.53738,Equus caballus,Canis lupus familiaris,False,0.844102,0.536338
+RF,Horse_dataset_2,Fox_dataset_1,46,0.57301,Equus caballus,Vulpes vulpes,False,0.844102,0.809782
+RF,Horse_dataset_2,Giraffe_dataset_1,46,0.23694,Equus caballus,Giraffa camelopardalis,False,0.844102,0.822862
+RF,Horse_dataset_2,Hedgehog_dataset_1,46,0.38974,Equus caballus,Erinaceus europaeus,False,0.844102,
+RF,Horse_dataset_2,Horse_dataset_1,46,0.57776,Equus caballus,Equus ferus przewalskii,False,0.844102,0.940488
+RF,Horse_dataset_2,Raccoon_dataset_1,46,0.64115,Equus caballus,Procyon lotor,False,0.844102,0.780756
+RF,Horse_dataset_2,Raccoon_dataset_2,46,0.79152,Equus caballus,Procyon lotor,False,0.844102,0.863298
+RF,Raccoon_dataset_1,Bison_dataset_1,46,0.65129,Procyon lotor,Bison bonasus,False,0.780756,0.914642
+RF,Raccoon_dataset_1,Cattle_dataset_1,46,0.56395,Procyon lotor,Bos taurus,False,0.780756,0.69521
+RF,Raccoon_dataset_1,Dog_dataset_1,46,0.81286,Procyon lotor,Canis lupus familiaris,False,0.780756,0.842788
+RF,Raccoon_dataset_1,Dog_dataset_2,46,0.53615,Procyon lotor,Canis lupus familiaris,False,0.780756,0.536338
+RF,Raccoon_dataset_1,Fox_dataset_1,46,0.65595,Procyon lotor,Vulpes vulpes,False,0.780756,0.809782
+RF,Raccoon_dataset_1,Giraffe_dataset_1,46,0.28455,Procyon lotor,Giraffa camelopardalis,False,0.780756,0.822862
+RF,Raccoon_dataset_1,Hedgehog_dataset_1,46,0.44242,Procyon lotor,Erinaceus europaeus,False,0.780756,
+RF,Raccoon_dataset_1,Horse_dataset_1,46,0.72083,Procyon lotor,Equus ferus przewalskii,False,0.780756,0.940488
+RF,Raccoon_dataset_1,Horse_dataset_2,46,0.68684,Procyon lotor,Equus caballus,False,0.780756,0.844102
+RF,Raccoon_dataset_1,Raccoon_dataset_2,46,0.76042,Procyon lotor,Procyon lotor,True,0.780756,0.863298
+RF,Raccoon_dataset_2,Bison_dataset_1,46,0.71566,Procyon lotor,Bison bonasus,False,0.863298,0.914642
+RF,Raccoon_dataset_2,Cattle_dataset_1,46,0.54083,Procyon lotor,Bos taurus,False,0.863298,0.69521
+RF,Raccoon_dataset_2,Dog_dataset_1,46,0.74183,Procyon lotor,Canis lupus familiaris,False,0.863298,0.842788
+RF,Raccoon_dataset_2,Dog_dataset_2,46,0.42851,Procyon lotor,Canis lupus familiaris,False,0.863298,0.536338
+RF,Raccoon_dataset_2,Fox_dataset_1,46,0.73324,Procyon lotor,Vulpes vulpes,False,0.863298,0.809782
+RF,Raccoon_dataset_2,Giraffe_dataset_1,46,0.50063,Procyon lotor,Giraffa camelopardalis,False,0.863298,0.822862
+RF,Raccoon_dataset_2,Hedgehog_dataset_1,46,0.45628,Procyon lotor,Erinaceus europaeus,False,0.863298,
+RF,Raccoon_dataset_2,Horse_dataset_1,46,0.83367,Procyon lotor,Equus ferus przewalskii,False,0.863298,0.940488
+RF,Raccoon_dataset_2,Horse_dataset_2,46,0.72597,Procyon lotor,Equus caballus,False,0.863298,0.844102
+RF,Raccoon_dataset_2,Raccoon_dataset_1,46,0.62872,Procyon lotor,Procyon lotor,True,0.863298,0.780756

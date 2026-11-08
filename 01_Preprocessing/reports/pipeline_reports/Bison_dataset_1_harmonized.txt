@@ -1,0 +1,69 @@
+HARMONIZATION REPORT: Bison_dataset_1
+Created: 2026-10-24 19:38:41 with code/harmonize.py (13 s)
+Output: 02_processed_data/Bison_dataset_1/samples.parquet, segments.parquet
+
+====================================================================================================
+1. OVERVIEW
+====================================================================================================
+  Samples: 597,862 (100.0% labeled)
+  Individuals: 3
+  Segments: 7,293; duration min 0.33, median 2.46, max 2.46 s
+  Native rate(s): 33.33 Hz (7,293 segments)
+
+====================================================================================================
+2. LOADER NOTES
+====================================================================================================
+  Sheets read: Flake 4931, Döschi 4933, Arena 4936
+  Sheets not read: GESAMT, ANZAHL, GESAMT FERTIG, 10 je Verhaltensweise, 20 je Verhaltensweise
+  [Flake 4931] 183,762 rows, 0 without time or acceleration dropped (0 with unreadable Zeit), 2,241 bursts; burst lengths: 82 samples: 2,241
+  [Döschi 4933] 194,258 rows, 0 without time or acceleration dropped (0 with unreadable Zeit), 2,369 bursts; burst lengths: 82 samples: 2,369
+  [Arena 4936] 219,842 rows, 0 without time or acceleration dropped (0 with unreadable Zeit), 2,683 bursts; burst lengths: 82 samples: 2,680, 40 samples: 1, 31 samples: 1, 11 samples: 1
+
+====================================================================================================
+3. ACCELERATION (g)
+====================================================================================================
+  x: min -4.000, p1 -0.299, median 0.078, p99 0.865, max 3.998
+  y: min -4.000, p1 -0.289, median 0.129, p99 0.979, max 3.998
+  z: min -4.000, p1 -1.232, median -0.936, p99 0.047, max 3.217
+  Median vector magnitude: 1.003 g (about 1 g expected)
+
+====================================================================================================
+4. LABELS (original, samples)
+====================================================================================================
+  LWN                                 107,502   18.0%
+  LIN                                 100,942   16.9%
+  SKN                                  68,388   11.4%
+  SCH                                  53,792    9.0%
+  GRA                                  40,180    6.7%
+  FVB                                  38,868    6.5%
+  LPN                                  21,566    3.6%
+  SWK                                  21,074    3.5%
+  HFM                                  18,860    3.2%
+  KKN                                  16,236    2.7%
+  HFN                                  11,972    2.0%
+  SPU                                  11,234    1.9%
+  HFT                                  11,152    1.9%
+  SAB                                  10,906    1.8%
+  LIT                                  10,332    1.7%
+  FSN                                   9,758    1.6%
+  STL                                   9,020    1.5%
+  FSH                                   6,970    1.2%
+  KÄM                                   5,412    0.9%
+  KKM                                   5,330    0.9%
+  FSM                                   4,510    0.8%
+  TRB                                   4,264    0.7%
+  GAL                                   3,362    0.6%
+  PUT                                   3,198    0.5%
+  RSH                                     820    0.1%
+  TRK                                     820    0.1%
+  SKM                                     574    0.1%
+  WÄL                                     328    0.1%
+  FST                                     246    0.0%
+  (unlabeled)                             246    0.0%
+
+====================================================================================================
+5. INDIVIDUALS
+====================================================================================================
+  Arena                   219,842 samples  100.0% labeled    2,683 segments    1.83 h
+  Döschi                  194,258 samples   99.9% labeled    2,369 segments    1.62 h
+  Flake                   183,762 samples  100.0% labeled    2,241 segments    1.53 h

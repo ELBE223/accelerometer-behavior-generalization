@@ -1,0 +1,13 @@
+Table S5. Classifier configurations.
+
+Classifier	Input	Implementation	Configuration
+RF	26 window features	scikit-learn 1.9.1, RandomForestClassifier	Defaults (100 trees)
+LightGBM	26 window features	lightgbm 4.7.0, LGBMClassifier	Defaults, multiclass objective
+CNN	Tri-axial window (3 × 50 samples)	PyTorch 2.14.1	3 convolution blocks (32, 64, 128 filters; kernels 5, 5, 3; batch normalization, ReLU, max pooling), global average pooling, dense layer (64), dropout 0.25
+ResNet	Tri-axial window (3 × 50 samples)	PyTorch 2.14.1	Stem convolution (64 filters, kernel 7), 3 residual blocks (64, 128, 128 filters; kernels 7, 5, 3), global average pooling, dropout 0.25
+HYDRA	Tri-axial window (3 × 50 samples)	aeon 1.6.0, HydraClassifier	Defaults
+MultiRocket	Tri-axial window (3 × 50 samples)	aeon 1.6.0, MultiRocketClassifier	Defaults
+
+CNN and ResNet: channels standardized with mean and SD of the training windows; Adam (learning rate 0.001), cross-entropy loss, batch size 256, 30 epochs, no early stopping.
+All classifiers: training seeds 42–46; at most 250 training windows per dataset and class, drawn across segments.
+Source: 02_Models/models.py, requirements-lock.txt

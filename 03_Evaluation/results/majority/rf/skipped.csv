@@ -1,0 +1,11 @@
+seed,mode,train,test,test_individual,reason
+42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 20
+42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 20
+43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 20
+44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 20
+45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 20
+46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)

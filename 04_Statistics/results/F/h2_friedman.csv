@@ -1,0 +1,5 @@
+model,response,groups,n_blocks,chi_sq,df,p_value,kendalls_w,blocks
+rf,cross_f1,3,11,8.90909,2,0.0116256,0.404959,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+lgbm,cross_f1,3,11,8.90909,2,0.0116256,0.404959,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Hedgehog_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+rf,transfer_loss_f1,3,10,1.8,2,0.40657,0.09,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2
+lgbm,transfer_loss_f1,3,10,1.8,2,0.40657,0.09,Bison_dataset_1 Cattle_dataset_1 Dog_dataset_1 Dog_dataset_2 Fox_dataset_1 Giraffe_dataset_1 Horse_dataset_1 Horse_dataset_2 Raccoon_dataset_1 Raccoon_dataset_2

@@ -1,0 +1,10 @@
+species,log_body_mass_g,dominant_locomotor_mode,body_configuration_type,relative_neck_length,food_acquisition_handling
+Bison bonasus,13.122,cursorial,robust_quadruped,intermediate,vegetation_cropping
+Bos taurus,13.710,cursorial,robust_quadruped,intermediate,vegetation_cropping
+Canis lupus familiaris,10.194,cursorial,standard_quadruped,intermediate,oral_item_acquisition
+Equus caballus,12.429,cursorial,standard_quadruped,long,vegetation_cropping
+Equus ferus przewalskii,12.612,cursorial,standard_quadruped,long,vegetation_cropping
+Erinaceus europaeus,6.939,terrestrial_generalist,compact_low_profile_body,short,oral_item_acquisition
+Giraffa camelopardalis,13.710,cursorial,tall_long_necked_quadruped,very_long,vegetation_cropping
+Procyon lotor,8.617,scansorial,standard_quadruped,short,manual_food_handling
+Vulpes vulpes,8.608,cursorial,standard_quadruped,intermediate,oral_item_acquisition

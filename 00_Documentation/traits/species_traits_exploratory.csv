@@ -1,0 +1,10 @@
+species,expected_trunk_motion_amplitude,expected_directional_change_tendency
+Bison bonasus,moderate,low
+Bos taurus,moderate,low
+Canis lupus familiaris,high,high
+Equus caballus,high,moderate
+Equus ferus przewalskii,high,moderate
+Erinaceus europaeus,low,moderate
+Giraffa camelopardalis,very_high,low
+Procyon lotor,moderate,high
+Vulpes vulpes,high,high

@@ -1,0 +1,64 @@
+WINDOW REPORT: Raccoon_dataset_2
+Created: 2026-10-24 19:50:46 with code/make_windows.py (1 s)
+Settings: 25 Hz, window 2.0 s (50 samples), step 1.0 s (25 samples), padtype line
+
+====================================================================================================
+1. SEGMENTS
+====================================================================================================
+  Segments: 1,208; duration min 3.30 s, median 3.30 s, max 3.30 s
+  Segments shorter than one window (no window): 0, holding 0 of 132,880 samples (0.0%) and 0 of 132,880 labeled samples (0.0%)
+  Resampling: 33.3 Hz x 3/4 (1,208 segments)
+
+====================================================================================================
+2. WINDOWS
+====================================================================================================
+  all windows (training): 2,416
+    pure: 2,408; mixed labels: 8; with unlabeled samples: 0
+  non-overlapping (evaluation): 1,208
+    pure: 1,204; mixed labels: 4; with unlabeled samples: 0
+
+====================================================================================================
+3. PURE WINDOWS PER ORIGINAL LABEL
+====================================================================================================
+                          windows  non_overlapping  segments  individuals
+  label                                                                  
+  Ruhen                       644              322       322            3
+  Sitzen                      268              134       134            3
+  Essen                       258              129       129            3
+  Schlafen                    192               96        96            2
+  Laufen                      146               73        73            2
+  Putzen                      146               73        73            3
+  Putzen Gegenseitig          116               58        58            2
+  Schaben Wasser              108               54        54            1
+  Klettern Kopf oben           84               42        42            1
+  Laufen Tür                   80               40        40            1
+  Stehen                       80               40        40            3
+  Schaben Land                 56               28        28            1
+  Schütteln                    46               23        23            2
+  L/St                         40               20        20            2
+  Galopp                       34               17        17            1
+  Hängen                       32               16        16            1
+  Essen Wasser                 26               13        13            1
+  Auf zwei Beinen stehen       12                6         6            2
+  Kratzen                      10                5         5            2
+  Hängen Decke                  8                4         4            1
+  Kratzen am Logger             6                3         3            1
+  Klettern Kopf unten           6                3         3            1
+  Schwimmen                     6                3         3            1
+  Klettern Seitlich             4                2         2            1
+
+====================================================================================================
+4. EXCLUDED WINDOWS PER MAJORITY LABEL (mixed or unlabeled)
+====================================================================================================
+                  windows  median_share
+  label_majority                       
+  Ruhen                 8          0.67
+
+====================================================================================================
+5. PURE WINDOWS PER INDIVIDUAL AND LABEL
+====================================================================================================
+  label          Auf zwei Beinen stehen  Essen  Essen Wasser  Galopp  Hängen  Hängen Decke  Klettern Kopf oben  Klettern Kopf unten  Klettern Seitlich  Kratzen  Kratzen am Logger  L/St  Laufen  Laufen Tür  Putzen  Putzen Gegenseitig  Ruhen  Schaben Land  Schaben Wasser  Schlafen  Schwimmen  Schütteln  Sitzen  Stehen
+  individual_id                                                                                                                                                                                                                                                                                                              
+  Carlo                               4    122             0       0       0             0                   0                    0                  0        8                  0     4      48           0      56                  68    344             0               0        94          0          2     178      20
+  Emma                                0     24             0       0       0             0                   0                    0                  0        0                  0     0       0           0      10                  48    230             0               0         0          0          0      78       4
+  Wilbert                             8    112            26      34      32             8                  84                    6                  4        2                  6    36      98          80      80                   0     70            56             108        98          6         44      12      56

@@ -1,0 +1,98 @@
+STATISTICS H3 - scenario C
+====================================================================================================
+
+Input: 06_statistics/C/h3_input.csv (pairwise Macro-F1, mean over the seeds)
+Traits: 00_documentation/traits/species_traits_core.csv (five core traits of D37; Gower distance, equal weights)
+
+STRUCTURE
+  models 2 (RF, LGBM); species 9; ordered species pairs 72; unordered 36; records 144
+  thesis: 6 models, 9 species, 72 ordered and 36 unordered pairs, 432 records
+  dataset pairs of the same species left out: 4 (per model)
+
+TRAIT DISTANCE EFFECT (beta per SD of the distance; 95 % CI from the REML fit, Satterthwaite df;
+likelihood-ratio test of ML fits; S2 on the retention scale)
+  primary                        n 144  beta -0.008 [-0.041, 0.025]  SE 0.016  LR chi2(1) 0.29  p 0.589
+  interaction distance x model   n 144  beta NA [NA, NA]  SE NA  LR chi2(1) 0.37  p 0.541
+  directional random effects     n 144  beta -0.003 [-0.029, 0.024]  SE 0.013  LR chi2(1) 0.06  p 0.814
+  pair-only random effect        n 144  beta -0.027 [-0.058, 0.004]  SE 0.015  LR chi2(1) 3.12  p 0.077
+  S1 within covariates           n 112  beta 0.010 [-0.027, 0.048]  SE 0.018  LR chi2(1) 0.42  p 0.516
+  S2 retention                   n 128  beta -0.008 [-0.051, 0.034]  SE 0.021  LR chi2(1) 0.17  p 0.678
+  S2 log retention               n 128  beta -0.014 [-0.078, 0.050]  SE 0.031  LR chi2(1) 0.20  p 0.652
+  S3 gawdis distance             n 144  beta -0.012 [-0.045, 0.020]  SE 0.016  LR chi2(1) 0.64  p 0.423
+  thesis primary: beta -0.031, LR chi2(1) 2.54, p 0.111 (12 datasets with Fox_dataset_2, seed 42)
+
+  R2 (Nakagawa) of the primary model: marginal 0.004, conditional 0.984
+
+OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)
+  core + C4 / core + C5: exploratory six-trait add-backs of one historical trait each;
+  the extended expert traits of the thesis are no longer used (D39).
+  exploratory core + C4 (D36)    n 144  beta -0.012 [-0.046, 0.021]  SE 0.016  LR chi2(1) 0.63  p 0.427
+  exploratory core + C5 (D37)    n 144  beta -0.006 [-0.037, 0.025]  SE 0.015  LR chi2(1) 0.16  p 0.690
+  EltonTraits core               n 144  beta 0.002 [-0.029, 0.033]  SE 0.015  LR chi2(1) 0.02  p 0.893
+  EltonTraits extended           n 144  beta 0.009 [-0.023, 0.041]  SE 0.016  LR chi2(1) 0.36  p 0.550
+  divergence time (TimeTree)     n 144  beta 0.001 [-0.028, 0.030]  SE 0.014  LR chi2(1) 0.00  p 0.963
+  log body mass                  n 144  beta -0.001 [-0.030, 0.028]  SE 0.014  LR chi2(1) 0.01  p 0.920
+  EltonTraits names: Canis lupus familiaris = Canis lupus; Equus ferus przewalskii = Equus caballus
+
+TRAIT SENSITIVITY (D38, D43; primary model with the core distance after one change, z-scored; robustness only)
+  sensitivity: raccoon separate body configuration (D38) n 144  beta -0.001 [-0.035, 0.032]  SE 0.016  LR chi2(1) 0.02  p 0.899
+  sensitivity: hedgehog neck length intermediate (D38) n 144  beta -0.007 [-0.039, 0.026]  SE 0.016  LR chi2(1) 0.19  p 0.660
+  sensitivity: cattle neck length short (D43) n 144  beta -0.009 [-0.042, 0.023]  SE 0.016  LR chi2(1) 0.39  p 0.534
+  sensitivity: without body mass (D38) n 144  beta -0.010 [-0.044, 0.024]  SE 0.017  LR chi2(1) 0.42  p 0.516
+  sensitivity: without locomotor specialization (D38) n 144  beta -0.007 [-0.037, 0.023]  SE 0.015  LR chi2(1) 0.25  p 0.614
+  sensitivity: without body configuration (D38) n 144  beta 0.003 [-0.030, 0.035]  SE 0.016  LR chi2(1) 0.02  p 0.890
+  sensitivity: without relative neck length (D38) n 144  beta -0.010 [-0.043, 0.022]  SE 0.016  LR chi2(1) 0.44  p 0.507
+  sensitivity: without food acquisition and handling (D38) n 144  beta -0.016 [-0.051, 0.018]  SE 0.017  LR chi2(1) 0.99  p 0.319
+
+LEAVE ONE SPECIES OUT (D28; primary model without all pairs of the species)
+  Bison bonasus              n 112  beta -0.011 [-0.047, 0.025]  LR chi2 0.46  p 0.499
+  Bos taurus                 n 112  beta -0.016 [-0.058, 0.025]  LR chi2 0.77  p 0.381
+  Canis lupus familiaris     n 112  beta -0.000 [-0.032, 0.032]  LR chi2 0.00  p 0.945
+  Equus caballus             n 112  beta -0.008 [-0.036, 0.019]  LR chi2 0.43  p 0.512
+  Equus ferus przewalskii    n 112  beta -0.001 [-0.035, 0.032]  LR chi2 0.01  p 0.917  (singular fit)
+  Erinaceus europaeus        n 112  beta 0.009 [-0.029, 0.047]  LR chi2 0.26  p 0.613
+  Giraffa camelopardalis     n 112  beta -0.014 [-0.055, 0.026]  LR chi2 0.58  p 0.446  (singular fit)
+  Procyon lotor              n 112  beta -0.021 [-0.061, 0.019]  LR chi2 1.26  p 0.261
+  Vulpes vulpes              n 112  beta -0.018 [-0.057, 0.022]  LR chi2 0.95  p 0.329
+  range of beta: -0.021 to 0.009; p < 0.05 in 0 of 9 refits
+
+PRIMARY MODEL PER SEED (descriptive)
+  seed 42  beta -0.014 [-0.047, 0.019]  LR chi2 0.79  p 0.373
+  seed 43  beta -0.006 [-0.039, 0.027]  LR chi2 0.15  p 0.696
+  seed 44  beta -0.006 [-0.039, 0.028]  LR chi2 0.13  p 0.717
+  seed 45  beta -0.008 [-0.043, 0.027]  LR chi2 0.27  p 0.604
+  seed 46  beta -0.003 [-0.035, 0.029]  LR chi2 0.06  p 0.814
+  range of beta over the seeds: -0.014 to -0.003
+
+SLOPES PER MODEL (interaction model, REML)
+  RF           -0.007 [-0.040, 0.025]
+  LGBM         -0.009 [-0.042, 0.024]
+
+SPEARMAN CORRELATIONS (distance vs. Macro-F1, descriptive; CI by Fisher z, Holm over the models)
+  all models pooled  n 144  rho -0.207 [-0.358, -0.044]  p 0.013  Holm NA
+  RF                 n  72  rho -0.185 [-0.400, 0.049]  p 0.119  Holm 0.119
+  LGBM               n  72  rho -0.231 [-0.439, 0.001]  p 0.051  Holm 0.102
+
+S1: CORRELATIONS OF THE COVARIATES WITH THE DISTANCE
+      variable r_with_trait_distance
+ source_within           -0.07277336
+ target_within           -0.07277336
+
+S1: VARIANCE INFLATION FACTORS
+            Term      VIF
+      z_distance 1.006589
+           model 1.017735
+ z_source_within 1.045459
+ z_target_within 1.045770
+
+S3: GAWDIS TRAIT WEIGHTS (equal weights reproduce the Gower distance: max. difference 1.1e-16)
+                     trait weight_equal correlation_equal weight_analytic weight_optimized correlation_optimized
+           log_body_mass_g          0.2         0.8355795      -0.3636564      0.008008989             0.7286163
+   dominant_locomotor_mode          0.2         0.7410796       0.1477552      0.130288362             0.6220316
+   body_configuration_type          0.2         0.4325427       0.4112123      0.311096464             0.6043716
+      relative_neck_length          0.2         0.5522574       0.3642563      0.311835546             0.6210533
+ food_acquisition_handling          0.2         0.6829983       0.4404327      0.238770638             0.5673634
+
+NOTES
+  Species without within value (left out in S1; as target in S2): Erinaceus europaeus
+  Fit notes (convergence, singularity) are in column notes of h3_models.csv.
