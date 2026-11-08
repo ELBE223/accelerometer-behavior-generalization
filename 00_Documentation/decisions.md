@@ -1329,3 +1329,20 @@ before any model is trained with them. The thesis procedure is given for compari
 - Manuscript (later): Methods 2.4 "divergence times from TimeTree 5 (Kumar et al., 2022),
   except domestic vs. Przewalski's horse (Orlando et al., 2013)"; Table 3, row
   phylogenetic distance, from the local run.
+
+### D49 2026-11-08 – Review of Tables S10–S14 against Results 3.1–3.2
+- Status: confirmed (Lucas, 2026-11-08)
+- Datasets: all (no data, model or statistic changed)
+- Checked: every value cited in Results 3.1–3.2 matches (Wilcoxon tests, Friedman tests,
+  Holm-adjusted comparisons, transfer loss of ResNet: χ² 8.60, p 0.014; resting vs. foraging
+  Holm p 0.041). Table S12 and Figures S2–S3 unchanged.
+- Changes:
+  - Table S10: Hedgehog 1 with its cross-dataset Macro-F1 and accuracy (from
+    `seed_means.csv`; no within-dataset value, not in the H1 tests), so all eleven
+    cross-dataset values are reported.
+  - Tables S11 and S13: medians and IQR with three decimals, as Table 1 and the text; Table
+    S11 column "p-value" → "p method" (exact or normal approximation).
+  - Table S14: note without the leftover rule for dashes.
+- Manuscript (later): Methods 2.5 says the H1 comparison was repeated for the seven datasets
+  in which every individual is a test unit; Results 3.1 should report it: there all six
+  classifiers differ (Macro-F1; CNN p 0.031, ResNet p 0.047, the others p 0.016; Table S11).

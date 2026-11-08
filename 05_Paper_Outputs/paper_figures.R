@@ -856,6 +856,21 @@ table_s_trait_definitions <- function() {
 
 table_s_h1_values <- function() {
   v <- read_stats(main_scenario, "h1_values")
+  # Test datasets without a within-dataset value (Hedgehog 1): cross-dataset values only.
+  sm <- read_stats(main_scenario, "seed_means")
+  extra <- sm[sm$mode == "cross" & !sm$test %in% v$dataset, ]
+  cols <- c("model", "dataset", "macro_f1_within", "macro_f1_sd_within", "accuracy_within", "accuracy_sd_within",
+            "macro_f1_cross", "macro_f1_sd_cross", "accuracy_cross", "accuracy_sd_cross", "gap_macro_f1",
+            "gap_accuracy", "n_test_within", "n_test_cross", "eligible_individuals", "individuals")
+  if (nrow(extra) > 0L) {
+    add <- data.frame(model = extra$model, dataset = extra$test, macro_f1_within = NA, macro_f1_sd_within = NA,
+                      accuracy_within = NA, accuracy_sd_within = NA, macro_f1_cross = extra$macro_f1,
+                      macro_f1_sd_cross = extra$macro_f1_sd, accuracy_cross = extra$accuracy,
+                      accuracy_sd_cross = extra$accuracy_sd, gap_macro_f1 = NA, gap_accuracy = NA, n_test_within = NA,
+                      n_test_cross = extra$n_test, eligible_individuals = NA, individuals = NA)
+    v <- rbind(v[cols], add)
+  }
+  no_within <- sort(unique(short(extra$test)))
   v <- v[order(match(v$model, model_keys), v$dataset), ]
   out <- data.frame(
     Classifier = unname(model_labels[v$model]), `Test dataset` = short(v$dataset),
@@ -866,13 +881,16 @@ table_s_h1_values <- function() {
     `Cross-dataset accuracy` = mean_sd(v$accuracy_cross, v$accuracy_sd_cross),
     `Difference accuracy` = num(v$gap_accuracy),
     `Test windows within-dataset` = int(v$n_test_within), `Test windows cross-dataset` = int(v$n_test_cross),
-    `Within-dataset test units` = paste0(v$eligible_individuals, " of ", v$individuals),
+    `Within-dataset test units` = ifelse(is.na(v$eligible_individuals), DASH,
+                                         paste0(v$eligible_individuals, " of ", v$individuals)),
     check.names = FALSE)
   write_table("h1_values", "Within- and cross-dataset performance per dataset (H1).", out,
               c(paste0("Macro-F1 and accuracy: mean ", PM, " SD over five training seeds. Difference: within-dataset minus cross-dataset value of the seed means."),
                 "Within-dataset: leave one individual out, predictions of all folds pooled; cross-dataset: model trained on all other datasets and tested on the whole dataset.",
-                "Where not every individual is a within-dataset test unit, the cross-dataset test also includes the other individuals (more test windows)."),
-              paste0("04_Statistics/results/", main_scenario, "/h1_values.csv"))
+                "Where not every individual is a within-dataset test unit, the cross-dataset test also includes the other individuals (more test windows).",
+                if (length(no_within) > 0L)
+                  paste0(paste(no_within, collapse = ", "), ": cross-dataset values only; its only eligible test individual could not be held out without leaving fewer than 30 foraging windows for training (not in the H1 tests).")),
+              paste0("04_Statistics/results/", main_scenario, c("/h1_values.csv", "/seed_means.csv")))
 }
 
 table_s_h1_tests <- function() {
@@ -886,11 +904,11 @@ table_s_h1_tests <- function() {
     `Test datasets` = ifelse(t$datasets == "all", "All with a within-dataset value",
                              paste("Without", paste(not_all, collapse = ", "))),
     Classifier = unname(model_labels[t$model]), `Test datasets (n)` = t$n_pairs,
-    `Within-dataset` = med_iqr(t$within_median, t$within_q1, t$within_q3, 2),
-    `Cross-dataset` = med_iqr(t$cross_median, t$cross_q1, t$cross_q3, 2),
-    Difference = med_iqr(t$gap_median, t$gap_q1, t$gap_q3, 2),
+    `Within-dataset` = med_iqr(t$within_median, t$within_q1, t$within_q3),
+    `Cross-dataset` = med_iqr(t$cross_median, t$cross_q1, t$cross_q3),
+    Difference = med_iqr(t$gap_median, t$gap_q1, t$gap_q3),
     `Wilcoxon V` = stat_v(t$V), p = p_txt(t$p_value), `Rank-biserial r` = num(t$rank_biserial, 2),
-    `p-value` = ifelse(t$test_method == "exact", "exact", "normal approximation"),
+    `p method` = ifelse(t$test_method == "exact", "exact", "normal approximation"),
     check.names = FALSE)
   names(out)[names(out) == "Difference"] <- paste0("Difference (within ", MINUS, " cross)")
   write_table("h1_tests", "Wilcoxon tests for both metrics (H1).", out,
@@ -923,7 +941,7 @@ table_s_h2_loss <- function() {
   out <- class_table("transfer_loss_f1")
   write_table("h2_loss", "Transfer loss by behavioral class (H2).", out,
               c("Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.",
-                paste0("Tests as in ", table_ref("h2"), " (", DASH, ": Friedman p >= 0.05). All post-hoc statistics: ", table_ref("h2_posthoc"), ".")),
+                paste0("Tests as in ", table_ref("h2"), ". All post-hoc statistics: ", table_ref("h2_posthoc"), ".")),
               paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv", "/h2_posthoc.csv")))
 }
 
@@ -938,7 +956,7 @@ table_s_h2_posthoc <- function() {
     Response = ifelse(ph$response == "cross_f1", "Cross-dataset F1", "Transfer loss"),
     Classifier = unname(model_labels[ph$model]),
     Comparison = paste(ph$behavior_1, "vs.", ph$behavior_2), `Test datasets (n)` = ph$n_pairs,
-    `Difference (median [IQR])` = med_iqr(ph$diff_median, ph$diff_q1, ph$diff_q3, 2),
+    `Difference (median [IQR])` = med_iqr(ph$diff_median, ph$diff_q1, ph$diff_q3),
     `Wilcoxon V` = stat_v(ph$V), p = p_txt(ph$p_value), `p (Holm)` = p_txt(ph$p_holm),
     `Rank-biserial r` = num(ph$rank_biserial, 2), `Friedman test significant` = yes_no(ph$friedman_significant),
     check.names = FALSE)

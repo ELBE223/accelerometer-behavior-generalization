@@ -9,5 +9,5 @@ RF	0.084 [0.043, 0.128]	0.091 [0.075, 0.272]	0.095 [0.059, 0.121]	0.80	0.670	0.0
 LightGBM	0.095 [0.043, 0.110]	0.113 [0.057, 0.269]	0.087 [0.046, 0.133]	1.80	0.407	0.09
 
 Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.
-Tests as in Table 2 (–: Friedman p >= 0.05). All post-hoc statistics: Table S13.
+Tests as in Table 2. All post-hoc statistics: Table S13.
 Source: 04_Statistics/results/primary/h2_descriptives.csv, 04_Statistics/results/primary/h2_friedman.csv, 04_Statistics/results/primary/h2_posthoc.csv
