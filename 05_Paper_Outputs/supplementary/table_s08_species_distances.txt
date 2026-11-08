@@ -10,7 +10,7 @@ Dog	Horse	0.333	0.345	0.258	0.219	2.235	74.3
 Bison	Przewalski's horse	0.282	0.416	0.020	0.007	0.510	76.1
 Cattle	Przewalski's horse	0.299	0.416	0.436	0.145	1.098	76.1
 Dog	Przewalski's horse	0.338	0.346	0.258	0.219	2.418	74.3
-Horse	Przewalski's horse	0.005	0.000	0.000	0.000	0.183	0.05
+Horse	Przewalski's horse	0.005	0.000	0.000	0.000	0.183	0.055
 Bison	Hedgehog	0.849	0.791	0.583	0.368	6.183	86.4
 Cattle	Hedgehog	0.867	0.792	0.600	0.373	6.771	86.4
 Dog	Hedgehog	0.563	0.549	0.306	0.262	3.255	86.4
@@ -38,7 +38,7 @@ Hedgehog	Red fox	0.516	0.547	0.256	0.242	1.669	86.4
 Giraffe	Red fox	0.684	0.764	0.144	0.211	5.102	76.1
 Raccoon	Red fox	0.467	0.473	0.200	0.297	0.009	45.2
 
-Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.05 Myr after Orlando et al. (2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.
+Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.055 Myr, the midpoint of their population divergence of 38–72 kyr (Orlando et al. 2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.
 EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus.
 Weighted trait distance (gawdis) and EltonTraits with diet: used only in the robustness analyses (Table S9).
 Source: 04_Statistics/results/primary/h3_distances.csv
