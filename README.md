@@ -21,7 +21,7 @@ The study integrates 11 accelerometer datasets covering 9 species and evaluates 
 2. How does transferability differ among behavioral classes?
 3. Does functional-biomechanical similarity between species explain cross-species transfer performance?
 
-<img width="600" height="600" alt="M A _Animals" src="https://github.com/user-attachments/assets/60189d8f-90ce-4210-9360-bf3efe61177d" />
+<img width="250" height="250" alt="M A _Animals" src="https://github.com/user-attachments/assets/60189d8f-90ce-4210-9360-bf3efe61177d" />
 
 ## Repository structure
 
