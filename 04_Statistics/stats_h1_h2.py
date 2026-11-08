@@ -8,8 +8,12 @@
 #             signed-rank test per model, rank-biserial correlation, gaps
 #   H2        cross F1 per class: Friedman test per model (blocks: test datasets with all
 #             classes), Kendall's W, pairwise Wilcoxon tests between the classes with Holm
-#             correction per model (interpreted only after a significant Friedman test);
-#             the same for the transfer loss (within F1 - cross F1 per class)
+#             correction per model; the same for the transfer loss (within F1 - cross F1
+#             per class). The Friedman p-values are also Holm-adjusted over the models of a
+#             response (D44); the post-hoc tests are interpreted only after a Friedman test
+#             that is significant after this adjustment. The transfer loss is also tested on
+#             the datasets in which within and cross score the same windows (datasets
+#             "same_test_windows", as in H1; D44)
 #   H3 input  pairwise Macro-F1 per model and dataset pair (mean and SD over the seeds) with
 #             the scientific species names and the within Macro-F1 of both datasets, for
 #             04_Statistics/stats_h3.R
@@ -219,29 +223,54 @@ def h2_values(sm: pd.DataFrame, classes: list[str]) -> pd.DataFrame:
               "within_f1_sd", "within_support", "transfer_loss_f1"]]
 
 
-def h2_tests(v: pd.DataFrame, classes: list[str]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+# Dataset sets per H2 response: "all" = every test dataset with complete blocks;
+# "same_test_windows" (transfer loss only) = datasets in which every individual is a within
+# test unit, so within and cross F1 score the same windows (D12, D44). The cross F1 always
+# scores the whole dataset, so the restriction only matters for the transfer loss.
+H2_DATASETS = {"cross_f1": ["all"], "transfer_loss_f1": ["all", "same_test_windows"]}
+FRIEDMAN_COLS = ["model", "response", "datasets", "groups", "n_blocks", "chi_sq", "df", "p_value", "p_holm",
+                 "kendalls_w", "blocks"]
+
+
+def h2_tests(v: pd.DataFrame, classes: list[str],
+             same_windows: set[tuple[str, str]]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     fried, post, desc = [], [], []
-    for response in ["cross_f1", "transfer_loss_f1"]:
-        for model, g in v.groupby("model", observed=True):
-            for c in classes:
-                desc.append({"model": model, "response": response, "behavior": c,
-                             "n": int(g.loc[g["behavior"] == c, response].notna().sum()),
-                             **describe(g.loc[g["behavior"] == c, response], "value")})
-            table = g.pivot(index="dataset", columns="behavior", values=response).reindex(columns=classes)
-            table = table.dropna()  # complete blocks only
-            res = friedman(table)
-            fried.append({"model": model, "response": response, "groups": len(classes), **res,
-                          "blocks": " ".join(table.index)})
-            pairs = []
-            for a, b in combinations(classes, 2):
-                diff = table[a] - table[b]
-                pairs.append({"model": model, "response": response, "behavior_1": a, "behavior_2": b,
-                              **wilcoxon(table[a], table[b]), **describe(diff, "diff")})
-            adj = holm([p["p_value"] for p in pairs])
-            for p, a in zip(pairs, adj):
-                p.update(p_holm=a, friedman_significant=bool(res["p_value"] < ALPHA))
-            post += pairs
-    return pd.DataFrame(fried), pd.DataFrame(post), pd.DataFrame(desc)
+    for response, dataset_sets in H2_DATASETS.items():
+        for dataset_set in dataset_sets:
+            sub = v
+            if dataset_set == "same_test_windows":
+                sub = v[[(m, d) in same_windows for m, d in zip(v["model"], v["dataset"])]]
+            first_fried, first_post = len(fried), len(post)
+            for model, g in sub.groupby("model", observed=True):
+                for c in classes:
+                    desc.append({"model": model, "response": response, "datasets": dataset_set, "behavior": c,
+                                 "n": int(g.loc[g["behavior"] == c, response].notna().sum()),
+                                 **describe(g.loc[g["behavior"] == c, response], "value")})
+                table = g.pivot(index="dataset", columns="behavior", values=response).reindex(columns=classes)
+                table = table.dropna()  # complete blocks only
+                res = friedman(table)
+                fried.append({"model": model, "response": response, "datasets": dataset_set,
+                              "groups": len(classes), **res, "blocks": " ".join(table.index)})
+                pairs = []
+                for a, b in combinations(classes, 2):
+                    diff = table[a] - table[b]
+                    pairs.append({"model": model, "response": response, "datasets": dataset_set,
+                                  "behavior_1": a, "behavior_2": b,
+                                  **wilcoxon(table[a], table[b]), **describe(diff, "diff")})
+                adj = holm([p["p_value"] for p in pairs])
+                for p, a in zip(pairs, adj):
+                    p.update(p_holm=a, friedman_significant=bool(res["p_value"] < ALPHA))
+                post += pairs
+            # D44: Holm over the Friedman tests of all models of this response and dataset set;
+            # the post-hoc tests are interpreted only if the adjusted Friedman p is below ALPHA.
+            family = fried[first_fried:]
+            adj = dict(zip([f["model"] for f in family], holm([f["p_value"] for f in family])))
+            for f in family:
+                f["p_holm"] = adj[f["model"]]
+            for p in post[first_post:]:
+                p.update(friedman_p_holm=adj[p["model"]],
+                         friedman_significant_holm=bool(adj[p["model"]] < ALPHA))
+    return pd.DataFrame(fried)[FRIEDMAN_COLS], pd.DataFrame(post), pd.DataFrame(desc)
 
 
 # --- H3 input -------------------------------------------------------------------------
@@ -295,19 +324,31 @@ def report(scenario: str, sm, var, h1v, h1t, h2f, h2p, h2d, h3, classes) -> list
                      f"{r.n_within_higher:>2}  gap median {r.gap_median:.3f} [{r.gap_q1:.3f}, {r.gap_q3:.3f}]  "
                      f"V {r.V:g}  p {fmt_p(r.p_value)}  r_rb {r.rank_biserial:.2f}  ({r.test_method.split(',')[0]})")
 
-    lines += ["", "", f"H2: DIFFERENCES BETWEEN THE CLASSES ({', '.join(classes)})", ""]
-    for response, title in [("cross_f1", "Cross F1 per class"), ("transfer_loss_f1", "Transfer loss (within F1 - cross F1)")]:
+    lines += ["", "", f"H2: DIFFERENCES BETWEEN THE CLASSES ({', '.join(classes)})", "",
+              "  Friedman p: unadjusted and Holm-adjusted over the models of a response (D44); post-hoc tests",
+              "  only interpreted if the Holm-adjusted Friedman p is below 0.05.", ""]
+    sections = [("cross_f1", "all", "Cross F1 per class"),
+                ("transfer_loss_f1", "all", "Transfer loss (within F1 - cross F1)"),
+                ("transfer_loss_f1", "same_test_windows",
+                 "Transfer loss, only datasets with the same test windows within and cross (D44)")]
+    for response, dataset_set, title in sections:
         lines += [f"  {title}", ""]
-        d = h2d[h2d["response"] == response].pivot(index="model", columns="behavior", values="value_median")
+        d = h2d[(h2d["response"] == response) & (h2d["datasets"] == dataset_set)]
+        d = d.pivot(index="model", columns="behavior", values="value_median")
         d = d.reindex(index=[x for x in MODEL_ORDER if x in d.index], columns=classes).rename(index=DISPLAY)
         lines += ["    Median over the datasets:"] + ["    " + ln for ln in d.round(3).to_string().splitlines()]
         lines.append("")
-        for r in h2f[h2f["response"] == response].itertuples():
+        for r in h2f[(h2f["response"] == response) & (h2f["datasets"] == dataset_set)].itertuples():
             lines.append(f"    {DISPLAY[r.model]:<12} Friedman chi² {r.chi_sq:.2f}, df {r.df}, n {r.n_blocks}, "
-                         f"p {fmt_p(r.p_value)}, Kendall's W {r.kendalls_w:.2f}")
-            sub = h2p[(h2p["response"] == response) & (h2p["model"] == r.model)]
+                         f"p {fmt_p(r.p_value)}, Holm {fmt_p(r.p_holm)}, Kendall's W {r.kendalls_w:.2f}")
+            sub = h2p[(h2p["response"] == response) & (h2p["datasets"] == dataset_set) & (h2p["model"] == r.model)]
             for q in sub.itertuples():
-                flag = "" if q.friedman_significant else "  (not interpreted: Friedman not significant)"
+                if not q.friedman_significant:
+                    flag = "  (not interpreted: Friedman not significant)"
+                elif not q.friedman_significant_holm:
+                    flag = "  (not interpreted: Friedman not significant after Holm)"
+                else:
+                    flag = ""
                 lines.append(f"      {q.behavior_1} - {q.behavior_2}: median diff {q.diff_median:+.3f}, "
                              f"V {q.V:g}, p {fmt_p(q.p_value)}, Holm {fmt_p(q.p_holm)}{flag}")
         lines.append("")
@@ -330,7 +371,8 @@ def run(scenario: str) -> bool:
     var = seed_variability(sm)
     h1v, h1t = h1(sm)
     h2v = h2_values(sm, classes)
-    h2f, h2p, h2d = h2_tests(h2v, classes)
+    same_windows = set(zip(h1v.loc[h1v["same_test_windows"], "model"], h1v.loc[h1v["same_test_windows"], "dataset"]))
+    h2f, h2p, h2d = h2_tests(h2v, classes, same_windows)
     h3, h3_seeds = h3_input(sm, m)
     out = STATS_DIR / scenario
     out.mkdir(parents=True, exist_ok=True)

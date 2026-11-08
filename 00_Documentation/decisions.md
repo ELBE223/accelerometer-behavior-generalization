@@ -89,6 +89,12 @@ was trained (D01).
   with Holm correction, interpreted only after a significant Friedman test. H3: dyadic
   mixed model; likelihood-ratio test of ML fits, estimates from the REML fit (Satterthwaite
   df), R² after Nakagawa.
+- **D44** H2, decided after the results were known: the six Friedman tests of a response
+  (one per classifier) are also Holm-adjusted, and post-hoc tests are interpreted only after
+  a Friedman test that is significant after the adjustment (Table 2, Tables S13–S14). The
+  transfer loss is also tested on the seven datasets in which within- and cross-dataset F1
+  score the same windows (without Dog 1, Horse 2 and Raccoon 2; Table S14). Unadjusted
+  p-values stay reported.
 - **D28** H3 robustness (Table S9, S18): other random-effects structures, adjustment for
   within-dataset Macro-F1, retention as response, weighted trait distance (gawdis),
   EltonTraits with and without diet, body mass difference, divergence time,

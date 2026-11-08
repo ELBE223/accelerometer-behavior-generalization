@@ -334,7 +334,7 @@ plot_within_cross <- function(metric, y_label) {
 class_values <- function(response) {
   v <- read_stats(main_scenario, "h2_values")
   fr <- read_stats(main_scenario, "h2_friedman")
-  fr <- fr[fr$response == response, ]
+  fr <- fr[fr$response == response & fr$datasets == "all", ]
   blocks <- unlist(lapply(seq_len(nrow(fr)), function(i) paste(fr$model[i], strsplit(fr$blocks[i], " +")[[1]])))
   v <- v[paste(v$model, v$dataset) %in% blocks & v$behavior %in% classes & is.finite(v[[response]]), ]
   data.frame(model = model_factor(v$model), dataset = v$dataset,
@@ -373,15 +373,16 @@ caption_classes <- function(title, response, ref) {
 }
 
 # H2 summary table (Table 2 for the cross-dataset F1, the transfer-loss table in the
-# supplement): median [IQR] per class, Friedman test, Holm-adjusted post-hoc p only after a
-# significant Friedman test.
-class_table <- function(response, digits = 3, posthoc = FALSE) {
+# supplement): median [IQR] per class, Friedman test (p unadjusted and Holm-adjusted over the
+# six classifiers, D44), Holm-adjusted post-hoc p only after a Friedman test that is
+# significant after the Holm adjustment. `datasets`: "all" or "same_test_windows" (D44).
+class_table <- function(response, digits = 3, posthoc = FALSE, datasets = "all") {
   de <- read_stats(main_scenario, "h2_descriptives")
   fr <- read_stats(main_scenario, "h2_friedman")
   ph <- read_stats(main_scenario, "h2_posthoc")
-  de <- de[de$response == response, ]
-  fr <- fr[fr$response == response, ]
-  ph <- ph[ph$response == response, ]
+  de <- de[de$response == response & de$datasets == datasets, ]
+  fr <- fr[fr$response == response & fr$datasets == datasets, ]
+  ph <- ph[ph$response == response & ph$datasets == datasets, ]
   rows <- lapply(model_keys, function(m) {
     f <- fr[fr$model == m, ]
     cells <- vapply(classes, function(cl) {
@@ -390,15 +391,15 @@ class_table <- function(response, digits = 3, posthoc = FALSE) {
     }, character(1))
     post <- vapply(class_pairs, function(pair) {
       r <- posthoc_pair(ph, m, pair)
-      if (as.logical(r$friedman_significant)) p_txt(r$p_holm) else DASH
+      if (as.logical(r$friedman_significant_holm)) p_txt(r$p_holm) else DASH
     }, character(1))
     out <- c(Classifier = model_labels[[m]], cells, chi = num(f$chi_sq, 2), p = p_txt(f$p_value),
-             W = num(f$kendalls_w, 2))
+             p_holm = p_txt(f$p_holm), W = num(f$kendalls_w, 2))
     if (posthoc) out <- c(out, setNames(post, c("ph1", "ph2", "ph3")))
     as.data.frame(as.list(out), check.names = FALSE)
   })
   out <- do.call(rbind, rows)
-  names(out) <- c("Classifier", classes, paste0("Friedman ", CHI2), "p", "W",
+  names(out) <- c("Classifier", classes, paste0("Friedman ", CHI2), "p", "p (Holm)", "W",
                   if (posthoc) vapply(class_pairs, function(pair) paste0("p (Holm) ", pair[1], " vs. ", pair[2]), character(1)))
   out
 }
@@ -483,11 +484,11 @@ figure_2 <- function() {
 
 table_2 <- function() {
   fr <- read_stats(main_scenario, "h2_friedman")
-  n <- paste(sort(unique(fr$n_blocks[fr$response == "cross_f1"])), collapse = " or ")
+  n <- paste(sort(unique(fr$n_blocks[fr$response == "cross_f1" & fr$datasets == "all"])), collapse = " or ")
   write_table("h2", "Behavioral differences in cross-dataset F1.", class_table("cross_f1"),
               c(paste0("Median [IQR] over the ", n, " test datasets with at least 5 test windows per class; each value is the mean over five training seeds."),
-                paste0("Friedman test (df = 2) with Kendall's W. Values per dataset: ", table_ref("h2_values"),
-                       "; Holm-adjusted post-hoc tests: ", table_ref("h2_posthoc"), ".")),
+                "Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests (one per classifier).",
+                paste0("Values per dataset: ", table_ref("h2_values"), "; post-hoc tests: ", table_ref("h2_posthoc"), ".")),
               paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv")))
 }
 
@@ -683,7 +684,7 @@ scenario_rows <- function() {
   }))
   h2 <- do.call(rbind, lapply(present, function(s) {
     f <- read_stats(s, "h2_friedman")
-    f <- f[f$model %in% c("rf", "lgbm") & f$response == "cross_f1", ]
+    f <- f[f$model %in% c("rf", "lgbm") & f$response == "cross_f1" & f$datasets == "all", ]
     cbind(scenario = s, f)
   }))
   h3 <- do.call(rbind, lapply(present[file.exists(file.path(stats_dir, present, "h3_models.csv"))], function(s) {
@@ -937,15 +938,28 @@ table_s_h2_values <- function() {
 }
 
 table_s_h2_loss <- function() {
-  out <- class_table("transfer_loss_f1")
+  fr <- read_stats(main_scenario, "h2_friedman")
+  v <- read_stats(main_scenario, "h1_values")
+  not_all <- sort(unique(short(v$dataset[!v$same_test_windows])))
+  sets <- c(all = "All with a within-dataset value", same_test_windows = paste("Without", paste(not_all, collapse = ", ")))
+  out <- do.call(rbind, lapply(names(sets), function(ds) {
+    t <- class_table("transfer_loss_f1", datasets = ds)
+    f <- fr[fr$response == "transfer_loss_f1" & fr$datasets == ds, ]
+    n <- f$n_blocks[match(model_keys, f$model)]
+    data.frame(`Test datasets` = unname(sets[ds]), t[1], `Test datasets (n)` = n, t[-1], check.names = FALSE)
+  }))
   write_table("h2_loss", "Transfer loss by behavioral class (H2).", out,
               c("Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.",
-                paste0("Tests as in ", table_ref("h2"), ". All post-hoc statistics: ", table_ref("h2_posthoc"), ".")),
-              paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv", "/h2_posthoc.csv")))
+                paste0("Without ", paste(not_all, collapse = ", "), ": only datasets in which every individual is a within-dataset test unit, so within- and cross-dataset F1 score the same windows (as in ",
+                       table_ref("h1_tests"), "); sensitivity analysis."),
+                "Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests of a block (one per classifier).",
+                paste0("Post-hoc statistics: ", table_ref("h2_posthoc"), " (block of the seven datasets: 04_Statistics/results/", main_scenario, "/h2_posthoc.csv).")),
+              paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv", "/h2_posthoc.csv", "/h1_values.csv")))
 }
 
 table_s_h2_posthoc <- function() {
   raw <- read_stats(main_scenario, "h2_posthoc")
+  raw <- raw[raw$datasets == "all", ]
   ph <- do.call(rbind, lapply(c("cross_f1", "transfer_loss_f1"), function(resp) {
     do.call(rbind, lapply(model_keys, function(m) {
       do.call(rbind, lapply(class_pairs, function(pair) posthoc_pair(raw[raw$response == resp, ], m, pair)))
@@ -958,10 +972,12 @@ table_s_h2_posthoc <- function() {
     `Difference (median [IQR])` = med_iqr(ph$diff_median, ph$diff_q1, ph$diff_q3),
     `Wilcoxon V` = stat_v(ph$V), p = p_txt(ph$p_value), `p (Holm)` = p_txt(ph$p_holm),
     `Rank-biserial r` = num(ph$rank_biserial, 2), `Friedman test significant` = yes_no(ph$friedman_significant),
+    `Friedman test significant (Holm)` = yes_no(ph$friedman_significant_holm),
     check.names = FALSE)
   write_table("h2_posthoc", "Post-hoc class comparisons (H2).", out,
               c("Difference: first minus second class, per test dataset; rank-biserial r > 0: the first class is higher. Holm adjustment over the three pairs of a classifier and response.",
-                paste0("Interpreted only if the Friedman test of the classifier is significant (", table_ref("h2"), "; ", table_ref("h2_loss"), ").")),
+                paste0("Friedman test significant: unadjusted p < 0.05; (Holm): p < 0.05 after Holm adjustment over the six classifiers (", table_ref("h2"), "; ", table_ref("h2_loss"), ")."),
+                "Post-hoc comparisons are interpreted only after a Friedman test that is significant after the Holm adjustment; otherwise they are descriptive."),
               paste0("04_Statistics/results/", main_scenario, "/h2_posthoc.csv"))
 }
 
@@ -1122,7 +1138,7 @@ table_s_scenarios <- function() {
   lost_text <- paste(paste0(unname(scenarios[s$present[nzchar(lost)]]), ": without ", lost[nzchar(lost)]), collapse = "; ")
   write_table("scenarios", "Sensitivity scenarios.", out,
               c(paste0("H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. ",
-                       "H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3)."),
+                       "H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3), p unadjusted."),
                 "H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).",
                 "Scenario definitions: Text S1.",
                 if (nzchar(lost_text)) paste0("H1 test datasets: datasets with a within-dataset value; ", lost_text,

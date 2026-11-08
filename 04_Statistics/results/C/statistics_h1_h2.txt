@@ -55,6 +55,9 @@ H1: WITHIN VS. CROSS (Macro-F1 per dataset, mean ± SD over the seeds)
 
 H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
 
+  Friedman p: unadjusted and Holm-adjusted over the models of a response (D44); post-hoc tests
+  only interpreted if the Holm-adjusted Friedman p is below 0.05.
+
   Cross F1 per class
 
     Median over the datasets:
@@ -63,14 +66,14 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
     RF           0.631       0.636    0.845
     LGBM         0.640       0.647    0.816
 
-    RF           Friedman chi² 4.91, df 2, n 11, p 0.086, Kendall's W 0.22
+    RF           Friedman chi² 4.91, df 2, n 11, p 0.086, Holm 0.086, Kendall's W 0.22
       Foraging - Locomotion: median diff +0.001, V 29, p 0.765, Holm 0.765  (not interpreted: Friedman not significant)
       Foraging - Resting: median diff -0.164, V 6, p 0.014, Holm 0.041  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff -0.209, V 10, p 0.042, Holm 0.084  (not interpreted: Friedman not significant)
-    LGBM         Friedman chi² 7.09, df 2, n 11, p 0.029, Kendall's W 0.32
-      Foraging - Locomotion: median diff -0.006, V 28, p 0.700, Holm 0.700
-      Foraging - Resting: median diff -0.132, V 5, p 0.010, Holm 0.029
-      Locomotion - Resting: median diff -0.202, V 12, p 0.067, Holm 0.135
+    LGBM         Friedman chi² 7.09, df 2, n 11, p 0.029, Holm 0.058, Kendall's W 0.32
+      Foraging - Locomotion: median diff -0.006, V 28, p 0.700, Holm 0.700  (not interpreted: Friedman not significant after Holm)
+      Foraging - Resting: median diff -0.132, V 5, p 0.010, Holm 0.029  (not interpreted: Friedman not significant after Holm)
+      Locomotion - Resting: median diff -0.202, V 12, p 0.067, Holm 0.135  (not interpreted: Friedman not significant after Holm)
 
   Transfer loss (within F1 - cross F1)
 
@@ -80,14 +83,31 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
     RF           0.094       0.090    0.081
     LGBM         0.093       0.115    0.086
 
-    RF           Friedman chi² 0.60, df 2, n 10, p 0.741, Kendall's W 0.03
+    RF           Friedman chi² 0.60, df 2, n 10, p 0.741, Holm 1.000, Kendall's W 0.03
       Foraging - Locomotion: median diff -0.023, V 20, p 0.492, Holm 1.000  (not interpreted: Friedman not significant)
       Foraging - Resting: median diff +0.005, V 30, p 0.846, Holm 1.000  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff +0.006, V 37, p 0.375, Holm 1.000  (not interpreted: Friedman not significant)
-    LGBM         Friedman chi² 0.60, df 2, n 10, p 0.741, Kendall's W 0.03
+    LGBM         Friedman chi² 0.60, df 2, n 10, p 0.741, Holm 1.000, Kendall's W 0.03
       Foraging - Locomotion: median diff -0.022, V 19, p 0.432, Holm 1.000  (not interpreted: Friedman not significant)
       Foraging - Resting: median diff +0.002, V 30, p 0.846, Holm 1.000  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff +0.017, V 36, p 0.432, Holm 1.000  (not interpreted: Friedman not significant)
+
+  Transfer loss, only datasets with the same test windows within and cross (D44)
+
+    Median over the datasets:
+    behavior  Foraging  Locomotion  Resting
+    model                                  
+    RF           0.074       0.093    0.085
+    LGBM         0.094       0.120    0.087
+
+    RF           Friedman chi² 2.00, df 2, n 7, p 0.368, Holm 0.736, Kendall's W 0.14
+      Foraging - Locomotion: median diff -0.042, V 7, p 0.297, Holm 0.656  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff -0.003, V 13, p 0.938, Holm 0.938  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.008, V 22, p 0.219, Holm 0.656  (not interpreted: Friedman not significant)
+    LGBM         Friedman chi² 2.00, df 2, n 7, p 0.368, Holm 0.736, Kendall's W 0.14
+      Foraging - Locomotion: median diff -0.054, V 6, p 0.219, Holm 0.656  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.009, V 13, p 0.938, Holm 0.938  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.035, V 22, p 0.219, Holm 0.656  (not interpreted: Friedman not significant)
 
 
 H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)

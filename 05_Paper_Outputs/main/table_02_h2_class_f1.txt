@@ -1,13 +1,14 @@
 Table 2. Behavioral differences in cross-dataset F1.
 
-Classifier	Resting	Locomotion	Foraging	Friedman χ²	p	W
-CNN	0.811 [0.664, 0.882]	0.619 [0.487, 0.676]	0.578 [0.409, 0.631]	3.45	0.178	0.16
-ResNet	0.794 [0.674, 0.879]	0.623 [0.517, 0.690]	0.552 [0.474, 0.627]	8.91	0.012	0.40
-HYDRA	0.808 [0.678, 0.862]	0.615 [0.566, 0.703]	0.586 [0.413, 0.638]	9.45	0.009	0.43
-MultiRocket	0.796 [0.678, 0.882]	0.614 [0.500, 0.674]	0.609 [0.465, 0.634]	8.91	0.012	0.40
-RF	0.852 [0.707, 0.898]	0.632 [0.575, 0.713]	0.619 [0.509, 0.691]	8.91	0.012	0.40
-LightGBM	0.826 [0.706, 0.896]	0.627 [0.566, 0.707]	0.623 [0.502, 0.686]	8.91	0.012	0.40
+Classifier	Resting	Locomotion	Foraging	Friedman χ²	p	p (Holm)	W
+CNN	0.811 [0.664, 0.882]	0.619 [0.487, 0.676]	0.578 [0.409, 0.631]	3.45	0.178	0.178	0.16
+ResNet	0.794 [0.674, 0.879]	0.623 [0.517, 0.690]	0.552 [0.474, 0.627]	8.91	0.012	0.058	0.40
+HYDRA	0.808 [0.678, 0.862]	0.615 [0.566, 0.703]	0.586 [0.413, 0.638]	9.45	0.009	0.053	0.43
+MultiRocket	0.796 [0.678, 0.882]	0.614 [0.500, 0.674]	0.609 [0.465, 0.634]	8.91	0.012	0.058	0.40
+RF	0.852 [0.707, 0.898]	0.632 [0.575, 0.713]	0.619 [0.509, 0.691]	8.91	0.012	0.058	0.40
+LightGBM	0.826 [0.706, 0.896]	0.627 [0.566, 0.707]	0.623 [0.502, 0.686]	8.91	0.012	0.058	0.40
 
 Median [IQR] over the 11 test datasets with at least 5 test windows per class; each value is the mean over five training seeds.
-Friedman test (df = 2) with Kendall's W. Values per dataset: Table S12; Holm-adjusted post-hoc tests: Table S13.
+Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests (one per classifier).
+Values per dataset: Table S12; post-hoc tests: Table S13.
 Source: 04_Statistics/results/primary/h2_descriptives.csv, 04_Statistics/results/primary/h2_friedman.csv

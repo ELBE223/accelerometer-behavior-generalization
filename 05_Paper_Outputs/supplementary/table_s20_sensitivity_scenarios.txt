@@ -9,7 +9,7 @@ Four classes (with Other)	8	0.158 [0.092, 0.210]	0.016	0.148 [0.098, 0.220]	0.02
 Ridden gaits as locomotion	10	0.092 [0.081, 0.123]	0.002	0.087 [0.067, 0.124]	0.002	χ²(2) = 7.82, p = 0.020	χ²(2) = 7.82, p = 0.020	-0.005 [-0.039, 0.029]	0.761
 Eligible individuals only	10	0.099 [0.077, 0.125]	0.004	0.094 [0.062, 0.133]	0.004	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.001 [-0.033, 0.032]	0.941
 
-H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3).
+H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3), p unadjusted.
 H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).
 Scenario definitions: Text S1.
 H1 test datasets: datasets with a within-dataset value; Four classes (with Other): without Dog 2 and Raccoon 1 (no individual that meets the rule for a test unit and can be held out with at least 30 training windows per class).
