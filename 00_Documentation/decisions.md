@@ -1232,3 +1232,32 @@ before any model is trained with them. The thesis procedure is given for compari
   Table S15; final wording of Text S1; the separate trait supplement draft (not in this
   repository) must cite Table S9, not S11, for the distance sensitivities; move the local
   data folders into `data/` (`data/README.md`).
+
+### D45 2026-11-08 – Repository reduced to what the analysis and the paper need
+- Status: confirmed (Lucas, 2026-11-08: fill the new structure only with what is really
+  needed; remove the working files, the raw data reports, the model result details, the
+  uncited outputs, the trait evidence and the Word version of the trait document)
+- Datasets: all (no data, model or statistic changed)
+- Removed from this repository (all kept in `ELBE223/paper-izw-cross-species-transfer`, which
+  stays as the archive):
+  - Working files: `00_Documentation/thesis_reference/` (thesis R scripts, not run),
+    `00_Documentation/raw_data_review.md`, `01_Preprocessing/checks/check_thesis_windows.py`
+    and its report.
+  - Raw data reports: `01_Preprocessing/dataset_report.py` and its reports (they contained
+    example values of the non-public raw data; mode `reports` of `update_local.sh` dropped);
+    the text reports per dataset and step of the pipeline (now local only, `.gitignore`).
+    In git remain the summaries `class_summary.csv`, `window_summary.csv` and
+    `activity_levels.csv` (each also for variant C).
+  - Model result details: `confusion.csv`, `importance.csv`, `training_sets.csv` and
+    `within_folds.csv` of every model and scenario (about 11 MB; local only,
+    `.gitignore`). The statistics read `metrics.csv` only; `skipped.csv` and `summary.txt`
+    stay.
+  - Uncited outputs: the former Figures S4–S8 and Table S21 (`05_Paper_Outputs/additional/`)
+    and their code in `paper_figures.R`, with helpers and palette entries no output used.
+    The script now makes exactly the items the manuscript cites; an item without a number
+    stops it.
+  - Traits: `traits/evidence/` (reviews and audits behind each value) and
+    `traits/core_traits.docx`; `traits/core_traits.md` is the version in this repository
+    and points to the archive for the evidence. Table S6 cites `core_traits.md`.
+- Check: `paper_figures.R` gives the same tables and captions as before except the source
+  of the trait text in the note of Table S6; `tests/check_paper_outputs.py` passes.

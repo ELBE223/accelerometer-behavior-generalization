@@ -21,15 +21,12 @@ D21–D25.
 the sensitivity scenarios with RF and LightGBM (`A`, `C`, `majority`, `four_classes`, `E`,
 `F`; Text S1, Table S20):
 
-| File | Content |
-|---|---|
-| `metrics.csv` | Accuracy, macro and per-class precision, recall and F1 per mode, seed and test dataset (pair) |
-| `confusion.csv` | Confusion matrices |
-| `within_folds.csv` | Per held-out individual (within mode) |
-| `training_sets.csv` | Windows per class used for training |
-| `importance.csv` | Feature importance (RF, LightGBM) |
-| `skipped.csv` | Evaluations that were not possible, with the reason |
-| `../summary.txt` | Overview of the scenario |
+| File | Content | In git |
+|---|---|---|
+| `metrics.csv` | Accuracy, macro and per-class precision, recall and F1 per mode, seed and test dataset (pair); the only input of the statistics | yes |
+| `skipped.csv` | Evaluations that were not possible, with the reason | yes |
+| `../summary.txt` | Overview of the scenario | yes |
+| `confusion.csv`, `within_folds.csv`, `training_sets.csv`, `importance.csv` | Confusion matrices, per held-out individual, training windows per class, feature importance | no (local only, D45) |
 
 Run: `python 03_Evaluation/train_models.py --models rf lgbm` (see the script header for all
 options), or `bash update_local.sh models`. The window features and classifiers are

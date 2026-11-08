@@ -1,1 +1,0 @@
-Additional figure. Cross-species Macro-F1 and trait distance per classifier. Points: ordered species pairs; lines: classifier-specific slopes of the interaction model. Statistics: Table S17.

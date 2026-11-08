@@ -1,1 +1,0 @@
-Additional figure. Pairwise transfer between datasets. Macro-F1 of models trained on one dataset (rows) and tested on another (columns), mean over classifiers and seeds; framed: same species (excluded from H3). Values: Table S15.

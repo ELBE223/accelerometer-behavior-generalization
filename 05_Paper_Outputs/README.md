@@ -13,7 +13,6 @@ python tests/check_paper_outputs.py           # checks manifest, numbering and c
 |---|---|
 | `main/` | Tables 1–3 (`table_0n_*.txt`), Figures 1–3 (`figure_0n_*.png`, 600 dpi, with `*_caption.txt`) |
 | `supplementary/` | Tables S1–S20 (`table_snn_*.txt`), Figures S1–S3 (`figure_snn_*.png`), Text S1 (`text_s01_*.md`) |
-| `additional/` | Outputs the manuscript does not cite (no number): kept for reference |
 | `output_manifest.csv` | One row per output: item, section, title, file, caption, source files, the script that made them (`produced_by`), where the manuscript cites it (`cited_in`) |
 
 Tables are tab-separated text: title, header, rows, notes, source. In Word, select the
@@ -25,9 +24,9 @@ five training seeds (scenario `primary`).
 The numbering is defined in one place, the block "Numbering" at the top of
 `paper_figures.R` (`table_numbers`, `figure_numbers`, `cited_in`). File names, titles,
 captions, cross-references inside the tables and the manifest all follow it. To renumber
-an item, or to move an additional item into the supplement, change that block and run the
-script. Old files are deleted on every run, so no output with an outdated number stays
-behind. A reference to an item without a number stops the script.
+an item, change that block and run the script. Old files are deleted on every run, so no
+output with an outdated number stays behind. Only items the manuscript cites are made; an
+item without a number stops the script.
 
 | Item | Content | File | Cited in |
 |---|---|---|---|
@@ -56,9 +55,9 @@ behind. A reference to an item without a number stops the script.
 | Figure S3 | Transfer loss by behavioral class | `figure_s03_h2_transfer_loss.png` | Results 3.2 |
 | Text S1 | Sensitivity scenarios (draft) | `text_s01_sensitivity_scenarios.md` | Results 3.1 |
 
-Additional (not cited, no number): pairwise transfer heatmap, H3 per classifier, H3
-robustness (forest plot), leave one species out (forest plot), sensitivity scenarios
-(plot), seed variability (table). These were Figures S4–S8 and Table S21 before D44.
+Not made any more (not cited in the manuscript, D45): the former Figures S4–S8
+(pairwise heatmap, H3 per classifier, H3 robustness, leave one species out, sensitivity
+scenarios) and Table S21 (seed variability). Their code is in the archived repository.
 
 This table is an overview. `output_manifest.csv` is the authoritative list, and the
 check script compares it with the files.

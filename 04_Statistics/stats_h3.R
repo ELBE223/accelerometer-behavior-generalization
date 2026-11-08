@@ -10,7 +10,7 @@
 #              mass, locomotor specialization, body configuration, relative neck length
 #              (ordinal short < intermediate < long < very_long) and food acquisition and
 #              handling (00_Documentation/traits/species_traits_core.csv; definitions in
-#              00_Documentation/traits/core_traits.docx); C4/C5 for the exploratory add-backs
+#              00_Documentation/traits/core_traits.md); C4/C5 for the exploratory add-backs
 #              in species_traits_exploratory.csv
 #   data       pairs of the same species (scientific name) left out; mean over the dataset
 #              pairs of a species pair, one value per model and ordered species pair

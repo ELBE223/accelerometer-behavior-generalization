@@ -4,11 +4,10 @@
 #   05_Paper_Outputs/main/                Figures 1-3, Tables 1-3 (+ figure_<nn>_*_caption.txt)
 #   05_Paper_Outputs/supplementary/       Tables S1-S20, Figures S1-S3, numbered as cited in the
 #                                         manuscript (block "Numbering" below)
-#   05_Paper_Outputs/additional/          outputs the manuscript does not cite (no number)
 #   05_Paper_Outputs/output_manifest.csv  every output with title, file, sources, the script
 #                                         that made the sources and where the manuscript cites it
-# Generated files (table_*, figure_*) in main/, supplementary/ and additional/ are deleted
-# before each run, so no output with an outdated number is left behind; hand-written files
+# Generated files (table_*, figure_*) in main/ and supplementary/ are deleted before each
+# run, so no output with an outdated number is left behind; hand-written files
 # (Text S1) are kept.
 # Values are means over the five training seeds (D26); scenario "primary".
 # Every plot has its legend; title and caption only in <figure>_caption.txt.
@@ -51,7 +50,6 @@ trait_definitions_file <- doc("traits", "core_trait_definitions.csv")
 out_dir <- file.path(root, "05_Paper_Outputs")
 MAIN <- "main"
 SUPP <- "supplementary"
-ADDITIONAL <- "additional"
 
 # =========================================================
 # Settings
@@ -76,18 +74,10 @@ scenarios <- c(primary = "Primary", A = "A: no overlap in training", C = "C: 2.4
 # Palette (light mode).
 INK <- "#0b0b0b"
 INK_2 <- "#52514e"
-MUTED <- "#898781"
 GRID <- "#e1e0d9"
 AXIS <- "#c3c2b7"
-LINE <- "#c9c8c0"                          # lines that join the values of one dataset (H1)
 POINT_GREY <- "#a8a79f"
-ACCENT <- "#2a78d6"
 class_colors <- c(Foraging = "#2a78d6", Locomotion = "#eb6834", Resting = "#1baf7a")
-# Within/cross in two greys, so H1 has no colour of a class (Foraging is blue).
-mode_colors <- c(Within = "#3d3c3a", Cross = "#a8a79f")
-blues <- c("#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6",
-           "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b")
-text_size <- (base_size - 1.5) / ggplot2::.pt  # geom_text size (mm) for annotations
 
 # Unicode (escaped, so the script reads the same in every locale).
 CHI2 <- "\u03c7\u00b2"
@@ -119,19 +109,12 @@ num <- function(x, digits = 3) {
 int <- function(x) ifelse(is.na(x), DASH, formatC(as.numeric(x), format = "d", big.mark = ","))
 stat_v <- function(v) ifelse(is.na(v), DASH, ifelse(v == round(v), formatC(v, format = "d"), num(v, 1)))
 p_txt <- function(p) ifelse(is.na(p), DASH, ifelse(p < 0.001, "< 0.001", formatC(p, format = "f", digits = 3)))
-p_eq <- function(p) ifelse(p < 0.001, "p < 0.001", paste0("p = ", formatC(p, format = "f", digits = 3)))
 med_iqr <- function(m, q1, q3, digits = 3) paste0(num(m, digits), " [", num(q1, digits), ", ", num(q3, digits), "]")
 mean_sd <- function(m, s, digits = 3) ifelse(is.na(m), DASH, paste0(num(m, digits), " ", PM, " ", num(s, digits)))
 est_ci <- function(e, lo, hi, digits = 3) {
   ifelse(is.na(e), DASH, paste0(num(e, digits), " [", num(lo, digits), ", ", num(hi, digits), "]"))
 }
-stars <- function(p) ifelse(p < 0.001, "***", ifelse(p < 0.01, "**", ifelse(p < 0.05, "*", "")))
 minus <- function(s) gsub("-", MINUS, s, fixed = TRUE)  # typographic minus in figure text
-# Axis labels with as many decimals as the breaks need (0.025, not 0.03).
-axis_num <- function(x) {
-  x[!is.na(x) & abs(x) < 1e-12] <- 0
-  minus(sub("\\.?0+$", "", formatC(x, format = "f", digits = 3)))
-}
 yes_no <- function(x) ifelse(as.logical(x), "yes", "no")
 
 contents <- data.frame(item = character(), section = character(), title = character(), file = character(),
@@ -146,11 +129,10 @@ write_lines_utf8 <- function(lines, file) writeLines(enc2utf8(lines), con = file
 # =========================================================
 # Numbering (as cited in the manuscript; the one place to change it)
 # =========================================================
-# Every output has a key. Tables 1-3 and Figures 1-3 go to main/, the numbered supplementary
-# items to supplementary/, and outputs the manuscript does not cite to additional/ (kept for
-# reference, without a number). Renumbering an item, or moving an additional item into the
-# supplement, is one change in these vectors: file names, titles, captions, cross-references
-# and output_manifest.csv follow. Numbers as cited in the manuscript draft of 2026-11-08.
+# Every output has a key. Tables 1-3 and Figures 1-3 go to main/, the supplementary items to
+# supplementary/. Only items the manuscript cites are made; renumbering one is one change in
+# these vectors: file names, titles, captions, cross-references and output_manifest.csv
+# follow. Numbers as cited in the manuscript draft of 2026-11-08.
 main_tables <- c(h1 = "1", h2 = "2", h3 = "3")
 main_figures <- c(h1 = "1", h2 = "2", h3 = "3")
 table_numbers <- c(datasets = "S1", mapping = "S2", preprocessing = "S3", features = "S4", models = "S5",
@@ -159,7 +141,7 @@ table_numbers <- c(datasets = "S1", mapping = "S2", preprocessing = "S3", featur
                    pairwise = "S15", h3_model = "S16", per_classifier = "S17", loso = "S18", seeds = "S19",
                    scenarios = "S20")
 figure_numbers <- c(class_windows = "S1", h1_accuracy = "S2", h2_loss = "S3")
-# File names: <type>_<nn>_<slug> (main), <type>_s<nn>_<slug> (supplementary), <type>_<slug> (additional).
+# File names: <type>_<nn>_<slug> (main), <type>_s<nn>_<slug> (supplementary).
 table_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_distance_measures",
                  datasets = "datasets", mapping = "label_mapping", preprocessing = "preprocessing",
                  features = "features", models = "classifiers", trait_definitions = "trait_definitions",
@@ -167,11 +149,9 @@ table_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_distance_measu
                  h1_values = "h1_per_dataset", h1_tests = "h1_tests", h2_values = "h2_per_dataset",
                  h2_posthoc = "h2_posthoc", h2_loss = "h2_transfer_loss", pairwise = "pairwise_transfer",
                  h3_model = "h3_mixed_model", per_classifier = "h3_per_classifier", loso = "h3_leave_one_species_out",
-                 seeds = "h3_per_seed", scenarios = "sensitivity_scenarios", seed_sd = "seed_variability")
+                 seeds = "h3_per_seed", scenarios = "sensitivity_scenarios")
 figure_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_trait_distance",
-                  class_windows = "class_windows", h1_accuracy = "h1_accuracy", h2_loss = "h2_transfer_loss",
-                  pairwise = "pairwise_transfer", per_classifier = "h3_per_classifier", h3_variants = "h3_robustness",
-                  loso = "h3_leave_one_species_out", scenarios = "sensitivity_scenarios")
+                  class_windows = "class_windows", h1_accuracy = "h1_accuracy", h2_loss = "h2_transfer_loss")
 # Hand-written supplementary texts (not made here, listed in output_manifest.csv).
 texts <- data.frame(item = "Text S1", title = "Sensitivity scenarios.",
                     file = "supplementary/text_s01_sensitivity_scenarios.md",
@@ -206,16 +186,9 @@ output_item <- function(type, key) {
     return(list(folder = SUPP, label = paste(type, number),
                 name = sprintf("%s_s%02d_%s", prefix, as.integer(sub("^S", "", number)), slugs[[key]])))
   }
-  list(folder = ADDITIONAL, label = paste("Additional", tolower(type)), name = paste0(prefix, "_", slugs[[key]]))
+  stop(type, " '", key, "' has no number (add it to the numbering above)")
 }
-# Cross-references go only to numbered items: an output without a number cannot be cited.
-item_ref <- function(type, key) {
-  it <- output_item(type, key)
-  if (it$folder == ADDITIONAL) stop(type, " '", key, "' has no number in the manuscript and cannot be referenced")
-  it$label
-}
-table_ref <- function(key) item_ref("Table", key)
-figure_ref <- function(key) item_ref("Figure", key)
+table_ref <- function(key) output_item("Table", key)$label
 
 # Script that wrote a source file (column produced_by of output_manifest.csv).
 producer <- function(sources) {
@@ -227,7 +200,7 @@ producer <- function(sources) {
 }
 
 # Table as text: title, blank line, header and rows with tabs, blank line, notes, source.
-# `key` is a key of main_tables, table_numbers or (without number) table_slugs.
+# `key` is a key of main_tables or table_numbers.
 write_table <- function(key, title, table, notes = character(), source = character()) {
   it <- output_item("Table", key)
   dir.create(file.path(out_dir, it$folder), recursive = TRUE, showWarnings = FALSE)
@@ -241,7 +214,7 @@ write_table <- function(key, title, table, notes = character(), source = charact
   cat("[OK]", rel_path(file), "\n")
 }
 
-# `key` is a key of main_figures, figure_numbers or (without number) figure_slugs.
+# `key` is a key of main_figures or figure_numbers.
 save_figure <- function(plot, key, width_mm, height_mm, title, source) {
   it <- output_item("Figure", key)
   dir.create(file.path(out_dir, it$folder), recursive = TRUE, showWarnings = FALSE)
@@ -310,14 +283,6 @@ theme_paper <- function() {
     )
 }
 
-# Legend inside the panel (ggplot2 >= 3.5 uses legend.position.inside).
-legend_inside <- function(x, y) {
-  if (utils::packageVersion("ggplot2") >= "3.5.0") {
-    theme(legend.position = "inside", legend.position.inside = c(x, y), legend.justification = c(x, y))
-  } else {
-    theme(legend.position = c(x, y), legend.justification = c(x, y))
-  }
-}
 
 # =========================================================
 # Shared plot builders
@@ -529,37 +494,6 @@ table_2 <- function() {
 # =========================================================
 # H3
 # =========================================================
-# Forest plot of beta per SD with 95 % CI; optional blocks (separated by space only) and a
-# dashed reference line (e.g. the estimate with all species). Legend below the plot.
-plot_forest <- function(rows, reference = NULL, reference_label = "All species") {
-  if (!"group" %in% names(rows)) rows$group <- "all"
-  rows$group <- factor(rows$group, levels = unique(rows$group))
-  rows$label <- factor(rows$label, levels = rev(unique(rows$label)))
-  p <- ggplot(rows, aes(y = label)) +
-    geom_vline(xintercept = 0, colour = AXIS, linewidth = 0.4)
-  if (!is.null(reference)) {
-    p <- p + geom_vline(aes(xintercept = reference, colour = reference_label), linewidth = 0.35, linetype = "22") +
-      scale_colour_manual(values = setNames(INK_2, reference_label)) +
-      guides(colour = guide_legend(order = 3, override.aes = list(linetype = "22")))
-  }
-  p +
-    geom_errorbarh(aes(xmin = ci_low, xmax = ci_high, linetype = "95% CI"), height = 0, linewidth = 0.45, colour = INK_2) +
-    geom_point(aes(x = estimate, shape = "Estimate"), size = 2, colour = INK_2) +
-    facet_grid(group ~ ., scales = "free_y", space = "free_y") +
-    scale_shape_manual(values = c(Estimate = 16)) +
-    scale_linetype_manual(values = c("95% CI" = "solid")) +
-    guides(shape = guide_legend(order = 1), linetype = guide_legend(order = 2)) +
-    scale_x_continuous(labels = axis_num) +
-    labs(x = paste0(BETA, " per SD of the distance"), y = NULL) +
-    theme_paper() +
-    theme(legend.position = "bottom", legend.justification = "center", panel.grid.major.y = element_blank(),
-          strip.text = element_blank(), axis.text.y = element_text(colour = INK, size = rel(1)),
-          panel.spacing.y = unit(3, "mm"))
-}
-
-caption_forest_marks <- paste0("Points: estimate of ", "\u03b2", " (change in Macro-F1 per SD of the distance); lines: 95 % CI ",
-                               "(REML fit, Satterthwaite df).")
-
 # Figure 3 (H3): species pairs and the primary model; no colours for single points, no
 # text. The band is the 95 % CI of the primary model averaged over the classifiers
 # (h3_prediction.csv of 04_Statistics/stats_h3.R); without that file only the line is drawn.
@@ -740,109 +674,6 @@ figure_s3 <- function() {
     caption_classes("Transfer loss by behavioral class and classifier.", "transfer_loss_f1", table_ref("h2_loss"))))
 }
 
-figure_add_pairwise <- function() {
-  h <- read_stats(main_scenario, "h3_input")
-  m <- aggregate(macro_f1 ~ train + test, data = h, FUN = mean)
-  names_ds <- sort(unique(c(m$train, m$test)))
-  same <- unique(h[as.logical(h$same_species), c("train", "test")])
-  to_f <- function(x) factor(short(x), levels = short(names_ds))
-  m$train_f <- factor(short(m$train), levels = rev(short(names_ds)))
-  m$test_f <- to_f(m$test)
-  same$train_f <- factor(short(same$train), levels = rev(short(names_ds)))
-  same$test_f <- to_f(same$test)
-  p <- ggplot(m, aes(test_f, train_f)) +
-    geom_tile(aes(fill = macro_f1), colour = "white", linewidth = 0.6) +
-    geom_tile(data = same, aes(colour = "Same species"), fill = NA, linewidth = 0.5, width = 0.92, height = 0.92) +
-    scale_fill_gradientn(colours = blues, limits = c(0, 1), breaks = seq(0, 1, 0.2), labels = function(x) num(x, 1),
-                         name = "Macro-F1") +
-    scale_colour_manual(values = c("Same species" = INK), name = NULL) +
-    guides(fill = guide_colourbar(order = 1), colour = guide_legend(order = 2, override.aes = list(fill = "white"))) +
-    scale_x_discrete(drop = FALSE) +
-    scale_y_discrete(drop = FALSE) +
-    labs(x = "Test dataset", y = "Training dataset") +
-    coord_equal() +
-    theme_paper() +
-    theme(panel.grid.major = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),
-          axis.text.x = element_text(angle = 45, hjust = 1, colour = INK), axis.text.y = element_text(colour = INK),
-          legend.position = "right", legend.justification = "center",
-          legend.title = element_text(colour = INK_2, size = rel(0.9)), legend.key.height = unit(10, "mm"),
-          legend.key.width = unit(2.5, "mm"))
-  save_figure(p, "pairwise", 150, 128, "Pairwise transfer between datasets.",
-              paste0("04_Statistics/results/", main_scenario, "/h3_input.csv"))
-  write_caption("pairwise", paste0(
-    "Pairwise transfer between datasets. Macro-F1 of models trained on one dataset (rows) and tested on another (columns), ",
-    "mean over classifiers and seeds; framed: same species (excluded from H3). Values: ", table_ref("pairwise"), "."))
-}
-
-figure_add_per_classifier <- function() {
-  d <- read_stats(main_scenario, "h3_data")
-  fe <- read_stats(main_scenario, "h3_fixed_effects")
-  fe <- fe[fe$analysis == "interaction distance x model", ]
-  est <- setNames(fe$estimate, fe$term)
-  mean_d <- mean(d$trait_distance_core)
-  sd_d <- sd(d$trait_distance_core)
-  get <- function(term) if (term %in% names(est)) est[[term]] else 0
-  xs <- seq(min(d$trait_distance_core), max(d$trait_distance_core), length.out = 50)
-  fits <- do.call(rbind, lapply(unique(d$model), function(m) {
-    data.frame(model = m, x = xs, y = get("(Intercept)") + get(paste0("model", m)) +
-                 (get("z_distance") + get(paste0("z_distance:model", m))) * (xs - mean_d) / sd_d)
-  }))
-  d$model_f <- model_factor(d$model)
-  fits$model_f <- model_factor(fits$model)
-  p <- ggplot(d, aes(trait_distance_core, mean_macro_f1)) +
-    geom_point(aes(shape = "Species pair"), size = 1.5, stroke = 0.25, colour = "white", fill = POINT_GREY) +
-    geom_line(data = fits, aes(x, y, linetype = "Classifier-specific slope"), colour = INK, linewidth = 0.6) +
-    facet_wrap(~ model_f, nrow = 2) +
-    scale_shape_manual(values = c("Species pair" = 21)) +
-    scale_linetype_manual(values = c("Classifier-specific slope" = "solid")) +
-    guides(shape = guide_legend(order = 1, override.aes = list(size = 2.2)), linetype = guide_legend(order = 2)) +
-    scale_y_continuous(breaks = seq(0, 1, 0.2), labels = function(x) num(x, 1)) +
-    scale_x_continuous(breaks = seq(0, 1, 0.2), labels = function(x) num(x, 1)) +
-    coord_cartesian(ylim = c(0, 1)) +
-    labs(x = "Trait distance (core traits)", y = "Mean Macro-F1") +
-    theme_paper() +
-    theme(legend.position = "bottom", legend.justification = "center")
-  save_figure(p, "per_classifier", 180, 118, "Cross-species Macro-F1 and trait distance per classifier.",
-              paste0("04_Statistics/results/", main_scenario, c("/h3_data.csv", "/h3_fixed_effects.csv")))
-  write_caption("per_classifier", paste0(
-    "Cross-species Macro-F1 and trait distance per classifier. Points: ordered species pairs; lines: classifier-specific slopes of the interaction model. Statistics: ",
-    table_ref("per_classifier"), "."))
-}
-
-# Additional figure (h3_variants): the primary model with other specifications (upper block) and with other
-# distances (lower block).
-figure_add_h3_variants <- function() {
-  m <- read_stats(main_scenario, "h3_models")
-  variants <- c("primary", "directional random effects", "pair-only random effect", "S1 within covariates",
-                "S2 retention", "S3 gawdis distance")
-  pick <- function(keys, group) {
-    r <- m[match(keys[keys %in% m$analysis], m$analysis), ]
-    data.frame(group = group, label = unname(h3_labels[r$analysis]), estimate = r$estimate, ci_low = r$ci_low,
-               ci_high = r$ci_high)
-  }
-  rows <- rbind(pick(variants, "variants"), pick(h3_distances, "distances"))
-  p <- plot_forest(rows)
-  save_figure(p, "h3_variants", 120, 90, "Robustness of the distance effect (H3).",
-              paste0("04_Statistics/results/", main_scenario, "/h3_models.csv"))
-  write_caption("h3_variants", paste0(
-    "Robustness of the distance effect (H3). Upper block: model variants; lower block: alternative distances. ",
-    "Points: ", BETA, " per SD; lines: 95% CI. Values: ", table_ref("h3_variants"), "."))
-}
-
-# Additional figure (loso): leave one species out.
-figure_add_loso <- function() {
-  l <- read_stats(main_scenario, "h3_loso")
-  m <- read_stats(main_scenario, "h3_models")
-  rows <- data.frame(label = sub("przewalski's", "Przewalski's", paste("Without", tolower(common(l$left_out)))),
-                     estimate = l$estimate, ci_low = l$ci_low, ci_high = l$ci_high)
-  p <- plot_forest(rows, reference = m$estimate[m$analysis == "primary"])
-  save_figure(p, "loso", 110, 75, "Leave-one-species-out refits (H3).",
-              paste0("04_Statistics/results/", main_scenario, c("/h3_loso.csv", "/h3_models.csv")))
-  write_caption("loso", paste0(
-    "Leave-one-species-out refits (H3). Points: ", BETA, " per SD without the named species; lines: 95% CI; dashed: all species. Values: ",
-    table_ref("loso"), "."))
-}
-
 scenario_rows <- function() {
   present <- names(scenarios)[file.exists(file.path(stats_dir, names(scenarios), "h1_tests.csv"))]
   h1 <- do.call(rbind, lapply(present, function(s) {
@@ -861,50 +692,6 @@ scenario_rows <- function() {
     cbind(scenario = s, m[m$analysis == key, ])
   }))
   list(present = present, h1 = h1, h2 = h2, h3 = h3)
-}
-
-figure_add_scenarios <- function() {
-  s <- scenario_rows()
-  ylab <- unname(scenarios[s$present])
-  ylab[s$present == "primary"] <- "Primary (RF and LightGBM)"
-  levels_y <- rev(ylab)
-  h1 <- s$h1
-  h1$scen <- factor(ylab[match(h1$scenario, s$present)], levels = levels_y)
-  h1$model_f <- factor(unname(model_labels[h1$model]), levels = c("RF", "LightGBM"))
-  dodge <- position_dodge(width = 0.55)
-  p_a <- ggplot(h1, aes(y = scen, shape = model_f)) +
-    geom_vline(xintercept = 0, colour = AXIS, linewidth = 0.4) +
-    geom_errorbarh(aes(xmin = gap_q1, xmax = gap_q3, linetype = "IQR"), height = 0, linewidth = 0.45, colour = INK_2,
-                   position = dodge) +
-    geom_point(aes(x = gap_median), size = 1.9, colour = INK_2, fill = INK_2, position = dodge) +
-    scale_shape_manual(values = c(RF = 21, LightGBM = 24), name = NULL) +
-    scale_linetype_manual(values = c(IQR = "solid"), name = NULL) +
-    guides(shape = guide_legend(order = 1), linetype = guide_legend(order = 2)) +
-    scale_x_continuous(labels = axis_num) +
-    labs(x = paste0("Within ", MINUS, " cross Macro-F1"), y = NULL) +
-    theme_paper() +
-    theme(legend.position = "bottom", legend.justification = "center", panel.grid.major.y = element_blank(),
-          axis.text.y = element_text(colour = INK, size = rel(1)))
-  h3 <- s$h3
-  h3$scen <- factor(ylab[match(h3$scenario, s$present)], levels = levels_y)
-  p_b <- ggplot(h3, aes(y = scen)) +
-    geom_vline(xintercept = 0, colour = AXIS, linewidth = 0.4) +
-    geom_errorbarh(aes(xmin = ci_low, xmax = ci_high, linetype = "95% CI"), height = 0, linewidth = 0.45, colour = INK_2) +
-    geom_point(aes(x = estimate, shape = "Estimate"), size = 2, colour = INK_2) +
-    scale_shape_manual(values = c(Estimate = 16), name = NULL) +
-    scale_linetype_manual(values = c("95% CI" = "solid"), name = NULL) +
-    guides(shape = guide_legend(order = 1), linetype = guide_legend(order = 2)) +
-    scale_x_continuous(labels = axis_num) +
-    labs(x = paste0(BETA, " per SD of the distance"), y = NULL) +
-    theme_paper() +
-    theme(legend.position = "bottom", legend.justification = "center", panel.grid.major.y = element_blank(),
-          axis.text.y = element_blank())
-  p <- p_a + p_b + plot_layout(widths = c(1, 0.8)) + plot_annotation(tag_levels = "a")
-  save_figure(p, "scenarios", 180, 85, "Sensitivity scenarios with RF and LightGBM.",
-              c("04_Statistics/results/<scenario>/h1_tests.csv", "04_Statistics/results/<scenario>/h3_models.csv"))
-  write_caption("scenarios", paste0(
-    "Sensitivity scenarios with RF and LightGBM. (a) H1: within- minus cross-dataset Macro-F1, median and IQR; circles: RF, triangles: LightGBM. ",
-    "(b) H3: ", BETA, " per SD with 95% CI. Values: ", table_ref("scenarios"), "."))
 }
 
 # =========================================================
@@ -1052,7 +839,7 @@ table_s_trait_definitions <- function() {
                     `Main uncertainty` = d$uncertainty, check.names = FALSE)
   write_table("trait_definitions", "Core trait definitions.", out,
               c(paste0("Species assignments: ", table_ref("traits"), "; pairwise distances: ", table_ref("distances"), ". Categories are study-specific; Gower distance with equal weights."),
-                "Full text and references: 00_Documentation/traits/core_traits.docx."),
+                "Full text and references: 00_Documentation/traits/core_traits.md."),
               "00_Documentation/traits/core_trait_definitions.csv")
 }
 
@@ -1308,23 +1095,6 @@ table_s_scenarios <- function() {
                 "04_Statistics/results/<scenario>/h3_models.csv"))
 }
 
-table_add_seed_sd <- function() {
-  sv <- read_stats(main_scenario, "seed_variability")
-  sv <- sv[order(match(sv$model, model_keys), match(sv$mode, c("within", "cross", "pairwise", "global"))), ]
-  modes <- c(within = "Within-dataset", cross = "Cross-dataset", pairwise = "Pairwise", global = "Pooled datasets")
-  pretty_at <- function(x) gsub("_dataset_", " ", gsub(" -> ", " \u2192 ", x))
-  out <- data.frame(Classifier = unname(model_labels[sv$model]), Evaluation = unname(modes[sv$mode]),
-                    `Evaluations (n)` = sv$rows,
-                    `Seeds (n)` = ifelse(sv$n_seeds_min == sv$n_seeds_max, sv$n_seeds_min, paste0(sv$n_seeds_min, DASH, sv$n_seeds_max)),
-                    `Median SD of Macro-F1` = num(sv$sd_macro_f1_median), `Largest SD of Macro-F1` = num(sv$sd_macro_f1_max),
-                    `Largest SD at` = pretty_at(sv$max_at), check.names = FALSE)
-  names(out)[names(out) == "Largest SD at"] <- "Largest SD at (training \u2192 test)"
-  write_table("seed_sd", "Seed variability of Macro-F1.", out,
-              c("SD of Macro-F1 over the seeds for each evaluation (dataset or dataset pair); median and largest value over the evaluations of a type.",
-                "Within-dataset: leave one individual out; cross-dataset: all other datasets \u2192 one; pairwise: one dataset \u2192 another; pooled datasets: all datasets pooled, 25 % of the individuals held out."),
-              paste0("04_Statistics/results/", main_scenario, "/seed_variability.csv"))
-}
-
 # =========================================================
 # Run
 # =========================================================
@@ -1334,19 +1104,18 @@ main <- function() {
                table_s_mapping = table_s_mapping, table_s_features = table_s_features,
                table_s_preprocessing = table_s_preprocessing, table_s_models = table_s_models,
                table_s_trait_definitions = table_s_trait_definitions, table_s_h3_model = table_s_h3_model,
-               figure_s1 = figure_s1, figure_s2 = figure_s2, figure_s3 = figure_s3, figure_add_pairwise = figure_add_pairwise,
-               figure_add_per_classifier = figure_add_per_classifier, figure_add_h3_variants = figure_add_h3_variants, figure_add_loso = figure_add_loso, figure_add_scenarios = figure_add_scenarios,
+               figure_s1 = figure_s1, figure_s2 = figure_s2, figure_s3 = figure_s3,
                table_s_datasets = table_s_datasets, table_s_h1_values = table_s_h1_values,
                table_s_h1_tests = table_s_h1_tests, table_s_h2_values = table_s_h2_values,
                table_s_h2_loss = table_s_h2_loss, table_s_h2_posthoc = table_s_h2_posthoc,
                table_s_pairwise = table_s_pairwise, table_s_traits = table_s_traits,
                table_s_distances = table_s_distances, table_s_per_classifier = table_s_per_classifier,
                table_s_h3_variants = table_s_h3_variants, table_s_loso = table_s_loso, table_s_seeds = table_s_seeds,
-               table_s_scenarios = table_s_scenarios, table_add_seed_sd = table_add_seed_sd)
+               table_s_scenarios = table_s_scenarios)
   dir.create(out_dir, showWarnings = FALSE)
   # Remove the generated files of the last run (not the hand-written texts), so a renumbered
   # or dropped item leaves no file with an outdated number behind.
-  for (folder in c(MAIN, SUPP, ADDITIONAL)) {
+  for (folder in c(MAIN, SUPP)) {
     old <- list.files(file.path(out_dir, folder), pattern = "^(table|figure)_.*\\.(txt|png)$", full.names = TRUE)
     if (length(old) > 0L) file.remove(old)
   }
@@ -1370,16 +1139,14 @@ main <- function() {
       errors <- c(errors, paste0(texts$item[i], ": ", texts$file[i], " not found"))
     }
   }
-  # output_manifest.csv: main, supplementary, additional; tables, figures, texts; by number.
+  # output_manifest.csv: main, then supplementary; tables, figures, texts; by number.
   m <- contents
   type <- sub(" .*", "", m$item)
   number <- suppressWarnings(as.numeric(sub("^[A-Za-z]+ S?", "", m$item)))
-  m <- m[order(match(m$section, c(MAIN, SUPP, ADDITIONAL)), match(type, c("Table", "Figure", "Text", "Additional")),
-               number, m$file), ]
+  m <- m[order(match(m$section, c(MAIN, SUPP)), match(type, c("Table", "Figure", "Text")), number), ]
   m$produced_by <- vapply(m$sources, producer, character(1), USE.NAMES = FALSE)
   m$cited_in <- ifelse(m$item %in% names(cited_in), cited_in[m$item], "")
-  m$cited_in[m$section == ADDITIONAL] <- "not cited (additional)"
-  m$cited_in[m$section != ADDITIONAL & !nzchar(m$cited_in)] <- "not cited yet"
+  m$cited_in[!nzchar(m$cited_in)] <- "not cited yet"
   write.csv(m, file.path(out_dir, "output_manifest.csv"), row.names = FALSE, fileEncoding = "UTF-8")
   cat("[OK]", rel_path(file.path(out_dir, "output_manifest.csv")), "\n")
   error_file <- file.path(out_dir, "errors.txt")

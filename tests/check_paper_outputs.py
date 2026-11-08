@@ -3,13 +3,13 @@
 # Purpose:
 # - Checks that 05_Paper_Outputs matches its manifest and that the numbering is consistent:
 #   1. every file in output_manifest.csv (and its caption) exists;
-#   2. every generated file in main/, supplementary/ and additional/ is in the manifest
-#      (no file with an outdated number left behind);
+#   2. every file in main/ and supplementary/ is in the manifest (no file with an outdated
+#      number left behind);
 #   3. Tables 1-3, Figures 1-3, the supplementary tables, figures and texts are numbered
 #      1..n without gaps or duplicates;
 #   4. each table and caption starts with its own label ("Table S4. ...");
 #   5. every reference to a table, figure or text inside the outputs points to an item that
-#      exists (an additional item has no number and cannot be cited);
+#      exists;
 #   6. numbered items that the manuscript does not cite are listed as warnings.
 # - Standard library only; exit code 1 if a check fails.
 #
@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "05_Paper_Outputs"
 MANIFEST = OUT_DIR / "output_manifest.csv"
-SECTIONS = ("main", "supplementary", "additional")
+SECTIONS = ("main", "supplementary")
 REF = re.compile(r"\b(Table|Figure|Text)s? (S?\d+)(?:\s*(?:and|[–-])\s*(S?\d+))?")
 
 
@@ -66,7 +66,7 @@ def main() -> int:
         expected = list(range(1, len(values) + 1))
         if sorted(values) != expected:
             errors.append(f"{group.strip()}: numbers {sorted(values)} are not 1..{len(values)}")
-    items = {row["item"] for row in rows if not row["item"].startswith("Additional")}
+    items = {row["item"] for row in rows}
 
     # 4. Each table and caption starts with its label.
     for row in rows:
@@ -96,7 +96,7 @@ def main() -> int:
 
     # 6. Numbered items without a citation in the manuscript.
     for row in rows:
-        if row["section"] != "additional" and row["cited_in"] == "not cited yet":
+        if row["cited_in"] == "not cited yet":
             warnings.append(f"{row['item']} ({row['title']}) is not cited in the manuscript")
 
     n_items = defaultdict(int)

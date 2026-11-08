@@ -8,5 +8,5 @@ Relative neck length	Length of the cervical vertebral column relative to the tho
 Food acquisition and handling	Characteristic actions used to acquire and handle food at the taxon level; not feeding height or the share of observed foraging windows.	Nominal: vegetation cropping, oral item acquisition, manual food handling.	Iwaniuk & Whishaw (1999); Kowalczyk et al. (2019)	Study-specific synthesis; species-typical actions may differ from the recorded feeding situations.
 
 Species assignments: Table S7; pairwise distances: Table S8. Categories are study-specific; Gower distance with equal weights.
-Full text and references: 00_Documentation/traits/core_traits.docx.
+Full text and references: 00_Documentation/traits/core_traits.md.
 Source: 00_Documentation/traits/core_trait_definitions.csv

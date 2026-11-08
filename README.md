@@ -21,7 +21,7 @@ holds its code, its outputs and a README (what it does, inputs, outputs, manuscr
 sections).
 
 ```
-00_Documentation/     datasets, label mapping, traits, decision log (D01–D44)
+00_Documentation/     datasets, label mapping, traits, decision log (D01–D45)
 01_Preprocessing/     raw data → harmonized samples → 2-s windows at 25 Hz → classes, features
 02_Models/            the six classifiers
 03_Evaluation/        training and evaluation (within, cross, pairwise) → results/
@@ -105,12 +105,13 @@ Two datasets are public: cattle (Ito et al. 2022) and horses (Kamminga et al. 20
 doi:10.4121/uuid:2e08745c-4178-4183-8551-f248c992cb14). The other nine come from theses at
 the Leibniz Institute for Zoo and Wildlife Research (Leibniz-IZW) and are not shared. Raw data
 are read only; every change is made in code and recorded in `00_Documentation/decisions.md`.
-The dataset reports (`01_Preprocessing/reports/dataset_reports/`) contain a few example
-values per column; check them before the repository is made public.
+The repository holds no raw data values: only registry and mapping tables, summaries
+(window and class counts) and model results.
 
 ## Citation and license
 
 See `CITATION.cff`. Code: MIT (see `LICENSE`).
 
 This repository continues `ELBE223/paper-izw-cross-species-transfer` (state of commit
-b073a68); the move to this layout is decision D44.
+b073a68) with only what the analysis and the paper need (D44, D45). Working material (the
+thesis scripts, raw data reports, trait reviews, uncited figures) stays in that repository.

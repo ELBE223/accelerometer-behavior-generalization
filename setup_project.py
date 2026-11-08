@@ -2,8 +2,7 @@
 #
 # Purpose:
 # - Creates the local folders that are not in git: one folder per dataset in
-#   data/raw/ and data/processed/ (datasets from 00_Documentation/datasets.csv),
-#   and 01_Preprocessing/reports/dataset_reports.
+#   data/raw/ and data/processed/ (datasets from 00_Documentation/datasets.csv).
 # - Creates a Python virtual environment (.venv) and installs requirements.txt;
 #   the installed versions are written to requirements-lock.txt.
 # - Safe to run again: existing folders and files are never removed.
@@ -30,7 +29,6 @@ ROOT = Path(__file__).resolve().parent
 DOC_DIR = ROOT / "00_Documentation"
 RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"
-REPORT_DIR = ROOT / "01_Preprocessing" / "reports" / "dataset_reports"
 VENV_DIR = ROOT / ".venv"
 
 DATASET_REGISTRY = DOC_DIR / "datasets.csv"
@@ -100,7 +98,7 @@ def main() -> int:
     datasets = read_datasets()
     log(f"[INFO] Project folder: {ROOT}")
 
-    folders = [RAW_DIR, PROCESSED_DIR, REPORT_DIR]
+    folders = [RAW_DIR, PROCESSED_DIR]
     folders += [RAW_DIR / ds for ds in datasets] + [PROCESSED_DIR / ds for ds in datasets]
     for folder in folders:
         folder.mkdir(parents=True, exist_ok=True)

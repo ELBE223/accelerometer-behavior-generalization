@@ -6,20 +6,19 @@
 #   latest code (git pull), installs new packages (setup_project.py), prepares the raw
 #   data (prepare_raw_data.py), runs the pipeline (harmonize.py, make_windows.py,
 #   assign_classes.py, features.py), the models (train_models.py), the statistics
-#   (stats_h1_h2.py, stats_h3.R), the paper figures and tables (paper_figures.R) and/or writes the dataset
-#   reports, and commits and pushes the documentation and results.
+#   (stats_h1_h2.py, stats_h3.R) and the paper figures and tables (paper_figures.R), and
+#   commits and pushes the documentation and results.
 # - Stops at the first error; nothing is pushed then. Exception: in the pipeline a dataset
-#   that fails is skipped (the error is in its pipeline report), the others go on, and
-#   the reports are pushed before the script ends with an error message.
-# - Generated files (dataset reports, thesis checks, requirements-lock.txt) with local
-#   changes are reset before the pull, because this script writes them again. Not the
+#   that fails is skipped (the error is in its local report in
+#   01_Preprocessing/reports/pipeline_reports/), the others go on, and the summaries are
+#   pushed before the script ends with an error message.
+# - Generated files (report summaries, statistics, paper outputs, requirements-lock.txt)
+#   with local changes are reset before the pull, because this script writes them again. Not the
 #   model results: results of a model run that stopped before its push (hours of
 #   computing; --add builds on them) are committed before the pull and pushed at the end.
 #
 # Usage:
 #   bash update_local.sh            # pipeline for all datasets with a loader
-#   bash update_local.sh reports    # dataset reports for all datasets
-#   bash update_local.sh all        # both
 #   bash update_local.sh pipeline Cattle_dataset_1   # selected datasets
 #   bash update_local.sh classes    # only classes (after a mapping change)
 #   bash update_local.sh models     # features, RF and LightGBM (03_Evaluation/results)
@@ -66,8 +65,8 @@ main() {
   local mode="${1:-pipeline}"
   local datasets=("${@:2}")  # optional: only these datasets
   case "$mode" in
-    pipeline|reports|all|classes|models|stats|sensitivity) ;;
-    *) echo "[ERROR] Unknown option '$mode' (use: pipeline, reports, all, classes, models, stats, sensitivity)"; exit 1 ;;
+    pipeline|classes|models|stats|sensitivity) ;;
+    *) echo "[ERROR] Unknown option '$mode' (use: pipeline, classes, models, stats, sensitivity)"; exit 1 ;;
   esac
   if [ ! -x "$PY" ]; then
     echo "[ERROR] No venv found. Run first: python3.11 setup_project.py"
@@ -114,12 +113,8 @@ main() {
   step "4/6 Prepare raw data"
   "$PY" 01_Preprocessing/prepare_raw_data.py
 
-  if [ "$mode" = "reports" ] || [ "$mode" = "all" ]; then
-    step "5/6 Dataset reports"
-    "$PY" 01_Preprocessing/dataset_report.py ${datasets[@]+"${datasets[@]}"}
-  fi
   local failed=""
-  if [ "$mode" = "pipeline" ] || [ "$mode" = "all" ]; then
+  if [ "$mode" = "pipeline" ]; then
     step "5/6 Pipeline: harmonized samples and windows"
     "$PY" 01_Preprocessing/harmonize.py ${datasets[@]+"${datasets[@]}"} || failed="harmonize.py"
     "$PY" 01_Preprocessing/make_windows.py ${datasets[@]+"${datasets[@]}"} || failed="$failed make_windows.py"
@@ -191,7 +186,7 @@ main() {
   echo
   if [ -n "$failed" ]; then
     echo "FERTIG, ABER MIT FEHLERN in: $failed"
-    echo "Die Berichte (mit den Fehlermeldungen) sind gepusht."
+    echo "Fehlermeldungen: 01_Preprocessing/reports/pipeline_reports/<dataset>_*.txt (lokal)"
     exit 1
   fi
   echo "ALLES FERTIG"

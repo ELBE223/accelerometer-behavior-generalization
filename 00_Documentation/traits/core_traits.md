@@ -1,10 +1,9 @@
 # Core Trait Definitions Sources and Coding
 
-> Markdown rendering of [`core_traits.docx`](core_traits.docx),
-> declared final by Lucas on 2026-11-05 and adopted as decision D37 in [decisions.md](../decisions.md);
-> wording updated to the final status on the same day at Lucas's request; the section
-> "Expected link to the acceleration signal" and references [11]–[13] were added on 2026-11-05.
-> The text below reproduces the Word document; the .docx is the authoritative version.
+> Final trait definitions, declared final by Lucas on 2026-11-05 and adopted as decision D37
+> in [decisions.md](../decisions.md); the section "Expected link to the acceleration signal"
+> and references [11]–[13] were added on 2026-11-05. This file is the version kept in the
+> repository; the Word original (`core_traits.docx`) is in the archived repository (D45).
 > The machine-readable codes are in [species_traits_core.csv](species_traits_core.csv)
 > (columns `relative_neck_length` and `food_acquisition_handling`).
 
@@ -18,7 +17,7 @@ The final core set covers body mass, locomotor specialization, body configuratio
 | **Relative neck length** | Length of the cervical vertebral column relative to the combined thoracic, lumbar, and sacral regions. An anatomical proxy, not a measure of actual neck movement. | Belyaev et al. (2024), Supplement S1 [7]: vertebral measurements.<br>Davis (1964), Table 10 [8]: indirect evidence for Procyon. | Ordinal, four groups based on r = C/(T + L + S):<br>short: r < 0.30<br>intermediate: 0.30 ≤ r < 0.40<br>long: 0.40 ≤ r < 1.00<br>very long: r ≥ 1.00<br>Thresholds defined by us. |
 | **Food acquisition and handling** | Characteristic actions used to acquire and handle food at the taxon level. Does not encode feeding height or the proportions of observed foraging windows. | Iwaniuk & Whishaw (1999) [9]: raccoon food handling with the forepaws.<br>Kowalczyk et al. (2019) [10]: dietary flexibility in European bison. | Nominal, three groups:<br>vegetation cropping<br>oral item acquisition<br>manual food handling<br>Our synthesis; not a published, validated three-group classification. |
 
-Each selected source supports the aspect stated in the table. The selection complements the taxon-specific evidence and uncertainty records in the codebook. Categories and assignment rules are explained in the legend.
+Each selected source supports the aspect stated in the table. The selection complements the taxon-specific evidence and uncertainty records summarized in [decisions.md](../decisions.md) (D29–D39, D42). Categories and assignment rules are explained in the legend.
 
 ## Species assignments
 
@@ -68,7 +67,7 @@ Each trait describes a way in which the same behaviour may produce a different a
 
 **Food acquisition and handling.** Vegetation cropping = biting, plucking, or stripping plant material (European bison, cattle, both horse taxa, giraffe); oral item acquisition = primarily oral acquisition of individual food items or prey without characteristic specialized forepaw handling (dog, hedgehog, fox); manual food handling = characteristic grasping, examining, or manipulating with the forepaws (raccoon). Where actions overlap, pronounced manual handling takes priority, followed by vegetation cropping. The classification implies neither exclusive use of an action nor a measured frequency threshold.
 
-**Body mass provenance.** EltonTraits provides six references: European bison, cattle, domestic horse, giraffe, raccoon, and fox. The 300 kg reference for Przewalski’s horse comes from Gerstner & Gerstein [2], Table 1. The hedgehog value of 1.032 kg comes from Cibis (2017), Table 4. The dog value of 26.7464 kg is the equally weighted mean of two study means from Szangolies (2017), Table 2, and Groth (2020), Table 2. It is not a pooled mean of all dogs analysed in the model. Full cohort sources are recorded in the linked codebook.
+**Body mass provenance.** EltonTraits provides six references: European bison, cattle, domestic horse, giraffe, raccoon, and fox. The 300 kg reference for Przewalski’s horse comes from Gerstner & Gerstein [2], Table 1. The hedgehog value of 1.032 kg comes from Cibis (2017), Table 4. The dog value of 26.7464 kg is the equally weighted mean of two study means from Szangolies (2017), Table 2, and Groth (2020), Table 2. It is not a pooled mean of all dogs analysed in the model. Full cohort sources are recorded in the trait audit log of the archived repository (see Traceability of species values).
 
 **Scope and next step.** Literature data, derived categories, and expert assignments are documented separately. Sources and clearly defined categories do not by themselves validate an association with transfer performance. The adopted classification should be evaluated through sensitivity analyses of uncertain assignments and omission of individual traits; these analyses have not yet been performed.
 
@@ -104,4 +103,4 @@ Each trait describes a way in which the same behaviour may produce a different a
 
 ### Traceability of species values
 
-Detailed taxon-specific evidence, cohort sources for body mass, and previous decisions are documented in the [trait audit log](evidence/trait_audit_log.md) and [decisions.md](../decisions.md). The vertebral measurements and r values are in the [relative neck length review](evidence/relative_neck_length_review.md). The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.
+Previous decisions on each trait are documented in [decisions.md](../decisions.md) (D29–D39, D42). The detailed taxon-specific evidence, the cohort sources for body mass, and the vertebral measurements and r values of the relative neck length are in the trait audit log and the trait reviews of the archived repository `ELBE223/paper-izw-cross-species-transfer` (`00_documentation/traits/evidence/`, D45). The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.
