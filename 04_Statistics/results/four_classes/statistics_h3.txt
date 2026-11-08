@@ -1,8 +1,8 @@
 STATISTICS H3 - scenario four_classes
 ====================================================================================================
 
-Input: 06_statistics/four_classes/h3_input.csv (pairwise Macro-F1, mean over the seeds)
-Traits: 00_documentation/traits/species_traits_core.csv (five core traits of D37; Gower distance, equal weights)
+Input: 04_Statistics/results/four_classes/h3_input.csv (pairwise Macro-F1, mean over the seeds)
+Traits: 00_Documentation/traits/species_traits_core.csv (five core traits of D37; Gower distance, equal weights)
 
 STRUCTURE
   models 2 (RF, LGBM); species 9; ordered species pairs 64; unordered 36; records 128

@@ -92,7 +92,7 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
       Locomotion - Resting: median diff +0.017, V 36, p 0.432, Holm 1.000  (not interpreted: Friedman not significant)
 
 
-H3 INPUT (h3_input.csv, for code/stats_h3.R)
+H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
 
   Dataset pairs per model: RF 110, LGBM 110
   Pairs of the same species (scientific name; left out in H3): 4

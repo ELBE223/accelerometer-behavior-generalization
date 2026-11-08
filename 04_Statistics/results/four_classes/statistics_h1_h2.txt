@@ -100,7 +100,7 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting, Other)
       Resting - Other: median diff -0.174, V 2, p 0.023, Holm 0.117
 
 
-H3 INPUT (h3_input.csv, for code/stats_h3.R)
+H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
 
   Dataset pairs per model: RF 80, LGBM 80
   Pairs of the same species (scientific name; left out in H3): 2
