@@ -1,0 +1,96 @@
+STATISTICS H1 AND H2 – scenario F
+====================================================================================================
+
+Values: mean over the seeds per model and dataset (or dataset pair); SD = SD over the seeds.
+Wilcoxon: exact two-sided p unless ties or zero differences (test_method in the csv files).
+
+SEED VARIABILITY (SD of Macro-F1 over the seeds, per model and mode)
+
+  model     mode  rows  n_seeds_min  n_seeds_max  sd_macro_f1_median  sd_macro_f1_max                                    max_at
+     RF    cross    11            5            5               0.009            0.023 all except Fox_dataset_1 -> Fox_dataset_1
+     RF pairwise   110            5            5               0.013            0.128        Giraffe_dataset_1 -> Dog_dataset_1
+     RF   within    10            5            5               0.005            0.018      Cattle_dataset_1 -> Cattle_dataset_1
+   LGBM    cross    11            5            5               0.009            0.024 all except Fox_dataset_1 -> Fox_dataset_1
+   LGBM pairwise   110            5            5               0.015            0.094        Giraffe_dataset_1 -> Dog_dataset_1
+   LGBM   within    10            5            5               0.006            0.017    Raccoon_dataset_2 -> Raccoon_dataset_2
+
+
+H1: WITHIN VS. CROSS (Macro-F1 per dataset, mean ± SD over the seeds)
+
+  RF
+    Bison_dataset_1      within 0.916 ± 0.003   cross 0.678 ± 0.011   gap +0.238
+    Cattle_dataset_1     within 0.705 ± 0.018   cross 0.591 ± 0.015   gap +0.113
+    Dog_dataset_1        within 0.846 ± 0.005   cross 0.776 ± 0.003   gap +0.070
+    Dog_dataset_2        within 0.537 ± 0.006   cross 0.443 ± 0.003   gap +0.095
+    Fox_dataset_1        within 0.844 ± 0.005   cross 0.715 ± 0.023   gap +0.129
+    Giraffe_dataset_1    within 0.814 ± 0.008   cross 0.429 ± 0.009   gap +0.385
+    Horse_dataset_1      within 0.937 ± 0.003   cross 0.861 ± 0.003   gap +0.076
+    Horse_dataset_2      within 0.837 ± 0.003   cross 0.733 ± 0.009   gap +0.104
+    Raccoon_dataset_1    within 0.775 ± 0.007   cross 0.695 ± 0.012   gap +0.080
+    Raccoon_dataset_2    within 0.778 ± 0.004   cross 0.791 ± 0.007   gap -0.013
+  LGBM
+    Bison_dataset_1      within 0.917 ± 0.005   cross 0.680 ± 0.008   gap +0.237
+    Cattle_dataset_1     within 0.710 ± 0.012   cross 0.602 ± 0.011   gap +0.108
+    Dog_dataset_1        within 0.842 ± 0.007   cross 0.777 ± 0.002   gap +0.065
+    Dog_dataset_2        within 0.509 ± 0.010   cross 0.450 ± 0.003   gap +0.058
+    Fox_dataset_1        within 0.854 ± 0.000   cross 0.712 ± 0.024   gap +0.141
+    Giraffe_dataset_1    within 0.818 ± 0.006   cross 0.458 ± 0.022   gap +0.360
+    Horse_dataset_1      within 0.942 ± 0.004   cross 0.855 ± 0.003   gap +0.087
+    Horse_dataset_2      within 0.829 ± 0.007   cross 0.727 ± 0.009   gap +0.102
+    Raccoon_dataset_1    within 0.756 ± 0.000   cross 0.694 ± 0.014   gap +0.062
+    Raccoon_dataset_2    within 0.763 ± 0.017   cross 0.782 ± 0.007   gap -0.019
+
+  Paired Wilcoxon tests (datasets 'all': every dataset with a within value; 'same_test_windows':
+  only datasets in which every individual is a test unit, so within and cross test the same windows)
+
+  RF           all                macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  r_rb 0.96  (exact)
+  RF           all                accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  r_rb 0.93  (exact)
+  LGBM         all                macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  r_rb 0.96  (exact)
+  LGBM         all                accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  r_rb 0.93  (exact)
+  RF           same_test_windows  macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  r_rb 0.96  (exact)
+  RF           same_test_windows  accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  r_rb 0.93  (exact)
+  LGBM         same_test_windows  macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  r_rb 0.96  (exact)
+  LGBM         same_test_windows  accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  r_rb 0.93  (exact)
+
+
+H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
+
+  Cross F1 per class
+
+    Median over the datasets:
+    behavior  Foraging  Locomotion  Resting
+    model                                  
+    RF           0.623       0.624    0.844
+    LGBM         0.621       0.623    0.828
+
+    RF           Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.011, V 29, p 0.765, Holm 0.765
+      Foraging - Resting: median diff -0.135, V 5, p 0.010, Holm 0.029
+      Locomotion - Resting: median diff -0.230, V 7, p 0.019, Holm 0.037
+    LGBM         Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.031, V 28, p 0.700, Holm 0.700
+      Foraging - Resting: median diff -0.130, V 5, p 0.010, Holm 0.029
+      Locomotion - Resting: median diff -0.198, V 7, p 0.019, Holm 0.037
+
+  Transfer loss (within F1 - cross F1)
+
+    Median over the datasets:
+    behavior  Foraging  Locomotion  Resting
+    model                                  
+    RF           0.092       0.103    0.078
+    LGBM         0.080       0.107    0.088
+
+    RF           Friedman chi² 1.80, df 2, n 10, p 0.407, Kendall's W 0.09
+      Foraging - Locomotion: median diff -0.017, V 21, p 0.557, Holm 1.000  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.013, V 31, p 0.770, Holm 1.000  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.026, V 39, p 0.275, Holm 0.826  (not interpreted: Friedman not significant)
+    LGBM         Friedman chi² 1.80, df 2, n 10, p 0.407, Kendall's W 0.09
+      Foraging - Locomotion: median diff -0.018, V 20, p 0.492, Holm 0.984  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.004, V 30, p 0.846, Holm 0.984  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.019, V 38, p 0.322, Holm 0.967  (not interpreted: Friedman not significant)
+
+
+H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
+
+  Dataset pairs per model: RF 110, LGBM 110
+  Pairs of the same species (scientific name; left out in H3): 4

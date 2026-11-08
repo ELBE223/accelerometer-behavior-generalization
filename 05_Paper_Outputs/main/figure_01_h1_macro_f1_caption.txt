@@ -1,0 +1,1 @@
+Figure 1. Within- and cross-dataset Macro-F1. Points: test datasets with both values (n = 10), mean of five training seeds; lines connect the same dataset; boxes: median and IQR. Statistics: Table 1.

@@ -1,0 +1,10 @@
+"species","elton_name","log_body_mass_g","foraging_stratum","Activity-Nocturnal","Activity-Crepuscular","Activity-Diurnal","Diet-Inv","Diet-Vend","Diet-Vect","Diet-Vfish","Diet-Vunk","Diet-Scav","Diet-Fruit","Diet-Nect","Diet-Seed","Diet-PlantO"
+"Bison bonasus","Bison bonasus",13.1223633774043,"G",1,1,1,0,0,0,0,0,0,0,0,0,100
+"Bos taurus","Bos taurus",13.7101500423064,"G",0,0,1,0,0,0,0,0,0,0,0,0,100
+"Canis lupus familiaris","Canis lupus",10.3792038956153,"G",1,1,0,0,100,0,0,0,0,0,0,0,0
+"Equus caballus","Equus caballus",12.4292161968444,"G",1,1,1,0,0,0,0,0,0,0,0,0,100
+"Equus ferus przewalskii","Equus caballus",12.4292161968444,"G",1,1,1,0,0,0,0,0,0,0,0,0,100
+"Erinaceus europaeus","Erinaceus europaeus",6.64768837356333,"G",1,0,0,80,10,10,0,0,0,0,0,0,0
+"Giraffa camelopardalis","Giraffa camelopardalis",13.710144264512,"G",1,1,0,0,0,0,0,0,0,0,0,0,100
+"Procyon lotor","Procyon lotor",8.61703309650696,"G",1,0,0,40,0,20,0,0,0,20,0,20,0
+"Vulpes vulpes","Vulpes vulpes",8.60816123048454,"G",1,1,0,20,70,0,0,0,0,10,0,0,0

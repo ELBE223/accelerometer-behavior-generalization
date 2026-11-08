@@ -1,0 +1,221 @@
+Table S2. Behavior label mapping.
+
+Dataset	Original label	Class	Evaluation windows
+Bison 1	LIN	Resting	1,231
+Bison 1	LIT	Resting	126
+Bison 1	LPN	Resting	263
+Bison 1	LWN	Resting	1,310
+Bison 1	SKM	Resting	7
+Bison 1	SKN	Resting	834
+Bison 1	STL	Resting	110
+Bison 1	SWK	Resting	257
+Bison 1	GAL	Locomotion	41
+Bison 1	SCH	Locomotion	656
+Bison 1	TRB	Locomotion	52
+Bison 1	FSH	Foraging	85
+Bison 1	FSM	Foraging	55
+Bison 1	FSN	Foraging	119
+Bison 1	FST	Foraging	3
+Bison 1	FVB	Foraging	474
+Bison 1	GRA	Foraging	490
+Bison 1	HFM	Foraging	230
+Bison 1	HFN	Foraging	146
+Bison 1	HFT	Foraging	136
+Bison 1	KKM	Foraging	65
+Bison 1	KKN	Foraging	198
+Bison 1	RSH	Foraging	10
+Bison 1	TRK	Foraging	10
+Bison 1	KÄM	Other (excluded)	66
+Bison 1	PUT	Other (excluded)	39
+Bison 1	SAB	Other (excluded)	133
+Bison 1	SPU	Other (excluded)	137
+Bison 1	WÄL	Other (excluded)	4
+Cattle 1	REL	Resting	14
+Cattle 1	RES	Resting	2,710
+Cattle 1	RUS	Resting	956
+Cattle 1	MOV	Locomotion	782
+Cattle 1	DRN	Foraging	45
+Cattle 1	FES	Foraging	146
+Cattle 1	GRZ	Foraging	304
+Cattle 1	SLT	Foraging	209
+Cattle 1	ATT	Other (excluded)	1
+Cattle 1	BMN	Other (excluded)	0
+Cattle 1	ESC	Other (excluded)	1
+Cattle 1	LCK	Other (excluded)	17
+Cattle 1	URI	Other (excluded)	9
+Cattle 1	ETC	Excluded	10,356
+Dog 1	LIG	Resting	829
+Dog 1	SIT	Resting	688
+Dog 1	STE	Resting	824
+Dog 1	GEH	Locomotion	791
+Dog 1	REN	Locomotion	688
+Dog 1	SPR	Locomotion	474
+Dog 1	KNA	Foraging	985
+Dog 1	SCH	Foraging	489
+Dog 1	BUD	Other (excluded)	367
+Dog 2	LIE	Resting	612
+Dog 2	SIT	Resting	645
+Dog 2	STA	Resting	645
+Dog 2	GO	Locomotion	726
+Dog 2	RUN	Locomotion	657
+Dog 2	EAT	Foraging	654
+Fox 1	RESTING	Resting	86
+Fox 1	TROTTING	Locomotion	80
+Fox 1	WALKING	Locomotion	80
+Fox 1	DRINKING	Foraging	39
+Fox 1	FORAGING	Foraging	82
+Fox 1	STOCKING	Foraging	80
+Fox 1	GROOMING	Other (excluded)	90
+Giraffe 1	LIE/2Li	Resting	1
+Giraffe 1	LIE/2Li_Gu	Resting	1
+Giraffe 1	LIE/2Li_GuTi	Resting	1
+Giraffe 1	LIE/2Li_Wk	Resting	84
+Giraffe 1	LIE/2Li_WkMi	Resting	6
+Giraffe 1	RUM/1St_GuTi	Resting	1
+Giraffe 1	RUM/4Wk	Resting	1,415
+Giraffe 1	RUM/4Wk_Gu	Resting	156
+Giraffe 1	RUM/4Wk_GuMi	Resting	310
+Giraffe 1	RUM/4WkMi	Resting	1,214
+Giraffe 1	SLE/11Sl	Resting	90
+Giraffe 1	SLE/11Sr	Resting	118
+Giraffe 1	STA/1St	Resting	379
+Giraffe 1	STA/1StMi	Resting	110
+Giraffe 1	RUN/7Re	Locomotion	11
+Giraffe 1	WAL/6Ge	Locomotion	2,227
+Giraffe 1	WAL/6GeMi	Locomotion	124
+Giraffe 1	WAL/6GeTi	Locomotion	56
+Giraffe 1	DRI/5TrBo	Foraging	54
+Giraffe 1	FEA/3Fo	Foraging	152
+Giraffe 1	FEA/3Fro	Foraging	38
+Giraffe 1	FEA/3Kao	Foraging	34
+Giraffe 1	FED/3FruTi	Foraging	59
+Giraffe 1	FED/3FuTi	Foraging	233
+Giraffe 1	FED/3Ka_GuTi	Foraging	4
+Giraffe 1	FED/3KaTi	Foraging	16
+Giraffe 1	FEG/3FuBo	Foraging	259
+Giraffe 1	FEG/3FuTi	Foraging	9
+Giraffe 1	FTM/3Fa	Foraging	995
+Giraffe 1	FTM/3Fra	Foraging	475
+Giraffe 1	FTM/3FruMi	Foraging	167
+Giraffe 1	FTM/3FuMi	Foraging	495
+Giraffe 1	FTM/3Ka	Foraging	1,256
+Giraffe 1	FTM/3Ka_Gu	Foraging	288
+Giraffe 1	FTM/3Ka_GuMi	Foraging	47
+Giraffe 1	FTM/3KaMi	Foraging	333
+Giraffe 1	FIG/10Ge	Other (excluded)	33
+Giraffe 1	FIG/10GrTi	Other (excluded)	34
+Giraffe 1	FIG/10Ne	Other (excluded)	142
+Giraffe 1	FIG/10Tp	Other (excluded)	100
+Giraffe 1	GRO/8Kp	Other (excluded)	31
+Giraffe 1	GRO/8Kp_Ba	Other (excluded)	6
+Giraffe 1	SOC/9So	Other (excluded)	16
+Giraffe 1	SOC/9So_Schn	Other (excluded)	13
+Giraffe 1	SOC/9So_SchnMi	Other (excluded)	15
+Giraffe 1	SOC/9So_SchnTi	Other (excluded)	15
+Giraffe 1	SOC/9SoMi	Other (excluded)	9
+Giraffe 1	SOC/9SoTi	Other (excluded)	15
+Giraffe 1	STA/1St_Gu	Other (excluded)	195
+Giraffe 1	STA/1St_GuMi	Other (excluded)	99
+Giraffe 1	STA/1St_GuTi	Other (excluded)	56
+Hedgehog 1	ruhend	Resting	371
+Hedgehog 1	gehen	Locomotion	384
+Hedgehog 1	laufend	Locomotion	32
+Hedgehog 1	rennen	Locomotion	157
+Hedgehog 1	rennend	Locomotion	51
+Hedgehog 1	fressen	Foraging	1
+Hedgehog 1	schnuppern	Foraging	28
+Hedgehog 1	schnuppert	Foraging	31
+Hedgehog 1	eingekugelt	Other (excluded)	22
+Hedgehog 1	kratzt sich	Other (excluded)	1
+Hedgehog 1	schüttelt sich	Other (excluded)	2
+Hedgehog 1	zusammengekugelt	Other (excluded)	1
+Hedgehog 1	ENDSHAKE	Excluded	7
+Hedgehog 1	STARTSHAKE	Excluded	25
+Hedgehog 1	wird bewegt	Excluded	46
+Hedgehog 1	wird geschüttelt	Excluded	9
+Hedgehog 1	wird getragen	Excluded	57
+Horse 1	LIN	Resting	150
+Horse 1	SKM	Resting	203
+Horse 1	SKN	Resting	625
+Horse 1	SLN	Resting	5
+Horse 1	GAL	Locomotion	55
+Horse 1	SCH	Locomotion	510
+Horse 1	TRB	Locomotion	78
+Horse 1	FVB	Foraging	418
+Horse 1	GRA	Foraging	602
+Horse 1	HFM	Foraging	168
+Horse 1	HFN	Foraging	257
+Horse 1	HFT	Foraging	373
+Horse 1	KKM	Foraging	140
+Horse 1	KKN	Foraging	139
+Horse 1	TRK	Foraging	17
+Horse 1	GFP	Other (excluded)	193
+Horse 1	KOS	Other (excluded)	32
+Horse 1	PUT	Other (excluded)	25
+Horse 1	SAB	Other (excluded)	29
+Horse 1	WÄL	Other (excluded)	1
+Horse 2	standing	Resting	2,968
+Horse 2	galloping-natural	Locomotion	58
+Horse 2	trotting-natural	Locomotion	52
+Horse 2	walking-natural	Locomotion	2,011
+Horse 2	eating	Foraging	27
+Horse 2	grazing	Foraging	10,050
+Horse 2	fighting	Other (excluded)	17
+Horse 2	head-shake	Other (excluded)	464
+Horse 2	jumping	Other (excluded)	9
+Horse 2	rolling	Other (excluded)	37
+Horse 2	rubbing	Other (excluded)	3
+Horse 2	scared	Other (excluded)	3
+Horse 2	scratch-biting	Other (excluded)	162
+Horse 2	shaking	Other (excluded)	14
+Horse 2	galloping-rider	Excluded	2,194
+Horse 2	trotting-rider	Excluded	14,275
+Horse 2	unknown	Excluded	53,809
+Horse 2	walking-rider	Excluded	19,683
+Raccoon 1	StB	Resting	54
+Raccoon 1	StH	Resting	27
+Raccoon 1	StN	Resting	54
+Raccoon 1	StT	Resting	27
+Raccoon 1	GaW	Locomotion	27
+Raccoon 1	KlHoH	Locomotion	54
+Raccoon 1	KlRuH	Locomotion	27
+Raccoon 1	LaW	Locomotion	27
+Raccoon 1	MGeT	Locomotion	27
+Raccoon 1	WGeN	Locomotion	54
+Raccoon 1	WGeT	Locomotion	27
+Raccoon 1	StFrBoT	Foraging	54
+Raccoon 1	Su	Foraging	0
+Raccoon 1	SuG	Foraging	34
+Raccoon 1	SuM	Foraging	38
+Raccoon 1	SuW	Foraging	35
+Raccoon 1	StAHKr	Other (excluded)	27
+Raccoon 2	Ruhen	Resting	322
+Raccoon 2	Schlafen	Resting	96
+Raccoon 2	Sitzen	Resting	134
+Raccoon 2	Stehen	Resting	40
+Raccoon 2	Galopp	Locomotion	17
+Raccoon 2	Hängen	Locomotion	16
+Raccoon 2	Klettern Kopf oben	Locomotion	42
+Raccoon 2	Klettern Kopf unten	Locomotion	3
+Raccoon 2	Klettern Seitlich	Locomotion	2
+Raccoon 2	Laufen	Locomotion	73
+Raccoon 2	Laufen Tür	Locomotion	40
+Raccoon 2	Essen	Foraging	129
+Raccoon 2	Essen Wasser	Foraging	13
+Raccoon 2	Schaben Land	Foraging	28
+Raccoon 2	Schaben Wasser	Foraging	54
+Raccoon 2	Auf zwei Beinen stehen	Other (excluded)	6
+Raccoon 2	Hängen Decke	Other (excluded)	4
+Raccoon 2	Kratzen	Other (excluded)	5
+Raccoon 2	Kratzen am Logger	Other (excluded)	3
+Raccoon 2	Putzen	Other (excluded)	73
+Raccoon 2	Putzen Gegenseitig	Other (excluded)	58
+Raccoon 2	Schütteln	Other (excluded)	23
+Raccoon 2	Schwimmen	Other (excluded)	3
+Raccoon 2	L/St	Excluded	20
+
+Original labels as recorded in the source datasets (codes and German terms of the theses); their definitions are given in the sources (Table S1) and are available from the authors on request.
+Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.
+Evaluation windows: non-overlapping 2 s windows with this label only.
+Sensitivity scenario E (Table S20): Horse 2: jumping, galloping-rider, trotting-rider, walking-rider as Locomotion.
+Source: 00_Documentation/behavior_mapping.csv

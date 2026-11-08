@@ -1,0 +1,208 @@
+STATISTICS H1 AND H2 – scenario primary
+====================================================================================================
+
+Values: mean over the seeds per model and dataset (or dataset pair); SD = SD over the seeds.
+Wilcoxon: exact two-sided p unless ties or zero differences (test_method in the csv files).
+
+SEED VARIABILITY (SD of Macro-F1 over the seeds, per model and mode)
+
+        model     mode  rows  n_seeds_min  n_seeds_max  sd_macro_f1_median  sd_macro_f1_max                                            max_at
+          CNN    cross    11            5            5               0.030            0.050         all except Fox_dataset_1 -> Fox_dataset_1
+          CNN pairwise   110            5            5               0.047            0.183                Dog_dataset_1 -> Raccoon_dataset_1
+          CNN   within    10            5            5               0.028            0.038              Cattle_dataset_1 -> Cattle_dataset_1
+       ResNet    cross    11            5            5               0.040            0.068     all except Horse_dataset_2 -> Horse_dataset_2
+       ResNet pairwise   110            5            5               0.050            0.234                    Dog_dataset_1 -> Fox_dataset_1
+       ResNet   within    10            5            5               0.028            0.086            Raccoon_dataset_2 -> Raccoon_dataset_2
+        HYDRA    cross    11            5            5               0.012            0.024     all except Horse_dataset_2 -> Horse_dataset_2
+        HYDRA pairwise   110            5            5               0.031            0.109            Hedgehog_dataset_1 -> Cattle_dataset_1
+        HYDRA   within    10            5            5               0.008            0.011                    Dog_dataset_1 -> Dog_dataset_1
+  MultiRocket    cross    11            5            5               0.010            0.033 all except Giraffe_dataset_1 -> Giraffe_dataset_1
+  MultiRocket pairwise   110            5            5               0.036            0.137               Cattle_dataset_1 -> Horse_dataset_1
+  MultiRocket   within    10            5            5               0.006            0.012                    Dog_dataset_2 -> Dog_dataset_2
+           RF    cross    11            5            5               0.006            0.014 all except Raccoon_dataset_1 -> Raccoon_dataset_1
+           RF pairwise   110            5            5               0.016            0.129                Giraffe_dataset_1 -> Dog_dataset_1
+           RF   within    10            5            5               0.006            0.018              Cattle_dataset_1 -> Cattle_dataset_1
+         LGBM    cross    11            5            5               0.009            0.019 all except Giraffe_dataset_1 -> Giraffe_dataset_1
+         LGBM pairwise   110            5            5               0.018            0.095                Giraffe_dataset_1 -> Dog_dataset_1
+         LGBM   within    10            5            5               0.006            0.012              Cattle_dataset_1 -> Cattle_dataset_1
+
+
+H1: WITHIN VS. CROSS (Macro-F1 per dataset, mean ± SD over the seeds)
+
+  CNN
+    Bison_dataset_1      within 0.826 ± 0.028   cross 0.626 ± 0.030   gap +0.200
+    Cattle_dataset_1     within 0.778 ± 0.038   cross 0.535 ± 0.028   gap +0.244
+    Dog_dataset_1        within 0.797 ± 0.028   cross 0.691 ± 0.022   gap +0.106  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.493 ± 0.011   cross 0.509 ± 0.015   gap -0.016
+    Fox_dataset_1        within 0.842 ± 0.014   cross 0.751 ± 0.050   gap +0.090
+    Giraffe_dataset_1    within 0.644 ± 0.025   cross 0.280 ± 0.025   gap +0.364
+    Horse_dataset_1      within 0.877 ± 0.036   cross 0.843 ± 0.033   gap +0.034
+    Horse_dataset_2      within 0.632 ± 0.034   cross 0.630 ± 0.042   gap +0.002  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.796 ± 0.008   cross 0.676 ± 0.011   gap +0.120
+    Raccoon_dataset_2    within 0.469 ± 0.036   cross 0.741 ± 0.040   gap -0.272  (test units 2 of 3 individuals)
+  ResNet
+    Bison_dataset_1      within 0.794 ± 0.030   cross 0.690 ± 0.050   gap +0.104
+    Cattle_dataset_1     within 0.763 ± 0.032   cross 0.549 ± 0.030   gap +0.214
+    Dog_dataset_1        within 0.778 ± 0.012   cross 0.677 ± 0.039   gap +0.100  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.465 ± 0.024   cross 0.512 ± 0.019   gap -0.047
+    Fox_dataset_1        within 0.866 ± 0.016   cross 0.719 ± 0.061   gap +0.147
+    Giraffe_dataset_1    within 0.617 ± 0.053   cross 0.386 ± 0.016   gap +0.231
+    Horse_dataset_1      within 0.866 ± 0.039   cross 0.839 ± 0.040   gap +0.027
+    Horse_dataset_2      within 0.641 ± 0.027   cross 0.627 ± 0.068   gap +0.014  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.779 ± 0.011   cross 0.670 ± 0.042   gap +0.109
+    Raccoon_dataset_2    within 0.454 ± 0.086   cross 0.687 ± 0.029   gap -0.234  (test units 2 of 3 individuals)
+  HYDRA
+    Bison_dataset_1      within 0.911 ± 0.008   cross 0.664 ± 0.023   gap +0.247
+    Cattle_dataset_1     within 0.832 ± 0.005   cross 0.556 ± 0.016   gap +0.276
+    Dog_dataset_1        within 0.816 ± 0.011   cross 0.693 ± 0.010   gap +0.122  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.506 ± 0.009   cross 0.426 ± 0.011   gap +0.080
+    Fox_dataset_1        within 0.897 ± 0.008   cross 0.757 ± 0.020   gap +0.140
+    Giraffe_dataset_1    within 0.850 ± 0.006   cross 0.499 ± 0.018   gap +0.352
+    Horse_dataset_1      within 0.945 ± 0.003   cross 0.832 ± 0.012   gap +0.113
+    Horse_dataset_2      within 0.790 ± 0.011   cross 0.615 ± 0.024   gap +0.174  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.818 ± 0.003   cross 0.657 ± 0.008   gap +0.160
+    Raccoon_dataset_2    within 0.706 ± 0.010   cross 0.735 ± 0.008   gap -0.029  (test units 2 of 3 individuals)
+  MultiRocket
+    Bison_dataset_1      within 0.919 ± 0.010   cross 0.695 ± 0.007   gap +0.224
+    Cattle_dataset_1     within 0.836 ± 0.003   cross 0.514 ± 0.030   gap +0.322
+    Dog_dataset_1        within 0.859 ± 0.003   cross 0.690 ± 0.013   gap +0.169  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.518 ± 0.012   cross 0.453 ± 0.010   gap +0.066
+    Fox_dataset_1        within 0.899 ± 0.007   cross 0.734 ± 0.007   gap +0.165
+    Giraffe_dataset_1    within 0.850 ± 0.009   cross 0.472 ± 0.033   gap +0.379
+    Horse_dataset_1      within 0.968 ± 0.002   cross 0.852 ± 0.003   gap +0.116
+    Horse_dataset_2      within 0.814 ± 0.010   cross 0.621 ± 0.020   gap +0.193  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.818 ± 0.005   cross 0.672 ± 0.010   gap +0.146
+    Raccoon_dataset_2    within 0.804 ± 0.004   cross 0.726 ± 0.010   gap +0.078  (test units 2 of 3 individuals)
+  RF
+    Bison_dataset_1      within 0.916 ± 0.003   cross 0.700 ± 0.007   gap +0.216
+    Cattle_dataset_1     within 0.705 ± 0.018   cross 0.597 ± 0.006   gap +0.108
+    Dog_dataset_1        within 0.843 ± 0.005   cross 0.765 ± 0.004   gap +0.078  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.537 ± 0.006   cross 0.443 ± 0.004   gap +0.095
+    Fox_dataset_1        within 0.844 ± 0.005   cross 0.732 ± 0.013   gap +0.113
+    Giraffe_dataset_1    within 0.814 ± 0.008   cross 0.434 ± 0.006   gap +0.380
+    Horse_dataset_1      within 0.937 ± 0.003   cross 0.862 ± 0.005   gap +0.075
+    Horse_dataset_2      within 0.835 ± 0.007   cross 0.728 ± 0.006   gap +0.107  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.775 ± 0.007   cross 0.690 ± 0.014   gap +0.085
+    Raccoon_dataset_2    within 0.850 ± 0.007   cross 0.792 ± 0.008   gap +0.057  (test units 2 of 3 individuals)
+  LGBM
+    Bison_dataset_1      within 0.917 ± 0.005   cross 0.691 ± 0.009   gap +0.225
+    Cattle_dataset_1     within 0.710 ± 0.012   cross 0.605 ± 0.009   gap +0.105
+    Dog_dataset_1        within 0.839 ± 0.005   cross 0.761 ± 0.003   gap +0.079  (test units 13 of 14 individuals)
+    Dog_dataset_2        within 0.509 ± 0.010   cross 0.450 ± 0.004   gap +0.059
+    Fox_dataset_1        within 0.854 ± 0.000   cross 0.733 ± 0.009   gap +0.121
+    Giraffe_dataset_1    within 0.818 ± 0.006   cross 0.472 ± 0.019   gap +0.347
+    Horse_dataset_1      within 0.942 ± 0.004   cross 0.854 ± 0.009   gap +0.088
+    Horse_dataset_2      within 0.822 ± 0.009   cross 0.709 ± 0.010   gap +0.113  (test units 7 of 11 individuals)
+    Raccoon_dataset_1    within 0.756 ± 0.000   cross 0.695 ± 0.018   gap +0.060
+    Raccoon_dataset_2    within 0.823 ± 0.010   cross 0.779 ± 0.004   gap +0.044  (test units 2 of 3 individuals)
+
+  Paired Wilcoxon tests (datasets 'all': every dataset with a within value; 'same_test_windows':
+  only datasets in which every individual is a test unit, so within and cross test the same windows)
+
+  CNN          all                macro_f1  n 10  within higher  8  gap median 0.098 [0.010, 0.180]  V 44  p 0.105  r_rb 0.60  (exact)
+  CNN          all                accuracy  n 10  within higher  8  gap median 0.069 [0.033, 0.101]  V 44  p 0.105  r_rb 0.60  (exact)
+  ResNet       all                macro_f1  n 10  within higher  8  gap median 0.102 [0.017, 0.137]  V 42  p 0.160  r_rb 0.53  (exact)
+  ResNet       all                accuracy  n 10  within higher  8  gap median 0.052 [0.007, 0.117]  V 41  p 0.193  r_rb 0.49  (exact)
+  HYDRA        all                macro_f1  n 10  within higher  9  gap median 0.150 [0.116, 0.229]  V 54  p 0.004  r_rb 0.96  (exact)
+  HYDRA        all                accuracy  n 10  within higher  9  gap median 0.154 [0.111, 0.168]  V 54  p 0.004  r_rb 0.96  (exact)
+  MultiRocket  all                macro_f1  n 10  within higher 10  gap median 0.167 [0.124, 0.216]  V 55  p 0.002  r_rb 1.00  (exact)
+  MultiRocket  all                accuracy  n 10  within higher 10  gap median 0.159 [0.113, 0.184]  V 55  p 0.002  r_rb 1.00  (exact)
+  RF           all                macro_f1  n 10  within higher 10  gap median 0.101 [0.080, 0.111]  V 55  p 0.002  r_rb 1.00  (exact)
+  RF           all                accuracy  n 10  within higher 10  gap median 0.095 [0.075, 0.121]  V 55  p 0.002  r_rb 1.00  (exact)
+  LGBM         all                macro_f1  n 10  within higher 10  gap median 0.096 [0.065, 0.119]  V 55  p 0.002  r_rb 1.00  (exact)
+  LGBM         all                accuracy  n 10  within higher 10  gap median 0.083 [0.064, 0.126]  V 55  p 0.002  r_rb 1.00  (exact)
+  CNN          same_test_windows  macro_f1  n  7  within higher  6  gap median 0.120 [0.062, 0.222]  V 27  p 0.031  r_rb 0.93  (exact)
+  CNN          same_test_windows  accuracy  n  7  within higher  6  gap median 0.074 [0.048, 0.109]  V 27  p 0.031  r_rb 0.93  (exact)
+  ResNet       same_test_windows  macro_f1  n  7  within higher  6  gap median 0.109 [0.066, 0.180]  V 26  p 0.047  r_rb 0.86  (exact)
+  ResNet       same_test_windows  accuracy  n  7  within higher  6  gap median 0.073 [0.017, 0.130]  V 25  p 0.078  r_rb 0.79  (exact)
+  HYDRA        same_test_windows  macro_f1  n  7  within higher  7  gap median 0.160 [0.127, 0.262]  V 28  p 0.016  r_rb 1.00  (exact)
+  HYDRA        same_test_windows  accuracy  n  7  within higher  7  gap median 0.167 [0.123, 0.168]  V 28  p 0.016  r_rb 1.00  (exact)
+  MultiRocket  same_test_windows  macro_f1  n  7  within higher  7  gap median 0.165 [0.131, 0.273]  V 28  p 0.016  r_rb 1.00  (exact)
+  MultiRocket  same_test_windows  accuracy  n  7  within higher  7  gap median 0.148 [0.119, 0.179]  V 28  p 0.016  r_rb 1.00  (exact)
+  RF           same_test_windows  macro_f1  n  7  within higher  7  gap median 0.108 [0.090, 0.164]  V 28  p 0.016  r_rb 1.00  (exact)
+  RF           same_test_windows  accuracy  n  7  within higher  7  gap median 0.104 [0.080, 0.117]  V 28  p 0.016  r_rb 1.00  (exact)
+  LGBM         same_test_windows  macro_f1  n  7  within higher  7  gap median 0.105 [0.074, 0.173]  V 28  p 0.016  r_rb 1.00  (exact)
+  LGBM         same_test_windows  accuracy  n  7  within higher  7  gap median 0.086 [0.066, 0.125]  V 28  p 0.016  r_rb 1.00  (exact)
+
+
+H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
+
+  Cross F1 per class
+
+    Median over the datasets:
+    behavior     Foraging  Locomotion  Resting
+    model                                     
+    CNN             0.578       0.619    0.811
+    ResNet          0.552       0.623    0.794
+    HYDRA           0.586       0.615    0.808
+    MultiRocket     0.609       0.614    0.796
+    RF              0.619       0.632    0.852
+    LGBM            0.623       0.627    0.826
+
+    CNN          Friedman chi² 3.45, df 2, n 11, p 0.178, Kendall's W 0.16
+      Foraging - Locomotion: median diff +0.002, V 31, p 0.898, Holm 0.898  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff -0.238, V 9, p 0.032, Holm 0.097  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff -0.204, V 10, p 0.042, Holm 0.097  (not interpreted: Friedman not significant)
+    ResNet       Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.004, V 27, p 0.638, Holm 0.638
+      Foraging - Resting: median diff -0.240, V 4, p 0.007, Holm 0.021
+      Locomotion - Resting: median diff -0.146, V 6, p 0.014, Holm 0.027
+    HYDRA        Friedman chi² 9.45, df 2, n 11, p 0.009, Kendall's W 0.43
+      Foraging - Locomotion: median diff -0.077, V 19, p 0.240, Holm 0.240
+      Foraging - Resting: median diff -0.164, V 5, p 0.010, Holm 0.029
+      Locomotion - Resting: median diff -0.076, V 10, p 0.042, Holm 0.084
+    MultiRocket  Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.001, V 30, p 0.831, Holm 0.831
+      Foraging - Resting: median diff -0.147, V 7, p 0.019, Holm 0.056
+      Locomotion - Resting: median diff -0.148, V 9, p 0.032, Holm 0.064
+    RF           Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.024, V 29, p 0.765, Holm 0.765
+      Foraging - Resting: median diff -0.127, V 5, p 0.010, Holm 0.029
+      Locomotion - Resting: median diff -0.198, V 9, p 0.032, Holm 0.064
+    LGBM         Friedman chi² 8.91, df 2, n 11, p 0.012, Kendall's W 0.40
+      Foraging - Locomotion: median diff -0.021, V 26, p 0.577, Holm 0.577
+      Foraging - Resting: median diff -0.124, V 6, p 0.014, Holm 0.041
+      Locomotion - Resting: median diff -0.130, V 10, p 0.042, Holm 0.084
+
+  Transfer loss (within F1 - cross F1)
+
+    Median over the datasets:
+    behavior     Foraging  Locomotion  Resting
+    model                                     
+    CNN             0.103       0.092    0.044
+    ResNet          0.129       0.129   -0.002
+    HYDRA           0.162       0.175    0.089
+    MultiRocket     0.188       0.184    0.122
+    RF              0.095       0.091    0.084
+    LGBM            0.087       0.113    0.095
+
+    CNN          Friedman chi² 3.20, df 2, n 10, p 0.202, Kendall's W 0.16
+      Foraging - Locomotion: median diff -0.036, V 13, p 0.160, Holm 0.320  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.065, V 42, p 0.160, Holm 0.320  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.204, V 46, p 0.064, Holm 0.193  (not interpreted: Friedman not significant)
+    ResNet       Friedman chi² 8.60, df 2, n 10, p 0.014, Kendall's W 0.43
+      Foraging - Locomotion: median diff -0.025, V 11, p 0.105, Holm 0.105
+      Foraging - Resting: median diff +0.095, V 51, p 0.014, Holm 0.041
+      Locomotion - Resting: median diff +0.129, V 49, p 0.027, Holm 0.055
+    HYDRA        Friedman chi² 2.60, df 2, n 10, p 0.273, Kendall's W 0.13
+      Foraging - Locomotion: median diff -0.021, V 22, p 0.625, Holm 0.645  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.035, V 38, p 0.322, Holm 0.645  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.104, V 42, p 0.160, Holm 0.480  (not interpreted: Friedman not significant)
+    MultiRocket  Friedman chi² 3.20, df 2, n 10, p 0.202, Kendall's W 0.16
+      Foraging - Locomotion: median diff -0.020, V 18, p 0.375, Holm 0.645  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.045, V 38, p 0.322, Holm 0.645  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.095, V 44, p 0.105, Holm 0.316  (not interpreted: Friedman not significant)
+    RF           Friedman chi² 0.80, df 2, n 10, p 0.670, Kendall's W 0.04
+      Foraging - Locomotion: median diff -0.011, V 22, p 0.625, Holm 1.000  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.008, V 30, p 0.846, Holm 1.000  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.039, V 37, p 0.375, Holm 1.000  (not interpreted: Friedman not significant)
+    LGBM         Friedman chi² 1.80, df 2, n 10, p 0.407, Kendall's W 0.09
+      Foraging - Locomotion: median diff -0.016, V 19, p 0.432, Holm 0.967  (not interpreted: Friedman not significant)
+      Foraging - Resting: median diff +0.013, V 30, p 0.846, Holm 0.967  (not interpreted: Friedman not significant)
+      Locomotion - Resting: median diff +0.033, V 38, p 0.322, Holm 0.967  (not interpreted: Friedman not significant)
+
+
+H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
+
+  Dataset pairs per model: CNN 110, ResNet 110, HYDRA 110, MultiRocket 110, RF 110, LGBM 110
+  Pairs of the same species (scientific name; left out in H3): 4

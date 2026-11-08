@@ -1,0 +1,18 @@
+Table S15. Pairwise transfer between datasets.
+
+Training dataset	Bison 1	Cattle 1	Dog 1	Dog 2	Fox 1	Giraffe 1	Hedgehog 1	Horse 1	Horse 2	Raccoon 1	Raccoon 2
+Bison 1	–	0.46	0.53	0.35	0.59	0.28	0.35	0.88	0.42	0.57	0.61
+Cattle 1	0.41	–	0.42	0.31	0.41	0.36	0.32	0.56	0.36	0.36	0.47
+Dog 1	0.40	0.44	–	0.46*	0.56	0.28	0.40	0.48	0.65	0.56	0.55
+Dog 2	0.30	0.26	0.62*	–	0.50	0.29	0.30	0.44	0.47	0.53	0.46
+Fox 1	0.47	0.41	0.62	0.37	–	0.40	0.36	0.55	0.56	0.59	0.56
+Giraffe 1	0.38	0.28	0.34	0.21	0.50	–	0.25	0.49	0.44	0.33	0.45
+Hedgehog 1	0.43	0.43	0.44	0.31	0.41	0.30	–	0.40	0.25	0.42	0.47
+Horse 1	0.82	0.51	0.57	0.38	0.66	0.33	0.34	–	0.44	0.58	0.59
+Horse 2	0.48	0.38	0.77	0.53	0.59	0.26	0.38	0.51	–	0.70	0.68
+Raccoon 1	0.53	0.35	0.50	0.47	0.73	0.28	0.42	0.52	0.47	–	0.63*
+Raccoon 2	0.68	0.54	0.58	0.44	0.71	0.46	0.42	0.75	0.57	0.63*	–
+
+Mean over the six classifiers and five training seeds. *: pair of the same species, left out in H3.
+The diagonal is empty (within-dataset values: Table S10).
+Source: 04_Statistics/results/primary/h3_input.csv

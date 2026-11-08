@@ -1,0 +1,12 @@
+Table 3. Associations between biological distance and cross-species Macro-F1.
+
+Distance measure	β per SD (95% CI)	LR χ²(1)	p	Marginal R²
+Core functional traits	-0.024 [-0.060, 0.011]	2.58	0.108	0.39
+EltonTraits	-0.024 [-0.057, 0.010]	2.19	0.139	0.39
+Body mass difference	-0.018 [-0.052, 0.015]	2.17	0.141	0.38
+Phylogenetic distance	0.002 [-0.030, 0.033]	0.01	0.935	0.36
+
+Macro-F1 ~ distance (z-scored) + classifier + random intercepts of the unordered and ordered species pair and of source and target species; 432 records (72 ordered pairs of 9 species, 6 classifiers).
+β and 95% CI from the REML fit (Satterthwaite df); LR: likelihood-ratio test of ML fits against the model without distance; R² after Nakagawa.
+The core trait distance is the test of H3. Full model: Table S16; further variants: Table S9; distances: Table S8.
+Source: 04_Statistics/results/primary/h3_models.csv

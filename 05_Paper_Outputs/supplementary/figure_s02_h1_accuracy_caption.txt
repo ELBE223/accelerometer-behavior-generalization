@@ -1,0 +1,1 @@
+Figure S2. Within- and cross-dataset accuracy across classifiers. Points: test datasets with both values (n = 10), mean of five training seeds; lines connect the same dataset; boxes: median and IQR. Statistics: Table S11.

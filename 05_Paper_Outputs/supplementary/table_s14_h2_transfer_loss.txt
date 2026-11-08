@@ -1,0 +1,13 @@
+Table S14. Transfer loss by behavioral class (H2).
+
+Classifier	Resting	Locomotion	Foraging	Friedman χ²	p	W
+CNN	0.044 [-0.028, 0.073]	0.092 [0.020, 0.312]	0.103 [0.035, 0.166]	3.20	0.202	0.16
+ResNet	-0.002 [-0.035, 0.027]	0.129 [0.049, 0.207]	0.129 [0.037, 0.159]	8.60	0.014	0.43
+HYDRA	0.089 [0.064, 0.141]	0.175 [0.105, 0.302]	0.162 [0.119, 0.222]	2.60	0.273	0.13
+MultiRocket	0.122 [0.077, 0.175]	0.184 [0.134, 0.334]	0.188 [0.129, 0.218]	3.20	0.202	0.16
+RF	0.084 [0.043, 0.128]	0.091 [0.075, 0.272]	0.095 [0.059, 0.121]	0.80	0.670	0.04
+LightGBM	0.095 [0.043, 0.110]	0.113 [0.057, 0.269]	0.087 [0.046, 0.133]	1.80	0.407	0.09
+
+Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.
+Tests as in Table 2. All post-hoc statistics: Table S13.
+Source: 04_Statistics/results/primary/h2_descriptives.csv, 04_Statistics/results/primary/h2_friedman.csv, 04_Statistics/results/primary/h2_posthoc.csv

@@ -1,0 +1,16 @@
+Table S4. Window features.
+
+Feature	Definition	Number
+VeDBA mean, SD, maximum	Vectorial dynamic body acceleration per sample, √(dx² + dy² + dz²), summarized over the window	3
+ODBA mean, SD	Overall dynamic body acceleration per sample, |dx| + |dy| + |dz|, summarized over the window	2
+SD (x, y, z)	Standard deviation of the dynamic acceleration of each axis (n − 1)	3
+RMS (x, y, z)	Root mean square of the dynamic acceleration of each axis	3
+IQR (x, y, z)	Interquartile range of the dynamic acceleration of each axis	3
+Skewness (x, y, z)	Third standardized moment of each axis	3
+Excess kurtosis (x, y, z)	Fourth standardized moment minus 3 of each axis	3
+Zero crossings (x, y, z)	Sign changes of the dynamic acceleration of each axis	3
+Dominant frequency, spectral centroid, spectral entropy	Of the VeDBA series (mean removed; FFT without the 0 Hz bin); entropy normalized to 0–1	3
+
+Dynamic acceleration (dx, dy, dz): each axis minus its window mean; windows of 2 s at 25 Hz (50 samples). Total: 26 features.
+Static acceleration (posture) is not a feature.
+Source: 01_Preprocessing/features.py

@@ -1,0 +1,1 @@
+Figure 3. Cross-species Macro-F1 in relation to functional-biomechanical distance. Points: ordered species pairs (n = 72), mean over dataset pairs, classifiers and seeds; line and band: mixed-model prediction with 95% CI. Statistics: Table 3.

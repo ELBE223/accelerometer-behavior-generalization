@@ -1,0 +1,11 @@
+numpy
+pandas
+pyarrow          # parquet
+openpyxl         # Excel files
+python-calamine  # fast Excel reading
+scipy            # MATLAB .mat files
+striprtf         # text of .rtf documentation files
+scikit-learn     # Random Forest
+lightgbm         # LightGBM (macOS: needs OpenMP, brew install libomp)
+torch            # CNN, ResNet (and HYDRA in aeon)
+aeon             # HYDRA, MultiRocket

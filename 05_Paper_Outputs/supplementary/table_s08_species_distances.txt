@@ -1,0 +1,44 @@
+Table S8. Distances between species.
+
+Species 1	Species 2	Core traits (Gower)	Weighted trait distance (gawdis)	EltonTraits	EltonTraits with diet	Body mass difference	Phylogenetic distance (Myr)
+Bison	Cattle	0.017	0.001	0.417	0.139	0.588	3.6
+Bison	Dog	0.486	0.553	0.278	0.226	2.928	76.1
+Cattle	Dog	0.504	0.554	0.694	0.365	3.516	76.1
+Bison	Horse	0.287	0.416	0.020	0.007	0.693	76.1
+Cattle	Horse	0.305	0.417	0.436	0.145	1.281	76.1
+Dog	Horse	0.333	0.345	0.258	0.219	2.235	74.3
+Bison	Przewalski's horse	0.282	0.416	0.020	0.007	0.510	76.1
+Cattle	Przewalski's horse	0.299	0.416	0.436	0.145	1.098	76.1
+Dog	Przewalski's horse	0.338	0.346	0.258	0.219	2.418	74.3
+Horse	Przewalski's horse	0.005	0.000	0.000	0.000	0.183	0.055
+Bison	Hedgehog	0.849	0.791	0.583	0.368	6.183	86.4
+Cattle	Hedgehog	0.867	0.792	0.600	0.373	6.771	86.4
+Dog	Hedgehog	0.563	0.549	0.306	0.262	3.255	86.4
+Horse	Hedgehog	0.895	0.895	0.564	0.361	5.490	86.4
+Przewalski's horse	Hedgehog	0.901	0.895	0.564	0.361	5.673	86.4
+Bison	Giraffe	0.351	0.520	0.217	0.072	0.588	26.8
+Cattle	Giraffe	0.333	0.519	0.600	0.200	0.000	26.8
+Dog	Giraffe	0.637	0.762	0.094	0.165	3.516	76.1
+Horse	Giraffe	0.305	0.417	0.236	0.079	1.281	76.1
+Przewalski's horse	Giraffe	0.299	0.416	0.236	0.079	1.098	76.1
+Hedgehog	Giraffe	1.000	1.000	0.400	0.307	6.771	86.4
+Bison	Raccoon	0.800	0.789	0.528	0.476	4.505	76.1
+Cattle	Raccoon	0.817	0.790	0.544	0.481	5.093	76.1
+Dog	Raccoon	0.513	0.475	0.250	0.383	1.577	45.2
+Horse	Raccoon	0.646	0.581	0.508	0.469	3.812	74.3
+Przewalski's horse	Raccoon	0.651	0.582	0.508	0.469	3.995	74.3
+Hedgehog	Raccoon	0.650	0.682	0.056	0.225	1.678	86.4
+Giraffe	Raccoon	0.950	0.998	0.344	0.415	5.093	76.1
+Bison	Red fox	0.533	0.555	0.328	0.273	4.514	76.1
+Cattle	Red fox	0.551	0.556	0.744	0.411	5.102	76.1
+Dog	Red fox	0.047	0.002	0.050	0.087	1.586	12.3
+Horse	Red fox	0.380	0.347	0.308	0.266	3.821	74.3
+Przewalski's horse	Red fox	0.385	0.347	0.308	0.266	4.004	74.3
+Hedgehog	Red fox	0.516	0.547	0.256	0.242	1.669	86.4
+Giraffe	Red fox	0.684	0.764	0.144	0.211	5.102	76.1
+Raccoon	Red fox	0.467	0.473	0.200	0.297	0.009	45.2
+
+Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.055 Myr, the midpoint of their population divergence of 38–72 kyr (Orlando et al. 2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.
+EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus.
+Weighted trait distance (gawdis) and EltonTraits with diet: used only in the robustness analyses (Table S9).
+Source: 04_Statistics/results/primary/h3_distances.csv

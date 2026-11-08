@@ -1,0 +1,16 @@
+dataset_id,setting,sensor,native_hz,burst_samples_per_axis,burst_s,burst_interval_s,condition,source,status,notes,used
+Bison_dataset_1,1,e-obs,33.33,82,2.46,30,,Saenger MSc thesis p. 10-11,confirmed,same thesis and settings as Horse_dataset_1,yes
+Cattle_dataset_1,1,Kionix KX122 on Sony Spresense,25,,,,continuous,ReadMe.md of the dataset,confirmed,ReadMe states +/-2 g; values reach about 3.8 g,yes
+Dog_dataset_1,1,e-obs,33.333,110,3.3,5,,Szangolies BSc thesis pp. 7-8 (setting A),confirmed,"setting B (25 Hz, 68 samples, 2.72 s) of some dogs is not in the data: all bursts have 110 samples",yes
+Dog_dataset_2,1,sensor 5137,33.33,110,3.3,,,Settings.rtf,confirmed,,no
+Dog_dataset_2,2,sensor 5891,20,66,3.3,,,Settings.rtf,confirmed,,no
+Dog_dataset_2,3,sensor 5140,33.33,200,6,,,Settings.rtf,confirmed,,no
+Dog_dataset_2,4,e-obs (sensor 6568),20,130,6,,,Settings.rtf,confirmed,130 samples at 20 Hz are 6.5 s; the data files have 124 samples per burst (6.2 s); all files are from this sensor; thesis windows use this setting only,yes
+Fox_dataset_1,1,e-obs 1C light,33.33,110,3.3,30,,Giese MSc thesis p. 9,confirmed,the thesis gives 33 Hz (rounded); 110 samples in 3.3 s and the sample times of some recordings give 33.33 Hz,yes
+Giraffe_dataset_1,1,e-obs,33.33,82,2.46,20,,sample times in the data (time_ss),confirmed,the thesis PDF gives 33.8 Hz; the sample times step by 0.0299-0.03 s and the last of 82 samples is 2.43 s after the burst start (33.33 Hz; 33.8 Hz would give 2.40 s); thesis windowing used 33.333 Hz; AWT sensor (1 Hz) of the thesis is not in this dataset,yes
+Hedgehog_dataset_1,1,e-obs,100,264,2.64,20,,Cibis MSc thesis p. 8,confirmed,rows per burst in the data: median 194 of 264; thesis clips 1.47-2.02 s; whether labels change within bursts or rows were removed is to be checked,yes
+Horse_dataset_1,1,e-obs,33.33,82,2.46,30,,Saenger MSc thesis p. 10-11,confirmed,same thesis and settings as Bison_dataset_1,yes
+Horse_dataset_2,1,IMU,100,,,,continuous segments,settings.csv of the dataset (srs = 100),confirmed,the dataset authors used windows of 200 samples (2 s) with 50 % overlap (settings.csv),yes
+Raccoon_dataset_1,1,e-obs,33.33,54,1.62,30,first 11 weeks,Mardaus MSc thesis p. 17,confirmed,no 2-s window fits; all thesis windows come from setting 2,no
+Raccoon_dataset_1,2,e-obs,33.33,96,2.88,30,following 2 weeks,Mardaus MSc thesis p. 17,confirmed,,yes
+Raccoon_dataset_2,1,e-obs,33.33,110,3.3,60,,Geiger BSc thesis p. 19,confirmed,interval 30 s for the young raccoon from 27 to 30 Sep 2022; 110 samples in 3.3 s (33.3 Hz in the thesis),yes

@@ -1,0 +1,4 @@
+Created: 2026-10-27 17:03:57 with code/train_models.py (cnn, resnet, hydra, multirocket; 1454.0 min)
+Seeds: 42, 43, 44, 45, 46; modes: within, cross, pairwise, global
+Windows: 82,028 (54,987 evaluation windows); individuals meeting the thesis rule: 50 of 61; skipped runs: 10
+Earlier results kept (--add): seeds 42 | Created: 2026-10-25 14:25:34 with code/train_models.py (cnn, resnet, hydra, multirocket; 405.3 min)

@@ -1,0 +1,16 @@
+seed,mode,train,test,test_individual,reason
+42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 19
+42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+42,within,Raccoon_dataset_2,Raccoon_dataset_2,Raccoon_dataset_2__Wilbert,training windows below 30: Locomotion 24
+43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 19
+43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+43,within,Raccoon_dataset_2,Raccoon_dataset_2,Raccoon_dataset_2__Wilbert,training windows below 30: Locomotion 24
+44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 19
+44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+44,within,Raccoon_dataset_2,Raccoon_dataset_2,Raccoon_dataset_2__Wilbert,training windows below 30: Locomotion 24
+45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 19
+45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+45,within,Raccoon_dataset_2,Raccoon_dataset_2,Raccoon_dataset_2__Wilbert,training windows below 30: Locomotion 24
+46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,training windows below 30: Foraging 19
+46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 6 individuals meet the rule)
+46,within,Raccoon_dataset_2,Raccoon_dataset_2,Raccoon_dataset_2__Wilbert,training windows below 30: Locomotion 24

@@ -1,0 +1,12 @@
+Table S6. Core trait definitions.
+
+Trait	Definition	Coding	Sources	Main uncertainty
+Body mass	Selected body mass reference per taxon, used as a measure of body size: an external reference value, a cohort mean or an aggregate of study means.	Continuous: ln(mass in g); one value per taxon.	Wilman et al. (2014); Gerstner & Gerstein (2008); Cibis (2017); Szangolies (2017); Groth (2020)	References may not match the recorded individuals; dog value is the mean of two study means.
+Locomotor specialization	Broad classification based on locomotor anatomy and habitual substrate use; describes specialization, not the frequency of single gaits.	Nominal: cursorial, scansorial, terrestrial generalist.	Kilbourne & Hoffman (2013); Neveu et al. (2001)	Coarse 7/1/1 split; mainly separates hedgehog and raccoon.
+Body configuration	Broad relative proportions of trunk, limbs and neck in ordinary standing posture, independent of momentary movement.	Nominal: robust quadruped, standard quadruped, tall long-necked quadruped, compact low-profile body.	Prothero (1992); Krasińska & Krasiński (2002)	Study-specific groups without measurement thresholds; raccoon assignment and dog breed variation uncertain.
+Relative neck length	Length of the cervical vertebral column relative to the thoracic, lumbar and sacral regions; an anatomical proxy, not a measure of neck movement.	Ordinal from r = C/(T + L + S): short (r < 0.30), intermediate (0.30–0.40), long (0.40–1.00), very long (≥ 1.00).	Belyaev et al. (2021, 2023, 2024); Davis (1964)	One or two specimens per taxon; hedgehog by expert judgement (intermediate as alternative); raccoon indirect; cattle near 0.30.
+Food acquisition and handling	Characteristic actions used to acquire and handle food at the taxon level; not feeding height or the share of observed foraging windows.	Nominal: vegetation cropping, oral item acquisition, manual food handling.	Iwaniuk & Whishaw (1999); Kowalczyk et al. (2019)	Study-specific synthesis; species-typical actions may differ from the recorded feeding situations.
+
+Species assignments: Table S7; pairwise distances: Table S8. Categories are study-specific; Gower distance with equal weights.
+Full text and references: 00_Documentation/traits/core_traits.md.
+Source: 00_Documentation/traits/core_trait_definitions.csv

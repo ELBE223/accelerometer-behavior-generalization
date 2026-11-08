@@ -1,0 +1,12 @@
+{
+  "_comment": "Preprocessing settings; see 00_Documentation/decisions.md (D04-D07). Change only with a decision entry.",
+  "target_hz": 25,
+  "window_s": 2.0,
+  "step_s": 1.0,
+  "gap_factor": 1.5,
+  "resample_max_denominator": 100,
+  "resample_padtype": "line",
+  "variants": {
+    "C": {"_comment": "D11 sensitivity C: 2.4 s windows without overlap (make_windows.py --variant C)", "window_s": 2.4, "step_s": 2.4}
+  }
+}
