@@ -30,7 +30,7 @@ OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)
   exploratory core + C5 (D37)    n 144  beta -0.006 [-0.038, 0.025]  SE 0.015  LR chi2(1) 0.20  p 0.653
   EltonTraits core               n 144  beta 0.000 [-0.031, 0.031]  SE 0.015  LR chi2(1) 0.00  p 0.998
   EltonTraits extended           n 144  beta 0.007 [-0.026, 0.039]  SE 0.016  LR chi2(1) 0.19  p 0.667
-  divergence time (TimeTree)     n 144  beta -0.001 [-0.030, 0.028]  SE 0.014  LR chi2(1) 0.01  p 0.929
+  divergence time (TimeTree)     n 144  beta -0.000 [-0.029, 0.028]  SE 0.014  LR chi2(1) 0.00  p 0.967
   log body mass                  n 144  beta -0.001 [-0.030, 0.027]  SE 0.014  LR chi2(1) 0.02  p 0.902
   EltonTraits names: Canis lupus familiaris = Canis lupus; Equus ferus przewalskii = Equus caballus
 
