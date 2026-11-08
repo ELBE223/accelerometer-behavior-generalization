@@ -5,12 +5,13 @@ data/*
 
 # Written by the pipeline and the model runs, kept only locally: per-dataset logs of the
 # preprocessing (the summaries *.csv are in git) and the model details that no analysis
-# reads (the statistics use metrics.csv only)
+# reads (the statistics use metrics.csv only), and the run overview
 01_Preprocessing/reports/pipeline_reports/*.txt
 03_Evaluation/results/*/*/confusion.csv
 03_Evaluation/results/*/*/importance.csv
 03_Evaluation/results/*/*/training_sets.csv
 03_Evaluation/results/*/*/within_folds.csv
+03_Evaluation/results/*/summary.txt
 
 # Python
 .venv/

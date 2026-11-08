@@ -8,12 +8,12 @@ of three classes, and all eligible individuals.
 
 | Scenario | Change from the primary analysis |
 |---|---|
-| A | 2.0-s windows without overlap in training (evaluation unchanged) |
-| C | 2.4-s windows (60 samples) without overlap in training and evaluation, close to the 2.46-s windows of the original theses |
-| Majority class | A window takes the class of at least 80% of its samples instead of requiring all samples to belong to one class; samples with an excluded label or without a label count against the 80% |
-| Four classes | Behaviors outside the three target classes are kept as a fourth class, Other |
-| E | Ridden gaits of Horse 2 (walking, trotting and galloping with a rider) and jumping are assigned to Locomotion, as in the original thesis |
-| F | Only individuals with all three classes and at least ten evaluation windows in each, in all evaluations |
+| No training overlap | 2.0-s windows without overlap in training (evaluation unchanged) |
+| 2.4-s windows | 2.4-s windows (60 samples) without overlap in training and evaluation |
+| Majority label (80%) | A window takes the class of at least 80% of its samples instead of requiring all samples to belong to one class; samples with an excluded label or without a label count against the 80% |
+| Four classes (with Other) | Behaviors outside the three target classes are kept as a fourth class, Other |
+| Ridden gaits as locomotion | Ridden gaits of Horse 2 (walking, trotting and galloping with a rider) and jumping are assigned to Locomotion |
+| Eligible individuals only | Only individuals with all three classes and at least ten evaluation windows in each, in all evaluations |
 
 Because of the computing time of the signal-based networks, all scenarios were run with
 Random Forest and LightGBM only, with the same five training seeds and the same

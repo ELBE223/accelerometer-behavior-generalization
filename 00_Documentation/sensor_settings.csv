@@ -7,10 +7,6 @@ Dog_dataset_2,2,sensor 5891,20,66,3.3,,,Settings.rtf,confirmed,,no
 Dog_dataset_2,3,sensor 5140,33.33,200,6,,,Settings.rtf,confirmed,,no
 Dog_dataset_2,4,e-obs (sensor 6568),20,130,6,,,Settings.rtf,confirmed,130 samples at 20 Hz are 6.5 s; the data files have 124 samples per burst (6.2 s); all files are from this sensor; thesis windows use this setting only,yes
 Fox_dataset_1,1,e-obs 1C light,33.33,110,3.3,30,,Giese MSc thesis p. 9,confirmed,the thesis gives 33 Hz (rounded); 110 samples in 3.3 s and the sample times of some recordings give 33.33 Hz,yes
-Fox_dataset_2,1,e-obs (tags 1639 and 1644),18.74,180,9.6,120,,Movebank columns and ACC_QC_summary.csv,confirmed,,no
-Fox_dataset_2,2,e-obs (tag 1644),18.74,82,4.4,120,,Movebank columns and ACC_QC_summary.csv,confirmed,756 bursts of tag 1644 and 4 of tag 1639,no
-Fox_dataset_2,3,e-obs (tags 5009 5010 5011),33.33,110,3.3,120,,Movebank columns and ACC_QC_summary.csv,confirmed,,no
-Fox_dataset_2,4,e-obs (tag 4142),33.33,264,7.9,120,,Movebank columns and ACC_QC_summary.csv,confirmed,all bursts of tag 4142 and 36 of tag 5011,no
 Giraffe_dataset_1,1,e-obs,33.33,82,2.46,20,,sample times in the data (time_ss),confirmed,the thesis PDF gives 33.8 Hz; the sample times step by 0.0299-0.03 s and the last of 82 samples is 2.43 s after the burst start (33.33 Hz; 33.8 Hz would give 2.40 s); thesis windowing used 33.333 Hz; AWT sensor (1 Hz) of the thesis is not in this dataset,yes
 Hedgehog_dataset_1,1,e-obs,100,264,2.64,20,,Cibis MSc thesis p. 8,confirmed,rows per burst in the data: median 194 of 264; thesis clips 1.47-2.02 s; whether labels change within bursts or rows were removed is to be checked,yes
 Horse_dataset_1,1,e-obs,33.33,82,2.46,30,,Saenger MSc thesis p. 10-11,confirmed,same thesis and settings as Bison_dataset_1,yes

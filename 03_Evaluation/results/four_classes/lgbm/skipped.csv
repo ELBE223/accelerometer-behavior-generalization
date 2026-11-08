@@ -33,9 +33,6 @@ seed,mode,train,test,test_individual,reason
 42,pairwise,Raccoon_dataset_1,Horse_dataset_1,,training windows below 30: Other 27
 42,pairwise,Raccoon_dataset_1,Horse_dataset_2,,training windows below 30: Other 27
 42,pairwise,Raccoon_dataset_1,Raccoon_dataset_2,,training windows below 30: Other 27
-42,global,,Dog_dataset_2,,fewer than 30 windows in a class
-42,global,,Hedgehog_dataset_1,,fewer than 30 windows in a class
-42,global,,Raccoon_dataset_1,,fewer than 30 windows in a class
 43,within,Dog_dataset_2,Dog_dataset_2,,no valid fold (0 of 8 individuals meet the rule)
 43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (0 of 6 individuals meet the rule)
 43,within,Raccoon_dataset_1,Raccoon_dataset_1,Raccoon_dataset_1__Lisa,training windows below 30: Other 0
@@ -70,9 +67,6 @@ seed,mode,train,test,test_individual,reason
 43,pairwise,Raccoon_dataset_1,Horse_dataset_1,,training windows below 30: Other 27
 43,pairwise,Raccoon_dataset_1,Horse_dataset_2,,training windows below 30: Other 27
 43,pairwise,Raccoon_dataset_1,Raccoon_dataset_2,,training windows below 30: Other 27
-43,global,,Dog_dataset_2,,fewer than 30 windows in a class
-43,global,,Hedgehog_dataset_1,,fewer than 30 windows in a class
-43,global,,Raccoon_dataset_1,,fewer than 30 windows in a class
 44,within,Dog_dataset_2,Dog_dataset_2,,no valid fold (0 of 8 individuals meet the rule)
 44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (0 of 6 individuals meet the rule)
 44,within,Raccoon_dataset_1,Raccoon_dataset_1,Raccoon_dataset_1__Lisa,training windows below 30: Other 0
@@ -107,9 +101,6 @@ seed,mode,train,test,test_individual,reason
 44,pairwise,Raccoon_dataset_1,Horse_dataset_1,,training windows below 30: Other 27
 44,pairwise,Raccoon_dataset_1,Horse_dataset_2,,training windows below 30: Other 27
 44,pairwise,Raccoon_dataset_1,Raccoon_dataset_2,,training windows below 30: Other 27
-44,global,,Dog_dataset_2,,fewer than 30 windows in a class
-44,global,,Hedgehog_dataset_1,,fewer than 30 windows in a class
-44,global,,Raccoon_dataset_1,,fewer than 30 windows in a class
 45,within,Dog_dataset_2,Dog_dataset_2,,no valid fold (0 of 8 individuals meet the rule)
 45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (0 of 6 individuals meet the rule)
 45,within,Raccoon_dataset_1,Raccoon_dataset_1,Raccoon_dataset_1__Lisa,training windows below 30: Other 0
@@ -144,9 +135,6 @@ seed,mode,train,test,test_individual,reason
 45,pairwise,Raccoon_dataset_1,Horse_dataset_1,,training windows below 30: Other 27
 45,pairwise,Raccoon_dataset_1,Horse_dataset_2,,training windows below 30: Other 27
 45,pairwise,Raccoon_dataset_1,Raccoon_dataset_2,,training windows below 30: Other 27
-45,global,,Dog_dataset_2,,fewer than 30 windows in a class
-45,global,,Hedgehog_dataset_1,,fewer than 30 windows in a class
-45,global,,Raccoon_dataset_1,,fewer than 30 windows in a class
 46,within,Dog_dataset_2,Dog_dataset_2,,no valid fold (0 of 8 individuals meet the rule)
 46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (0 of 6 individuals meet the rule)
 46,within,Raccoon_dataset_1,Raccoon_dataset_1,Raccoon_dataset_1__Lisa,training windows below 30: Other 0
@@ -181,6 +169,3 @@ seed,mode,train,test,test_individual,reason
 46,pairwise,Raccoon_dataset_1,Horse_dataset_1,,training windows below 30: Other 27
 46,pairwise,Raccoon_dataset_1,Horse_dataset_2,,training windows below 30: Other 27
 46,pairwise,Raccoon_dataset_1,Raccoon_dataset_2,,training windows below 30: Other 27
-46,global,,Dog_dataset_2,,fewer than 30 windows in a class
-46,global,,Hedgehog_dataset_1,,fewer than 30 windows in a class
-46,global,,Raccoon_dataset_1,,fewer than 30 windows in a class

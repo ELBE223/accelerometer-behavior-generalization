@@ -1,9 +1,7 @@
 model,mode,rows,n_seeds_min,n_seeds_max,sd_macro_f1_median,sd_macro_f1_max,max_at
 rf,cross,11,5,5,0.00795851,0.0138701,all except Fox_dataset_1 -> Fox_dataset_1
-rf,global,9,5,5,0.0168375,0.0303765,pooled -> Horse_dataset_2
 rf,pairwise,80,5,5,0.012766,0.0455906,Giraffe_dataset_1 -> Horse_dataset_2
 rf,within,8,5,5,0.0101437,0.0217113,Cattle_dataset_1 -> Cattle_dataset_1
 lgbm,cross,11,5,5,0.0097788,0.0273842,all except Fox_dataset_1 -> Fox_dataset_1
-lgbm,global,9,5,5,0.0177536,0.0279737,pooled -> Fox_dataset_1
 lgbm,pairwise,80,5,5,0.0173028,0.0475777,Bison_dataset_1 -> Raccoon_dataset_1
 lgbm,within,8,5,5,0.00636896,0.0318114,Cattle_dataset_1 -> Cattle_dataset_1

@@ -45,7 +45,7 @@ MAIN_CLASSES = CLASSES[:3]
 EXCLUDE = "Exclude"
 UNLABELED_TEXT = "(unlabeled)"  # as in make_windows.py
 KEYS = ["dataset_id", "individual_id", "segment_id", "window_in_segment", "non_overlapping"]
-MIN_TEST_WINDOWS = 10  # thesis rule for individuals (D12 option 1)
+MIN_TEST_WINDOWS = 10  # rule for within-dataset test individuals (D12)
 WIDTH = 100
 
 
@@ -151,11 +151,11 @@ def dataset_report(dataset: str, classes: pd.DataFrame, unmapped: set) -> list[s
 
     table = per_individual(classes, "class")
     rule = (table[MAIN_CLASSES] >= MIN_TEST_WINDOWS).all(axis=1)
-    lines += ["", f"  Evaluation windows per individual and class (thesis rule, D12 option 1: all three main "
+    lines += ["", f"  Evaluation windows per individual and class (test-unit rule, D12: all three main "
                   f"classes with at least {MIN_TEST_WINDOWS} windows):", ""]
-    shown = table.assign(thesis_rule=rule.map({True: "kept", False: "LEFT OUT"}))
+    shown = table.assign(test_unit=rule.map({True: "yes", False: "no"}))
     lines += ["  " + ln for ln in shown.to_string().splitlines()]
-    lines.append(f"  Individuals kept by the thesis rule: {int(rule.sum())} of {len(rule)}")
+    lines.append(f"  Individuals that meet the test-unit rule: {int(rule.sum())} of {len(rule)}")
     return lines
 
 

@@ -10,16 +10,15 @@
 #             at least 10 evaluation windows (D12); predictions of all folds pooled
 #   cross     train on all other datasets, test on one
 #   pairwise  train on dataset A, test on dataset B (all ordered pairs; same-species pairs
-#             flagged, the "inter" mode of the thesis)
-#   global    all datasets pooled; per dataset 25 % of the individuals held out (per seed)
+#             flagged)
 # - Training: windows with overlap (D08), at least 30 per class, at most 250 per class
 #   (per dataset and class when several datasets are pooled), spread over segments
 #   (D09). Test: all non-overlapping windows with a class.
-# - Metrics as in the thesis: accuracy and macro precision, recall and F1 over the classes
+# - Metrics: accuracy and macro precision, recall and F1 over the classes
 #   of the analysis (a class without test windows counts 0), and per class.
 # - Scenarios (D11): primary; A (training without overlap); majority (class of >= 80 % of
 #   the samples instead of pure windows); four_classes (with Other); E (ridden gaits as
-#   Locomotion); F (only individuals that meet the thesis rule, in all modes); C (2.4 s
+#   Locomotion); F (only individuals that meet the test-unit rule, in all modes); C (2.4 s
 #   windows without overlap: data/windows_C/ and data/features_C/ of make_windows.py,
 #   assign_classes.py and features.py --variant C).
 # - Output: 03_Evaluation/results/<scenario>/<model>/metrics.csv, confusion.csv, within_folds.csv,
@@ -38,7 +37,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import math
 import re
 import sys
 import time
@@ -64,22 +62,21 @@ DATASETS_CSV = ROOT / "00_Documentation" / "datasets.csv"
 
 MAIN_CLASSES = ["Foraging", "Locomotion", "Resting"]
 SCENARIOS = {
-    "primary": dict(label="class", classes=MAIN_CLASSES, train_overlap=True, thesis_rule_only=False),
-    "A": dict(label="class", classes=MAIN_CLASSES, train_overlap=False, thesis_rule_only=False),
-    "majority": dict(label="majority", classes=MAIN_CLASSES, train_overlap=True, thesis_rule_only=False),
-    "four_classes": dict(label="class", classes=MAIN_CLASSES + ["Other"], train_overlap=True, thesis_rule_only=False),
-    "E": dict(label="class_sensitivity", classes=MAIN_CLASSES, train_overlap=True, thesis_rule_only=False),
-    "F": dict(label="class", classes=MAIN_CLASSES, train_overlap=True, thesis_rule_only=True),
-    "C": dict(label="class", classes=MAIN_CLASSES, train_overlap=False, thesis_rule_only=False, variant="C"),
+    "primary": dict(label="class", classes=MAIN_CLASSES, train_overlap=True, eligible_only=False),
+    "A": dict(label="class", classes=MAIN_CLASSES, train_overlap=False, eligible_only=False),
+    "majority": dict(label="majority", classes=MAIN_CLASSES, train_overlap=True, eligible_only=False),
+    "four_classes": dict(label="class", classes=MAIN_CLASSES + ["Other"], train_overlap=True, eligible_only=False),
+    "E": dict(label="class_sensitivity", classes=MAIN_CLASSES, train_overlap=True, eligible_only=False),
+    "F": dict(label="class", classes=MAIN_CLASSES, train_overlap=True, eligible_only=True),
+    "C": dict(label="class", classes=MAIN_CLASSES, train_overlap=False, eligible_only=False, variant="C"),
 }
 MAJORITY_SHARE = 0.8         # D11
-MIN_TRAIN_PER_CLASS = 30     # thesis
-MIN_TEST_PER_CLASS = 5       # thesis (cross, pairwise): at least two classes with this many
+MIN_TRAIN_PER_CLASS = 30     # training windows per class at least
+MIN_TEST_PER_CLASS = 5       # cross, pairwise: at least two classes with this many test windows
 MIN_TEST_CLASSES = 2
-MIN_INDIVIDUAL_WINDOWS = 10  # thesis rule for test individuals (D12)
-CAP_PER_CLASS = 250          # thesis, D09
-GLOBAL_TEST_FRACTION = 0.25  # thesis
-MODES = ["within", "cross", "pairwise", "global"]
+MIN_INDIVIDUAL_WINDOWS = 10  # test-unit rule for within-dataset test individuals (D12)
+CAP_PER_CLASS = 250          # training windows per dataset and class at most (D09)
+MODES = ["within", "cross", "pairwise"]
 SIGNALS: np.ndarray | None = None  # window signals (n x 3 x samples), rows as in the data table
 
 
@@ -143,7 +140,7 @@ def load_data(scenario: dict, with_signals: bool) -> tuple[pd.DataFrame, np.ndar
     return data, signals
 
 
-def thesis_rule(data: pd.DataFrame, classes: list[str]) -> set[str]:
+def test_unit_rule(data: pd.DataFrame, classes: list[str]) -> set[str]:
     # Individuals with all classes and at least MIN_INDIVIDUAL_WINDOWS evaluation windows each.
     test = data[data["non_overlapping"]]
     counts = pd.crosstab(test["individual_key"], test["label"]).reindex(columns=classes, fill_value=0)
@@ -334,48 +331,11 @@ def run_pairwise(data, models, seed, sc, res: Results, species: dict) -> None:
                         {"same_species": species.get(source) == species.get(t)})
 
 
-def run_global(data, models, seed, sc, res: Results, species: dict) -> None:
-    classes = sc["classes"]
-    rng = np.random.default_rng(seed)
-    test_keys = set()
-    used = []
-    for dataset, ds in data.groupby("dataset_id"):
-        counts = ds["label"].value_counts()
-        if any(counts.get(c, 0) < MIN_TRAIN_PER_CLASS for c in classes):
-            res.skip({"seed": seed, "mode": "global", "test": dataset}, "fewer than 30 windows in a class")
-            continue
-        individuals = sorted(ds["individual_key"].unique())
-        if len(individuals) < 2:
-            res.skip({"seed": seed, "mode": "global", "test": dataset}, "fewer than 2 individuals")
-            continue
-        n_test = max(1, math.floor(len(individuals) * GLOBAL_TEST_FRACTION))
-        test_keys |= set(rng.permutation(individuals)[:n_test])
-        used.append(dataset)
-    pool = data[data["dataset_id"].isin(used)]
-    train_all = training_windows(pool[~pool["individual_key"].isin(test_keys)], sc["train_overlap"])
-    test = pool[pool["individual_key"].isin(test_keys) & pool["non_overlapping"]]
-    info = {"seed": seed, "mode": "global", "train": "pooled", "test": "all"}
-    ok, reason = enough_training(train_all, classes)
-    if not ok:
-        res.skip(info, reason)
-        return
-    train = spread_cap(train_all, ["dataset_id", "label"], CAP_PER_CLASS, np.random.default_rng([seed, 99]))
-    res.add_training(info, train)
-    for m in models:
-        model, (pred,) = fit_predict(m, seed, train, [test], classes)
-        res.add_importance(m, "global", model)
-        res.add({"model": m, **info}, test["label"].to_numpy(), pred)
-        for dataset in used:
-            sel = (test["dataset_id"] == dataset).to_numpy()
-            res.add({"model": m, **info, "test": dataset}, test["label"].to_numpy()[sel], pred[sel],
-                    {"test_individuals": ", ".join(sorted(k.split("__", 1)[1] for k in test_keys if k.startswith(dataset + "__")))})
-
 
 # =========================================================
 # Output
 # =========================================================
 TABLES = ["metrics.csv", "confusion.csv", "within_folds.csv", "importance.csv", "training_sets.csv", "skipped.csv"]
-
 
 def save_table(df: pd.DataFrame, path: Path) -> None:
     df = df.copy()
@@ -411,7 +371,7 @@ def split_flat_results(scenario_dir: Path) -> None:
 
 def data_info(data: pd.DataFrame, rule: set[str]) -> str:
     return (f"Windows: {len(data):,} ({int(data['non_overlapping'].sum()):,} evaluation windows); "
-            f"individuals meeting the thesis rule: {len(rule)} of {data['individual_key'].nunique()}")
+            f"individuals meeting the test-unit rule: {len(rule)} of {data['individual_key'].nunique()}")
 
 
 def read_table(path: Path) -> pd.DataFrame:
@@ -525,7 +485,6 @@ def summary(m: pd.DataFrame) -> list[str]:
     lines: list[str] = []
     if m.empty:
         return lines + ["", "(no results)"]
-    by = lambda df, keys: df.groupby(keys)["macro_f1"].apply(mean_sd).unstack("model")
     if "within" in set(m["mode"]) or "cross" in set(m["mode"]):
         sub = m[m["mode"].isin(["within", "cross"])]
         table = sub.groupby(["test", "mode", "model"])["macro_f1"].apply(mean_sd).unstack(["mode", "model"])
@@ -545,10 +504,6 @@ def summary(m: pd.DataFrame) -> list[str]:
         same = p.groupby(["model", "same_species"])["macro_f1"].mean().unstack("same_species")
         lines += ["", "  Mean over pairs: same species vs. different species", ""]
         lines += ["  " + ln for ln in same.round(3).to_string().splitlines()]
-    if "global" in set(m["mode"]):
-        g = m[m["mode"] == "global"]
-        lines += ["", "GLOBAL (all datasets pooled, 25 % of the individuals of each dataset held out)", ""]
-        lines += ["  " + ln for ln in by(g, ["test", "model"]).to_string().splitlines()]
     return lines
 
 
@@ -569,21 +524,20 @@ def main() -> int:
 
     data, SIGNALS = load_data(sc, with_signals=any(INPUT[m] == "signals" for m in args.models))
     species = read_species()
-    rule = thesis_rule(data, sc["classes"])
-    if sc["thesis_rule_only"]:
+    rule = test_unit_rule(data, sc["classes"])
+    if sc["eligible_only"]:
         data = data[data["individual_key"].isin(rule)]
     data_line = data_info(data, rule)
     previous = read_previous(RESULT_DIR / args.scenario, args, data_line) if args.add else {}
     for m in args.models:
         make_model(m, 0, sc["classes"])  # fails early if a library is missing
     log(f"[INFO] {len(data):,} windows of {data['dataset_id'].nunique()} datasets; scenario {args.scenario}; "
-        f"{len(rule)} individuals meet the thesis rule")
+        f"{len(rule)} individuals meet the test-unit rule")
 
     res = Results(sc["classes"])
     runners = {"within": lambda s: run_within(data, args.models, s, sc, res, rule),
                "cross": lambda s: run_cross(data, args.models, s, sc, res, species),
-               "pairwise": lambda s: run_pairwise(data, args.models, s, sc, res, species),
-               "global": lambda s: run_global(data, args.models, s, sc, res, species)}
+               "pairwise": lambda s: run_pairwise(data, args.models, s, sc, res, species)}
     for i, seed in enumerate(args.seeds):
         for mode in args.modes:
             t0 = time.time()

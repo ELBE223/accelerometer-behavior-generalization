@@ -1,13 +1,9 @@
 # Core Trait Definitions Sources and Coding
 
-> Final trait definitions, declared final by Lucas on 2026-11-05 and adopted as decision D37
-> in [decisions.md](../decisions.md); the section "Expected link to the acceleration signal"
-> and references [11]–[13] were added on 2026-11-05. This file is the version kept in the
-> repository; the Word original (`core_traits.docx`) is in the archived repository (D45).
-> The machine-readable codes are in [species_traits_core.csv](species_traits_core.csv)
-> (columns `relative_neck_length` and `food_acquisition_handling`).
+> Definitions and coding of the five core traits (D37). Machine-readable values:
+> [species_traits_core.csv](species_traits_core.csv).
 
-The final core set covers body mass, locomotor specialization, body configuration, relative neck length, and food acquisition and handling. Literature supports the traits and source data; some categories are our own analytical assignments. Final version, 5 November 2026 (decision D37).
+The final core set covers body mass, locomotor specialization, body configuration, relative neck length, and food acquisition and handling. Literature supports the traits and source data; some categories are our own analytical assignments.
 
 | Trait | Definition | Selected sources | Coding |
 |---|---|---|---|
@@ -17,7 +13,7 @@ The final core set covers body mass, locomotor specialization, body configuratio
 | **Relative neck length** | Length of the cervical vertebral column relative to the combined thoracic, lumbar, and sacral regions. An anatomical proxy, not a measure of actual neck movement. | Belyaev et al. (2024), Supplement S1 [7]: vertebral measurements.<br>Davis (1964), Table 10 [8]: indirect evidence for Procyon. | Ordinal, four groups based on r = C/(T + L + S):<br>short: r < 0.30<br>intermediate: 0.30 ≤ r < 0.40<br>long: 0.40 ≤ r < 1.00<br>very long: r ≥ 1.00<br>Thresholds defined by us. |
 | **Food acquisition and handling** | Characteristic actions used to acquire and handle food at the taxon level. Does not encode feeding height or the proportions of observed foraging windows. | Iwaniuk & Whishaw (1999) [9]: raccoon food handling with the forepaws.<br>Kowalczyk et al. (2019) [10]: dietary flexibility in European bison. | Nominal, three groups:<br>vegetation cropping<br>oral item acquisition<br>manual food handling<br>Our synthesis; not a published, validated three-group classification. |
 
-Each selected source supports the aspect stated in the table. The selection complements the taxon-specific evidence and uncertainty records summarized in [decisions.md](../decisions.md) (D29–D39, D42). Categories and assignment rules are explained in the legend.
+Each selected source supports the aspect stated in the table. The selection complements the taxon-specific evidence and uncertainty records summarized in [decisions.md](../decisions.md) (D30–D37). Categories and assignment rules are explained in the legend.
 
 ## Species assignments
 
@@ -43,13 +39,13 @@ Body mass values are the existing log-transformed entries in the trait matrix, r
 
 ## Expected link to the acceleration signal
 
-Each trait describes a way in which the same behaviour may produce a different acceleration signal in different species. These are hypothesised mechanisms that motivate the selection of the traits; they are not demonstrated effects on transfer performance.
+Each trait describes a way in which the same behavior may produce a different acceleration signal in different species. These are hypothesised mechanisms that motivate the selection of the traits; they are not demonstrated effects on transfer performance.
 
 **Body mass.** Larger quadrupeds move with lower stride frequencies at equivalent speeds [11], so the cadence and frequency content of locomotion and other periodic movements shift with body size; a classifier trained on one size class may misread the rhythm of another.
 
 **Locomotor specialization.** Limb design and habitual substrate use shape gait mechanics [3]. Climbing or generalized slow ground locomotion produce movement patterns and logger orientations that do not occur in cursorial species, so locomotion of different groups may look different in the signal.
 
-**Body configuration.** The static component of the acceleration reflects how the body and the logger are oriented relative to gravity [12]. Body proportions in standing posture change the tilt of trunk and neck and hence the posture signal that separates resting from active behaviour.
+**Body configuration.** The static component of the acceleration reflects how the body and the logger are oriented relative to gravity [12]. Body proportions in standing posture change the tilt of trunk and neck and hence the posture signal that separates resting from active behavior.
 
 **Relative neck length.** With collar-mounted loggers, head and neck movements are recorded directly: a long neck allows larger head excursions during feeding and moves with the gait in walking giraffes [13], whereas a short neck couples the logger more closely to trunk motion. The argument does not apply to back-mounted loggers, such as the harness of one juvenile raccoon in the study data.
 
@@ -67,7 +63,7 @@ Each trait describes a way in which the same behaviour may produce a different a
 
 **Food acquisition and handling.** Vegetation cropping = biting, plucking, or stripping plant material (European bison, cattle, both horse taxa, giraffe); oral item acquisition = primarily oral acquisition of individual food items or prey without characteristic specialized forepaw handling (dog, hedgehog, fox); manual food handling = characteristic grasping, examining, or manipulating with the forepaws (raccoon). Where actions overlap, pronounced manual handling takes priority, followed by vegetation cropping. The classification implies neither exclusive use of an action nor a measured frequency threshold.
 
-**Body mass provenance.** EltonTraits provides six references: European bison, cattle, domestic horse, giraffe, raccoon, and fox. The 300 kg reference for Przewalski’s horse comes from Gerstner & Gerstein [2], Table 1. The hedgehog value of 1.032 kg comes from Cibis (2017), Table 4. The dog value of 26.7464 kg is the equally weighted mean of two study means from Szangolies (2017), Table 2, and Groth (2020), Table 2. It is not a pooled mean of all dogs analysed in the model. Full cohort sources are recorded in the trait audit log of the archived repository (see Traceability of species values).
+**Body mass provenance.** EltonTraits provides six references: European bison, cattle, domestic horse, giraffe, raccoon, and fox. The 300 kg reference for Przewalski’s horse comes from Gerstner & Gerstein [2], Table 1. The hedgehog value of 1.032 kg comes from Cibis (2017), Table 4. The dog value of 26.7464 kg is the equally weighted mean of two study means from Szangolies (2017), Table 2, and Groth (2020), Table 2. It is not a pooled mean of all dogs analysed in the model. Full cohort sources are available from the authors on request.
 
 **Scope and next step.** Literature data, derived categories, and expert assignments are documented separately. Sources and clearly defined categories do not by themselves validate an association with transfer performance. The adopted classification should be evaluated through sensitivity analyses of uncertain assignments and omission of individual traits; these analyses have not yet been performed.
 
@@ -103,4 +99,4 @@ Each trait describes a way in which the same behaviour may produce a different a
 
 ### Traceability of species values
 
-Previous decisions on each trait are documented in [decisions.md](../decisions.md) (D29–D39, D42). The detailed taxon-specific evidence, the cohort sources for body mass, and the vertebral measurements and r values of the relative neck length are in the trait audit log and the trait reviews of the archived repository `ELBE223/paper-izw-cross-species-transfer` (`00_documentation/traits/evidence/`, D45). The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.
+Decisions on the traits are in [decisions.md](../decisions.md) (D30–D38, D43, D48). The detailed evidence behind each value (cohort sources for body mass, vertebral measurements and r values of the relative neck length) is available from the authors on request. The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.

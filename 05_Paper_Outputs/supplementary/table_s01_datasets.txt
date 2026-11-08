@@ -18,5 +18,4 @@ Source: thesis or publication; public: openly available dataset (all others are 
 Individuals: Dog 2 had no animal identities; each of its 8 recordings is treated as an individual (analytical unit).
 Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.
 Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual).
-A second fox dataset was left out because the provenance of its labels is unclear.
 Source: 00_Documentation/datasets.csv, 00_Documentation/sensor_settings.csv, 01_Preprocessing/reports/pipeline_reports/class_summary.csv, 04_Statistics/results/primary/h1_values.csv

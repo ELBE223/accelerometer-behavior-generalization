@@ -54,7 +54,7 @@ def native_hz(dataset: str, setting: str = "1") -> float:
 
 
 def raw_counts_to_g(values) -> np.ndarray:
-    # 12-bit e-obs counts, +/-4 g (D03); the thesis used the same conversion.
+    # 12-bit e-obs counts, +/-4 g (D03).
     return (np.asarray(values, dtype="float64") - 2048.0) / 512.0
 
 

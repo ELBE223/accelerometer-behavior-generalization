@@ -4,7 +4,6 @@ Cattle_dataset_1,Cattle,Bos taurus,Ito et al. (2022),yes,,farm: grass field and 
 Dog_dataset_1,Dog,Canis lupus familiaris,"Szangolies (2017), BSc thesis",no,,privately owned; familiar surroundings with owners (Berlin area),"own collar, nape",eobs_counts,Rows coded for another dog removed; clock times HH.MM:SS repaired
 Dog_dataset_2,Dog,Canis lupus familiaris,"Groth (2020), MSc thesis",no,,"privately owned; mostly outdoors with owners (Berlin, Brandenburg)",collar,eobs_counts,"Only sensor 6568 in the data (124-sample bursts); duplicated recordings read once, one unit per recording"
 Fox_dataset_1,Fox,Vulpes vulpes,"Giese (2016), MSc thesis; Rast et al. (2020)",no,,"game park enclosure (Germendorf, Brandenburg)",collar,eobs_counts,
-Fox_dataset_2,Fox,Vulpes vulpes,"unclear (not used, D14)",no,,,,eobs_counts,Not used: provenance of the labels unclear (D14)
 Giraffe_dataset_1,Giraffe,Giraffa camelopardalis,"Brandes (2018), MSc thesis; Brandes et al. (2021)",no,,zoo (Zoological Garden Berlin),head (halter),eobs_counts,Label = behavior category and code
 Hedgehog_dataset_1,Hedgehog,Erinaceus europaeus,"Cibis (2017), MSc thesis",no,,"free-ranging, urban park (Berlin); one in an allotment garden",back (glued to trimmed spines),eobs_counts,Many bursts shorter than 264 samples; calibration markers and handling by people excluded
 Horse_dataset_1,Horse,Equus ferus przewalskii,"Sänger (2017), MSc thesis",no,,"acclimatization enclosure (50 ha), Döberitzer Heide","collar, nape",eobs_counts,Sheet excluded by the author not read; two sheets of one horse merged

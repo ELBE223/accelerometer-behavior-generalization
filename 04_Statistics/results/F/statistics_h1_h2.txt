@@ -8,11 +8,9 @@ SEED VARIABILITY (SD of Macro-F1 over the seeds, per model and mode)
 
   model     mode  rows  n_seeds_min  n_seeds_max  sd_macro_f1_median  sd_macro_f1_max                                    max_at
      RF    cross    11            5            5               0.009            0.023 all except Fox_dataset_1 -> Fox_dataset_1
-     RF   global    11            5            5               0.038            0.125               pooled -> Raccoon_dataset_1
      RF pairwise   110            5            5               0.013            0.128        Giraffe_dataset_1 -> Dog_dataset_1
      RF   within    10            5            5               0.005            0.018      Cattle_dataset_1 -> Cattle_dataset_1
    LGBM    cross    11            5            5               0.009            0.024 all except Fox_dataset_1 -> Fox_dataset_1
-   LGBM   global    11            5            5               0.034            0.121               pooled -> Raccoon_dataset_1
    LGBM pairwise   110            5            5               0.015            0.094        Giraffe_dataset_1 -> Dog_dataset_1
    LGBM   within    10            5            5               0.006            0.017    Raccoon_dataset_2 -> Raccoon_dataset_2
 

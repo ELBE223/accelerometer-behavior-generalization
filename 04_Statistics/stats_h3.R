@@ -2,8 +2,7 @@
 #
 # Purpose:
 # - Statistics of H3 (D26): is the transfer performance between two species associated with
-#   the trait distance of the species? Adapted from R/H3/01_H3_mixed_effects.R and
-#   R/H3/04_H3_sensitivity_paper.R of the thesis and ANALYSIS_PLAN.md:
+#   the trait distance of the species?
 #   input      04_Statistics/results/<scenario>/h3_input.csv (04_Statistics/stats_h1_h2.py): pairwise
 #              Macro-F1 per model and dataset pair, mean over the seeds
 #   distance   Gower distance of the five core traits of D37 with equal weights: log body
@@ -32,8 +31,7 @@
 #   D28        leave-one-species-out refits of the primary model; the primary model with
 #              other distances: exploratory core + C4 (D36) and core + C5 (D37), EltonTraits
 #              core and extended (data/raw/EltonTraits/MamFuncDat.txt, if present),
-#              divergence time (TimeTree) and log body mass alone; the extended expert
-#              traits of the thesis are no longer used (D39)
+#              divergence time (TimeTree; D48) and log body mass alone
 #   z-scores   computed on the records of each analysis (S1 and S2 lose the pairs with a
 #              dataset without within value)
 #   prediction the primary model over the observed range of the distance, averaged over the
@@ -72,8 +70,8 @@ exploratory_file <- file.path(root, "00_Documentation", "traits", "species_trait
 timetree_file <- file.path(root, "00_Documentation", "timetree_species_list.nwk")
 elton_file <- file.path(root, "data", "raw", "EltonTraits", "MamFuncDat.txt")  # Wilman et al. 2014; not shared
 
-model_order <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")  # thesis; CNN is the reference
-# D37: the primary core traits; all other columns of the core CSV are historical (thesis).
+model_order <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")  # CNN is the reference
+# D37: the five core traits.
 core_traits <- c("log_body_mass_g", "dominant_locomotor_mode", "body_configuration_type",
                  "relative_neck_length", "food_acquisition_handling")
 # Exploratory add-backs to the primary core, one historical trait each (D36, D37).
@@ -110,10 +108,8 @@ stopifnot(setequal(names(trait_sensitivity), names(sensitivity_labels)))
 low_to_very_high <- c("low", "moderate", "high", "very_high")
 ordinal_levels <- list(relative_neck_length = c("short", "intermediate", "long", "very_long"),
                        expected_trunk_motion_amplitude = low_to_very_high,
-                       expected_directional_change_tendency = low_to_very_high,
-                       expected_head_neck_contribution_to_acceleration_relevant_motion = low_to_very_high)
-# Names in EltonTraits and TimeTree, in this order, where the study name is missing there
-# (as in R/H3/02_H3_distance_proxy_mixed_modelsl.R of the thesis).
+                       expected_directional_change_tendency = low_to_very_high)
+# Names in EltonTraits and TimeTree, in this order, where the study name is missing there.
 other_names <- list("Canis lupus familiaris" = "Canis lupus",
                     "Equus ferus przewalskii" = c("Equus ferus", "Equus caballus"),
                     "Giraffa camelopardalis" = "Giraffa reticulata")
@@ -128,7 +124,6 @@ control <- lmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 200000), ch
 confidence_level <- 0.95
 singular_tol <- 1e-4
 gawdis_seed <- 42
-thesis_primary <- "beta -0.031, LR chi2(1) 2.54, p 0.111 (12 datasets with Fox_dataset_2, seed 42)"
 
 standardize <- function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 fmt <- function(x, digits = 3) ifelse(is.na(x), "NA", formatC(x, format = "f", digits = digits))
@@ -195,8 +190,7 @@ read_elton <- function(species) {
 divergence_overrides <- data.frame(species_1 = "Equus caballus", species_2 = "Equus ferus przewalskii", myr = 0.055)
 
 # Divergence time of the study species (million years): height of the TimeTree tree minus
-# the depth of the most recent common ancestor, as in the thesis (R/H3/02); then the
-# overrides above.
+# the depth of the most recent common ancestor; then the overrides above.
 read_divergence <- function(species) {
   if (!file.exists(timetree_file)) return(NULL)
   chars <- strsplit(gsub("[[:space:]]", "", paste(readLines(timetree_file, warn = FALSE), collapse = "")), "")[[1]]
@@ -582,21 +576,18 @@ run_scenario <- function(scenario) {
     sprintf("  models %d (%s); species %d; ordered species pairs %d; unordered %d; records %d",
             nlevels(h3$model), paste(levels(h3$model), collapse = ", "), n_species,
             nlevels(h3$ordered_species_pair), nlevels(h3$unordered_species_pair), nrow(h3)),
-    sprintf("  thesis: 6 models, 9 species, 72 ordered and 36 unordered pairs, 432 records"),
     sprintf("  dataset pairs of the same species left out: %d (per model)",
             sum(pairs$same_species & pairs$model == pairs$model[1])),
     "",
     "TRAIT DISTANCE EFFECT (beta per SD of the distance; 95 % CI from the REML fit, Satterthwaite df;",
     "likelihood-ratio test of ML fits; S2 on the retention scale)",
     vapply(which(!models$analysis %in% c(other_labels, sensitivity_labels)), function(i) model_line(models[i, ]), character(1)),
-    paste("  thesis primary:", thesis_primary),
     "",
     sprintf("  R2 (Nakagawa) of the primary model: marginal %s, conditional %s", fmt(models$r2_marginal[1]),
             fmt(models$r2_conditional[1])),
     "",
     "OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)",
-    "  core + C4 / core + C5: exploratory six-trait add-backs of one historical trait each;",
-    "  the extended expert traits of the thesis are no longer used (D39).",
+    "  core + C4 / core + C5: exploratory six-trait add-backs of one excluded trait each.",
     vapply(which(models$analysis %in% other_labels), function(i) model_line(models[i, ]), character(1)),
     if (!"elton_core" %in% names(other$matrices)) {
       paste0("  EltonTraits: skipped (", file.path("data", "raw", "EltonTraits", "MamFuncDat.txt"), " not found)")

@@ -1,213 +1,213 @@
-dataset_id,label,class,sensitivity_class,thesis_class,mapping_table_class,status,test_windows,note
-Bison_dataset_1,FSH,Foraging,,Foraging,,as thesis,85,
-Bison_dataset_1,FSM,Foraging,,Foraging,Foraging,as thesis,55,
-Bison_dataset_1,FSN,Foraging,,Foraging,,as thesis,119,
-Bison_dataset_1,FST,Foraging,,Foraging,Foraging,as thesis,3,
-Bison_dataset_1,FVB,Foraging,,Foraging,Foraging,as thesis,474,
-Bison_dataset_1,GAL,Locomotion,,Locomotion,Locomotion,as thesis,41,
-Bison_dataset_1,GRA,Foraging,,Foraging,Foraging,as thesis,490,
-Bison_dataset_1,HFM,Foraging,,Foraging,Foraging,as thesis,230,
-Bison_dataset_1,HFN,Foraging,,Foraging,,as thesis,146,
-Bison_dataset_1,HFT,Foraging,,Foraging,Foraging,as thesis,136,
-Bison_dataset_1,KKM,Foraging,,Foraging,Foraging,as thesis,65,
-Bison_dataset_1,KKN,Foraging,,Foraging,,as thesis,198,
-Bison_dataset_1,KÄM,Other,,Other,Other,as thesis,66,
-Bison_dataset_1,LIN,Resting,,Resting,,as thesis,1231,
-Bison_dataset_1,LIT,Resting,,Resting,Resting,as thesis,126,
-Bison_dataset_1,LPN,Resting,,Resting,,as thesis,263,
-Bison_dataset_1,LWN,Resting,,Resting,,as thesis,1310,
-Bison_dataset_1,PUT,Other,,Other,Other,as thesis,39,
-Bison_dataset_1,RSH,Foraging,,Foraging,,as thesis,10,
-Bison_dataset_1,SAB,Other,,Other,Other,as thesis,133,
-Bison_dataset_1,SCH,Locomotion,,Locomotion,Locomotion,as thesis,656,
-Bison_dataset_1,SKM,Resting,,Resting,Resting,as thesis,7,
-Bison_dataset_1,SKN,Resting,,Resting,,as thesis,834,
-Bison_dataset_1,SPU,Other,,Other,,as thesis,137,
-Bison_dataset_1,STL,Resting,,Resting,Resting,as thesis,110,
-Bison_dataset_1,SWK,Resting,,Resting,Resting,as thesis,257,
-Bison_dataset_1,TRB,Locomotion,,Locomotion,Locomotion,as thesis,52,
-Bison_dataset_1,TRK,Foraging,,Foraging,Foraging,as thesis,10,"R1: drinking, as in the thesis"
-Bison_dataset_1,WÄL,Other,,Other,Other,as thesis,4,
-Cattle_dataset_1,ATT,Other,,(not in the three classes),,differs from thesis (thesis inferred),1,attacking; thesis mapping inferred from its window counts
-Cattle_dataset_1,BMN,Other,,(not in the three classes),,differs from thesis (thesis inferred),0,being mounted (ReadMe); only in windows with other labels
-Cattle_dataset_1,DRN,Foraging,,(not in the three classes),,differs from thesis (thesis inferred),45,R1: drinking; thesis mapping inferred from its window counts
-Cattle_dataset_1,ESC,Other,,(not in the three classes),,differs from thesis (thesis inferred),1,escaping; thesis mapping inferred from its window counts
-Cattle_dataset_1,ETC,Exclude,,(not in the three classes),,differs from thesis (thesis inferred),10356,"R4: 'other behaviors', an unspecified mix (thesis: not in the three classes); thesis mapping inferred from its window counts"
-Cattle_dataset_1,FES,Foraging,,Foraging,,as thesis (thesis inferred),146,feeding in stanchion; thesis mapping inferred from its window counts
-Cattle_dataset_1,GRZ,Foraging,,Foraging,,as thesis (thesis inferred),304,grazing; thesis mapping inferred from its window counts
-Cattle_dataset_1,LCK,Other,,(not in the three classes),,differs from thesis (thesis inferred),17,licking; thesis mapping inferred from its window counts
-Cattle_dataset_1,MOV,Locomotion,,Locomotion,,as thesis (thesis inferred),782,moving; thesis mapping inferred from its window counts
-Cattle_dataset_1,REL,Resting,,Resting,,as thesis (thesis inferred),14,resting lying; thesis mapping inferred from its window counts
-Cattle_dataset_1,RES,Resting,,Resting,,as thesis (thesis inferred),2710,resting standing; thesis mapping inferred from its window counts
-Cattle_dataset_1,RUS,Resting,,Resting,,as thesis (thesis inferred),956,R2: ruminating standing; thesis mapping inferred from its window counts
-Cattle_dataset_1,SLT,Foraging,,(not in the three classes),,differs from thesis (thesis inferred),209,salt licking (ingestion); thesis mapping inferred from its window counts
-Cattle_dataset_1,URI,Other,,(not in the three classes),,differs from thesis (thesis inferred),9,urinating; thesis mapping inferred from its window counts
-Dog_dataset_1,BUD,Other,,Other,Other,as thesis,367,
-Dog_dataset_1,GEH,Locomotion,,Locomotion,Resting,as thesis,791,the mapping table swaps Locomotion and Resting; the thesis script is right
-Dog_dataset_1,KNA,Foraging,,Foraging,Foraging,as thesis,985,
-Dog_dataset_1,LIG,Resting,,Resting,Locomotion,as thesis,829,
-Dog_dataset_1,REN,Locomotion,,Locomotion,Resting,as thesis,688,
-Dog_dataset_1,SCH,Foraging,,Foraging,Foraging,as thesis,489,
-Dog_dataset_1,SIT,Resting,,Resting,Locomotion,as thesis,688,
-Dog_dataset_1,SPR,Locomotion,,Locomotion,Resting,as thesis,474,
-Dog_dataset_1,STE,Resting,,Resting,Locomotion,as thesis,824,
-Dog_dataset_2,EAT,Foraging,,Foraging,Foraging,as thesis,654,
-Dog_dataset_2,GO,Locomotion,,Locomotion,Locomotion,as thesis,726,
-Dog_dataset_2,LIE,Resting,,Resting,Resting,as thesis,612,
-Dog_dataset_2,RUN,Locomotion,,Locomotion,Locomotion,as thesis,657,
-Dog_dataset_2,SIT,Resting,,Resting,Resting,as thesis,645,
-Dog_dataset_2,STA,Resting,,Resting,Resting,as thesis,645,
-Fox_dataset_1,DRINKING,Foraging,,Foraging,,as thesis,39,R1: not in the mapping table; Foraging in the thesis
-Fox_dataset_1,FORAGING,Foraging,,Foraging,Foraging,as thesis,82,
-Fox_dataset_1,GROOMING,Other,,Other,Other,as thesis,90,
-Fox_dataset_1,RESTING,Resting,,Resting,Resting,as thesis,86,
-Fox_dataset_1,STOCKING,Foraging,,Foraging,Foraging,as thesis,80,
-Fox_dataset_1,TROTTING,Locomotion,,Locomotion,Locomotion,as thesis,80,
-Fox_dataset_1,WALKING,Locomotion,,Locomotion,Locomotion,as thesis,80,
-Giraffe_dataset_1,DRI/5TrBo,Foraging,,Foraging,Foraging,as thesis,54,
-Giraffe_dataset_1,FEA/3Fo,Foraging,,Foraging,Foraging,as thesis,152,
-Giraffe_dataset_1,FEA/3Fro,Foraging,,Foraging,Foraging,as thesis,38,
-Giraffe_dataset_1,FEA/3Kao,Foraging,,Foraging,Foraging,as thesis,34,
-Giraffe_dataset_1,FED/3FruTi,Foraging,,Foraging,Foraging,as thesis,59,
-Giraffe_dataset_1,FED/3FuTi,Foraging,,Foraging,Foraging,as thesis,233,
-Giraffe_dataset_1,FED/3KaTi,Foraging,,Foraging,Foraging,as thesis,16,
-Giraffe_dataset_1,FED/3Ka_GuTi,Foraging,,Foraging,Foraging,as thesis,4,
-Giraffe_dataset_1,FEG/3FuBo,Foraging,,Foraging,Foraging,as thesis,259,
-Giraffe_dataset_1,FEG/3FuTi,Foraging,,Foraging,Foraging,as thesis,9,
-Giraffe_dataset_1,FIG/10Ge,Other,,Other,Other,as thesis,33,
-Giraffe_dataset_1,FIG/10GrTi,Other,,Other,Other,as thesis,34,
-Giraffe_dataset_1,FIG/10Ne,Other,,Other,Other,as thesis,142,
-Giraffe_dataset_1,FIG/10Tp,Other,,Other,Other,as thesis,100,
-Giraffe_dataset_1,FTM/3Fa,Foraging,,Foraging,Foraging,as thesis,995,
-Giraffe_dataset_1,FTM/3Fra,Foraging,,Foraging,Foraging,as thesis,475,
-Giraffe_dataset_1,FTM/3FruMi,Foraging,,Foraging,Foraging,as thesis,167,
-Giraffe_dataset_1,FTM/3FuMi,Foraging,,Foraging,Foraging,as thesis,495,
-Giraffe_dataset_1,FTM/3Ka,Foraging,,Foraging,Foraging,as thesis,1256,
-Giraffe_dataset_1,FTM/3KaMi,Foraging,,Foraging,Foraging,as thesis,333,
-Giraffe_dataset_1,FTM/3Ka_Gu,Foraging,,Foraging,Foraging,as thesis,288,
-Giraffe_dataset_1,FTM/3Ka_GuMi,Foraging,,Foraging,Foraging,as thesis,47,
-Giraffe_dataset_1,GRO/8Kp,Other,,Other,Other,as thesis,31,
-Giraffe_dataset_1,GRO/8Kp_Ba,Other,,Other,Other,as thesis,6,
-Giraffe_dataset_1,LIE/2Li,Resting,,Resting,Resting,as thesis,1,
-Giraffe_dataset_1,LIE/2Li_Gu,Resting,,Resting,Resting,as thesis,1,
-Giraffe_dataset_1,LIE/2Li_GuTi,Resting,,Resting,Resting,as thesis,1,
-Giraffe_dataset_1,LIE/2Li_Wk,Resting,,Resting,Resting,as thesis,84,
-Giraffe_dataset_1,LIE/2Li_WkMi,Resting,,Resting,Resting,as thesis,6,
-Giraffe_dataset_1,RUM/1St_GuTi,Resting,,Resting,Resting,as thesis,1,the only beh_code under two categories (STA/1St_GuTi: Other); cat_code rule
-Giraffe_dataset_1,RUM/4Wk,Resting,,Resting,Resting,as thesis,1415,
-Giraffe_dataset_1,RUM/4WkMi,Resting,,Resting,Resting,as thesis,1214,
-Giraffe_dataset_1,RUM/4Wk_Gu,Resting,,Resting,Resting,as thesis,156,
-Giraffe_dataset_1,RUM/4Wk_GuMi,Resting,,Resting,Resting,as thesis,310,
-Giraffe_dataset_1,RUN/7Re,Locomotion,,Locomotion,Locomotion,as thesis,11,
-Giraffe_dataset_1,SLE/11Sl,Resting,,Resting,Resting,as thesis,90,
-Giraffe_dataset_1,SLE/11Sr,Resting,,Resting,Resting,as thesis,118,
-Giraffe_dataset_1,SOC/9So,Other,,Other,Other,as thesis,16,
-Giraffe_dataset_1,SOC/9SoMi,Other,,Other,Other,as thesis,9,
-Giraffe_dataset_1,SOC/9SoTi,Other,,Other,Other,as thesis,15,
-Giraffe_dataset_1,SOC/9So_Schn,Other,,Other,Other,as thesis,13,
-Giraffe_dataset_1,SOC/9So_SchnMi,Other,,Other,Other,as thesis,15,
-Giraffe_dataset_1,SOC/9So_SchnTi,Other,,Other,Other,as thesis,15,
-Giraffe_dataset_1,STA/1St,Resting,,Resting,Resting,as thesis,379,
-Giraffe_dataset_1,STA/1StMi,Resting,,Resting,Resting,as thesis,110,
-Giraffe_dataset_1,STA/1St_Gu,Other,,Other,Other,as thesis,195,
-Giraffe_dataset_1,STA/1St_GuMi,Other,,Other,Other,as thesis,99,
-Giraffe_dataset_1,STA/1St_GuTi,Other,,Other,Other,as thesis,56,
-Giraffe_dataset_1,WAL/6Ge,Locomotion,,Locomotion,Locomotion,as thesis,2227,
-Giraffe_dataset_1,WAL/6GeMi,Locomotion,,Locomotion,Locomotion,as thesis,124,
-Giraffe_dataset_1,WAL/6GeTi,Locomotion,,Locomotion,Locomotion,as thesis,56,
-Hedgehog_dataset_1,ENDSHAKE,Exclude,,Other,,differs from thesis,7,"R3: calibration marker, not behavior (thesis: Other)"
-Hedgehog_dataset_1,STARTSHAKE,Exclude,,Other,,differs from thesis,25,"R3: calibration marker, not behavior (thesis: Other)"
-Hedgehog_dataset_1,eingekugelt,Other,,Other,Other,as thesis,22,rolled up (motionless defence posture); Other in the thesis and the mapping table
-Hedgehog_dataset_1,fressen,Foraging,,Foraging,Foraging,as thesis,1,
-Hedgehog_dataset_1,gehen,Locomotion,,Locomotion,Locomotion,as thesis,384,
-Hedgehog_dataset_1,kratzt sich,Other,,Other,Other,as thesis,1,
-Hedgehog_dataset_1,laufend,Locomotion,,Locomotion,Locomotion,as thesis,32,
-Hedgehog_dataset_1,rennen,Locomotion,,Locomotion,Locomotion,as thesis,157,
-Hedgehog_dataset_1,rennend,Locomotion,,Locomotion,Locomotion,as thesis,51,
-Hedgehog_dataset_1,ruhend,Resting,,Resting,Resting,as thesis,371,
-Hedgehog_dataset_1,schnuppern,Foraging,,Foraging,Foraging,as thesis,28,"R6: sniffing as Foraging, as in the thesis"
-Hedgehog_dataset_1,schnuppert,Foraging,,Foraging,Foraging,as thesis,31,"R6: sniffing as Foraging, as in the thesis"
-Hedgehog_dataset_1,schüttelt sich,Other,,Other,Other,as thesis,2,
-Hedgehog_dataset_1,wird bewegt,Exclude,,Exclude,,as thesis,46,R3: moved by a person; left out in the thesis
-Hedgehog_dataset_1,wird geschüttelt,Exclude,,Other,,differs from thesis,9,R3: shaken by a person (thesis: Other)
-Hedgehog_dataset_1,wird getragen,Exclude,,Exclude,,as thesis,57,R3: carried by a person; left out in the thesis
-Hedgehog_dataset_1,zusammengekugelt,Other,,Other,Other,as thesis,1,rolled up; Other in the thesis and the mapping table
-Horse_dataset_1,FVB,Foraging,,Foraging,Foraging,as thesis,418,
-Horse_dataset_1,GAL,Locomotion,,Locomotion,Locomotion,as thesis,55,
-Horse_dataset_1,GFP,Other,,Other,Other,as thesis,193,
-Horse_dataset_1,GRA,Foraging,,Foraging,Foraging,as thesis,602,
-Horse_dataset_1,HFM,Foraging,,Foraging,Foraging,as thesis,168,
-Horse_dataset_1,HFN,Foraging,,Foraging,,as thesis,257,
-Horse_dataset_1,HFT,Foraging,,Foraging,Foraging,as thesis,373,
-Horse_dataset_1,KKM,Foraging,,Foraging,Foraging,as thesis,140,
-Horse_dataset_1,KKN,Foraging,,Foraging,,as thesis,139,
-Horse_dataset_1,KOS,Other,,Other,Other,as thesis,32,
-Horse_dataset_1,LIN,Resting,,Resting,,as thesis,150,
-Horse_dataset_1,PUT,Other,,Other,Other,as thesis,25,
-Horse_dataset_1,SAB,Other,,Other,Other,as thesis,29,
-Horse_dataset_1,SCH,Locomotion,,Locomotion,Locomotion,as thesis,510,
-Horse_dataset_1,SKM,Resting,,Resting,Resting,as thesis,203,
-Horse_dataset_1,SKN,Resting,,Resting,,as thesis,625,
-Horse_dataset_1,SLN,Resting,,Resting,,as thesis,5,
-Horse_dataset_1,TRB,Locomotion,,Locomotion,Locomotion,as thesis,78,
-Horse_dataset_1,TRK,Foraging,,Other,Foraging,differs from thesis,17,"R1: drinking as Foraging, as in both mapping tables and in Bison (thesis script: Other)"
-Horse_dataset_1,WÄL,Other,,Other,Other,as thesis,1,
-Horse_dataset_2,eating,Foraging,,Foraging,,as thesis,27,
-Horse_dataset_2,fighting,Other,,Other,,as thesis,17,
-Horse_dataset_2,galloping-natural,Locomotion,,Locomotion,,as thesis,58,
-Horse_dataset_2,galloping-rider,Exclude,Locomotion,Locomotion,,differs from thesis,2194,"R5: ridden gait, movement imposed and loaded by a rider; Locomotion in the thesis (most Horse_dataset_2 locomotion)"
-Horse_dataset_2,grazing,Foraging,,Foraging,,as thesis,10050,
-Horse_dataset_2,head-shake,Other,,Other,,as thesis,464,
-Horse_dataset_2,jumping,Other,Locomotion,Locomotion,,differs from thesis,9,R5: jumping in this dataset is probably ridden show jumping (thesis: Locomotion)
-Horse_dataset_2,rolling,Other,,Other,,as thesis,37,
-Horse_dataset_2,rubbing,Other,,Other,,as thesis,3,
-Horse_dataset_2,scared,Other,,Other,,as thesis,3,
-Horse_dataset_2,scratch-biting,Other,,Other,,as thesis,162,
-Horse_dataset_2,shaking,Other,,Other,,as thesis,14,
-Horse_dataset_2,standing,Resting,,Resting,,as thesis,2968,
-Horse_dataset_2,trotting-natural,Locomotion,,Locomotion,,as thesis,52,
-Horse_dataset_2,trotting-rider,Exclude,Locomotion,Locomotion,,differs from thesis,14275,"R5: ridden gait, movement imposed and loaded by a rider; Locomotion in the thesis (most Horse_dataset_2 locomotion)"
-Horse_dataset_2,unknown,Exclude,,Exclude,,as thesis,53809,R4: no label; not in the thesis data
-Horse_dataset_2,walking-natural,Locomotion,,Locomotion,,as thesis,2011,
-Horse_dataset_2,walking-rider,Exclude,Locomotion,Locomotion,,differs from thesis,19683,"R5: ridden gait, movement imposed and loaded by a rider; Locomotion in the thesis (most Horse_dataset_2 locomotion)"
-Raccoon_dataset_1,GaW,Locomotion,,Locomotion,Locomotion,as thesis,27,
-Raccoon_dataset_1,KlHoH,Locomotion,,Locomotion,Locomotion,as thesis,54,
-Raccoon_dataset_1,KlRuH,Locomotion,,Locomotion,Locomotion,as thesis,27,
-Raccoon_dataset_1,LaW,Locomotion,,Locomotion,Locomotion,as thesis,27,
-Raccoon_dataset_1,MGeT,Locomotion,,Locomotion,Locomotion,as thesis,27,
-Raccoon_dataset_1,StAHKr,Other,,Other,,as thesis,27,
-Raccoon_dataset_1,StB,Resting,,Resting,Other,as thesis,54,"mapping table: Other; StB = Stehen, Kopf bewegt (Mardaus 2017, Tab. 2), grouped with StH and StN as standing/resting (Tab. 5-7)"
-Raccoon_dataset_1,StFrBoT,Foraging,,Foraging,Foraging,as thesis,54,
-Raccoon_dataset_1,StH,Resting,,Resting,Resting,as thesis,27,
-Raccoon_dataset_1,StN,Resting,,Resting,Locomotion,as thesis,54,mapping table: Locomotion (St = standing; probably a typo there)
-Raccoon_dataset_1,StT,Resting,,Resting,Resting,as thesis,27,
-Raccoon_dataset_1,Su,Foraging,,Foraging,,as thesis,0,R6: searching; only in windows with other labels
-Raccoon_dataset_1,SuG,Foraging,,Foraging,Foraging,as thesis,34,
-Raccoon_dataset_1,SuM,Foraging,,Foraging,,as thesis,38,
-Raccoon_dataset_1,SuW,Foraging,,Foraging,Foraging,as thesis,35,
-Raccoon_dataset_1,WGeN,Locomotion,,Locomotion,Locomotion,as thesis,54,
-Raccoon_dataset_1,WGeT,Locomotion,,Locomotion,Locomotion,as thesis,27,
-Raccoon_dataset_2,Auf zwei Beinen stehen,Other,,Other,Resting,as thesis,6,"standing on the hind legs; Resting in the mapping table, Other in the thesis"
-Raccoon_dataset_2,Essen,Foraging,,Foraging,Foraging,as thesis,129,
-Raccoon_dataset_2,Essen Wasser,Foraging,,Other,Foraging,differs from thesis,13,R1: eating or drinking from water; Foraging in the mapping table (thesis: Other)
-Raccoon_dataset_2,Galopp,Locomotion,,Locomotion,Locomotion,as thesis,17,
-Raccoon_dataset_2,Hängen,Locomotion,,Locomotion,,as thesis,16,"hanging (static?); Locomotion in the thesis, not in the mapping table"
-Raccoon_dataset_2,Hängen Decke,Other,,Other,Resting,as thesis,4,"hanging from the ceiling; Resting in the mapping table, Other in the thesis"
-Raccoon_dataset_2,Klettern Kopf oben,Locomotion,,Locomotion,Locomotion,as thesis,42,
-Raccoon_dataset_2,Klettern Kopf unten,Locomotion,,Other,Locomotion,differs from thesis,3,R7: climbing; Locomotion in the mapping table (thesis: Other)
-Raccoon_dataset_2,Klettern Seitlich,Locomotion,,Other,,differs from thesis,2,R7: climbing (thesis: Other)
-Raccoon_dataset_2,Kratzen,Other,,Other,,as thesis,5,
-Raccoon_dataset_2,Kratzen am Logger,Other,,Other,,as thesis,3,
-Raccoon_dataset_2,L/St,Exclude,,Exclude,,as thesis,20,"R4: walking/standing, mixed"
-Raccoon_dataset_2,Laufen,Locomotion,,Locomotion,Locomotion,as thesis,73,
-Raccoon_dataset_2,Laufen Tür,Locomotion,,Other,Locomotion,differs from thesis,40,R7: walking (at the door); Locomotion in the mapping table (thesis: Other)
-Raccoon_dataset_2,Putzen,Other,,Other,Other,as thesis,73,
-Raccoon_dataset_2,Putzen Gegenseitig,Other,,Other,Other,as thesis,58,
-Raccoon_dataset_2,Ruhen,Resting,,Resting,Resting,as thesis,322,
-Raccoon_dataset_2,Schaben Land,Foraging,,Foraging,Foraging,as thesis,28,
-Raccoon_dataset_2,Schaben Wasser,Foraging,,Foraging,Foraging,as thesis,54,
-Raccoon_dataset_2,Schlafen,Resting,,Resting,Resting,as thesis,96,
-Raccoon_dataset_2,Schwimmen,Other,,Exclude,Locomotion,differs from thesis,3,"swimming: locomotion in water, signal unlike walking; Locomotion in the mapping table, left out in the thesis"
-Raccoon_dataset_2,Schütteln,Other,,Other,,as thesis,23,
-Raccoon_dataset_2,Sitzen,Resting,,Resting,Resting,as thesis,134,
-Raccoon_dataset_2,Stehen,Resting,,Resting,Resting,as thesis,40,
+dataset_id,label,class,sensitivity_class,test_windows
+Bison_dataset_1,FSH,Foraging,,85
+Bison_dataset_1,FSM,Foraging,,55
+Bison_dataset_1,FSN,Foraging,,119
+Bison_dataset_1,FST,Foraging,,3
+Bison_dataset_1,FVB,Foraging,,474
+Bison_dataset_1,GAL,Locomotion,,41
+Bison_dataset_1,GRA,Foraging,,490
+Bison_dataset_1,HFM,Foraging,,230
+Bison_dataset_1,HFN,Foraging,,146
+Bison_dataset_1,HFT,Foraging,,136
+Bison_dataset_1,KKM,Foraging,,65
+Bison_dataset_1,KKN,Foraging,,198
+Bison_dataset_1,KÄM,Other,,66
+Bison_dataset_1,LIN,Resting,,1231
+Bison_dataset_1,LIT,Resting,,126
+Bison_dataset_1,LPN,Resting,,263
+Bison_dataset_1,LWN,Resting,,1310
+Bison_dataset_1,PUT,Other,,39
+Bison_dataset_1,RSH,Foraging,,10
+Bison_dataset_1,SAB,Other,,133
+Bison_dataset_1,SCH,Locomotion,,656
+Bison_dataset_1,SKM,Resting,,7
+Bison_dataset_1,SKN,Resting,,834
+Bison_dataset_1,SPU,Other,,137
+Bison_dataset_1,STL,Resting,,110
+Bison_dataset_1,SWK,Resting,,257
+Bison_dataset_1,TRB,Locomotion,,52
+Bison_dataset_1,TRK,Foraging,,10
+Bison_dataset_1,WÄL,Other,,4
+Cattle_dataset_1,ATT,Other,,1
+Cattle_dataset_1,BMN,Other,,0
+Cattle_dataset_1,DRN,Foraging,,45
+Cattle_dataset_1,ESC,Other,,1
+Cattle_dataset_1,ETC,Exclude,,10356
+Cattle_dataset_1,FES,Foraging,,146
+Cattle_dataset_1,GRZ,Foraging,,304
+Cattle_dataset_1,LCK,Other,,17
+Cattle_dataset_1,MOV,Locomotion,,782
+Cattle_dataset_1,REL,Resting,,14
+Cattle_dataset_1,RES,Resting,,2710
+Cattle_dataset_1,RUS,Resting,,956
+Cattle_dataset_1,SLT,Foraging,,209
+Cattle_dataset_1,URI,Other,,9
+Dog_dataset_1,BUD,Other,,367
+Dog_dataset_1,GEH,Locomotion,,791
+Dog_dataset_1,KNA,Foraging,,985
+Dog_dataset_1,LIG,Resting,,829
+Dog_dataset_1,REN,Locomotion,,688
+Dog_dataset_1,SCH,Foraging,,489
+Dog_dataset_1,SIT,Resting,,688
+Dog_dataset_1,SPR,Locomotion,,474
+Dog_dataset_1,STE,Resting,,824
+Dog_dataset_2,EAT,Foraging,,654
+Dog_dataset_2,GO,Locomotion,,726
+Dog_dataset_2,LIE,Resting,,612
+Dog_dataset_2,RUN,Locomotion,,657
+Dog_dataset_2,SIT,Resting,,645
+Dog_dataset_2,STA,Resting,,645
+Fox_dataset_1,DRINKING,Foraging,,39
+Fox_dataset_1,FORAGING,Foraging,,82
+Fox_dataset_1,GROOMING,Other,,90
+Fox_dataset_1,RESTING,Resting,,86
+Fox_dataset_1,STOCKING,Foraging,,80
+Fox_dataset_1,TROTTING,Locomotion,,80
+Fox_dataset_1,WALKING,Locomotion,,80
+Giraffe_dataset_1,DRI/5TrBo,Foraging,,54
+Giraffe_dataset_1,FEA/3Fo,Foraging,,152
+Giraffe_dataset_1,FEA/3Fro,Foraging,,38
+Giraffe_dataset_1,FEA/3Kao,Foraging,,34
+Giraffe_dataset_1,FED/3FruTi,Foraging,,59
+Giraffe_dataset_1,FED/3FuTi,Foraging,,233
+Giraffe_dataset_1,FED/3KaTi,Foraging,,16
+Giraffe_dataset_1,FED/3Ka_GuTi,Foraging,,4
+Giraffe_dataset_1,FEG/3FuBo,Foraging,,259
+Giraffe_dataset_1,FEG/3FuTi,Foraging,,9
+Giraffe_dataset_1,FIG/10Ge,Other,,33
+Giraffe_dataset_1,FIG/10GrTi,Other,,34
+Giraffe_dataset_1,FIG/10Ne,Other,,142
+Giraffe_dataset_1,FIG/10Tp,Other,,100
+Giraffe_dataset_1,FTM/3Fa,Foraging,,995
+Giraffe_dataset_1,FTM/3Fra,Foraging,,475
+Giraffe_dataset_1,FTM/3FruMi,Foraging,,167
+Giraffe_dataset_1,FTM/3FuMi,Foraging,,495
+Giraffe_dataset_1,FTM/3Ka,Foraging,,1256
+Giraffe_dataset_1,FTM/3KaMi,Foraging,,333
+Giraffe_dataset_1,FTM/3Ka_Gu,Foraging,,288
+Giraffe_dataset_1,FTM/3Ka_GuMi,Foraging,,47
+Giraffe_dataset_1,GRO/8Kp,Other,,31
+Giraffe_dataset_1,GRO/8Kp_Ba,Other,,6
+Giraffe_dataset_1,LIE/2Li,Resting,,1
+Giraffe_dataset_1,LIE/2Li_Gu,Resting,,1
+Giraffe_dataset_1,LIE/2Li_GuTi,Resting,,1
+Giraffe_dataset_1,LIE/2Li_Wk,Resting,,84
+Giraffe_dataset_1,LIE/2Li_WkMi,Resting,,6
+Giraffe_dataset_1,RUM/1St_GuTi,Resting,,1
+Giraffe_dataset_1,RUM/4Wk,Resting,,1415
+Giraffe_dataset_1,RUM/4WkMi,Resting,,1214
+Giraffe_dataset_1,RUM/4Wk_Gu,Resting,,156
+Giraffe_dataset_1,RUM/4Wk_GuMi,Resting,,310
+Giraffe_dataset_1,RUN/7Re,Locomotion,,11
+Giraffe_dataset_1,SLE/11Sl,Resting,,90
+Giraffe_dataset_1,SLE/11Sr,Resting,,118
+Giraffe_dataset_1,SOC/9So,Other,,16
+Giraffe_dataset_1,SOC/9SoMi,Other,,9
+Giraffe_dataset_1,SOC/9SoTi,Other,,15
+Giraffe_dataset_1,SOC/9So_Schn,Other,,13
+Giraffe_dataset_1,SOC/9So_SchnMi,Other,,15
+Giraffe_dataset_1,SOC/9So_SchnTi,Other,,15
+Giraffe_dataset_1,STA/1St,Resting,,379
+Giraffe_dataset_1,STA/1StMi,Resting,,110
+Giraffe_dataset_1,STA/1St_Gu,Other,,195
+Giraffe_dataset_1,STA/1St_GuMi,Other,,99
+Giraffe_dataset_1,STA/1St_GuTi,Other,,56
+Giraffe_dataset_1,WAL/6Ge,Locomotion,,2227
+Giraffe_dataset_1,WAL/6GeMi,Locomotion,,124
+Giraffe_dataset_1,WAL/6GeTi,Locomotion,,56
+Hedgehog_dataset_1,ENDSHAKE,Exclude,,7
+Hedgehog_dataset_1,STARTSHAKE,Exclude,,25
+Hedgehog_dataset_1,eingekugelt,Other,,22
+Hedgehog_dataset_1,fressen,Foraging,,1
+Hedgehog_dataset_1,gehen,Locomotion,,384
+Hedgehog_dataset_1,kratzt sich,Other,,1
+Hedgehog_dataset_1,laufend,Locomotion,,32
+Hedgehog_dataset_1,rennen,Locomotion,,157
+Hedgehog_dataset_1,rennend,Locomotion,,51
+Hedgehog_dataset_1,ruhend,Resting,,371
+Hedgehog_dataset_1,schnuppern,Foraging,,28
+Hedgehog_dataset_1,schnuppert,Foraging,,31
+Hedgehog_dataset_1,schüttelt sich,Other,,2
+Hedgehog_dataset_1,wird bewegt,Exclude,,46
+Hedgehog_dataset_1,wird geschüttelt,Exclude,,9
+Hedgehog_dataset_1,wird getragen,Exclude,,57
+Hedgehog_dataset_1,zusammengekugelt,Other,,1
+Horse_dataset_1,FVB,Foraging,,418
+Horse_dataset_1,GAL,Locomotion,,55
+Horse_dataset_1,GFP,Other,,193
+Horse_dataset_1,GRA,Foraging,,602
+Horse_dataset_1,HFM,Foraging,,168
+Horse_dataset_1,HFN,Foraging,,257
+Horse_dataset_1,HFT,Foraging,,373
+Horse_dataset_1,KKM,Foraging,,140
+Horse_dataset_1,KKN,Foraging,,139
+Horse_dataset_1,KOS,Other,,32
+Horse_dataset_1,LIN,Resting,,150
+Horse_dataset_1,PUT,Other,,25
+Horse_dataset_1,SAB,Other,,29
+Horse_dataset_1,SCH,Locomotion,,510
+Horse_dataset_1,SKM,Resting,,203
+Horse_dataset_1,SKN,Resting,,625
+Horse_dataset_1,SLN,Resting,,5
+Horse_dataset_1,TRB,Locomotion,,78
+Horse_dataset_1,TRK,Foraging,,17
+Horse_dataset_1,WÄL,Other,,1
+Horse_dataset_2,eating,Foraging,,27
+Horse_dataset_2,fighting,Other,,17
+Horse_dataset_2,galloping-natural,Locomotion,,58
+Horse_dataset_2,galloping-rider,Exclude,Locomotion,2194
+Horse_dataset_2,grazing,Foraging,,10050
+Horse_dataset_2,head-shake,Other,,464
+Horse_dataset_2,jumping,Other,Locomotion,9
+Horse_dataset_2,rolling,Other,,37
+Horse_dataset_2,rubbing,Other,,3
+Horse_dataset_2,scared,Other,,3
+Horse_dataset_2,scratch-biting,Other,,162
+Horse_dataset_2,shaking,Other,,14
+Horse_dataset_2,standing,Resting,,2968
+Horse_dataset_2,trotting-natural,Locomotion,,52
+Horse_dataset_2,trotting-rider,Exclude,Locomotion,14275
+Horse_dataset_2,unknown,Exclude,,53809
+Horse_dataset_2,walking-natural,Locomotion,,2011
+Horse_dataset_2,walking-rider,Exclude,Locomotion,19683
+Raccoon_dataset_1,GaW,Locomotion,,27
+Raccoon_dataset_1,KlHoH,Locomotion,,54
+Raccoon_dataset_1,KlRuH,Locomotion,,27
+Raccoon_dataset_1,LaW,Locomotion,,27
+Raccoon_dataset_1,MGeT,Locomotion,,27
+Raccoon_dataset_1,StAHKr,Other,,27
+Raccoon_dataset_1,StB,Resting,,54
+Raccoon_dataset_1,StFrBoT,Foraging,,54
+Raccoon_dataset_1,StH,Resting,,27
+Raccoon_dataset_1,StN,Resting,,54
+Raccoon_dataset_1,StT,Resting,,27
+Raccoon_dataset_1,Su,Foraging,,0
+Raccoon_dataset_1,SuG,Foraging,,34
+Raccoon_dataset_1,SuM,Foraging,,38
+Raccoon_dataset_1,SuW,Foraging,,35
+Raccoon_dataset_1,WGeN,Locomotion,,54
+Raccoon_dataset_1,WGeT,Locomotion,,27
+Raccoon_dataset_2,Auf zwei Beinen stehen,Other,,6
+Raccoon_dataset_2,Essen,Foraging,,129
+Raccoon_dataset_2,Essen Wasser,Foraging,,13
+Raccoon_dataset_2,Galopp,Locomotion,,17
+Raccoon_dataset_2,Hängen,Locomotion,,16
+Raccoon_dataset_2,Hängen Decke,Other,,4
+Raccoon_dataset_2,Klettern Kopf oben,Locomotion,,42
+Raccoon_dataset_2,Klettern Kopf unten,Locomotion,,3
+Raccoon_dataset_2,Klettern Seitlich,Locomotion,,2
+Raccoon_dataset_2,Kratzen,Other,,5
+Raccoon_dataset_2,Kratzen am Logger,Other,,3
+Raccoon_dataset_2,L/St,Exclude,,20
+Raccoon_dataset_2,Laufen,Locomotion,,73
+Raccoon_dataset_2,Laufen Tür,Locomotion,,40
+Raccoon_dataset_2,Putzen,Other,,73
+Raccoon_dataset_2,Putzen Gegenseitig,Other,,58
+Raccoon_dataset_2,Ruhen,Resting,,322
+Raccoon_dataset_2,Schaben Land,Foraging,,28
+Raccoon_dataset_2,Schaben Wasser,Foraging,,54
+Raccoon_dataset_2,Schlafen,Resting,,96
+Raccoon_dataset_2,Schwimmen,Other,,3
+Raccoon_dataset_2,Schütteln,Other,,23
+Raccoon_dataset_2,Sitzen,Resting,,134
+Raccoon_dataset_2,Stehen,Resting,,40

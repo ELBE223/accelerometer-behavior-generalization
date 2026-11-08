@@ -114,7 +114,7 @@ def main() -> int:
     args = parser.parse_args()
 
     if sys.version_info[:2] != (3, 11):
-        log(f"[WARN] Running Python {sys.version.split()[0]}; the thesis analyses used Python 3.11.")
+        log(f"[WARN] Running Python {sys.version.split()[0]}; the analyses used Python 3.11.")
 
     datasets = read_datasets()
     log(f"[INFO] Project folder: {ROOT}")

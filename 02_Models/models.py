@@ -1,7 +1,7 @@
 # models.py
 #
 # Purpose:
-# - The six classifiers of the thesis with the same settings (D22, D25), behind one
+# - The six classifiers (D22, D25; Table S5), behind one
 #   interface: make_model(name, seed, classes) returns an object with fit(X, y) and
 #   predict(X); INPUT[name] says whether X are the window features ("features",
 #   n x 26) or the window signals ("signals", n x 3 x samples, in g).
@@ -11,10 +11,10 @@
 #   resnet       1-D ResNet of 02_ResNet.py (stem + 3 residual blocks, dropout 0.25)
 #   hydra        aeon HydraClassifier, defaults
 #   multirocket  aeon MultiRocketClassifier, defaults
-# - cnn and resnet as in the thesis: channels standardized with the mean and SD of the
+# - cnn and resnet: channels standardized with the mean and SD of the
 #   training windows, Adam (learning rate 1e-3, no weight decay), batch size 256,
 #   30 epochs, no validation split and no early stopping, cross-entropy without class
-#   weights. They run on the CPU (reproducible); the thesis used the Apple GPU (MPS).
+#   weights. They run on the CPU (reproducible).
 # - Predictions are made in chunks, so large test sets fit into memory.
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ INPUT = {"rf": "features", "lgbm": "features", "cnn": "signals", "resnet": "sign
          "hydra": "signals", "multirocket": "signals"}
 MODEL_NAMES = list(INPUT)
 
-# Thesis settings (01_CNN.py, 02_ResNet.py)
+# Settings of CNN and ResNet (Table S5)
 BATCH_SIZE = 256
 EPOCHS = 30
 LEARNING_RATE = 1e-3
@@ -69,7 +69,7 @@ class AeonClassifier:
         except ImportError as exc:
             raise RuntimeError(f"aeon cannot be loaded ({exc}); install the requirements again") from exc
         cls = HydraClassifier if name == "hydra" else MultiRocketClassifier
-        # Defaults, as in the thesis; n_jobs only changes the speed.
+        # Defaults; n_jobs only changes the speed.
         self.model = cls(random_state=seed, n_jobs=-1)
         # MultiRocket makes about 50 000 features per window: smaller prediction chunks.
         self.chunk = 500 if name == "multirocket" else PREDICT_CHUNK

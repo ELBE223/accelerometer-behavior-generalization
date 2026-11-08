@@ -1,8 +1,7 @@
 # stats_h1_h2.py
 #
 # Purpose:
-# - Statistics of H1 and H2 (D26), as in R/H1/H1.R and R/H2/H2.R of the thesis and
-#   ANALYSIS_PLAN.md of the thesis repository, from 03_Evaluation/results/<scenario>/<model>/metrics.csv:
+# - Statistics of H1 and H2 (D26) from 03_Evaluation/results/<scenario>/<model>/metrics.csv:
 #   seeds     the mean over the seeds is the value of a model and dataset (or dataset
 #             pair) in the tests; the SD over the seeds is reported descriptively
 #   H1        within vs. cross Macro-F1 (and accuracy) per dataset: paired Wilcoxon
@@ -46,7 +45,7 @@ from train_models import DATASETS_CSV, MIN_TEST_PER_CLASS, RESULT_DIR, ROOT  # n
 STATS_DIR = ROOT / "04_Statistics" / "results"
 DISPLAY = {"cnn": "CNN", "resnet": "ResNet", "hydra": "HYDRA", "multirocket": "MultiRocket",
            "rf": "RF", "lgbm": "LGBM"}
-MODEL_ORDER = list(DISPLAY)  # thesis order
+MODEL_ORDER = list(DISPLAY)  # order in all tables
 ALPHA = 0.05
 SEP_KEYS = ["model", "mode", "train", "test"]
 WIDTH = 100
@@ -229,7 +228,7 @@ def h2_tests(v: pd.DataFrame, classes: list[str]) -> tuple[pd.DataFrame, pd.Data
                              "n": int(g.loc[g["behavior"] == c, response].notna().sum()),
                              **describe(g.loc[g["behavior"] == c, response], "value")})
             table = g.pivot(index="dataset", columns="behavior", values=response).reindex(columns=classes)
-            table = table.dropna()  # complete blocks only, as in the thesis
+            table = table.dropna()  # complete blocks only
             res = friedman(table)
             fried.append({"model": model, "response": response, "groups": len(classes), **res,
                           "blocks": " ".join(table.index)})

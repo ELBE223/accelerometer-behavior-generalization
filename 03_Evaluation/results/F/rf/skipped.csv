@@ -1,16 +1,11 @@
 seed,mode,train,test,test_individual,reason
 42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,"training windows below 30: Foraging 0, Locomotion 0, Resting 0"
 42,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 1 individuals meet the rule)
-42,global,,Hedgehog_dataset_1,,fewer than 2 individuals
 43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,"training windows below 30: Foraging 0, Locomotion 0, Resting 0"
 43,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 1 individuals meet the rule)
-43,global,,Hedgehog_dataset_1,,fewer than 2 individuals
 44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,"training windows below 30: Foraging 0, Locomotion 0, Resting 0"
 44,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 1 individuals meet the rule)
-44,global,,Hedgehog_dataset_1,,fewer than 2 individuals
 45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,"training windows below 30: Foraging 0, Locomotion 0, Resting 0"
 45,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 1 individuals meet the rule)
-45,global,,Hedgehog_dataset_1,,fewer than 2 individuals
 46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,Hedgehog_dataset_1__Fred,"training windows below 30: Foraging 0, Locomotion 0, Resting 0"
 46,within,Hedgehog_dataset_1,Hedgehog_dataset_1,,no valid fold (1 of 1 individuals meet the rule)
-46,global,,Hedgehog_dataset_1,,fewer than 2 individuals

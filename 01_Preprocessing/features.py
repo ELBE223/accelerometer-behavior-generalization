@@ -1,16 +1,16 @@
 # features.py
 #
 # Purpose:
-# - Computes the 26 window features of the thesis (06_feature_extraction.R; D21) from the
+# - Computes the 26 window features (D21; Table S4) from the
 #   model windows in data/windows/<dataset>/windows.parquet (25 Hz, x/y/z in g).
-# - All features use the dynamic acceleration (axis minus its window mean), as in the
-#   thesis; posture (the static part) is not a feature.
+# - All features use the dynamic acceleration (axis minus its window mean); posture (the
+#   static part) is not a feature.
 #   vedba = sqrt(dx^2 + dy^2 + dz^2), odba = |dx| + |dy| + |dz| per sample;
 #   vedba_mean/sd/max, odba_mean/sd; per axis sd, rms, iqr, skewness, excess kurtosis,
 #   zero crossings; dominant frequency, spectral centroid and normalized spectral entropy
 #   of the vedba series (mean removed, FFT without the 0-Hz bin).
 #   sd uses n - 1 (R var), rms and the moments of skewness and kurtosis use n, iqr the
-#   default quantiles of R (type 7), as in the thesis script.
+#   default quantiles of R (type 7).
 # - Output: data/features/<dataset>/features.parquet, one row per window in the order of
 #   windows.parquet (window keys and features).
 # - --variant C: the windows of make_windows.py --variant C (data/windows_C/ -> data/features_C/).

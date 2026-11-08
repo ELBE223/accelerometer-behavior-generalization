@@ -6,8 +6,8 @@
 # - Columns used: animal, tag_day (a change starts a new burst), date and time_s (burst
 #   start), time_ss (time of each sample), x, y, z (raw counts), cat_code and beh_code.
 # - Label: "<cat_code>/<beh_code>" (e.g. "STA/1St_Gu"). cat_code is the category of
-#   beh_code, but two beh_codes occur under two categories, and the thesis mapped
-#   cat_code and split STA by beh_code; both codes are kept for the behavior mapping.
+#   beh_code, but two beh_codes occur under two categories; both codes are kept for the
+#   behavior mapping (STA is split by beh_code).
 # - 82-sample bursts; rate 33.33 Hz from the sample times (sensor_settings.csv).
 
 from __future__ import annotations

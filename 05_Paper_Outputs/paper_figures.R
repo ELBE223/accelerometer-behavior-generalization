@@ -58,7 +58,7 @@ dpi <- 600          # png resolution
 base_size <- 8      # font size in pt at the printed size (180 mm = double column)
 main_scenario <- "primary"
 
-model_keys <- c("cnn", "resnet", "hydra", "multirocket", "rf", "lgbm")  # thesis order
+model_keys <- c("cnn", "resnet", "hydra", "multirocket", "rf", "lgbm")  # order in all tables
 model_labels <- c(cnn = "CNN", resnet = "ResNet", hydra = "HYDRA", multirocket = "MultiRocket", rf = "RF",
                   lgbm = "LightGBM")
 classes <- c("Resting", "Locomotion", "Foraging")  # order in every figure and table
@@ -67,9 +67,9 @@ common_names <- c("Bison bonasus" = "Bison", "Bos taurus" = "Cattle", "Canis lup
                   "Equus caballus" = "Horse", "Equus ferus przewalskii" = "Przewalski's horse",
                   "Erinaceus europaeus" = "Hedgehog", "Giraffa camelopardalis" = "Giraffe",
                   "Procyon lotor" = "Raccoon", "Vulpes vulpes" = "Red fox")
-scenarios <- c(primary = "Primary", A = "A: no overlap in training", C = "C: 2.4 s windows",
-               majority = "Majority class (80 %)", four_classes = "Four classes (with Other)",
-               E = "E: ridden gaits as Locomotion", F = "F: thesis-rule individuals only")
+scenarios <- c(primary = "Primary", A = "No training overlap", C = "2.4-s windows",
+               majority = "Majority label (80%)", four_classes = "Four classes (with Other)",
+               E = "Ridden gaits as locomotion", F = "Eligible individuals only")
 
 # Palette (light mode).
 INK <- "#0b0b0b"
@@ -751,8 +751,7 @@ table_s_datasets <- function() {
                 paste0("Individuals: Dog 2 had no animal identities; each of its ", n_dog2,
                        " recordings is treated as an individual (analytical unit)."),
                 "Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.",
-                "Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual).",
-                "A second fox dataset was left out because the provenance of its labels is unclear."),
+                "Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual)."),
               c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv",
                 "01_Preprocessing/reports/pipeline_reports/class_summary.csv", paste0("04_Statistics/results/", main_scenario, "/h1_values.csv")))
 }
@@ -991,7 +990,7 @@ table_s_traits <- function() {
   hyphenated <- c(compact_low_profile_body = "compact low-profile body",
                   tall_long_necked_quadruped = "tall long-necked quadruped")
   pretty <- function(x) ifelse(x %in% names(hyphenated), hyphenated[x], gsub("_", " ", x))
-  # D37: the five core traits; the historical thesis columns of the CSV are not shown.
+  # D37: the five core traits.
   out <- data.frame(Species = common(tr$species), `Scientific name` = tr$species,
                     `Body mass (ln g)` = num(tr$log_body_mass_g, 3),
                     `Locomotor specialization` = pretty(tr$dominant_locomotor_mode),
@@ -1125,8 +1124,7 @@ table_s_scenarios <- function() {
               c(paste0("H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. ",
                        "H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3)."),
                 "H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).",
-                "A: 2 s windows without overlap in training; C: 2.4 s windows without overlap; majority class: at least 80 % of the samples of a window in one class;",
-                "four classes: with Other; E: ridden gaits of Horse 2 as Locomotion; F: only individuals with all three classes and at least 10 evaluation windows each. Definitions: Text S1.",
+                "Scenario definitions: Text S1.",
                 if (nzchar(lost_text)) paste0("H1 test datasets: datasets with a within-dataset value; ", lost_text,
                                               " (no individual that meets the rule for a test unit and can be held out with at least 30 training windows per class).")),
               c("04_Statistics/results/<scenario>/h1_tests.csv", "04_Statistics/results/<scenario>/h2_friedman.csv",
