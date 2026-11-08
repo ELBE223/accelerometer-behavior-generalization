@@ -1261,3 +1261,19 @@ before any model is trained with them. The thesis procedure is given for compari
     and points to the archive for the evidence. Table S6 cites `core_traits.md`.
 - Check: `paper_figures.R` gives the same tables and captions as before except the source
   of the trait text in the note of Table S6; `tests/check_paper_outputs.py` passes.
+
+### D46 2026-11-08 – Python packages installed from the lock file
+- Status: confirmed (Lucas, 2026-11-08)
+- Datasets: all (no data, model or statistic changed)
+- Problem: `setup_project.py` installed the newest versions of `requirements.txt` and wrote
+  them to `requirements-lock.txt` on every run. The first run in the new layout
+  (2026-11-08) therefore replaced the lock file with torch 2.15.0, while the results and
+  Table S5 come from torch 2.14.1 (lock file unchanged from 2026-10-25 to 2026-11-06, the
+  period of all model runs: scikit-learn 1.9.1, lightgbm 4.7.0, torch 2.14.1, aeon 1.6.0,
+  numpy 2.3.5, pandas 3.0.6).
+- Decision: `requirements-lock.txt` is restored to these versions and is the installed
+  environment: `setup_project.py` runs `pip install -r requirements-lock.txt` and no longer
+  writes the file; `update_local.sh` neither resets nor commits it. Newer versions only with
+  `setup_project.py --update`, which rewrites the lock file and needs a new decision entry.
+- Check: in a test environment, a package upgraded by hand is set back to the locked version,
+  the lock file stays unchanged, extra packages are reported, and `--update` rewrites it.

@@ -79,10 +79,11 @@ Rscript 05_Paper_Outputs/paper_figures.R    # all tables and figures (ggplot2, p
 python3.11 tests/check_paper_outputs.py     # numbering, files and cross-references
 ```
 
-Python packages: `requirements.txt` (versions used: `requirements-lock.txt`); Python 3.11,
-R 4.5.2. The EltonTraits distance needs `data/raw/EltonTraits/MamFuncDat.txt` (Wilman et
-al. 2014) and the weighted trait distance needs the R package gawdis. Without them, those
-rows of Tables 3 and S9 are left out.
+Python 3.11 with the package versions that produced the results:
+`pip install -r requirements-lock.txt` (`setup_project.py` does this; direct dependencies
+in `requirements.txt`). R 4.5.2. The EltonTraits distance needs
+`data/raw/EltonTraits/MamFuncDat.txt` (Wilman et al. 2014) and the weighted trait distance
+needs the R package gawdis. Without them, those rows of Tables 3 and S9 are left out.
 
 ### Full analysis (needs the raw data)
 

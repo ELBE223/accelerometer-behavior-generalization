@@ -3,7 +3,8 @@
 #
 # Purpose:
 # - One command for the local update: removes macOS "._" files from .git, gets the
-#   latest code (git pull), installs new packages (setup_project.py), prepares the raw
+#   latest code (git pull), installs the package versions of requirements-lock.txt
+#   (setup_project.py), prepares the raw
 #   data (prepare_raw_data.py), runs the pipeline (harmonize.py, make_windows.py,
 #   assign_classes.py, features.py), the models (train_models.py), the statistics
 #   (stats_h1_h2.py, stats_h3.R) and the paper figures and tables (paper_figures.R), and
@@ -12,8 +13,8 @@
 #   that fails is skipped (the error is in its local report in
 #   01_Preprocessing/reports/pipeline_reports/), the others go on, and the summaries are
 #   pushed before the script ends with an error message.
-# - Generated files (report summaries, statistics, paper outputs, requirements-lock.txt)
-#   with local changes are reset before the pull, because this script writes them again. Not the
+# - Generated files (report summaries, statistics, paper outputs) with local changes are
+#   reset before the pull, because this script writes them again. Not the
 #   model results: results of a model run that stopped before its push (hours of
 #   computing; --add builds on them) are committed before the pull and pushed at the end.
 #
@@ -36,7 +37,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PY="$ROOT/.venv/bin/python"
 # Only generated folders (05_Paper_Outputs also holds paper_figures.R, which is never reset).
 PAPER_OUTPUTS=(05_Paper_Outputs/main 05_Paper_Outputs/supplementary 05_Paper_Outputs/additional 05_Paper_Outputs/output_manifest.csv)
-GENERATED=(01_Preprocessing/reports 03_Evaluation/results 04_Statistics/results "${PAPER_OUTPUTS[@]}" requirements-lock.txt)
+GENERATED=(01_Preprocessing/reports 03_Evaluation/results 04_Statistics/results "${PAPER_OUTPUTS[@]}")
 
 step() { printf '\n=== %s\n' "$1"; }
 
@@ -107,7 +108,7 @@ main() {
     UPDATE_LOCAL_RESTARTED=1 exec bash "$ROOT/update_local.sh" "$@"
   fi
 
-  step "3/6 Install new packages"
+  step "3/6 Install the package versions of requirements-lock.txt"
   "$PY" setup_project.py
 
   step "4/6 Prepare raw data"
@@ -172,7 +173,7 @@ main() {
   # The reports can take minutes; changes pushed in the meantime are pulled before the
   # commit (the new reports are set aside and put back), so no commit has to be replayed.
   git pull --rebase --autostash
-  git add 00_Documentation 01_Preprocessing/reports requirements-lock.txt
+  git add 00_Documentation 01_Preprocessing/reports
   for path in 03_Evaluation/results 04_Statistics/results "${PAPER_OUTPUTS[@]}"; do
     if [ -e "$path" ]; then git add "$path"; fi
   done

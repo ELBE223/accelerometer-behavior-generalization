@@ -3,14 +3,19 @@
 # Purpose:
 # - Creates the local folders that are not in git: one folder per dataset in
 #   data/raw/ and data/processed/ (datasets from 00_Documentation/datasets.csv).
-# - Creates a Python virtual environment (.venv) and installs requirements.txt;
-#   the installed versions are written to requirements-lock.txt.
+# - Creates a Python virtual environment (.venv) and installs the exact package versions
+#   of requirements-lock.txt: the versions that produced the results (Table S5, D46). The
+#   lock file is not changed, so every run gives the same environment.
+# - --update installs the newest versions of requirements.txt instead and writes them to
+#   requirements-lock.txt. Only for a deliberate change, with a decision entry: the results
+#   and Table S5 refer to the locked versions.
 # - Safe to run again: existing folders and files are never removed.
 #
 # Usage (from the project folder; the venv uses the Python that runs this script):
 #   python3.11 setup_project.py
 #   python3.11 setup_project.py --no-venv      # folders only
 #   python3.11 setup_project.py --no-install   # venv without packages
+#   python3.11 setup_project.py --update       # newest versions, rewrites the lock file
 #
 # Afterwards: source .venv/bin/activate
 
@@ -73,14 +78,28 @@ def create_venv() -> None:
     log(f"[OK] venv created: {VENV_DIR}")
 
 
-def install_requirements() -> None:
-    python = str(venv_python())
-    log("[INFO] Installing requirements ...")
-    subprocess.run([python, "-m", "pip", "install", "--upgrade", "pip"], check=True)
-    subprocess.run([python, "-m", "pip", "install", "-r", str(REQUIREMENTS)], check=True)
+def installed(python: str) -> list[str]:
     frozen = subprocess.run([python, "-m", "pip", "freeze"], check=True, capture_output=True, text=True).stdout
-    REQUIREMENTS_LOCK.write_text(frozen, encoding="utf-8")
-    log(f"[OK] Installed versions written to {REQUIREMENTS_LOCK.name}")
+    return [line.strip() for line in frozen.splitlines() if line.strip()]
+
+
+def install_requirements(update: bool) -> None:
+    python = str(venv_python())
+    subprocess.run([python, "-m", "pip", "install", "--upgrade", "pip"], check=True)
+    if update:
+        log(f"[INFO] Installing the newest versions of {REQUIREMENTS.name} ...")
+        subprocess.run([python, "-m", "pip", "install", "--upgrade", "-r", str(REQUIREMENTS)], check=True)
+        REQUIREMENTS_LOCK.write_text("\n".join(installed(python)) + "\n", encoding="utf-8")
+        log(f"[WARN] {REQUIREMENTS_LOCK.name} now lists the new versions; record the change in "
+            "00_Documentation/decisions.md (results and Table S5 refer to the locked versions)")
+        return
+    log(f"[INFO] Installing the package versions of {REQUIREMENTS_LOCK.name} ...")
+    subprocess.run([python, "-m", "pip", "install", "-r", str(REQUIREMENTS_LOCK)], check=True)
+    locked = {line.strip().lower() for line in REQUIREMENTS_LOCK.read_text(encoding="utf-8").splitlines()}
+    other = [line for line in installed(python) if line.lower() not in locked]
+    if other:
+        log(f"[INFO] Also installed, not in {REQUIREMENTS_LOCK.name}: {', '.join(other)}")
+    log(f"[OK] Package versions as in {REQUIREMENTS_LOCK.name}")
 
 
 # =========================================================
@@ -90,6 +109,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Create the local project folders and the venv.")
     parser.add_argument("--no-venv", action="store_true", help="Do not create a venv")
     parser.add_argument("--no-install", action="store_true", help="Create the venv without installing packages")
+    parser.add_argument("--update", action="store_true",
+                        help="Install the newest versions of requirements.txt and rewrite requirements-lock.txt")
     args = parser.parse_args()
 
     if sys.version_info[:2] != (3, 11):
@@ -108,7 +129,7 @@ def main() -> int:
         create_venv()
         # Also on re-runs, so a failed or new installation is completed.
         if not args.no_install:
-            install_requirements()
+            install_requirements(args.update)
 
     log(f"\n[OK] Done. Next: copy each raw dataset into its folder in {RAW_DIR.relative_to(ROOT)}/")
     if not args.no_venv:
