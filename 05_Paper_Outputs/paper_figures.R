@@ -994,10 +994,10 @@ table_s_distances <- function() {
                     `Core traits (Gower)` = num(dd$gower_core), `Weighted trait distance (gawdis)` = num(dd$gawdis),
                     EltonTraits = num(dd$elton_core),
                     `EltonTraits with diet` = num(dd$elton_extended), `Body mass difference` = num(dd$log_body_mass),
-                    `Phylogenetic distance (Myr)` = vapply(dd$divergence_time, function(x) num(x, if (!is.na(x) && x < 1) 2 else 1),
+                    `Phylogenetic distance (Myr)` = vapply(dd$divergence_time, function(x) num(x, if (!is.na(x) && x < 1) 3 else 1),
                                                            character(1)), check.names = FALSE)
   write_table("distances", "Distances between species.", out,
-              c("Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.05 Myr after Orlando et al. (2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.",
+              c("Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.055 Myr, the midpoint of their population divergence of 38–72 kyr (Orlando et al. 2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.",
                 "EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus.",
                 paste0("Weighted trait distance (gawdis) and EltonTraits with diet: used only in the robustness analyses (", table_ref("h3_variants"), ").")),
               paste0("04_Statistics/results/", main_scenario, "/h3_distances.csv"))

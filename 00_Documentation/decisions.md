@@ -1312,15 +1312,18 @@ before any model is trained with them. The thesis procedure is given for compari
 - Divergence time, domestic vs. Przewalski's horse: the TimeTree tree of the thesis gave
   11.2 Myr; the TimeTree pairwise query (Lucas, 2026-11-08) gives 10.1 Myr (CI 8.0–12.1,
   adjusted 8.7; 15 studies) for Equus caballus vs. Equus ferus, which TimeTree treats as the
-  tarpan. Both are older than the genus Equus (4–4.5 Myr). Genomes date the split of the
-  domestic and the Przewalski's horse lineages to 38–72 kyr (Orlando et al. 2013, Nature
-  499:74–78). Decision: this pair uses 0.05 Myr (`divergence_overrides` in `stats_h3.R`);
-  the tree file stays as exported, all other pairs keep their TimeTree values. As the two
+  tarpan. Both are older than the genus Equus (4.0–4.5 Myr; Orlando et al. 2013, Nature
+  499:74–78, p. 74). In that paper the populations of the domestic and the Przewalski's horse
+  diverged 38–72 kyr ago (pp. 74 and 76); the most recent common ancestor of their genome
+  sequences is 341–431 kyr old (p. 76, Fig. 3a). Decision: this pair uses the midpoint of
+  the population divergence, 0.055 Myr (`divergence_overrides` in `stats_h3.R`); the tree
+  file stays as exported, all other pairs keep their TimeTree values. With 0.05, 0.055 or
+  0.36 Myr the model gives the same result (cloud: β 0.002, p 0.935–0.936). As the two
   horses count as separate species in H3, this changes the phylogenetic-distance model.
   Cloud preview (R 4.3.3; this row matches the local run to 1e-9 with the old value):
   β 0.002 [−0.030, 0.033] per SD, LR χ²(1) 0.01, p 0.935, R² 0.36 (before: 0.001
   [−0.031, 0.032], 0.00, 0.973). Official values from the next local run.
-- Tables: S8 note on the horse pair; values below 1 Myr with two decimals; note that the
+- Tables: S8 note on the horse pair; values below 1 Myr with three decimals; note that the
   gawdis and EltonTraits-with-diet columns are used only in the robustness analyses
   (Table S9). S9 note: "EltonTraits with and without diet".
 - Manuscript (later): Methods 2.4 "divergence times from TimeTree 5 (Kumar et al., 2022),

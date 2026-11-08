@@ -188,10 +188,11 @@ read_elton <- function(species) {
 }
 
 # D48: TimeTree dates Equus caballus vs Equus ferus (tarpan) to 10.1 Myr (CI 8.0-12.1; pairwise
-# query 2026-11-08; 11.2 Myr in the tree file), older than the genus Equus (4-4.5 Myr). The
-# lineages of the domestic and the Przewalski's horse split 38-72 kyr ago (Orlando et al. 2013,
-# Nature 499:74-78); this pair uses 0.05 Myr. All other pairs keep the TimeTree values.
-divergence_overrides <- data.frame(species_1 = "Equus caballus", species_2 = "Equus ferus przewalskii", myr = 0.05)
+# query 2026-11-08; 11.2 Myr in the tree file), older than the genus Equus (4.0-4.5 Myr). The
+# populations of the domestic and the Przewalski's horse diverged 38-72 kyr ago (Orlando et al.
+# 2013, Nature 499:74-78, pp. 74 and 76); this pair uses the midpoint, 0.055 Myr. All other
+# pairs keep the TimeTree values.
+divergence_overrides <- data.frame(species_1 = "Equus caballus", species_2 = "Equus ferus przewalskii", myr = 0.055)
 
 # Divergence time of the study species (million years): height of the TimeTree tree minus
 # the depth of the most recent common ancestor, as in the thesis (R/H3/02); then the
