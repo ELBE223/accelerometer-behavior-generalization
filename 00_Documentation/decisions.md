@@ -1295,5 +1295,7 @@ before any model is trained with them. The thesis procedure is given for compari
     placed by sample index.
   - Table S2: column Scenario E replaced by a footnote (only Horse 2 changes class).
   - Table S3: US spelling ("behavior", `datasets.csv`). Table S4: column "n" → "Number".
-- Open: English descriptions of the original labels in Table S2 (draft from the raw data
-  reports of the archive, checked by Lucas against the theses' ethograms).
+- Table S2 keeps the original labels (codes and German terms of the theses) without English
+  descriptions (Lucas, 2026-11-08); a footnote says that their definitions are in the sources
+  and available on request. A draft of English descriptions (212 labels, 72 marked for
+  checking) was given to Lucas for questions from reviewers.

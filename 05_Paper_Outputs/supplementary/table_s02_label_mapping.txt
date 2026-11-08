@@ -214,6 +214,7 @@ Raccoon 2	Schütteln	Other (excluded)	23
 Raccoon 2	Schwimmen	Other (excluded)	3
 Raccoon 2	L/St	Excluded	20
 
+Original labels as recorded in the source datasets (codes and German terms of the theses); their definitions are given in the sources (Table S1) and are available from the authors on request.
 Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.
 Evaluation windows: non-overlapping 2 s windows with this label only.
 Sensitivity scenario E (Table S20): Horse 2: jumping, galloping-rider, trotting-rider, walking-rider as Locomotion.

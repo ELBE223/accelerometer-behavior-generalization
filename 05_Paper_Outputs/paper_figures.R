@@ -772,7 +772,9 @@ table_s_mapping <- function() {
     paste0(short(x$dataset_id[1]), ": ", paste(x$label, collapse = ", "), " as ", x$sensitivity_class[1])
   }, character(1))
   write_table("mapping", "Behavior label mapping.", out,
-              c("Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.",
+              c(paste0("Original labels as recorded in the source datasets (codes and German terms of the theses); their definitions are given in the sources (",
+                       table_ref("datasets"), ") and are available from the authors on request."),
+                "Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.",
                 "Evaluation windows: non-overlapping 2 s windows with this label only.",
                 paste0("Sensitivity scenario E (", table_ref("scenarios"), "): ", paste(e_text, collapse = "; "), ".")),
               "00_Documentation/behavior_mapping.csv")
