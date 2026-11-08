@@ -994,10 +994,12 @@ table_s_distances <- function() {
                     `Core traits (Gower)` = num(dd$gower_core), `Weighted trait distance (gawdis)` = num(dd$gawdis),
                     EltonTraits = num(dd$elton_core),
                     `EltonTraits with diet` = num(dd$elton_extended), `Body mass difference` = num(dd$log_body_mass),
-                    `Phylogenetic distance (Myr)` = num(dd$divergence_time, 1), check.names = FALSE)
+                    `Phylogenetic distance (Myr)` = vapply(dd$divergence_time, function(x) num(x, if (!is.na(x) && x < 1) 2 else 1),
+                                                           character(1)), check.names = FALSE)
   write_table("distances", "Distances between species.", out,
-              c("Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years).",
-                "EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus."),
+              c("Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.05 Myr after Orlando et al. (2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.",
+                "EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus.",
+                paste0("Weighted trait distance (gawdis) and EltonTraits with diet: used only in the robustness analyses (", table_ref("h3_variants"), ").")),
               paste0("04_Statistics/results/", main_scenario, "/h3_distances.csv"))
 }
 
@@ -1037,7 +1039,7 @@ table_s_h3_variants <- function() {
                 "Adjusted for within-dataset Macro-F1: within-dataset Macro-F1 of source and target as covariates (pairs with the hedgehog left out).",
                 "Retention as response: transfer Macro-F1 / within-dataset Macro-F1 of the target (hedgehog as target left out). Weighted trait distance: Gower distance with gawdis trait weights.",
                 "RF and LightGBM only: the two classifiers of the sensitivity scenarios.",
-                paste0("Other distances, each z-scored in the primary model: EltonTraits (with diet); body mass difference; phylogenetic distance (", table_ref("distances"), ")."),
+                paste0("Other distances, each z-scored in the primary model: EltonTraits with and without diet; body mass difference; phylogenetic distance (", table_ref("distances"), ")."),
                 "Exploratory: Gower distance of the five core traits plus one trait excluded from the core distance (trunk motion amplitude or directional change tendency; ordinal low < moderate < high < very high), equal weights; not part of the test of H3.",
                 "Trait sensitivity: the core trait distance after one change, all other inputs fixed: the raccoon in a separate body configuration group, the hedgehog's relative neck length intermediate, the cattle's short, or one of the five traits left out (equal weights over the other four); robustness checks, not tests of H3. \u2020 Added after the results were known."),
               paste0("04_Statistics/results/", main_scenario, "/h3_models.csv"))

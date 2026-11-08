@@ -1299,3 +1299,30 @@ before any model is trained with them. The thesis procedure is given for compari
   descriptions (Lucas, 2026-11-08); a footnote says that their definitions are in the sources
   and available on request. A draft of English descriptions (212 labels, 72 marked for
   checking) was given to Lucas for questions from reviewers.
+
+### D48 2026-11-08 – Review of Tables S6–S9; divergence time of the two horses
+- Status: confirmed (Lucas, 2026-11-08)
+- Datasets: all with results (H3, phylogenetic distance only)
+- Checked against Methods 2.4/2.5 and Results 3.3: Tables S6 and S7 unchanged (five core
+  traits, coding, sources, uncertainties). Cattle and giraffe have the same body mass
+  reference (900 kg, EltonTraits; D30), so their body mass difference is 0. Table S9 keeps
+  all variants: they were fixed before the results (D28, D38) and are reported in full (D01);
+  Methods 2.5 should name them (within-dataset adjustment, retention, gawdis, EltonTraits with
+  diet, RF and LightGBM only, exploratory traits).
+- Divergence time, domestic vs. Przewalski's horse: the TimeTree tree of the thesis gave
+  11.2 Myr; the TimeTree pairwise query (Lucas, 2026-11-08) gives 10.1 Myr (CI 8.0–12.1,
+  adjusted 8.7; 15 studies) for Equus caballus vs. Equus ferus, which TimeTree treats as the
+  tarpan. Both are older than the genus Equus (4–4.5 Myr). Genomes date the split of the
+  domestic and the Przewalski's horse lineages to 38–72 kyr (Orlando et al. 2013, Nature
+  499:74–78). Decision: this pair uses 0.05 Myr (`divergence_overrides` in `stats_h3.R`);
+  the tree file stays as exported, all other pairs keep their TimeTree values. As the two
+  horses count as separate species in H3, this changes the phylogenetic-distance model.
+  Cloud preview (R 4.3.3; this row matches the local run to 1e-9 with the old value):
+  β 0.002 [−0.030, 0.033] per SD, LR χ²(1) 0.01, p 0.935, R² 0.36 (before: 0.001
+  [−0.031, 0.032], 0.00, 0.973). Official values from the next local run.
+- Tables: S8 note on the horse pair; values below 1 Myr with two decimals; note that the
+  gawdis and EltonTraits-with-diet columns are used only in the robustness analyses
+  (Table S9). S9 note: "EltonTraits with and without diet".
+- Manuscript (later): Methods 2.4 "divergence times from TimeTree 5 (Kumar et al., 2022),
+  except domestic vs. Przewalski's horse (Orlando et al., 2013)"; Table 3, row
+  phylogenetic distance, from the local run.
