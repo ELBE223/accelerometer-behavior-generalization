@@ -6,7 +6,6 @@ Traits: 00_Documentation/traits/species_traits_core.csv (five core traits of D37
 
 STRUCTURE
   models 2 (RF, LGBM); species 9; ordered species pairs 72; unordered 36; records 144
-  thesis: 6 models, 9 species, 72 ordered and 36 unordered pairs, 432 records
   dataset pairs of the same species left out: 4 (per model)
 
 TRAIT DISTANCE EFFECT (beta per SD of the distance; 95 % CI from the REML fit, Satterthwaite df;
@@ -19,13 +18,11 @@ likelihood-ratio test of ML fits; S2 on the retention scale)
   S2 retention                   n 128  beta 0.001 [-0.042, 0.044]  SE 0.021  LR chi2(1) 0.00  p 0.955
   S2 log retention               n 128  beta -0.001 [-0.067, 0.065]  SE 0.032  LR chi2(1) 0.00  p 0.979
   S3 gawdis distance             n 144  beta -0.005 [-0.038, 0.027]  SE 0.016  LR chi2(1) 0.13  p 0.717
-  thesis primary: beta -0.031, LR chi2(1) 2.54, p 0.111 (12 datasets with Fox_dataset_2, seed 42)
 
   R2 (Nakagawa) of the primary model: marginal 0.000, conditional 0.978
 
 OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)
-  core + C4 / core + C5: exploratory six-trait add-backs of one historical trait each;
-  the extended expert traits of the thesis are no longer used (D39).
+  core + C4 / core + C5: exploratory six-trait add-backs of one excluded trait each.
   exploratory core + C4 (D36)    n 144  beta -0.005 [-0.038, 0.029]  SE 0.016  LR chi2(1) 0.10  p 0.755
   exploratory core + C5 (D37)    n 144  beta -0.001 [-0.032, 0.031]  SE 0.015  LR chi2(1) 0.00  p 0.955
   EltonTraits core               n 144  beta 0.004 [-0.027, 0.035]  SE 0.015  LR chi2(1) 0.06  p 0.803
