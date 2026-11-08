@@ -6,6 +6,7 @@
 ᵇ Department of Evolutionary Ecology, Leibniz Institute for Zoo and Wildlife Research (Leibniz-IZW), Berlin, Germany  
 ᶜ Institute of Computer Science, Justus Liebig University Giessen, Giessen, Germany
 
+**Status:** Manuscript in preparation  
 **Target journal:** *Ecological Informatics*  
 **DOI:** To be added upon publication
 
@@ -21,9 +22,11 @@ The study integrates 11 accelerometer datasets covering 9 species and evaluates 
 2. How does transferability differ among behavioral classes?
 3. Does functional-biomechanical similarity between species explain cross-species transfer performance?
 
-<img width="250" height="250" alt="M A _Animals" src="https://github.com/user-attachments/assets/60189d8f-90ce-4210-9360-bf3efe61177d" />
+<img width="250" height="250" alt="Terrestrial mammal species pictogram" src="https://github.com/user-attachments/assets/60189d8f-90ce-4210-9360-bf3efe61177d" />
 
 ## Repository structure
+
+The repository is organized around six stages:
 
 - **00_Documentation** — Datasets, behavioral harmonization, and biological traits
 - **01_Preprocessing** — Signal processing and feature extraction
@@ -34,13 +37,14 @@ The study integrates 11 accelerometer datasets covering 9 species and evaluates 
 
 ## Data availability
 
-Two datasets are publicly available. 
-- [Horsing Around -- A Dataset Comprising Horse Movement](https://doi.org/10.4121/uuid:2e08745c-4178-4183-8551-f248c992cb14)
+Two datasets are publicly available:
+
+- [Horsing Around – A Dataset Comprising Horse Movement](https://doi.org/10.4121/uuid:2e08745c-4178-4183-8551-f248c992cb14)
 - [Japanese Black Beef Cow Behavior Classification Dataset](https://doi.org/10.5281/zenodo.5399258)
 
-The remaining datasets are subject to access restrictions and cannot be redistributed. 
+The remaining datasets are subject to access restrictions and cannot be redistributed.
 
-The repository provides analysis code, documentation, and selected derived results to support transparency and reproducibility.
+The repository is being developed to provide analysis code, documentation, and selected derived results to support transparency and reproducibility.
 
 ## Citation
 
