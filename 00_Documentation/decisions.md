@@ -1277,3 +1277,23 @@ before any model is trained with them. The thesis procedure is given for compari
   `setup_project.py --update`, which rewrites the lock file and needs a new decision entry.
 - Check: in a test environment, a package upgraded by hand is set back to the locked version,
   the lock file stays unchanged, extra packages are reported, and `--update` rewrites it.
+
+### D47 2026-11-08 – Review of Tables S1–S5 against Methods 2.1–2.2
+- Status: confirmed (Lucas, 2026-11-08)
+- Datasets: all (no data, model or statistic changed)
+- Checked: all numbers match the manuscript draft of 2026-11-08 (61 individuals, 82,028
+  training and 54,987 evaluation windows, Hedgehog 1 without a within-dataset value, 26
+  features, classifier settings, seeds and libraries). Table S5 unchanged.
+- Changes:
+  - Table S1: footnote for Dog 2 (no animal identities; each of its 8 recordings is treated
+    as an individual), which the manuscript cites in Methods 2.1 (placeholder Table SX);
+    column Public merged into Source ("; public").
+  - Raccoon_dataset_2: native rate 33.33 Hz instead of 33.3 Hz in `sensor_settings.csv`
+    (same e-obs rate: 110 samples in 3.3 s; the thesis gives 33.3 Hz), as for all other
+    e-obs datasets (Tables S1, S3). Results are unaffected: the rate sets only the time axis
+    within a burst and the resampling ratio, which is 3/4 for both values; windows are
+    placed by sample index.
+  - Table S2: column Scenario E replaced by a footnote (only Horse 2 changes class).
+  - Table S3: US spelling ("behavior", `datasets.csv`). Table S4: column "n" → "Number".
+- Open: English descriptions of the original labels in Table S2 (draft from the raw data
+  reports of the archive, checked by Lucas against the theses' ethograms).

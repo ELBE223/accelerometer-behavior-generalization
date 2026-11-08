@@ -728,7 +728,8 @@ table_s_datasets <- function() {
     d <- ds[ds$dataset_id == id, ]
     w <- vapply(classes, function(cl) sum(c1$test_windows[c1$class == cl]), numeric(1))
     vi <- v[v$dataset == id, ]
-    data.frame(Dataset = short(id), Species = common(d$scientific_name), Source = d$source, Public = d$public,
+    data.frame(Dataset = short(id), Species = common(d$scientific_name),
+               Source = paste0(d$source, if (d$public == "yes") "; public" else ""),
                Setting = d$setting, `Sensor position` = d$sensor_position, `Sensor and sampling` = recording_text(id),
                Individuals = length(unique(c1$individual_id)),
                `Within-dataset test units` = if (nrow(vi) == 1L) as.character(vi$eligible_individuals) else DASH,
@@ -744,8 +745,12 @@ table_s_datasets <- function() {
   out <- rbind(out, total)
   for (k in c("Training windows", "r", "l", "f", "total")) out[[k]] <- int(out[[k]])
   names(out)[names(out) %in% c("r", "l", "f", "total")] <- c(paste("Evaluation windows", classes), "Evaluation windows total")
+  n_dog2 <- length(unique(cs$individual_id[cs$dataset_id == "Dog_dataset_2"]))
   write_table("datasets", "Datasets and sample sizes.", out,
-              c("Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.",
+              c("Source: thesis or publication; public: openly available dataset (all others are not public).",
+                paste0("Individuals: Dog 2 had no animal identities; each of its ", n_dog2,
+                       " recordings is treated as an individual (analytical unit)."),
+                "Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.",
                 "Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual).",
                 "A second fox dataset was left out because the provenance of its labels is unclear."),
               c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv",
@@ -761,11 +766,15 @@ table_s_mapping <- function() {
   m <- m[order(m$dataset_id, match(m$class, c(classes, "Other", "Exclude")), key, method = "radix"), ]
   cls <- ifelse(m$class == "Other", "Other (excluded)", ifelse(m$class == "Exclude", "Excluded", m$class))
   out <- data.frame(Dataset = short(m$dataset_id), `Original label` = m$label, Class = cls,
-                    `Evaluation windows` = int(as.numeric(m$test_windows)),
-                    `Scenario E` = ifelse(nzchar(m$sensitivity_class), m$sensitivity_class, ""), check.names = FALSE)
+                    `Evaluation windows` = int(as.numeric(m$test_windows)), check.names = FALSE)
+  e <- m[nzchar(m$sensitivity_class), ]
+  e_text <- vapply(split(e, paste(e$dataset_id, e$sensitivity_class)), function(x) {
+    paste0(short(x$dataset_id[1]), ": ", paste(x$label, collapse = ", "), " as ", x$sensitivity_class[1])
+  }, character(1))
   write_table("mapping", "Behavior label mapping.", out,
               c("Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.",
-                "Evaluation windows: non-overlapping 2 s windows with this label only. Scenario E: class in the sensitivity scenario with ridden gaits as Locomotion."),
+                "Evaluation windows: non-overlapping 2 s windows with this label only.",
+                paste0("Sensitivity scenario E (", table_ref("scenarios"), "): ", paste(e_text, collapse = "; "), ".")),
               "00_Documentation/behavior_mapping.csv")
 }
 
@@ -783,9 +792,9 @@ table_s_features <- function() {
                    "Third standardized moment of each axis", "Fourth standardized moment minus 3 of each axis",
                    "Sign changes of the dynamic acceleration of each axis",
                    "Of the VeDBA series (mean removed; FFT without the 0 Hz bin); entropy normalized to 0–1"),
-    n = c(3, 2, 3, 3, 3, 3, 3, 3, 3), check.names = FALSE)
+    Number = c(3, 2, 3, 3, 3, 3, 3, 3, 3), check.names = FALSE)
   write_table("features", "Window features.", out,
-              c(paste0("Dynamic acceleration (dx, dy, dz): each axis minus its window mean; windows of 2 s at 25 Hz (50 samples). Total: ", sum(out$n), " features."),
+              c(paste0("Dynamic acceleration (dx, dy, dz): each axis minus its window mean; windows of 2 s at 25 Hz (50 samples). Total: ", sum(out$Number), " features."),
                 "Static acceleration (posture) is not a feature."),
               "01_Preprocessing/features.py")
 }

@@ -17,4 +17,4 @@ Horse_dataset_1,1,e-obs,33.33,82,2.46,30,,Saenger MSc thesis p. 10-11,confirmed,
 Horse_dataset_2,1,IMU,100,,,,continuous segments,settings.csv of the dataset (srs = 100),confirmed,the dataset authors used windows of 200 samples (2 s) with 50 % overlap (settings.csv),yes
 Raccoon_dataset_1,1,e-obs,33.33,54,1.62,30,first 11 weeks,Mardaus MSc thesis p. 17,confirmed,no 2-s window fits; all thesis windows come from setting 2,no
 Raccoon_dataset_1,2,e-obs,33.33,96,2.88,30,following 2 weeks,Mardaus MSc thesis p. 17,confirmed,,yes
-Raccoon_dataset_2,1,e-obs,33.3,110,3.3,60,,Geiger BSc thesis p. 19,confirmed,interval 30 s for the young raccoon from 27 to 30 Sep 2022,yes
+Raccoon_dataset_2,1,e-obs,33.33,110,3.3,60,,Geiger BSc thesis p. 19,confirmed,interval 30 s for the young raccoon from 27 to 30 Sep 2022; 110 samples in 3.3 s (33.3 Hz in the thesis),yes

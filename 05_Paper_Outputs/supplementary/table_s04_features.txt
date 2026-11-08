@@ -1,6 +1,6 @@
 Table S4. Window features.
 
-Feature	Definition	n
+Feature	Definition	Number
 VeDBA mean, SD, maximum	Vectorial dynamic body acceleration per sample, √(dx² + dy² + dz²), summarized over the window	3
 ODBA mean, SD	Overall dynamic body acceleration per sample, |dx| + |dy| + |dz|, summarized over the window	2
 SD (x, y, z)	Standard deviation of the dynamic acceleration of each axis (n − 1)	3
