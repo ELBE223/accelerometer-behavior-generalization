@@ -1346,3 +1346,20 @@ before any model is trained with them. The thesis procedure is given for compari
 - Manuscript (later): Methods 2.5 says the H1 comparison was repeated for the seven datasets
   in which every individual is a test unit; Results 3.1 should report it: there all six
   classifiers differ (Macro-F1; CNN p 0.031, ResNet p 0.047, the others p 0.016; Table S11).
+
+### D50 2026-11-08 – Review of Tables S15–S20 and Text S1
+- Status: confirmed (Lucas, 2026-11-08)
+- Datasets: all (no data, model or statistic changed)
+- Checked: Tables S15, S16, S18 and S19 match Methods 2.3/2.5, Table 3 and Discussion 4.3
+  (Table S16 also gives the REML t test of the distance, p 0.172; the manuscript reports the
+  likelihood-ratio test, p 0.108, as Methods 2.5 specifies).
+- Changes:
+  - Table S17: the correlation over all classifiers pooled is removed; its 432 records are
+    the same 72 species pairs six times, so its p value (< 0.001) is not valid, and Methods
+    2.5 does not use it. Note in one sentence.
+  - Table S20: H1 differences with three decimals; column "H1 test datasets (n)" with a note
+    on the datasets without a within-dataset value (four classes: Dog 2, Raccoon 1);
+    definitions in Text S1.
+  - Text S1: final text without internal references (definitions of the scenarios and a
+    summary of Table S20); Lucas checks the wording.
+- Manuscript (later): cite Table S15 (Methods 2.3, pairwise transfer).

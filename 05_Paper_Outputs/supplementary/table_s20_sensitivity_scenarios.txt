@@ -1,16 +1,17 @@
 Table S20. Sensitivity scenarios.
 
-Scenario	Test datasets (n)	H1 difference, RF	H1 p, RF	H1 difference, LightGBM	H1 p, LightGBM	H2 Friedman test, RF	H2 Friedman test, LightGBM	H3 β per SD [95 % CI]	H3 p
-Primary	10	0.10 [0.08, 0.11]	0.002	0.10 [0.06, 0.12]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.010 [-0.043, 0.023]	0.526
-A: no overlap in training	10	0.10 [0.08, 0.12]	0.002	0.09 [0.08, 0.12]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 9.45, p = 0.009	-0.010 [-0.042, 0.022]	0.500
-C: 2.4 s windows	10	0.09 [0.08, 0.11]	0.002	0.10 [0.08, 0.11]	0.002	χ²(2) = 4.91, p = 0.086	χ²(2) = 7.09, p = 0.029	-0.008 [-0.041, 0.025]	0.589
-Majority class (80 %)	10	0.10 [0.08, 0.12]	0.002	0.10 [0.07, 0.12]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.009 [-0.042, 0.024]	0.546
-Four classes (with Other)	8	0.16 [0.09, 0.21]	0.016	0.15 [0.10, 0.22]	0.023	χ²(3) = 23.64, p < 0.001	χ²(3) = 25.32, p < 0.001	-0.011 [-0.035, 0.013]	0.347
-E: ridden gaits as Locomotion	10	0.09 [0.08, 0.12]	0.002	0.09 [0.07, 0.12]	0.002	χ²(2) = 7.82, p = 0.020	χ²(2) = 7.82, p = 0.020	-0.005 [-0.039, 0.029]	0.761
-F: thesis-rule individuals only	10	0.10 [0.08, 0.13]	0.004	0.09 [0.06, 0.13]	0.004	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.001 [-0.033, 0.032]	0.941
+Scenario	H1 test datasets (n)	H1 difference, RF	H1 p, RF	H1 difference, LightGBM	H1 p, LightGBM	H2 Friedman test, RF	H2 Friedman test, LightGBM	H3 β per SD [95 % CI]	H3 p
+Primary	10	0.101 [0.080, 0.111]	0.002	0.096 [0.065, 0.119]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.010 [-0.043, 0.023]	0.526
+A: no overlap in training	10	0.096 [0.085, 0.124]	0.002	0.090 [0.075, 0.118]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 9.45, p = 0.009	-0.010 [-0.042, 0.022]	0.500
+C: 2.4 s windows	10	0.088 [0.080, 0.109]	0.002	0.099 [0.076, 0.108]	0.002	χ²(2) = 4.91, p = 0.086	χ²(2) = 7.09, p = 0.029	-0.008 [-0.041, 0.025]	0.589
+Majority class (80 %)	10	0.101 [0.083, 0.121]	0.002	0.097 [0.067, 0.123]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.009 [-0.042, 0.024]	0.546
+Four classes (with Other)	8	0.158 [0.092, 0.210]	0.016	0.148 [0.098, 0.220]	0.023	χ²(3) = 23.64, p < 0.001	χ²(3) = 25.32, p < 0.001	-0.011 [-0.035, 0.013]	0.347
+E: ridden gaits as Locomotion	10	0.092 [0.081, 0.123]	0.002	0.087 [0.067, 0.124]	0.002	χ²(2) = 7.82, p = 0.020	χ²(2) = 7.82, p = 0.020	-0.005 [-0.039, 0.029]	0.761
+F: thesis-rule individuals only	10	0.099 [0.077, 0.125]	0.004	0.094 [0.062, 0.133]	0.004	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.001 [-0.033, 0.032]	0.941
 
 H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3).
 H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).
 A: 2 s windows without overlap in training; C: 2.4 s windows without overlap; majority class: at least 80 % of the samples of a window in one class;
-four classes: with Other; E: ridden gaits of Horse 2 as Locomotion; F: only individuals with all three classes and at least 10 evaluation windows each.
+four classes: with Other; E: ridden gaits of Horse 2 as Locomotion; F: only individuals with all three classes and at least 10 evaluation windows each. Definitions: Text S1.
+H1 test datasets: datasets with a within-dataset value; Four classes (with Other): without Dog 2 and Raccoon 1 (no individual that meets the rule for a test unit and can be held out with at least 30 training windows per class).
 Source: 04_Statistics/results/<scenario>/h1_tests.csv, 04_Statistics/results/<scenario>/h2_friedman.csv, 04_Statistics/results/<scenario>/h3_models.csv

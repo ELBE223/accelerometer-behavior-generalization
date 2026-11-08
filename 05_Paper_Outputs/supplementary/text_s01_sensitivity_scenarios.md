@@ -1,24 +1,31 @@
 # Supplementary Text S1. Sensitivity scenarios
 
-> **Draft.** The scenario definitions are taken from `00_Documentation/decisions.md`
-> (D11, D27). The wording for the supplement is still to be written. Results: Table S20.
-
-The sensitivity scenarios were specified before any model was trained (D01, D11). They
-test how far the conclusions depend on preprocessing and labeling choices. Each scenario
-changes one element of the primary analysis. The primary analysis uses 2.0-s windows
-with 50% overlap in training and none in evaluation, pure windows, three classes, 25 Hz
-and all eligible individuals.
+The sensitivity scenarios were specified before any model was trained. Each changes one
+element of the primary analysis to show how far the conclusions depend on preprocessing
+and labeling choices. The primary analysis uses 2.0-s windows at 25 Hz, with 50% overlap
+in training and none in evaluation. It uses only windows whose samples all belong to one
+of three classes, and all eligible individuals.
 
 | Scenario | Change from the primary analysis |
 |---|---|
-| A | 2.0-s windows without overlap in training |
-| C | 2.4-s windows (60 samples) without overlap; close to the 2.46-s windows of the theses, with a margin in the 2.46-s bursts of Bison 1, Horse 1 and Giraffe 1 |
-| Majority class | A window is assigned to a class if at least 80% of its samples belong to that class, instead of all samples (samples with an excluded label or without a label count against it) |
-| Four classes | Other is kept as a fourth class |
-| E | Ridden gaits of Horse 2 are assigned to Locomotion, as in the original thesis |
-| F | Only individuals with all three classes and at least 10 evaluation windows each, in all evaluations |
+| A | 2.0-s windows without overlap in training (evaluation unchanged) |
+| C | 2.4-s windows (60 samples) without overlap in training and evaluation, close to the 2.46-s windows of the original theses |
+| Majority class | A window takes the class of at least 80% of its samples instead of requiring all samples to belong to one class; samples with an excluded label or without a label count against the 80% |
+| Four classes | Behaviors outside the three target classes are kept as a fourth class, Other |
+| E | Ridden gaits of Horse 2 (walking, trotting and galloping with a rider) and jumping are assigned to Locomotion, as in the original thesis |
+| F | Only individuals with all three classes and at least ten evaluation windows in each, in all evaluations |
 
-Because of computing time, all scenarios were run with Random Forest and LightGBM only
-(D27), with the same five seeds and the same statistics as the primary analysis. For a
-comparable H3 reference, the primary mixed model was also fitted to the RF and LightGBM
-results alone. The scenarios are interpreted descriptively against the primary analysis.
+Because of the computing time of the signal-based networks, all scenarios were run with
+Random Forest and LightGBM only, with the same five training seeds and the same
+statistical procedures as the primary analysis. For a comparable H3 reference, the primary
+mixed model was also fitted to the RF and LightGBM results of the primary analysis alone.
+The scenarios are compared descriptively with the primary analysis (Table S20).
+
+In every scenario, within-dataset Macro-F1 exceeded cross-dataset Macro-F1 for both
+classifiers (median paired differences 0.087–0.158; Wilcoxon p ≤ 0.023), compared with
+0.096–0.101 in the primary analysis. Cross-dataset F1 differed among behavioral classes
+(H2) in all scenarios except for RF with 2.4-s windows (χ²(2) = 4.91, p = 0.086). In the
+four-class scenario, the Friedman test compared four classes and is therefore not directly
+comparable. The association between trait distance and cross-species Macro-F1 (H3) stayed
+negative and non-significant in all scenarios (β −0.011 to −0.001 per SD; p ≥ 0.347), as
+in the primary model fitted to RF and LightGBM (β −0.010, p = 0.526).

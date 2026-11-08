@@ -53,7 +53,7 @@ item without a number stops the script.
 | Figure S1 | Evaluation windows per dataset and behavioral class | `figure_s01_class_windows.png` | Methods 2.1 |
 | Figure S2 | Within- and cross-dataset accuracy | `figure_s02_h1_accuracy.png` | Results 3.1 |
 | Figure S3 | Transfer loss by behavioral class | `figure_s03_h2_transfer_loss.png` | Results 3.2 |
-| Text S1 | Sensitivity scenarios (draft) | `text_s01_sensitivity_scenarios.md` | Results 3.1 |
+| Text S1 | Sensitivity scenarios (written by hand; its numbers come from Table S20) | `text_s01_sensitivity_scenarios.md` | Results 3.1 |
 
 Not made any more (not cited in the manuscript, D45): the former Figures S4–S8
 (pairwise heatmap, H3 per classifier, H3 robustness, leave one species out, sensitivity

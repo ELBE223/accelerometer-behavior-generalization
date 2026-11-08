@@ -155,7 +155,7 @@ figure_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_trait_distanc
 # Hand-written supplementary texts (not made here, listed in output_manifest.csv).
 texts <- data.frame(item = "Text S1", title = "Sensitivity scenarios.",
                     file = "supplementary/text_s01_sensitivity_scenarios.md",
-                    sources = "00_Documentation/decisions.md (D11, D27)")
+                    sources = "00_Documentation/decisions.md (D11, D27); values of Table S20")
 # Where the manuscript draft (2026-11-08) cites each numbered item; empty: not cited.
 cited_in <- c("Table 1" = "Results 3.1; Discussion 4.1", "Figure 1" = "Results 3.1; Discussion 4.1",
               "Table 2" = "Results 3.2; Discussion 4.2", "Figure 2" = "Results 3.2; Discussion 4.2",
@@ -1024,11 +1024,11 @@ table_s_distances <- function() {
 table_s_per_classifier <- function() {
   sl <- read_stats(main_scenario, "h3_slopes")
   sp <- read_stats(main_scenario, "h3_spearman")
-  keys <- c("all models pooled", "CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")
+  keys <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")
   rows <- lapply(keys, function(k) {
     s <- sp[sp$model == k, ]
     l <- sl[sl$model == k, ]
-    data.frame(Classifier = if (k == "all models pooled") "All classifiers pooled" else unname(model_labels[tolower(k)]),
+    data.frame(Classifier = unname(model_labels[tolower(k)]),
                `Records (n)` = s$n,
                Slope = if (nrow(l) == 1L) est_ci(l$estimate, l$ci_low, l$ci_high) else DASH,
                `p (slope)` = if (nrow(l) == 1L) p_txt(l$p_value) else DASH,
@@ -1039,8 +1039,8 @@ table_s_per_classifier <- function() {
   names(out)[names(out) == "Slope"] <- paste(BETA, "per SD [95 % CI]")
   names(out)[names(out) == "Spearman"] <- paste("Spearman", RHO, "[95 % CI]")
   write_table("per_classifier", "Distance effect per classifier (H3).", out,
-              c(paste0(BETA, " per SD: slope of the core trait distance for each classifier in the mixed model with the interaction distance \u00d7 classifier (REML, Satterthwaite df);"),
-                paste0("the interaction is not significant (", table_ref("h3_model"), "). Spearman correlations: descriptive, 95 % CI by Fisher z, Holm adjustment over the six classifiers.")),
+              c(paste0(BETA, " per SD: slope of the core trait distance for each classifier in the mixed model with the interaction distance \u00d7 classifier (REML, Satterthwaite df); the interaction is not significant (", table_ref("h3_model"), ")."),
+                "Spearman correlations: descriptive, 95 % CI by Fisher z, Holm adjustment over the six classifiers."),
               paste0("04_Statistics/results/", main_scenario, c("/h3_slopes.csv", "/h3_spearman.csv")))
 }
 
@@ -1099,7 +1099,7 @@ table_s_scenarios <- function() {
     cell_h1 <- function(m) {
       r <- h1[h1$model == m, ]
       if (nrow(r) == 0L) return(c(DASH, DASH))
-      c(med_iqr(r$gap_median, r$gap_q1, r$gap_q3, 2), p_txt(r$p_value))
+      c(med_iqr(r$gap_median, r$gap_q1, r$gap_q3), p_txt(r$p_value))
     }
     cell_h2 <- function(m) {
       r <- h2[h2$model == m, ]
@@ -1108,7 +1108,7 @@ table_s_scenarios <- function() {
     }
     rf <- cell_h1("rf")
     lg <- cell_h1("lgbm")
-    data.frame(Scenario = unname(scenarios[sc]), `Test datasets (n)` = max(h1$n_pairs),
+    data.frame(Scenario = unname(scenarios[sc]), `H1 test datasets (n)` = max(h1$n_pairs),
                `H1 difference, RF` = rf[1], `H1 p, RF` = rf[2], `H1 difference, LightGBM` = lg[1], `H1 p, LightGBM` = lg[2],
                `H2 Friedman test, RF` = cell_h2("rf"), `H2 Friedman test, LightGBM` = cell_h2("lgbm"),
                `H3 beta [95 % CI]` = if (nrow(h3) == 1L) est_ci(h3$estimate, h3$ci_low, h3$ci_high) else DASH,
@@ -1116,12 +1116,19 @@ table_s_scenarios <- function() {
   })
   out <- do.call(rbind, rows)
   names(out) <- sub("beta", paste(BETA, "per SD"), names(out))
+  # Test datasets of H1 that a scenario loses (no within-dataset value there).
+  h1_sets <- lapply(setNames(s$present, s$present), function(sc) unique(read_stats(sc, "h1_values")$dataset))
+  lost <- vapply(s$present, function(sc) paste(short(setdiff(h1_sets[["primary"]], h1_sets[[sc]])), collapse = " and "),
+                 character(1))
+  lost_text <- paste(paste0(unname(scenarios[s$present[nzchar(lost)]]), ": without ", lost[nzchar(lost)]), collapse = "; ")
   write_table("scenarios", "Sensitivity scenarios.", out,
               c(paste0("H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. ",
                        "H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3)."),
                 "H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).",
                 "A: 2 s windows without overlap in training; C: 2.4 s windows without overlap; majority class: at least 80 % of the samples of a window in one class;",
-                "four classes: with Other; E: ridden gaits of Horse 2 as Locomotion; F: only individuals with all three classes and at least 10 evaluation windows each."),
+                "four classes: with Other; E: ridden gaits of Horse 2 as Locomotion; F: only individuals with all three classes and at least 10 evaluation windows each. Definitions: Text S1.",
+                if (nzchar(lost_text)) paste0("H1 test datasets: datasets with a within-dataset value; ", lost_text,
+                                              " (no individual that meets the rule for a test unit and can be held out with at least 30 training windows per class).")),
               c("04_Statistics/results/<scenario>/h1_tests.csv", "04_Statistics/results/<scenario>/h2_friedman.csv",
                 "04_Statistics/results/<scenario>/h3_models.csv"))
 }
