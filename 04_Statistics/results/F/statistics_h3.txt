@@ -25,7 +25,7 @@ OTHER DISTANCES (D28; primary model, distance z-scored)
   EltonTraits extended           n 144  beta 0.010 [-0.022, 0.042]  SE 0.016  LR chi2(1) 0.45  p 0.505
   divergence time (TimeTree)     n 144  beta 0.001 [-0.028, 0.030]  SE 0.014  LR chi2(1) 0.01  p 0.944
   log body mass                  n 144  beta 0.004 [-0.025, 0.034]  SE 0.014  LR chi2(1) 0.09  p 0.768
-  EltonTraits source: 00_Documentation/traits/eltontraits_study_species.txt
+  EltonTraits source: data/raw/EltonTraits/MamFuncDat.txt
   EltonTraits names: Canis lupus familiaris = Canis lupus; Equus ferus przewalskii = Equus caballus
 
 TRAIT SENSITIVITY (D38, D43; primary model with the core distance after one change, z-scored; robustness only)
@@ -71,6 +71,13 @@ S1: CORRELATIONS OF THE COVARIATES WITH THE DISTANCE
       variable r_with_trait_distance
  source_within            -0.1626673
  target_within            -0.1626673
+
+S1: VARIANCE INFLATION FACTORS
+            Term      VIF
+      z_distance 1.041298
+           model 1.044577
+ z_source_within 1.101353
+ z_target_within 1.080825
 
 NOTES
   Species without within value (left out in S1; as target in S2): Erinaceus europaeus

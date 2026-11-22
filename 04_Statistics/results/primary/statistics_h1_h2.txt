@@ -245,13 +245,42 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
 
 CROSS-DATASET CONFUSION MATRICES (row percentages, mean over target datasets and seeds; Figure S3)
 
-  not computed; missing:
-    03_Evaluation/results/primary/cnn/confusion.csv
-    03_Evaluation/results/primary/resnet/confusion.csv
-    03_Evaluation/results/primary/hydra/confusion.csv
-    03_Evaluation/results/primary/multirocket/confusion.csv
-    03_Evaluation/results/primary/rf/confusion.csv
-    03_Evaluation/results/primary/lgbm/confusion.csv
+  CNN (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        74.3         6.0      19.6
+    Locomotion      6.4        57.5      36.1
+    Foraging       20.9        19.2      59.8
+  ResNet (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        77.9         6.8      15.4
+    Locomotion      7.9        58.1      34.0
+    Foraging       23.2        19.5      57.3
+  HYDRA (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        73.4         5.8      20.8
+    Locomotion      6.1        63.5      30.4
+    Foraging       21.2        21.2      57.7
+  MultiRocket (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        74.4         6.0      19.6
+    Locomotion      8.8        59.0      32.2
+    Foraging       19.0        20.5      60.5
+  RF (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        75.5         6.0      18.5
+    Locomotion      5.1        64.1      30.8
+    Foraging       17.3        19.1      63.6
+  LGBM (datasets 11, seeds 5; rows: true, columns: predicted)
+    pred        Resting  Locomotion  Foraging
+    truth                                    
+    Resting        75.6         5.8      18.7
+    Locomotion      6.1        64.8      29.1
+    Foraging       17.6        19.6      62.8
 
 H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
 
