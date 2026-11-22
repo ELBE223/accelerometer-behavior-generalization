@@ -300,8 +300,13 @@ def confusion_cross(scenario: str, models: list[str], classes: list[str]) -> tup
     missing = [f for f in files if not f.exists()]
     if missing:
         return None, missing
-    c = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
-    c = c[(c["mode"] == "cross") & c["truth"].isin(classes) & c["pred"].isin(classes)].copy()
+    # The model is taken from the folder name; repeated rows of a cell are summed, and cells
+    # without a row count as 0, so every matrix has all classes.
+    c = pd.concat([pd.read_csv(f).assign(model=m) for f, m in zip(files, models)], ignore_index=True)
+    c = c[(c["mode"] == "cross") & c["truth"].isin(classes) & c["pred"].isin(classes)]
+    c = c.pivot_table(index=["model", "seed", "test", "truth"], columns="pred", values="n", aggfunc="sum",
+                      fill_value=0).reindex(columns=classes, fill_value=0)
+    c = c.stack().rename("n").reset_index()
     row = c.groupby(["model", "seed", "test", "truth"])["n"].transform("sum")
     c["percent"] = np.where(row > 0, 100 * c["n"] / row.where(row > 0), np.nan)
     g = c.groupby(["model", "truth", "pred"], observed=True)
