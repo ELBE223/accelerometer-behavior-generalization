@@ -1,7 +1,7 @@
 # features.py
 #
 # Purpose:
-# - Computes the 26 window features (D21; Table S4) from the
+# - Computes the 26 window features (D21; Table S5) from the
 #   model windows in data/windows/<dataset>/windows.parquet (25 Hz, x/y/z in g).
 # - All features use the dynamic acceleration (axis minus its window mean); posture (the
 #   static part) is not a feature.

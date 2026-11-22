@@ -9,8 +9,7 @@
 #              mass, locomotor specialization, body configuration, relative neck length
 #              (ordinal short < intermediate < long < very_long) and food acquisition and
 #              handling (00_Documentation/traits/species_traits_core.csv; definitions in
-#              00_Documentation/traits/core_traits.md); C4/C5 for the exploratory add-backs
-#              in species_traits_exploratory.csv
+#              00_Documentation/traits/core_traits.md)
 #   data       pairs of the same species (scientific name) left out; mean over the dataset
 #              pairs of a species pair, one value per model and ordered species pair
 #   primary    Macro-F1 ~ z(distance) + model + (1 | unordered pair) + (1 | ordered pair)
@@ -19,9 +18,9 @@
 #              (Satterthwaite df) from the REML fit
 #   further    interaction distance x model and slopes per model; directional and pair-only
 #              random effects; S1 within Macro-F1 of source and target as covariates; S2
-#              retention (pairwise / within of the target) and log retention; S3 gawdis
-#              distance (w.type "optimized", seed 42); Spearman correlations (Holm over
-#              the models); the primary model per seed (seed variability, descriptive)
+#              retention (pairwise / within of the target) and log retention; Spearman
+#              correlations (Holm over the models); the primary model per seed (seed
+#              variability, descriptive)
 #   D27        the primary model with RF and LightGBM only (the models of the sensitivity
 #              scenarios), to compare the scenarios with
 #   D38        trait sensitivity: the primary model with the core distance after one change
@@ -29,22 +28,27 @@
 #              (raccoon separate body configuration, hedgehog neck length intermediate,
 #              or one of the five traits left out)
 #   D28        leave-one-species-out refits of the primary model; the primary model with
-#              other distances: exploratory core + C4 (D36) and core + C5 (D37), EltonTraits
-#              core and extended (data/raw/EltonTraits/MamFuncDat.txt, if present),
-#              divergence time (TimeTree; D48) and log body mass alone
+#              other distances: EltonTraits core and extended (data/raw/EltonTraits/
+#              MamFuncDat.txt; without it the extract of the nine study species in
+#              00_Documentation/traits/eltontraits_study_species.txt, which every run with
+#              the raw file rewrites), divergence time (TimeTree; D48) and log body mass alone
+#   D51        removed from the standard run: the weighted trait distance (gawdis) and the
+#              exploratory add-backs of trunk motion amplitude (C4) and directional change
+#              tendency (C5); their code, inputs and last results are in
+#              04_Statistics/archive/h3_exploratory/
 #   z-scores   computed on the records of each analysis (S1 and S2 lose the pairs with a
 #              dataset without within value)
 #   prediction the primary model over the observed range of the distance, averaged over the
 #              models (random effects 0), with 95 % CI (Satterthwaite df), for the figure
 # - Output: 04_Statistics/results/<scenario>/h3_data.csv, h3_models.csv, h3_fixed_effects.csv,
 #   h3_random_effects.csv, h3_slopes.csv, h3_spearman.csv, h3_seeds.csv, h3_distances.csv,
-#   h3_gawdis_weights.csv, h3_loso.csv, h3_elton_traits.csv, h3_prediction.csv, statistics_h3.txt
+#   h3_loso.csv, h3_elton_traits.csv, h3_prediction.csv, statistics_h3.txt
 #
 # Usage (from the project folder):
 #   Rscript 04_Statistics/stats_h3.R              # every scenario with an h3_input.csv
 #   Rscript 04_Statistics/stats_h3.R primary
 #   or in R/RStudio with the project folder as working directory: source("04_Statistics/stats_h3.R")
-# Packages: lme4, lmerTest, cluster; optional gawdis (S3) and performance (VIF).
+# Packages: lme4, lmerTest, cluster; optional performance (VIF).
 
 required <- c("lme4", "lmerTest", "cluster")
 missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
@@ -52,7 +56,6 @@ if (length(missing) > 0L) {
   stop("Install first: install.packages(c(", paste0("\"", missing, "\"", collapse = ", "), "))", call. = FALSE)
 }
 suppressPackageStartupMessages(library(lmerTest))
-has_gawdis <- requireNamespace("gawdis", quietly = TRUE)
 has_performance <- requireNamespace("performance", quietly = TRUE)
 options(stringsAsFactors = FALSE, contrasts = c("contr.treatment", "contr.poly"), width = 200)
 
@@ -65,18 +68,16 @@ if (!dir.exists(stats_dir)) {
   stop("04_Statistics/results/ not found under ", root, "; run from the project folder (setwd() to it in RStudio).", call. = FALSE)
 }
 trait_file <- file.path(root, "00_Documentation", "traits", "species_traits_core.csv")
-# Historical C4/C5 scores, used only by the exploratory add-backs (D36, D37).
-exploratory_file <- file.path(root, "00_Documentation", "traits", "species_traits_exploratory.csv")
 timetree_file <- file.path(root, "00_Documentation", "timetree_species_list.nwk")
-elton_file <- file.path(root, "data", "raw", "EltonTraits", "MamFuncDat.txt")  # Wilman et al. 2014; not shared
+elton_file <- file.path(root, "data", "raw", "EltonTraits", "MamFuncDat.txt")  # Wilman et al. 2014 (local copy)
+# The EltonTraits rows of the nine study species (same columns as MamFuncDat.txt): written
+# from elton_file whenever it exists, read instead of it when it does not.
+elton_extract_file <- file.path(root, "00_Documentation", "traits", "eltontraits_study_species.txt")
 
 model_order <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")  # CNN is the reference
 # D37: the five core traits.
 core_traits <- c("log_body_mass_g", "dominant_locomotor_mode", "body_configuration_type",
                  "relative_neck_length", "food_acquisition_handling")
-# Exploratory add-backs to the primary core, one historical trait each (D36, D37).
-addback_traits <- c(core_with_c4 = "expected_trunk_motion_amplitude",
-                    core_with_c5 = "expected_directional_change_tendency")
 # D38: trait sensitivity of the core distance, one change each (all other inputs fixed):
 # an edit of the raw trait table and the columns used.
 set_value <- function(column, species, value) {
@@ -105,10 +106,7 @@ sensitivity_labels <- c(
 )
 stopifnot(setequal(names(trait_sensitivity), names(sensitivity_labels)))
 # Levels of the ordinal traits, lowest first; all other non-numeric traits are nominal.
-low_to_very_high <- c("low", "moderate", "high", "very_high")
-ordinal_levels <- list(relative_neck_length = c("short", "intermediate", "long", "very_long"),
-                       expected_trunk_motion_amplitude = low_to_very_high,
-                       expected_directional_change_tendency = low_to_very_high)
+ordinal_levels <- list(relative_neck_length = c("short", "intermediate", "long", "very_long"))
 # Names in EltonTraits and TimeTree, in this order, where the study name is missing there.
 other_names <- list("Canis lupus familiaris" = "Canis lupus",
                     "Equus ferus przewalskii" = c("Equus ferus", "Equus caballus"),
@@ -123,7 +121,6 @@ random_pair_only <- "(1 | ordered_species_pair)"
 control <- lmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 200000), check.conv.singular = "ignore")
 confidence_level <- 0.95
 singular_tol <- 1e-4
-gawdis_seed <- 42
 
 standardize <- function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 fmt <- function(x, digits = 3) ifelse(is.na(x), "NA", formatC(x, format = "f", digits = digits))
@@ -133,13 +130,11 @@ table_lines <- function(df) capture.output(print(df, row.names = FALSE))
 
 # --- traits and distances ---------------------------------------------------------------
 
-# Traits of `columns` (core file plus the exploratory scores); `edit` (D38) changes the raw
-# table before the conversion.
+# Traits of `columns` (core trait file); `edit` (D38) changes the raw table before the
+# conversion.
 read_traits <- function(columns = core_traits, edit = NULL) {
   file <- trait_file
   raw <- read.csv(file, check.names = FALSE, strip.white = TRUE)
-  extra <- read.csv(exploratory_file, check.names = FALSE, strip.white = TRUE)
-  raw <- cbind(raw, extra[match(raw$species, extra$species), setdiff(names(extra), "species"), drop = FALSE])
   if (!is.null(edit)) raw <- edit(raw)
   if (is.null(columns)) columns <- setdiff(names(raw), "species")
   absent <- setdiff(columns, names(raw))
@@ -164,21 +159,31 @@ pick_name <- function(species, available) {
 }
 
 # EltonTraits of the study species (first name with complete values; foraging stratum
-# nominal, activity 0/1 and diet percentages numeric, body mass log), or NULL.
+# nominal, activity 0/1 and diet percentages numeric, body mass log), or NULL. Source:
+# elton_file if present (then the matched rows are written to elton_extract_file), otherwise
+# elton_extract_file; the attribute "source" names the file that was read.
 read_elton <- function(species) {
-  if (!file.exists(elton_file)) return(NULL)
-  raw <- read.delim(elton_file, check.names = FALSE, quote = "", comment.char = "", strip.white = TRUE)
+  file <- if (file.exists(elton_file)) elton_file else if (file.exists(elton_extract_file)) elton_extract_file else return(NULL)
+  raw <- read.delim(file, check.names = FALSE, quote = "", comment.char = "", strip.white = TRUE)
   name_col <- intersect(c("Scientific", "scientificNameStd"), names(raw))[1]
   missing <- setdiff(c(name_col, elton_core_columns, elton_diet_columns), names(raw))
-  if (is.na(name_col) || length(missing)) stop(elton_file, " lacks columns: ", paste(missing, collapse = ", "), call. = FALSE)
+  if (is.na(name_col) || length(missing)) stop(file, " lacks columns: ", paste(missing, collapse = ", "), call. = FALSE)
   raw <- raw[complete.cases(raw[c(elton_core_columns, elton_diet_columns)]), ]
   matched <- vapply(species, pick_name, character(1), available = raw[[name_col]])
   if (anyNA(matched)) stop("Not in EltonTraits: ", paste(species[is.na(matched)], collapse = ", "), call. = FALSE)
   rows <- raw[match(matched, raw[[name_col]]), c(elton_core_columns, elton_diet_columns)]
+  if (file == elton_file) {
+    extract <- unique(cbind(Scientific = unname(matched), rows))
+    extract <- extract[order(extract$Scientific), ]
+    old_options <- options(scipen = 100)  # 500000, not 5e+05
+    on.exit(options(old_options), add = TRUE)
+    write.table(extract, elton_extract_file, sep = "\t", quote = FALSE, row.names = FALSE, fileEncoding = "UTF-8")
+  }
   out <- data.frame(species = species, elton_name = unname(matched), log_body_mass_g = log(rows[["BodyMass-Value"]]),
                     foraging_stratum = factor(rows[["ForStrat-Value"]]), check.names = FALSE)
   for (col in c(elton_core_columns[3:5], elton_diet_columns)) out[[col]] <- as.numeric(rows[[col]])
   rownames(out) <- species
+  attr(out, "source") <- sub(paste0("^", root, "/"), "", file)
   out
 }
 
@@ -237,10 +242,7 @@ read_divergence <- function(species) {
 
 # D28: further distances of the study species (matrices), each where its input exists.
 other_distances <- function(species, traits) {
-  # D36/D37: the primary core plus one historical trait, all other inputs unchanged.
-  out <- lapply(addback_traits, function(t) {
-    as.matrix(cluster::daisy(read_traits(columns = c(core_traits, t))[species, ], metric = "gower"))
-  })
+  out <- list()
   # D38: trait sensitivity of the core distance.
   for (n in names(trait_sensitivity)) {
     v <- trait_sensitivity[[n]]
@@ -259,31 +261,9 @@ other_distances <- function(species, traits) {
   list(matrices = out, elton = elton)
 }
 
-gawdis_distance <- function(traits, gower) {
-  if (!has_gawdis) return(NULL)
-  equal <- gawdis::gawdis(traits, w.type = "equal", ord = "classic", silent = TRUE)
-  check <- max(abs(as.matrix(equal) - gower))
-  analytic <- tryCatch(suppressWarnings(gawdis::gawdis(traits, w.type = "analytic", ord = "classic", silent = TRUE)),
-                       error = function(e) NULL)
-  set.seed(gawdis_seed)
-  optimized <- gawdis::gawdis(traits, w.type = "optimized", ord = "classic", opti.maxiter = 300, silent = TRUE)
-  m <- as.matrix(optimized)
-  dimnames(m) <- dimnames(gower)
-  weights <- data.frame(
-    trait = names(traits),
-    weight_equal = as.numeric(attr(equal, "weights")),
-    correlation_equal = as.numeric(attr(equal, "correls")),
-    weight_analytic = if (is.null(analytic)) NA_real_ else as.numeric(attr(analytic, "weights")),
-    weight_optimized = as.numeric(attr(optimized, "weights")),
-    correlation_optimized = as.numeric(attr(optimized, "correls"))
-  )
-  list(matrix = m, weights = weights, equal_check = check)
-}
-
-
 # --- H3 table ---------------------------------------------------------------------------
 
-species_pairs <- function(pairs, gower, gawdis_m, others = list()) {
+species_pairs <- function(pairs, gower, others = list()) {
   pairs <- pairs[!as.logical(pairs$same_species), ]
   pairs$retention <- pairs$macro_f1 / pairs$target_within_macro_f1
   keys <- pairs[c("model", "train_species", "test_species")]
@@ -294,7 +274,6 @@ species_pairs <- function(pairs, gower, gawdis_m, others = list()) {
   h3 <- merge(h3, n, by = names(keys))
   h3$log_retention <- log(h3$retention)
   h3$trait_distance_core <- gower[cbind(h3$train_species, h3$test_species)]
-  h3$trait_distance_gawdis <- if (is.null(gawdis_m)) NA_real_ else gawdis_m[cbind(h3$train_species, h3$test_species)]
   for (n in names(others)) h3[[paste0("distance_", n)]] <- others[[n]][cbind(h3$train_species, h3$test_species)]
   h3$ordered_species_pair <- factor(paste(h3$train_species, h3$test_species, sep = "__"))
   h3$unordered_species_pair <- factor(ifelse(h3$train_species < h3$test_species,
@@ -433,9 +412,8 @@ run_scenario <- function(scenario) {
   if (length(missing_species) > 0L) stop("No traits for: ", paste(missing_species, collapse = ", "), call. = FALSE)
   traits <- traits[study_species, ]
   gower <- as.matrix(cluster::daisy(traits, metric = "gower"))
-  gaw <- gawdis_distance(traits, gower)
   other <- other_distances(study_species, traits)
-  h3 <- species_pairs(pairs, gower, if (is.null(gaw)) NULL else gaw$matrix, other$matrices)
+  h3 <- species_pairs(pairs, gower, other$matrices)
   mt <- if (nlevels(h3$model) > 1L) "model" else NULL
   rhs <- function(...) paste(c(..., mt), collapse = " + ")
   null_rhs <- if (is.null(mt)) "1" else "model"
@@ -459,11 +437,6 @@ run_scenario <- function(scenario) {
     list("S2 retention", d_s2, "retention", null_rhs, rhs("z_distance"), "z_distance", random_full),
     list("S2 log retention", d_s2, "log_retention", null_rhs, rhs("z_distance"), "z_distance", random_full)
   )
-  if (!is.null(gaw)) {
-    d_s3 <- prepare(h3, c("mean_macro_f1", "trait_distance_gawdis"), "trait_distance_gawdis")
-    specs[[length(specs) + 1L]] <- list("S3 gawdis distance", d_s3, "mean_macro_f1", null_rhs, rhs("z_distance"),
-                                        "z_distance", random_full)
-  }
   # D27: the primary model with only the models of the sensitivity scenarios, to compare with them.
   feature_models <- c("RF", "LGBM")
   if (nlevels(h3$model) > 2L && all(feature_models %in% levels(h3$model))) {
@@ -473,8 +446,7 @@ run_scenario <- function(scenario) {
   }
 
   # D28: the primary model with the other distances.
-  other_labels <- c(core_with_c4 = "exploratory core + C4 (D36)", core_with_c5 = "exploratory core + C5 (D37)",
-                    elton_core = "EltonTraits core", elton_extended = "EltonTraits extended",
+  other_labels <- c(elton_core = "EltonTraits core", elton_extended = "EltonTraits extended",
                     divergence_time = "divergence time (TimeTree)", log_body_mass = "log body mass")
   other_labels <- other_labels[names(other_labels) %in% names(other$matrices)]
   for (n in names(other_labels)) {
@@ -524,7 +496,7 @@ run_scenario <- function(scenario) {
   if (file.exists(by_seed_file)) {
     by_seed <- read.csv(by_seed_file)
     seeds <- do.call(rbind, lapply(sort(unique(by_seed$seed)), function(s) {
-      h <- species_pairs(by_seed[by_seed$seed == s, ], gower, NULL)
+      h <- species_pairs(by_seed[by_seed$seed == s, ], gower)
       d <- prepare(h, core, "trait_distance_core")
       cbind(seed = s, compare("primary", d, "mean_macro_f1", null_rhs, rhs("z_distance"), "z_distance")$row)
     }))
@@ -549,14 +521,12 @@ run_scenario <- function(scenario) {
   distances <- as.data.frame(as.table(gower))
   names(distances) <- c("species_1", "species_2", "gower_core")
   distances <- distances[as.character(distances$species_1) < as.character(distances$species_2), ]
-  if (!is.null(gaw)) distances$gawdis <- gaw$matrix[cbind(as.character(distances$species_1), as.character(distances$species_2))]
   for (n in names(other$matrices)) {
     distances[[n]] <- other$matrices[[n]][cbind(as.character(distances$species_1), as.character(distances$species_2))]
   }
 
   out <- list(h3_data = h3, h3_models = models, h3_fixed_effects = fixed, h3_random_effects = random,
-              h3_slopes = slopes, h3_spearman = sp, h3_seeds = seeds, h3_distances = distances,
-              h3_gawdis_weights = if (is.null(gaw)) NULL else gaw$weights, h3_loso = loso,
+              h3_slopes = slopes, h3_spearman = sp, h3_seeds = seeds, h3_distances = distances, h3_loso = loso,
               h3_elton_traits = other$elton, h3_prediction = prediction)
   for (n in names(out)) if (!is.null(out[[n]])) write.csv(out[[n]], file.path(dir, paste0(n, ".csv")), row.names = FALSE)
 
@@ -586,15 +556,15 @@ run_scenario <- function(scenario) {
     sprintf("  R2 (Nakagawa) of the primary model: marginal %s, conditional %s", fmt(models$r2_marginal[1]),
             fmt(models$r2_conditional[1])),
     "",
-    "OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)",
-    "  core + C4 / core + C5: exploratory six-trait add-backs of one excluded trait each.",
+    "OTHER DISTANCES (D28; primary model, distance z-scored)",
     vapply(which(models$analysis %in% other_labels), function(i) model_line(models[i, ]), character(1)),
     if (!"elton_core" %in% names(other$matrices)) {
       paste0("  EltonTraits: skipped (", file.path("data", "raw", "EltonTraits", "MamFuncDat.txt"), " not found)")
     },
     if (!is.null(other$elton)) {
-      paste("  EltonTraits names:", paste(sprintf("%s = %s", other$elton$species, other$elton$elton_name)[
-        other$elton$species != other$elton$elton_name], collapse = "; "))
+      c(paste("  EltonTraits source:", attr(other$elton, "source")),
+        paste("  EltonTraits names:", paste(sprintf("%s = %s", other$elton$species, other$elton$elton_name)[
+          other$elton$species != other$elton$elton_name], collapse = "; ")))
     },
     "",
     "TRAIT SENSITIVITY (D38, D43; primary model with the core distance after one change, z-scored; robustness only)",
@@ -626,12 +596,6 @@ run_scenario <- function(scenario) {
                       fmt(sp$ci_low), fmt(sp$ci_high), fmt_p(sp$p_value), fmt_p(sp$p_holm)), "",
               "S1: CORRELATIONS OF THE COVARIATES WITH THE DISTANCE", table_lines(s1_cor))
   if (!is.null(vif)) report <- c(report, "", "S1: VARIANCE INFLATION FACTORS", table_lines(vif))
-  if (!is.null(gaw)) {
-    report <- c(report, "", sprintf("S3: GAWDIS TRAIT WEIGHTS (equal weights reproduce the Gower distance: max. difference %.1e)",
-                                    gaw$equal_check), table_lines(gaw$weights))
-  } else {
-    report <- c(report, "", "S3: skipped (package gawdis not installed)")
-  }
   no_within <- unique(c(as.character(h3$train_species[is.na(h3$source_within)])))
   report <- c(report, "", "NOTES",
               paste("  Species without within value (left out in S1; as target in S2):",

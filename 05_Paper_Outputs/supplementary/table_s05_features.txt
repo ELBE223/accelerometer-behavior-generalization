@@ -1,0 +1,16 @@
+Table S5. Handcrafted features used by Random Forest and LightGBM.
+
+Feature group	Definition	Unit	Number
+VeDBA mean, SD and maximum	Window mean, sample SD and maximum of vectorial dynamic body acceleration, calculated as the Euclidean norm of the three dynamic axes at each sample.	g	3
+ODBA mean and SD	Window mean and sample SD of overall dynamic body acceleration, calculated as the sum of the absolute dynamic acceleration values on the three axes at each sample.	g	2
+Axis SD	Sample standard deviation of each dynamic axis, with n minus 1 in the variance denominator.	g	3
+Axis RMS	Square root of the mean squared dynamic acceleration, computed separately for x, y and z.	g	3
+Axis IQR	The 75th percentile minus the 25th percentile of each dynamic axis, using linearly interpolated quantiles equivalent to R type 7.	g	3
+Axis skewness	Mean cubed deviations from the axis mean, divided by the cube of the sample SD, computed separately for x, y and z.	Unitless	3
+Axis excess kurtosis	Mean fourth-power deviations from the axis mean, divided by the fourth power of the sample SD, minus 3, for each axis.	Unitless	3
+Axis zero crossings	Number of adjacent sample pairs with opposite signs on each dynamic axis. Pairs containing an exact zero are not counted.	Count	3
+Dominant frequency	Frequency of the largest squared Fourier magnitude in the retained spectrum of mean-centered VeDBA.	Hz	1
+Spectral centroid	Mean retained frequency weighted by the normalized spectral power of mean-centered VeDBA.	Hz	1
+Spectral entropy	Shannon entropy of normalized VeDBA spectral power, divided by the natural logarithm of the number of retained frequency bins.	Unitless	1
+
+The 26 features were calculated from 2.0-s windows at 25 Hz after subtracting each axis mean; static acceleration was not included. Axis features were computed separately for x, y and z, and spectral features were derived from mean-centered VeDBA. SD = sample standard deviation; RMS = root mean square; IQR = interquartile range; VeDBA = vectorial dynamic body acceleration; ODBA = overall dynamic body acceleration.

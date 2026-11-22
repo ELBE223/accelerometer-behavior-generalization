@@ -1,0 +1,8 @@
+Table S7. Functional-biomechanical traits: definitions, coding and sources.
+
+Trait	Definition	Coding	Sources
+Body mass	Reference body mass from species-level literature values or study-specific records.	Continuous: ln(mass in g)	Wilman et al. (2014); Gerstner & Gerstein (2008); study-specific records
+Locomotor specialization	Broad classification based on locomotor anatomy and habitual substrate use.	Nominal: cursorial, scansorial, terrestrial generalist	Kilbourne & Hoffman (2013); Neveu et al. (2001)
+Body configuration	Relative proportions of the trunk, limbs, and neck in ordinary standing posture.	Nominal: robust quadruped, standard quadruped, tall long-necked quadruped, compact low-profile body	Prothero (1992); Krasińska & Krasiński (2002)
+Relative neck length	Cervical vertebral length relative to thoracic, lumbar, and sacral regions.	Ordinal: short, intermediate, long, very long	Belyaev et al. (2024); Davis (1964)
+Food acquisition and handling	Characteristic mechanisms used to acquire and handle food.	Nominal: vegetation cropping, oral item acquisition, manual food handling	Iwaniuk & Whishaw (1999); Kowalczyk et al. (2019)

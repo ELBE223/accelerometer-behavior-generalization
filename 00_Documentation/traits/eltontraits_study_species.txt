@@ -1,0 +1,9 @@
+Scientific	BodyMass-Value	ForStrat-Value	Activity-Nocturnal	Activity-Crepuscular	Activity-Diurnal	Diet-Inv	Diet-Vend	Diet-Vect	Diet-Vfish	Diet-Vunk	Diet-Scav	Diet-Fruit	Diet-Nect	Diet-Seed	Diet-PlantO
+Bison bonasus	500000	G	1	1	1	0	0	0	0	0	0	0	0	0	100
+Bos taurus	900000	G	0	0	1	0	0	0	0	0	0	0	0	0	100
+Canis lupus	32183.33	G	1	1	0	0	100	0	0	0	0	0	0	0	0
+Equus caballus	250000	G	1	1	1	0	0	0	0	0	0	0	0	0	100
+Erinaceus europaeus	771	G	1	0	0	80	10	10	0	0	0	0	0	0	0
+Giraffa camelopardalis	899994.8	G	1	1	0	0	0	0	0	0	0	0	0	0	100
+Procyon lotor	5524.97	G	1	0	0	40	0	20	0	0	0	20	0	20	0
+Vulpes vulpes	5476.17	G	1	1	0	20	70	0	0	0	0	10	0	0	0

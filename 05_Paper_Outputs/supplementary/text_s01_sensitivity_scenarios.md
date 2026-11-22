@@ -1,33 +1,7 @@
 # Supplementary Text S1. Sensitivity scenarios
 
-The sensitivity scenarios were specified before any model was trained. Each changes one
-element of the primary analysis to show how far the conclusions depend on preprocessing
-and labeling choices. The primary analysis uses 2.0-s windows at 25 Hz, with 50% overlap
-in training and none in evaluation. It uses only windows whose samples all belong to one
-of three classes, and all eligible individuals.
+Sensitivity analyses examined how the results depended on window construction, behavioral label assignment and the eligibility of analytical units. The primary analysis used 2.0-s windows at 25 Hz, with 50% overlap in training and no overlap in evaluation. Windows were retained only when all samples were labeled and mapped to the same retained behavioral class.
 
-| Scenario | Change from the primary analysis |
-|---|---|
-| No training overlap | 2.0-s windows without overlap in training (evaluation unchanged) |
-| 2.4-s windows | 2.4-s windows (60 samples) without overlap in training and evaluation |
-| Majority label (80%) | A window takes the class of at least 80% of its samples instead of requiring all samples to belong to one class; samples with an excluded label or without a label count against the 80% |
-| Four classes (with Other) | Behaviors outside the three target classes are kept as a fourth class, Other |
-| Ridden gaits as locomotion | Ridden gaits of Horse 2 (walking, trotting and galloping with a rider) and jumping are assigned to Locomotion |
-| Eligible individuals only | Only individuals with all three classes and at least ten evaluation windows in each, in all evaluations |
+Six alternative scenarios were evaluated. The no-training-overlap scenario used non-overlapping 2.0-s training windows, with evaluation unchanged. The 2.4-s scenario used 60-sample windows without overlap in either training or evaluation, changing both window length and training overlap relative to the primary analysis. Under majority labeling, a window was assigned to a retained class when at least 80% of its samples belonged to that class; unlabeled samples and samples mapped to Exclude counted against this threshold. The four-class scenario retained Other as an additional behavioral class, while Exclude remained omitted. The expanded Horse 2 locomotion scenario assigned ridden walking, trotting and galloping, together with jumping, to Locomotion. The eligible-individuals scenario restricted all evaluation settings to analytical units with all three classes and at least ten evaluation windows per class.
 
-Because of the computing time of the signal-based networks, all scenarios were run with
-Random Forest and LightGBM only, with the same five training seeds and the same
-statistical procedures as the primary analysis. For a comparable H3 reference, the primary
-mixed model was also fitted to the RF and LightGBM results of the primary analysis alone.
-The scenarios are compared descriptively with the primary analysis (Table S20).
-
-In every scenario, within-dataset Macro-F1 exceeded cross-dataset Macro-F1 for both
-classifiers (median paired differences 0.087–0.158; Wilcoxon p ≤ 0.023), compared with
-0.096–0.101 in the primary analysis. Unadjusted Friedman tests indicated differences in
-cross-dataset F1 among behavioral classes (H2) in all scenarios except for RF with 2.4-s
-windows (χ²(2) = 4.91, p = 0.086). These p-values are unadjusted; after Holm adjustment
-over the six classifiers, none of the primary Friedman tests was significant (Table 2). In the
-four-class scenario, the Friedman test compared four classes and is therefore not directly
-comparable. The association between trait distance and cross-species Macro-F1 (H3) stayed
-negative and non-significant in all scenarios (β −0.011 to −0.001 per SD; p ≥ 0.347), as
-in the primary model fitted to RF and LightGBM (β −0.010, p = 0.526).
+All scenarios were evaluated using Random Forest and LightGBM with the same five training seeds as the primary analysis. Dataset-level scores were averaged across seeds before statistical testing. H1 compared within- and cross-dataset Macro-F1 using paired Wilcoxon signed-rank tests. H2 compared cross-dataset F1 among behavioral classes using Friedman tests. For H3, the primary mixed-effects model was fitted to the RF and LightGBM results of each scenario. The primary reference model was also restricted to these two classifiers. All H1–H3 p-values in Table S17 are unadjusted and are reported for exploratory comparison across scenarios. These results were interpreted descriptively. Results are summarized in Table S17.

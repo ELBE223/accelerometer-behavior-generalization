@@ -1,0 +1,11 @@
+Table S9. Sensitivity analysis of within- and cross-dataset Macro-F1 in seven fully eligible datasets.
+
+Classifier	Within-dataset Macro-F1	Cross-dataset Macro-F1	Difference	Wilcoxon V	p	Rank-biserial r
+CNN	0.796 [0.711, 0.834]	0.626 [0.522, 0.713]	0.120 [0.062, 0.222]	27	0.031	0.93
+ResNet	0.779 [0.690, 0.830]	0.670 [0.531, 0.704]	0.109 [0.066, 0.180]	26	0.047	0.86
+HYDRA	0.850 [0.825, 0.904]	0.657 [0.527, 0.711]	0.160 [0.127, 0.262]	28	0.016	1.00
+MultiRocket	0.850 [0.827, 0.909]	0.672 [0.493, 0.715]	0.165 [0.131, 0.273]	28	0.016	1.00
+RF	0.814 [0.740, 0.880]	0.690 [0.520, 0.716]	0.108 [0.090, 0.164]	28	0.016	1.00
+LightGBM	0.818 [0.733, 0.885]	0.691 [0.538, 0.714]	0.105 [0.074, 0.173]	28	0.016	1.00
+
+Values are medians [first quartile, third quartile] across seven datasets, with each dataset-level score averaged over five training seeds. The analysis included Bison, Cattle, Dog 2, Fox, Giraffe, Horse 1 and Raccoon 1, for which within- and cross-dataset evaluation scored identical windows. Dog 1, Horse 2 and Raccoon 2 were excluded because some analytical units were ineligible for within-dataset testing; Hedgehog had no valid within-dataset evaluation. Difference denotes within-dataset minus cross-dataset Macro-F1. Tests were two-sided exact Wilcoxon signed-rank tests. Reported p-values are unadjusted. After Holm adjustment across the six classifiers, all comparisons yielded an adjusted p-value of 0.094. Rank-biserial r is the matched-pairs effect size.

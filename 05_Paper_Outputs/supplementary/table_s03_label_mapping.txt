@@ -1,0 +1,52 @@
+Table S3. Mapping of original behavior labels to harmonized classes.
+
+Dataset	Mapping	Original labels
+Bison	Resting	LIN; LIT; LPN; LWN; SKM; SKN; STL; SWK
+Bison	Locomotion	GAL; SCH; TRB
+Bison	Foraging	FSH; FSM; FSN; FST; FVB; GRA; HFM; HFN; HFT; KKM; KKN; RSH; TRK
+Bison	Other	KÄM; PUT; SAB; SPU; WÄL
+Cattle	Resting	REL; RES; RUS
+Cattle	Locomotion	MOV
+Cattle	Foraging	DRN; FES; GRZ; SLT
+Cattle	Other	ATT; BMN; ESC; LCK; URI
+Cattle	Exclude	ETC
+Dog 1	Resting	LIG; SIT; STE
+Dog 1	Locomotion	GEH; REN; SPR
+Dog 1	Foraging	KNA; SCH
+Dog 1	Other	BUD
+Dog 2	Resting	LIE; SIT; STA
+Dog 2	Locomotion	GO; RUN
+Dog 2	Foraging	EAT
+Fox	Resting	RESTING
+Fox	Locomotion	TROTTING; WALKING
+Fox	Foraging	DRINKING; FORAGING; STOCKING
+Fox	Other	GROOMING
+Giraffe	Resting	LIE/2Li; LIE/2Li_Gu; LIE/2Li_GuTi; LIE/2Li_Wk; LIE/2Li_WkMi; RUM/1St_GuTi; RUM/4Wk; RUM/4WkMi; RUM/4Wk_Gu; RUM/4Wk_GuMi; SLE/11Sl; SLE/11Sr; STA/1St; STA/1StMi
+Giraffe	Locomotion	RUN/7Re; WAL/6Ge; WAL/6GeMi; WAL/6GeTi
+Giraffe	Foraging	DRI/5TrBo; FEA/3Fo; FEA/3Fro; FEA/3Kao; FED/3FruTi; FED/3FuTi; FED/3KaTi; FED/3Ka_GuTi; FEG/3FuBo; FEG/3FuTi; FTM/3Fa; FTM/3Fra; FTM/3FruMi; FTM/3FuMi; FTM/3Ka; FTM/3KaMi; FTM/3Ka_Gu; FTM/3Ka_GuMi
+Giraffe	Other	FIG/10Ge; FIG/10GrTi; FIG/10Ne; FIG/10Tp; GRO/8Kp; GRO/8Kp_Ba; SOC/9So; SOC/9SoMi; SOC/9SoTi; SOC/9So_Schn; SOC/9So_SchnMi; SOC/9So_SchnTi; STA/1St_Gu; STA/1St_GuMi; STA/1St_GuTi
+Hedgehog	Resting	ruhend
+Hedgehog	Locomotion	gehen; laufend; rennen; rennend
+Hedgehog	Foraging	fressen; schnuppern; schnuppert
+Hedgehog	Other	eingekugelt; kratzt sich; schüttelt sich; zusammengekugelt
+Hedgehog	Exclude	ENDSHAKE; STARTSHAKE; wird bewegt; wird geschüttelt; wird getragen
+Horse 1	Resting	LIN; SKM; SKN; SLN
+Horse 1	Locomotion	GAL; SCH; TRB
+Horse 1	Foraging	FVB; GRA; HFM; HFN; HFT; KKM; KKN; TRK
+Horse 1	Other	GFP; KOS; PUT; SAB; WÄL
+Horse 2	Resting	standing
+Horse 2	Locomotion	galloping-natural; trotting-natural; walking-natural
+Horse 2	Foraging	eating; grazing
+Horse 2	Other	fighting; head-shake; jumping; rolling; rubbing; scared; scratch-biting; shaking
+Horse 2	Exclude	galloping-rider; trotting-rider; unknown; walking-rider
+Raccoon 1	Resting	StB; StH; StN; StT
+Raccoon 1	Locomotion	GaW; KlHoH; KlRuH; LaW; MGeT; WGeN; WGeT
+Raccoon 1	Foraging	StFrBoT; Su; SuG; SuM; SuW
+Raccoon 1	Other	StAHKr
+Raccoon 2	Resting	Ruhen; Schlafen; Sitzen; Stehen
+Raccoon 2	Locomotion	Galopp; Hängen; Klettern Kopf oben; Klettern Kopf unten; Klettern Seitlich; Laufen; Laufen Tür
+Raccoon 2	Foraging	Essen; Essen Wasser; Schaben Land; Schaben Wasser
+Raccoon 2	Other	Auf zwei Beinen stehen; Hängen Decke; Kratzen; Kratzen am Logger; Putzen; Putzen Gegenseitig; Schwimmen; Schütteln
+Raccoon 2	Exclude	L/St
+
+Resting, locomotion and foraging were retained in the primary analysis. Other was excluded from the primary analysis but included as a fourth class in the four-class sensitivity analysis; Exclude was omitted from both. Codes are dataset-specific, and Giraffe mappings use the full category/code combination. In the primary analysis, windows were retained only if every sample was labeled and mapped to the same retained class.

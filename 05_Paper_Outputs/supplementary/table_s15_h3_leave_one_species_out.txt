@@ -1,0 +1,14 @@
+Table S15. Leave-one-species-out robustness analysis.
+
+Species excluded	β per SD [95% CI]	SE	LR χ²	p	R² marginal / conditional	Singular fit
+Bison	-0.022 [-0.054, 0.010]	0.016	1.93	0.165	0.41 / 0.80	No
+Cattle	-0.039 [-0.084, 0.006]	0.022	3.21	0.073	0.37 / 0.85	Yes
+Dog	-0.022 [-0.065, 0.021]	0.021	2.33	0.126	0.40 / 0.83	No
+Fox	-0.029 [-0.074, 0.017]	0.022	1.73	0.188	0.38 / 0.84	Yes
+Giraffe	-0.032 [-0.075, 0.012]	0.021	2.25	0.134	0.39 / 0.82	No
+Hedgehog	-0.004 [-0.050, 0.042]	0.022	0.03	0.861	0.36 / 0.83	Yes
+Horse 1: Przewalski’s horse	-0.013 [-0.042, 0.017]	0.014	0.83	0.363	0.38 / 0.79	No
+Horse 2: domestic horse	-0.028 [-0.066, 0.010]	0.018	2.34	0.126	0.41 / 0.83	No
+Raccoon	-0.046 [-0.087, -0.005]	0.020	5.28	0.022	0.44 / 0.81	Yes
+
+Each analysis removed all source–target pairs involving the indicated species and refitted the primary mixed-effects model. Each refit included 336 observations: 56 ordered pairs of eight remaining species across six classifiers. Trait distance was standardized again within each refit. β and its 95% confidence interval were obtained from the restricted maximum-likelihood fit. LR denotes the likelihood-ratio test against the corresponding model without distance (df = 1). These exploratory p-values are unadjusted for multiple testing. Singular fit indicates a boundary fit of the random-effects structure.

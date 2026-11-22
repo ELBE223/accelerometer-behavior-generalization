@@ -11,7 +11,7 @@ was trained (D01).
 - **D02** Raw data are read only. One loader per dataset (`01_Preprocessing/loaders/`)
   writes a harmonized table: individual, segment, time, x, y, z (g), original label.
 - **D10** Original labels are mapped to Resting, Locomotion, Foraging, Other or Exclude
-  (`behavior_mapping.csv`, Table S2):
+  (`behavior_mapping.csv`, Table S3):
   - Drinking, sniffing and searching are Foraging.
   - Ruminating is Resting.
   - Climbing and walking in any place are Locomotion.
@@ -47,12 +47,12 @@ was trained (D01).
 - **D07** Labels are assigned after windowing. Primary analysis: only windows whose samples
   all belong to the same class.
 - **D21** 26 window features of the dynamic acceleration (window mean removed) for RF and
-  LightGBM (Table S4).
+  LightGBM (Table S5).
 
 ## Classifiers (Methods 2.2)
 
 - **D22** Random Forest and LightGBM with default settings, without tuning.
-- **D25** CNN, ResNet, HYDRA and MultiRocket on the window signals (Table S5); networks on
+- **D25** CNN, ResNet, HYDRA and MultiRocket on the window signals (Table S6); networks on
   the CPU with fixed seeds.
 - **D24** Five seeds (42–46) fix the training-window draw and the random state of the
   models; the mean over the seeds enters the statistics.
@@ -76,8 +76,9 @@ was trained (D01).
 - **D32, D34** Locomotor specialization (three groups) and body configuration (four groups),
   coded as in `traits/core_traits.md`.
 - **D36** Trunk motion amplitude and directional change tendency are not core traits; they
-  are used only in the exploratory analyses of Table S9.
-- **D37** Five core traits, Gower distance with equal weights (Tables S6–S8).
+  were used only in exploratory add-back analyses, which D51 removed (archived in
+  `04_Statistics/archive/h3_exploratory/`).
+- **D37** Five core traits, Gower distance with equal weights (Tables S7–S8).
 - **D48** Divergence times from TimeTree 5, except domestic vs. Przewalski's horse: TimeTree
   gives 10.1 Myr (older than the genus Equus); the midpoint of their population divergence
   of 38–72 kyr (Orlando et al. 2013), 0.055 Myr, is used.
@@ -91,19 +92,32 @@ was trained (D01).
   df), R² after Nakagawa.
 - **D44** H2, decided after the results were known: the six Friedman tests of a response
   (one per classifier) are also Holm-adjusted, and post-hoc tests are interpreted only after
-  a Friedman test that is significant after the adjustment (Table 2, Tables S13–S14). The
+  a Friedman test that is significant after the adjustment (Table 2, Tables S10–S11). The
   transfer loss is also tested on the seven datasets in which within- and cross-dataset F1
-  score the same windows (without Dog 1, Horse 2 and Raccoon 2; Table S14). Unadjusted
+  score the same windows (without Dog 1, Horse 2 and Raccoon 2; Table S11). Unadjusted
   p-values stay reported.
-- **D28** H3 robustness (Table S9, S18): other random-effects structures, adjustment for
-  within-dataset Macro-F1, retention as response, weighted trait distance (gawdis),
-  EltonTraits with and without diet, body mass difference, divergence time,
-  leave-one-species-out refits, and the primary model per seed (Table S19).
+- **D28** H3 robustness (Tables S13–S16): other random-effects structures, adjustment for
+  within-dataset Macro-F1, retention as response, the interaction distance × classifier
+  with slopes and Spearman correlations per classifier, EltonTraits with and without diet
+  (Text S2), body mass difference, divergence time, leave-one-species-out refits, and the
+  primary model per seed. The weighted trait distance (gawdis) was removed by D51.
 - **D38** Trait sensitivity of the core distance, fixed before fitting: raccoon in a
   separate body configuration group, hedgehog neck length intermediate, each trait left
   out. **D43** adds cattle neck length short, decided after the results were known
-  (marked † in Table S9).
-- **D11** Sensitivity scenarios (Text S1, Table S20): no training overlap, 2.4-s windows,
+  (noted in Table S13).
+- **D11** Sensitivity scenarios (Text S1, Table S17): no training overlap, 2.4-s windows,
   majority label (80%), four classes, ridden gaits as locomotion, eligible individuals only.
 - **D27** The scenarios are run with RF and LightGBM only; the primary H3 model is also
   fitted to these two classifiers, as a reference for the scenarios.
+- **D51** Final export, aligned with the manuscript and the supplement of 2026-11-22:
+  - H1: the paired Wilcoxon p-values are also Holm-adjusted over the six classifiers,
+    separately for the ten datasets with both evaluations and the seven datasets with
+    identical evaluation windows (Results 3.1, Table S9). The adjustment uses the unrounded
+    p-values; the unadjusted p-values stay reported (Table 1), and the sensitivity scenarios
+    are reported unadjusted (Table S17).
+  - H3: the weighted trait distance (gawdis) and the add-backs of trunk motion amplitude and
+    directional change tendency (D36) are removed from the standard run and the final
+    export. The five core traits and all other robustness analyses stay. Code, inputs and
+    the last results of the removed analyses: `04_Statistics/archive/h3_exploratory/`.
+  - Figure S3: cross-dataset confusion counts are normalized within each true class per
+    target dataset and seed, then averaged over the datasets and seeds with equal weight.

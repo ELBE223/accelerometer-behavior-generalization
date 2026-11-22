@@ -11,7 +11,10 @@
 
 `results/<scenario>/<model>/metrics.csv` holds accuracy, precision, recall and F1 (macro and per class) per
 mode, seed and test dataset; `skipped.csv` lists evaluations that were not possible.
+`confusion.csv` holds the confusion counts (true × predicted class) of the same runs; the
+files of the primary analysis are in git, because Figure S3 is made from them (D51); the
+other model details stay local.
 Scenarios: `primary` (all six classifiers) and the sensitivity scenarios with RF and
-LightGBM (Text S1).
+LightGBM (Text S1, Table S17).
 
 Run: `bash run_pipeline.sh models` (RF and LightGBM) or `bash run_pipeline.sh models all`.

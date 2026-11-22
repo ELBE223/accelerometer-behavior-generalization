@@ -1,0 +1,25 @@
+Table S13. Robustness analyses of the biological-distance association.
+
+Analysis	n	β per SD [95% CI]	LR χ² (df)	p	R² marginal / conditional	Singular fit
+Primary model	432	-0.024 [-0.060, 0.011]	2.58 (1)	0.108	0.39 / 0.82	No
+Distance × classifier interaction	432	—	2.09 (5)	0.836	0.39 / 0.82	No
+Random effects without unordered pair	432	-0.016 [-0.044, 0.011]	1.43 (1)	0.232	0.35 / 0.84	No
+Random effect of ordered pair only	432	-0.035 [-0.064, -0.005]	5.52 (1)	0.019	0.39 / 0.83	No
+Adjusted for within-dataset Macro-F1	336	-0.010 [-0.054, 0.035]	0.21 (1)	0.649	0.35 / 0.87	No
+Retention as response	384	-0.017 [-0.062, 0.028]	0.63 (1)	0.428	0.27 / 0.78	No
+Log retention as response	384	-0.026 [-0.108, 0.055]	0.46 (1)	0.499	0.26 / 0.70	No
+RF and LightGBM only	144	-0.010 [-0.043, 0.023]	0.40 (1)	0.526	0.01 / 0.98	No
+EltonTraits distance	432	-0.024 [-0.057, 0.010]	2.19 (1)	0.139	0.39 / 0.82	No
+EltonTraits distance with diet	432	-0.007 [-0.042, 0.028]	0.16 (1)	0.689	0.36 / 0.83	No
+Body mass difference	432	-0.018 [-0.052, 0.015]	2.17 (1)	0.141	0.38 / 0.82	No
+Phylogenetic distance	432	0.002 [-0.030, 0.033]	0.01 (1)	0.935	0.36 / 0.83	No
+Raccoon as separate body configuration group	432	-0.014 [-0.050, 0.022]	0.69 (1)	0.405	0.37 / 0.82	No
+Hedgehog relative neck length intermediate	432	-0.021 [-0.057, 0.014]	1.62 (1)	0.203	0.38 / 0.82	No
+Cattle relative neck length short	432	-0.027 [-0.063, 0.008]	3.14 (1)	0.076	0.40 / 0.82	No
+Without body mass	432	-0.024 [-0.061, 0.012]	2.39 (1)	0.122	0.39 / 0.82	No
+Without locomotor specialization	432	-0.036 [-0.073, 0.001]	3.95 (1)	0.047	0.41 / 0.82	Yes
+Without body configuration	432	-0.008 [-0.044, 0.027]	0.26 (1)	0.607	0.36 / 0.83	No
+Without relative neck length	432	-0.024 [-0.059, 0.011]	2.03 (1)	0.154	0.39 / 0.82	No
+Without food acquisition and handling	432	-0.040 [-0.077, -0.003]	4.85 (1)	0.028	0.42 / 0.82	No
+
+β represents the change in the response per standard deviation of distance. Estimates and 95% confidence intervals were obtained from restricted maximum-likelihood fits using Satterthwaite degrees of freedom. LR denotes likelihood-ratio tests of maximum-likelihood fits against the corresponding model without distance; the interaction test compared the interaction and additive models. These robustness analyses are exploratory, and p-values are unadjusted for multiple testing. The model without the unordered pair retained random intercepts for ordered pair, source species and target species. The ordered-pair-only model omitted the species effects. Adjustment for within-dataset Macro-F1 included source and target performance as covariates and excluded pairs involving Hedgehog. Retention was transfer Macro-F1 divided by the target’s within-dataset Macro-F1; Hedgehog was excluded as a target. Alternative distances replaced the core trait distance in the primary model. EltonTraits variable selection and coding are described in Supplementary Text S2. Trait sensitivity analyses changed one coding decision or omitted one core trait, retaining equal weights for the remaining traits. The cattle neck-length variant was added after the results were known. Singular fit indicates a boundary fit of the random-effects structure. Values are rounded.

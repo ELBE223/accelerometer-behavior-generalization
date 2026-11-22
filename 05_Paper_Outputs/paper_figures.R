@@ -1,19 +1,22 @@
 # paper_figures.R
 #
-# Figures (png, 600 dpi) and tables (txt) of the paper from 04_Statistics/results/ (no model fitting).
-#   05_Paper_Outputs/main/                Figures 1-3, Tables 1-3 (+ figure_<nn>_*_caption.txt)
-#   05_Paper_Outputs/supplementary/       Tables S1-S20, Figures S1-S3, numbered as cited in the
-#                                         manuscript (block "Numbering" below)
+# Figures (png, 600 dpi) and tables (txt) of the manuscript and the supplement from
+# 04_Statistics/results/ and 00_Documentation/ (no model fitting).
+#   05_Paper_Outputs/main/                Tables 1-3, Figures 1-3 (+ figure_<nn>_*_caption.txt)
+#   05_Paper_Outputs/supplementary/       Tables S1-S17, Figures S1-S3 (+ captions); Texts S1-S2
+#                                         are hand-written (text_s*.md) and only listed
 #   05_Paper_Outputs/output_manifest.csv  every output with title, file, sources, the script
-#                                         that made the sources and where the manuscript cites it
-# Generated files (table_*, figure_*) in main/ and supplementary/ are deleted before each
-# run, so no output with an outdated number is left behind; hand-written files
-# (Text S1) are kept.
+#                                         that made the sources and where it is cited
+# Numbering, titles, column names, notes and captions follow the manuscript and the
+# supplement (block "Numbering" below). Generated files (table_*, figure_*) in main/ and
+# supplementary/ are deleted before each run, so no output with an outdated number is left
+# behind; the hand-written texts are kept.
 # Values are means over the five training seeds (D26); scenario "primary".
-# Every plot has its legend; title and caption only in <figure>_caption.txt.
-# Classes always in the order Resting, Locomotion, Foraging.
-# Tables: tab-separated text (Word: Insert > Table > Convert Text to Table).
-# A failing item is skipped and logged in 05_Paper_Outputs/errors.txt.
+# Tables: tab-separated text (Word: Insert > Table > Convert Text to Table): title, blank
+# line, header row(s), rows, blank line, notes (one paragraph per line). "<br>" marks a line
+# break within a cell (Word: replace "<br>" with "^l"); "—" marks an empty cell.
+# Figure S1 (workflow) is drawn by hand; its image is copied from 05_Paper_Outputs/assets/.
+# A failing item is skipped and logged in 05_Paper_Outputs/errors.txt (exit status 1).
 #
 # Usage: Rscript 05_Paper_Outputs/paper_figures.R   (packages: ggplot2, patchwork)
 
@@ -47,7 +50,9 @@ sensor_file <- doc("sensor_settings.csv")
 mapping_file <- doc("behavior_mapping.csv")
 traits_file <- doc("traits", "species_traits_core.csv")
 trait_definitions_file <- doc("traits", "core_trait_definitions.csv")
+lock_file <- file.path(root, "requirements-lock.txt")
 out_dir <- file.path(root, "05_Paper_Outputs")
+workflow_file <- file.path(out_dir, "assets", "figure_s01_workflow.png")
 MAIN <- "main"
 SUPP <- "supplementary"
 
@@ -63,13 +68,12 @@ model_labels <- c(cnn = "CNN", resnet = "ResNet", hydra = "HYDRA", multirocket =
                   lgbm = "LightGBM")
 classes <- c("Resting", "Locomotion", "Foraging")  # order in every figure and table
 class_pairs <- list(c("Resting", "Locomotion"), c("Resting", "Foraging"), c("Locomotion", "Foraging"))
-common_names <- c("Bison bonasus" = "Bison", "Bos taurus" = "Cattle", "Canis lupus familiaris" = "Dog",
-                  "Equus caballus" = "Horse", "Equus ferus przewalskii" = "Przewalski's horse",
-                  "Erinaceus europaeus" = "Hedgehog", "Giraffa camelopardalis" = "Giraffe",
-                  "Procyon lotor" = "Raccoon", "Vulpes vulpes" = "Red fox")
-scenarios <- c(primary = "Primary", A = "No training overlap", C = "2.4-s windows",
-               majority = "Majority label (80%)", four_classes = "Four classes (with Other)",
-               E = "Ridden gaits as locomotion", F = "Eligible individuals only")
+# Table S17: sensitivity scenarios in this order (definitions: Text S1).
+scenarios <- c(primary = "Primary", A = "No training overlap", C = "2.4-s windows, no overlap",
+               majority = "Majority label: 80%", four_classes = "Four classes, including Other",
+               E = "Ridden gaits and jumping as locomotion", F = "Eligible individuals only")
+# Species that share a common name with another study species (Table S15).
+vernacular <- c("Equus ferus przewalskii" = "Przewalski’s horse", "Equus caballus" = "domestic horse")
 
 # Palette (light mode).
 INK <- "#0b0b0b"
@@ -78,14 +82,19 @@ GRID <- "#e1e0d9"
 AXIS <- "#c3c2b7"
 POINT_GREY <- "#a8a79f"
 class_colors <- c(Foraging = "#2a78d6", Locomotion = "#eb6834", Resting = "#1baf7a")
+CONFUSION_HIGH <- "#2c5985"
 
 # Unicode (escaped, so the script reads the same in every locale).
-CHI2 <- "\u03c7\u00b2"
-BETA <- "\u03b2"
-RHO <- "\u03c1"
-DASH <- "\u2013"
-MINUS <- "\u2212"
-PM <- "\u00b1"
+CHI2 <- "χ²"
+BETA <- "β"
+RHO <- "ρ"
+DASH <- "–"
+EMDASH <- "—"
+MINUS <- "−"
+TIMES <- "×"
+R2 <- "R²"
+APOS <- "’"
+BR <- "<br>"  # line break within a table cell
 
 # =========================================================
 # Helpers
@@ -96,26 +105,52 @@ read_stats <- function(scenario, name) {
   d[] <- lapply(d, function(x) if (is.character(x) && all(x %in% c("True", "False", NA))) as.logical(x) else x)
   d
 }
+read_registry <- function(file) read.csv(file, colClasses = "character", fileEncoding = "UTF-8", check.names = FALSE)
 rel_path <- function(path) sub(paste0("^", root, "/"), "", path)
 model_factor <- function(x) factor(unname(model_labels[tolower(x)]), levels = unname(model_labels))
-short <- function(dataset) sub("_dataset_", " ", dataset)
-common <- function(species) ifelse(species %in% names(common_names), common_names[species], species)
+registry <- read_registry(datasets_file)
+
+# Dataset labels as in the manuscript: the species, with the dataset number only where a
+# species has two datasets (Dog 1, Dog 2, Horse 1, Horse 2, Raccoon 1, Raccoon 2).
+dataset_label <- function(id) {
+  r <- registry[match(id, registry$dataset_id), ]
+  n <- as.vector(table(registry$species)[r$species])
+  ifelse(n > 1L, paste(r$species, sub(".*_dataset_", "", id)), r$species)
+}
+# Species labels: the common name, or the dataset label where two species share it (Horse 1,
+# Horse 2); `long` adds the vernacular name of those (Table S15).
+species_label <- function(sci, long = FALSE) {
+  r <- registry[match(sci, registry$scientific_name), ]
+  shared <- vapply(r$species, function(s) length(unique(registry$scientific_name[registry$species == s])) > 1L, logical(1))
+  out <- ifelse(shared, dataset_label(r$dataset_id), r$species)
+  if (long) out <- ifelse(shared, paste0(out, ": ", vernacular[sci]), out)
+  unname(out)
+}
 
 num <- function(x, digits = 3) {
   x <- as.numeric(x)
   x[!is.na(x) & abs(x) < 0.5 * 10^-digits] <- 0  # no "-0.000"
-  ifelse(is.na(x), DASH, formatC(x, format = "f", digits = digits))
+  ifelse(is.na(x), EMDASH, formatC(x, format = "f", digits = digits))
 }
-int <- function(x) ifelse(is.na(x), DASH, formatC(as.numeric(x), format = "d", big.mark = ","))
-stat_v <- function(v) ifelse(is.na(v), DASH, ifelse(v == round(v), formatC(v, format = "d"), num(v, 1)))
-p_txt <- function(p) ifelse(is.na(p), DASH, ifelse(p < 0.001, "< 0.001", formatC(p, format = "f", digits = 3)))
+int <- function(x) ifelse(is.na(x), EMDASH, formatC(as.numeric(x), format = "d", big.mark = ","))
+stat_v <- function(v) ifelse(is.na(v), EMDASH, ifelse(v == round(v), formatC(v, format = "d"), num(v, 1)))
+p_txt <- function(p) ifelse(is.na(p), EMDASH, ifelse(p < 0.001, "< 0.001", formatC(p, format = "f", digits = 3)))
+p_eq <- function(p) ifelse(p < 0.001, "p < 0.001", paste("p =", p_txt(p)))
 med_iqr <- function(m, q1, q3, digits = 3) paste0(num(m, digits), " [", num(q1, digits), ", ", num(q3, digits), "]")
-mean_sd <- function(m, s, digits = 3) ifelse(is.na(m), DASH, paste0(num(m, digits), " ", PM, " ", num(s, digits)))
 est_ci <- function(e, lo, hi, digits = 3) {
-  ifelse(is.na(e), DASH, paste0(num(e, digits), " [", num(lo, digits), ", ", num(hi, digits), "]"))
+  ifelse(is.na(e), EMDASH, paste0(num(e, digits), " [", num(lo, digits), ", ", num(hi, digits), "]"))
 }
-minus <- function(s) gsub("-", MINUS, s, fixed = TRUE)  # typographic minus in figure text
-yes_no <- function(x) ifelse(as.logical(x), "yes", "no")
+r2_pair <- function(m, c) paste0(num(m, 2), " / ", num(c, 2))
+minus <- function(s) gsub("-", MINUS, s, fixed = TRUE)  # typographic minus (main tables, figures)
+yes_no <- function(x) ifelse(as.logical(x), "Yes", "No")
+number_words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve")
+words <- function(n) ifelse(n >= 1 & n <= length(number_words), number_words[n], as.character(n))
+join_and <- function(x) if (length(x) <= 1L) paste(x) else paste(paste(x[-length(x)], collapse = ", "), "and", x[length(x)])
+lock_version <- function(package) {
+  v <- sub("^[^=]+==", "", grep(paste0("^", package, "=="), readLines(lock_file), value = TRUE, ignore.case = TRUE))
+  if (length(v) != 1L) stop(package, " not in ", rel_path(lock_file))
+  v
+}
 
 contents <- data.frame(item = character(), section = character(), title = character(), file = character(),
                        caption_file = character(), sources = character())
@@ -127,47 +162,52 @@ register <- function(it, path, title, source) {
 write_lines_utf8 <- function(lines, file) writeLines(enc2utf8(lines), con = file, useBytes = TRUE)
 
 # =========================================================
-# Numbering (as cited in the manuscript; the one place to change it)
+# Numbering (as in the manuscript and the supplement; the one place to change it)
 # =========================================================
 # Every output has a key. Tables 1-3 and Figures 1-3 go to main/, the supplementary items to
-# supplementary/. Only items the manuscript cites are made; renumbering one is one change in
-# these vectors: file names, titles, captions, cross-references and output_manifest.csv
-# follow. Numbers as cited in the manuscript draft of 2026-11-08.
+# supplementary/. Renumbering an item is one change in these vectors: file names, labels,
+# cross-references and output_manifest.csv follow.
 main_tables <- c(h1 = "1", h2 = "2", h3 = "3")
 main_figures <- c(h1 = "1", h2 = "2", h3 = "3")
-table_numbers <- c(datasets = "S1", mapping = "S2", preprocessing = "S3", features = "S4", models = "S5",
-                   trait_definitions = "S6", traits = "S7", distances = "S8", h3_variants = "S9",
-                   h1_values = "S10", h1_tests = "S11", h2_values = "S12", h2_posthoc = "S13", h2_loss = "S14",
-                   pairwise = "S15", h3_model = "S16", per_classifier = "S17", loso = "S18", seeds = "S19",
-                   scenarios = "S20")
-figure_numbers <- c(class_windows = "S1", h1_accuracy = "S2", h2_loss = "S3")
+table_numbers <- c(datasets = "S1", windows = "S2", mapping = "S3", preprocessing = "S4", features = "S5",
+                   models = "S6", trait_definitions = "S7", traits = "S8", h1_same_windows = "S9",
+                   h2_posthoc = "S10", h2_loss = "S11", h3_model = "S12", h3_robustness = "S13",
+                   per_classifier = "S14", loso = "S15", seeds = "S16", scenarios = "S17")
+figure_numbers <- c(workflow = "S1", h2_loss = "S2", confusion = "S3")
+text_numbers <- c(scenarios = "S1", elton = "S2")
 # File names: <type>_<nn>_<slug> (main), <type>_s<nn>_<slug> (supplementary).
 table_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_distance_measures",
-                 datasets = "datasets", mapping = "label_mapping", preprocessing = "preprocessing",
-                 features = "features", models = "classifiers", trait_definitions = "trait_definitions",
-                 traits = "trait_values", distances = "species_distances", h3_variants = "h3_robustness",
-                 h1_values = "h1_per_dataset", h1_tests = "h1_tests", h2_values = "h2_per_dataset",
-                 h2_posthoc = "h2_posthoc", h2_loss = "h2_transfer_loss", pairwise = "pairwise_transfer",
-                 h3_model = "h3_mixed_model", per_classifier = "h3_per_classifier", loso = "h3_leave_one_species_out",
-                 seeds = "h3_per_seed", scenarios = "sensitivity_scenarios")
+                 datasets = "datasets", windows = "window_counts", mapping = "label_mapping",
+                 preprocessing = "preprocessing", features = "features", models = "classifiers",
+                 trait_definitions = "trait_definitions", traits = "trait_values",
+                 h1_same_windows = "h1_seven_datasets", h2_posthoc = "h2_posthoc", h2_loss = "h2_transfer_loss",
+                 h3_model = "h3_mixed_model", h3_robustness = "h3_robustness", per_classifier = "h3_per_classifier",
+                 loso = "h3_leave_one_species_out", seeds = "h3_per_seed", scenarios = "sensitivity_scenarios")
 figure_slugs <- c(h1 = "h1_macro_f1", h2 = "h2_class_f1", h3 = "h3_trait_distance",
-                  class_windows = "class_windows", h1_accuracy = "h1_accuracy", h2_loss = "h2_transfer_loss")
+                  workflow = "workflow", h2_loss = "h2_transfer_loss", confusion = "confusion_matrices")
 # Hand-written supplementary texts (not made here, listed in output_manifest.csv).
-texts <- data.frame(item = "Text S1", title = "Sensitivity scenarios.",
-                    file = "supplementary/text_s01_sensitivity_scenarios.md",
-                    sources = "00_Documentation/decisions.md (D11, D27); values of Table S20")
-# Where the manuscript draft (2026-11-08) cites each numbered item; empty: not cited.
+texts <- data.frame(
+  key = names(text_numbers),
+  title = c("Sensitivity scenarios", "EltonTraits distance variants"),
+  file = c("supplementary/text_s01_sensitivity_scenarios.md", "supplementary/text_s02_eltontraits_distances.md"),
+  sources = c("00_Documentation/decisions.md (D11, D27); values of Table S17",
+              "04_Statistics/stats_h3.R; 04_Statistics/results/primary/h3_elton_traits.csv"))
+# Where the manuscript (version of 2026-11-22) cites each item; supplementary items cited
+# only by other supplementary items name those.
 cited_in <- c("Table 1" = "Results 3.1; Discussion 4.1", "Figure 1" = "Results 3.1; Discussion 4.1",
               "Table 2" = "Results 3.2; Discussion 4.2", "Figure 2" = "Results 3.2; Discussion 4.2",
               "Table 3" = "Results 3.3; Discussion 4.3", "Figure 3" = "Results 3.3; Discussion 4.3",
-              "Table S1" = "Methods 2.1", "Table S2" = "Methods 2.1", "Figure S1" = "Methods 2.1",
-              "Table S3" = "Methods 2.2", "Table S4" = "Methods 2.2", "Table S5" = "Methods 2.2",
-              "Table S6" = "Methods 2.4", "Table S7" = "Methods 2.4", "Table S8" = "Methods 2.4",
-              "Table S9" = "Results 3.3", "Table S10" = "Results 3.1", "Table S11" = "Results 3.1",
-              "Figure S2" = "Results 3.1", "Table S12" = "Results 3.2", "Table S13" = "Results 3.2; Table 2",
-              "Table S14" = "Results 3.2", "Figure S3" = "Results 3.2", "Table S15" = "",
-              "Table S16" = "Results 3.3; Table 3", "Table S17" = "Results 3.3", "Table S18" = "Results 3.3",
-              "Table S19" = "Results 3.3", "Table S20" = "Results 3.1; Results 3.2", "Text S1" = "Results 3.1")
+              "Table S1" = "Methods 2.1", "Figure S1" = "Methods 2.1", "Table S2" = "Methods 2.1",
+              "Table S3" = "Methods 2.1", "Table S4" = "Methods 2.2", "Table S5" = "Methods 2.2",
+              "Table S6" = "Methods 2.2", "Table S7" = "Methods 2.4", "Table S8" = "Methods 2.3; Methods 2.4",
+              "Table S9" = "Methods 2.5; Results 3.1", "Table S10" = "Results 3.2; Table 2",
+              "Table S11" = "Methods 2.5; Results 3.2; Discussion 4.2", "Figure S2" = "Results 3.2",
+              "Figure S3" = "Results 3.2", "Table S12" = "Methods 2.5; Results 3.3; Table 3",
+              "Table S13" = "Methods 2.5; Results 3.3; Discussion 4.3", "Table S14" = "Methods 2.5; Results 3.3",
+              "Table S15" = "Methods 2.5; Results 3.3; Discussion 4.3", "Table S16" = "Methods 2.5; Results 3.3",
+              "Table S17" = "Methods 2.5; Results 3.1; Results 3.2; Discussion 4.4",
+              "Text S1" = "Methods 2.5; Results 3.2; Discussion 4.4; Table S17",
+              "Text S2" = "Methods 2.4; Table S13")
 
 # Folder, label and file name (without extension) of an output.
 output_item <- function(type, key) {
@@ -189,6 +229,7 @@ output_item <- function(type, key) {
   stop(type, " '", key, "' has no number (add it to the numbering above)")
 }
 table_ref <- function(key) output_item("Table", key)$label
+text_ref <- function(key) paste("Text", text_numbers[[key]])
 
 # Script that wrote a source file (column produced_by of output_manifest.csv).
 producer <- function(sources) {
@@ -199,16 +240,19 @@ producer <- function(sources) {
   paste(unique(p[nzchar(p)]), collapse = ", ")
 }
 
-# Table as text: title, blank line, header and rows with tabs, blank line, notes, source.
-# `key` is a key of main_tables or table_numbers.
-write_table <- function(key, title, table, notes = character(), source = character()) {
+# Table as text: title, blank line, header row(s) and rows with tabs, blank line, notes (one
+# paragraph per line). `key` is a key of main_tables or table_numbers; `header2`: a second
+# header row (Table S2). The sources go to output_manifest.csv.
+write_table <- function(key, title, table, notes = character(), source = character(), header2 = NULL) {
   it <- output_item("Table", key)
   dir.create(file.path(out_dir, it$folder), recursive = TRUE, showWarnings = FALSE)
   file <- file.path(out_dir, it$folder, paste0(it$name, ".txt"))
-  table[] <- lapply(table, function(x) ifelse(is.na(x), DASH, as.character(x)))
+  table[] <- lapply(table, function(x) ifelse(is.na(x), EMDASH, as.character(x)))
+  if (!is.null(header2) && length(header2) != ncol(table)) stop("second header row of ", it$label, " has the wrong length")
   rows <- do.call(paste, c(unname(as.list(table)), sep = "\t"))
-  lines <- c(paste0(it$label, ". ", title), "", paste(names(table), collapse = "\t"), rows, "", notes,
-             if (length(source) > 0L) paste0("Source: ", paste(source, collapse = ", ")))
+  lines <- c(paste0(it$label, ". ", title), "", paste(names(table), collapse = "\t"),
+             if (!is.null(header2)) paste(header2, collapse = "\t"), rows,
+             if (length(notes) > 0L) c("", notes))
   write_lines_utf8(lines, file)
   register(it, file, title, source)
   cat("[OK]", rel_path(file), "\n")
@@ -224,8 +268,7 @@ save_figure <- function(plot, key, width_mm, height_mm, title, source) {
   cat("[OK]", rel_path(file), "\n")
 }
 
-# Caption of a figure (the plots carry no explanatory text) next to it, with its label
-# ("Figure S2. ...") put in front.
+# Caption of a figure next to it ("Figure S2. <title> <text>").
 write_caption <- function(key, caption) {
   it <- output_item("Figure", key)
   file <- file.path(out_dir, it$folder, paste0(it$name, "_caption.txt"))
@@ -287,7 +330,8 @@ theme_paper <- function() {
 # =========================================================
 # Shared plot builders
 # =========================================================
-# Figures 1-2 and S2-S3: boxes with points; legend below the panels, captions in txt files.
+# Figures 1-2 and S2 (180 mm wide; Figures 1-2 125 mm high as in the manuscript, Figure S2
+# 118 mm as in the supplement); captions in txt files.
 theme_boxes <- function() {
   theme_classic(base_size = 10) +
     theme(strip.background = element_blank(), strip.text = element_text(face = "bold", size = 10),
@@ -312,22 +356,18 @@ paired_values <- function(metric) {
   d
 }
 
+# Figure 1: one point per dataset and setting, lines connect the same dataset (no boxes, no
+# legend, as in the manuscript).
 plot_within_cross <- function(metric, y_label) {
-  ggplot(paired_values(metric), aes(mode, value)) +
-    geom_line(aes(group = dataset, linetype = "Same dataset"), colour = "#b1b1b1", linewidth = 0.45, alpha = 0.85) +
-    geom_boxplot(aes(group = mode, fill = "Median and IQR"), width = 0.4, colour = "#5c5c5c", alpha = 0.65,
-                 outlier.shape = NA, linewidth = 0.35) +
-    geom_point(aes(group = dataset, shape = "Test dataset"), colour = "#252525", size = 1.5, alpha = 0.9,
-               position = position_jitter(width = 0.035, height = 0, seed = 42)) +
+  ggplot(paired_values(metric), aes(mode, value, group = dataset)) +
+    geom_line(colour = "#b1b1b1", linewidth = 0.5) +
+    geom_point(colour = "#252525", size = 1.7, alpha = 0.9) +
     facet_wrap(~ model, ncol = 3) +
-    scale_shape_manual(values = c("Test dataset" = 16)) +
-    scale_linetype_manual(values = c("Same dataset" = "solid")) +
-    scale_fill_manual(values = c("Median and IQR" = "#f1f1f1")) +
-    guides(shape = guide_legend(order = 1), linetype = guide_legend(order = 2, override.aes = list(colour = "#8a8a8a")),
-           fill = guide_legend(order = 3)) +
+    scale_x_discrete(expand = expansion(add = 0.3)) +
     scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2), expand = expansion(mult = c(0, 0.02))) +
     labs(x = NULL, y = y_label) +
-    theme_boxes()
+    theme_boxes() +
+    theme(legend.position = "none")
 }
 
 # H2: the test datasets of the Friedman test (complete blocks) per classifier.
@@ -341,7 +381,8 @@ class_values <- function(response) {
              behavior = factor(v$behavior, levels = classes), value = v[[response]])
 }
 
-plot_classes <- function(response, y_label) {
+# Figure 2 (no legend, slanted class names) and Figure S2 (legend below the panels).
+plot_classes <- function(response, y_label, legend = TRUE, angle = 0) {
   d <- class_values(response)
   lim <- if (response == "cross_f1") c(0, 1) else c(floor(min(d$value, 0) * 5) / 5, ceiling(max(d$value) * 5) / 5)
   ggplot(d, aes(behavior, value)) +
@@ -357,167 +398,125 @@ plot_classes <- function(response, y_label) {
                        expand = expansion(mult = c(0, 0.02))) +
     labs(x = NULL, y = y_label) +
     theme_boxes() +
-    theme(axis.text.x = element_text(size = 8))
+    theme(axis.text.x = if (angle == 0) element_text(size = 8) else element_text(size = 8.5, angle = angle, hjust = 1, vjust = 1),
+          legend.position = if (legend) "bottom" else "none")
 }
 
-caption_within_cross <- function(title, metric, ref) {
-  n <- length(unique(paired_values(metric)$dataset))
-  paste0(title, " Points: test datasets with both values (n = ", n, "), mean of five training seeds; ",
-         "lines connect the same dataset; boxes: median and IQR. Statistics: ", ref, ".")
+# Number of test datasets of the H1 pairs and of the H2 blocks (the same for all classifiers).
+n_paired <- function() {
+  n <- unique(table(paired_values("macro_f1")$model) / 2)
+  if (length(n) != 1L) stop("the classifiers have different numbers of paired datasets")
+  as.integer(n)
+}
+n_blocks <- function(response, datasets = "all") {
+  fr <- read_stats(main_scenario, "h2_friedman")
+  n <- unique(fr$n_blocks[fr$response == response & fr$datasets == datasets])
+  if (length(n) != 1L) stop("the classifiers have different numbers of Friedman blocks (", response, ", ", datasets, ")")
+  n
 }
 
-caption_classes <- function(title, response, ref) {
-  n <- paste(sort(unique(table(class_values(response)$model) / length(classes))), collapse = " or ")
-  paste0(title, " Points: test datasets (n = ", n, "), mean of five training seeds; ",
-         "boxes: median and IQR. Statistics: ", ref, ".")
-}
-
-# H2 summary table (Table 2 for the cross-dataset F1, the transfer-loss table in the
-# supplement): median [IQR] per class, Friedman test (p unadjusted and Holm-adjusted over the
-# six classifiers, D44), Holm-adjusted post-hoc p only after a Friedman test that is
-# significant after the Holm adjustment. `datasets`: "all" or "same_test_windows" (D44).
-class_table <- function(response, digits = 3, posthoc = FALSE, datasets = "all") {
+# H2 class table (Table 2 and Table S11): median [IQR] per class, Friedman test (p unadjusted
+# and Holm-adjusted over the six classifiers, D44) and Kendall's W.
+class_table <- function(response, datasets = "all") {
   de <- read_stats(main_scenario, "h2_descriptives")
   fr <- read_stats(main_scenario, "h2_friedman")
-  ph <- read_stats(main_scenario, "h2_posthoc")
   de <- de[de$response == response & de$datasets == datasets, ]
   fr <- fr[fr$response == response & fr$datasets == datasets, ]
-  ph <- ph[ph$response == response & ph$datasets == datasets, ]
-  rows <- lapply(model_keys, function(m) {
+  out <- do.call(rbind, lapply(model_keys, function(m) {
     f <- fr[fr$model == m, ]
     cells <- vapply(classes, function(cl) {
       r <- de[de$model == m & de$behavior == cl, ]
-      med_iqr(r$value_median, r$value_q1, r$value_q3, digits)
+      med_iqr(r$value_median, r$value_q1, r$value_q3)
     }, character(1))
-    post <- vapply(class_pairs, function(pair) {
-      r <- posthoc_pair(ph, m, pair)
-      if (as.logical(r$friedman_significant_holm)) p_txt(r$p_holm) else DASH
-    }, character(1))
-    out <- c(Classifier = model_labels[[m]], cells, chi = num(f$chi_sq, 2), p = p_txt(f$p_value),
-             p_holm = p_txt(f$p_holm), W = num(f$kendalls_w, 2))
-    if (posthoc) out <- c(out, setNames(post, c("ph1", "ph2", "ph3")))
-    as.data.frame(as.list(out), check.names = FALSE)
-  })
-  out <- do.call(rbind, rows)
-  names(out) <- c("Classifier", classes, paste0("Friedman ", CHI2), "p", "p (Holm)", "W",
-                  if (posthoc) vapply(class_pairs, function(pair) paste0("p (Holm) ", pair[1], " vs. ", pair[2]), character(1)))
+    as.data.frame(as.list(c(Classifier = model_labels[[m]], cells, chi = num(f$chi_sq, 2), p = p_txt(f$p_value),
+                            p_holm = p_txt(f$p_holm), W = num(f$kendalls_w, 2))), check.names = FALSE)
+  }))
+  names(out) <- c("Classifier", classes, CHI2, "p", "p (Holm)", "W")
   out
 }
 
-# Names of the H3 analyses in figures and tables (descriptive, no S1-S3 codes).
+# Names of the H3 analyses in Table S13, in its order (labels of 04_Statistics/stats_h3.R).
 h3_labels <- c("primary" = "Primary model",
-               "interaction distance x model" = "Distance \u00d7 classifier interaction",
+               "interaction distance x model" = paste("Distance", TIMES, "classifier interaction"),
                "directional random effects" = "Random effects without unordered pair",
                "pair-only random effect" = "Random effect of ordered pair only",
                "S1 within covariates" = "Adjusted for within-dataset Macro-F1",
                "S2 retention" = "Retention as response",
                "S2 log retention" = "Log retention as response",
-               "S3 gawdis distance" = "Weighted trait distance (gawdis)",
                "RF and LGBM only (D27)" = "RF and LightGBM only",
-               "EltonTraits core" = "EltonTraits",
-               "EltonTraits extended" = "EltonTraits with diet",
+               "EltonTraits core" = "EltonTraits distance",
+               "EltonTraits extended" = "EltonTraits distance with diet",
                "log body mass" = "Body mass difference",
                "divergence time (TimeTree)" = "Phylogenetic distance",
-               "exploratory core + C4 (D36)" = "Core traits + trunk motion amplitude",
-               "exploratory core + C5 (D37)" = "Core traits + directional change tendency",
                "sensitivity: raccoon separate body configuration (D38)" = "Raccoon as separate body configuration group",
                "sensitivity: hedgehog neck length intermediate (D38)" = "Hedgehog relative neck length intermediate",
-               "sensitivity: cattle neck length short (D43)" = "Cattle relative neck length short\u2020",
+               "sensitivity: cattle neck length short (D43)" = "Cattle relative neck length short",
                "sensitivity: without body mass (D38)" = "Without body mass",
                "sensitivity: without locomotor specialization (D38)" = "Without locomotor specialization",
                "sensitivity: without body configuration (D38)" = "Without body configuration",
                "sensitivity: without relative neck length (D38)" = "Without relative neck length",
                "sensitivity: without food acquisition and handling (D38)" = "Without food acquisition and handling")
-h3_variants <- c("primary", "interaction distance x model", "directional random effects", "pair-only random effect",
-                 "S1 within covariates", "S2 retention", "S2 log retention", "S3 gawdis distance",
-                 "RF and LGBM only (D27)")
-h3_distances <- c("EltonTraits core", "EltonTraits extended", "log body mass", "divergence time (TimeTree)")
-# Exploratory: the core plus one trait excluded from it (reported in the table, not in the robustness figure).
-h3_addbacks <- c("exploratory core + C4 (D36)", "exploratory core + C5 (D37)")
-# Trait sensitivity of the core distance, one change each (reported in the table, not in the robustness figure).
-h3_trait_sensitivity <- c("sensitivity: raccoon separate body configuration (D38)",
-                          "sensitivity: hedgehog neck length intermediate (D38)",
-                          "sensitivity: cattle neck length short (D43)",
-                          "sensitivity: without body mass (D38)", "sensitivity: without locomotor specialization (D38)",
-                          "sensitivity: without body configuration (D38)", "sensitivity: without relative neck length (D38)",
-                          "sensitivity: without food acquisition and handling (D38)")
 
 # =========================================================
-# H1
+# Main text: H1
 # =========================================================
 figure_1 <- function() {
   p <- plot_within_cross("macro_f1", "Macro-F1")
-  save_figure(p, "h1", 180, 118, "Within- and cross-dataset Macro-F1.",
+  save_figure(p, "h1", 180, 125, "Within- and cross-dataset Macro-F1.",
               paste0("04_Statistics/results/", main_scenario, "/h1_values.csv"))
-  write_caption("h1", caption_within_cross("Within- and cross-dataset Macro-F1.", "macro_f1", table_ref("h1")))
+  write_caption("h1", paste0("Within- and cross-dataset Macro-F1. Points represent dataset-level Macro-F1 values for the ",
+                             words(n_paired()), " datasets evaluated in both settings. ",
+                             "Lines connect the within- and cross-dataset results for each dataset."))
 }
 
 table_1 <- function() {
   t <- read_stats(main_scenario, "h1_tests")
   t <- t[t$datasets == "all" & t$metric == "macro_f1", ]
   t <- t[match(model_keys, t$model), ]
-  out <- data.frame(
-    Classifier = unname(model_labels[t$model]),
-    `Within-dataset Macro-F1` = med_iqr(t$within_median, t$within_q1, t$within_q3),
-    `Cross-dataset Macro-F1` = med_iqr(t$cross_median, t$cross_q1, t$cross_q3),
-    `Delta Macro-F1` = med_iqr(t$gap_median, t$gap_q1, t$gap_q3),
-    V = stat_v(t$V), p = p_txt(t$p_value), r = num(t$rank_biserial, 2),
-    check.names = FALSE)
-  names(out)[4] <- "Δ Macro-F1"
+  out <- data.frame(a = unname(model_labels[t$model]), b = med_iqr(t$within_median, t$within_q1, t$within_q3),
+                    c = med_iqr(t$cross_median, t$cross_q1, t$cross_q3), d = med_iqr(t$gap_median, t$gap_q1, t$gap_q3),
+                    e = stat_v(t$V), f = p_txt(t$p_value), g = num(t$rank_biserial, 2))
+  names(out) <- c("Classifier", "Within-dataset", "Cross-dataset", "Δ Macro-F1", "V", "p", "r")
   write_table("h1", "Paired comparison of within- and cross-dataset Macro-F1.", out,
-              c(paste0("Median [IQR] over the ", max(t$n_pairs), " test datasets with both values; each value is the mean over five training seeds. ",
-                       "Δ: within minus cross of the same dataset."),
-                "V, p: paired Wilcoxon signed-rank test (exact, two-sided); r: matched-pairs rank-biserial correlation.",
-                paste0("Values per dataset: ", table_ref("h1_values"), "; accuracy and further tests: ", table_ref("h1_tests"), ".")),
-              paste0("04_Statistics/results/", main_scenario, c("/h1_tests.csv", "/h1_values.csv")))
+              paste0("Values are medians [first quartile, third quartile] across ", words(max(t$n_pairs)), " paired datasets. ",
+                     "Reported p-values are unadjusted; Δ Macro-F1: within-dataset minus cross-dataset Macro-F1; ",
+                     "V: Wilcoxon signed-rank statistic; r: matched-pairs rank-biserial correlation."),
+              paste0("04_Statistics/results/", main_scenario, "/h1_tests.csv"))
 }
 
 # =========================================================
-# H2
+# Main text: H2
 # =========================================================
 figure_2 <- function() {
-  p <- plot_classes("cross_f1", "Cross-dataset class F1")
-  save_figure(p, "h2", 180, 118, "Cross-dataset F1 by behavioral class.",
+  p <- plot_classes("cross_f1", "Cross-dataset class F1", legend = FALSE, angle = 20)
+  save_figure(p, "h2", 180, 125, "Cross-dataset F1 by behavioral class.",
               paste0("04_Statistics/results/", main_scenario, c("/h2_values.csv", "/h2_friedman.csv")))
-  write_caption("h2", caption_classes("Cross-dataset F1 by behavioral class.", "cross_f1", table_ref("h2")))
+  write_caption("h2", paste0("Cross-dataset F1 by behavioral class. Points represent dataset-level scores for ",
+                             words(n_blocks("cross_f1")), " datasets. Boxes show medians and interquartile ranges."))
 }
 
 table_2 <- function() {
-  fr <- read_stats(main_scenario, "h2_friedman")
-  n <- paste(sort(unique(fr$n_blocks[fr$response == "cross_f1" & fr$datasets == "all"])), collapse = " or ")
   write_table("h2", "Behavioral differences in cross-dataset F1.", class_table("cross_f1"),
-              c(paste0("Median [IQR] over the ", n, " test datasets with at least 5 test windows per class; each value is the mean over five training seeds."),
-                "Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests (one per classifier).",
-                paste0("Values per dataset: ", table_ref("h2_values"), "; post-hoc tests: ", table_ref("h2_posthoc"), ".")),
+              paste0("Class-specific F1 scores are reported as medians [first quartile, third quartile] across ",
+                     words(n_blocks("cross_f1")), " datasets. ", CHI2, ": Friedman test statistic (df = 2); ",
+                     "p: unadjusted Friedman test p-value; p (Holm): p-value adjusted across the ", words(length(model_keys)),
+                     " classifier-specific Friedman tests; W: Kendall", APOS, "s coefficient of concordance. ",
+                     "Post-hoc comparisons are reported descriptively in ", table_ref("h2_posthoc"), "."),
               paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv")))
 }
 
 # =========================================================
-# H3
+# Main text: H3
 # =========================================================
-# Figure 3 (H3): species pairs and the primary model; no colours for single points, no
-# text. The band is the 95 % CI of the primary model averaged over the classifiers
-# (h3_prediction.csv of 04_Statistics/stats_h3.R); without that file only the line is drawn.
+# Figure 3 (H3): species pairs and the primary model; the band is the 95 % CI of the primary
+# model averaged over the classifiers (h3_prediction.csv of 04_Statistics/stats_h3.R).
 figure_3 <- function() {
   d <- read_stats(main_scenario, "h3_data")
   pairs <- aggregate(mean_macro_f1 ~ train_species + test_species + trait_distance_core, data = d, FUN = mean)
-  pred_file <- file.path(stats_dir, main_scenario, "h3_prediction.csv")
-  if (file.exists(pred_file)) {
-    pred <- read.csv(pred_file)
-  } else {
-    fe <- read_stats(main_scenario, "h3_fixed_effects")
-    fe <- fe[fe$analysis == "primary", ]
-    est <- setNames(fe$estimate, fe$term)
-    model_terms <- vapply(unique(d$model), function(m) if (paste0("model", m) %in% names(est)) est[[paste0("model", m)]] else 0,
-                          numeric(1))
-    x <- seq(min(d$trait_distance_core), max(d$trait_distance_core), length.out = 50)
-    pred <- data.frame(trait_distance_core = x, ci_low = NA_real_, ci_high = NA_real_,
-                       estimate = est[["(Intercept)"]] + mean(model_terms) +
-                         est[["z_distance"]] * (x - mean(d$trait_distance_core)) / sd(d$trait_distance_core))
-  }
+  pred <- read_stats(main_scenario, "h3_prediction")
   p <- ggplot(pairs, aes(trait_distance_core, mean_macro_f1)) +
-    {if (!anyNA(pred$ci_low)) geom_ribbon(data = pred, aes(x = trait_distance_core, ymin = ci_low, ymax = ci_high, fill = "95% CI"),
-                                          inherit.aes = FALSE, alpha = 0.9)} +
+    geom_ribbon(data = pred, aes(x = trait_distance_core, ymin = ci_low, ymax = ci_high, fill = "95% CI"),
+                inherit.aes = FALSE, alpha = 0.9) +
     geom_point(aes(shape = "Species pair"), size = 1.9, stroke = 0.3, colour = "white", fill = POINT_GREY) +
     geom_line(data = pred, aes(trait_distance_core, estimate, linetype = "Model prediction"), colour = INK, linewidth = 0.7) +
     scale_shape_manual(values = c("Species pair" = 21)) +
@@ -533,34 +532,11 @@ figure_3 <- function() {
     theme(legend.position = "bottom", legend.justification = "center")
   save_figure(p, "h3", 100, 95, "Cross-species Macro-F1 in relation to functional-biomechanical distance.",
               paste0("04_Statistics/results/", main_scenario, c("/h3_data.csv", "/h3_prediction.csv")))
-  m <- read_stats(main_scenario, "h3_models")
-  m <- m[m$analysis == "primary", ]
-  n_species <- length(unique(c(d$train_species, d$test_species)))
   write_caption("h3", paste0(
-    "Cross-species Macro-F1 in relation to functional-biomechanical distance. Points: ordered species pairs (n = ", nrow(pairs),
-    "), mean over dataset pairs, classifiers and seeds; line and band: mixed-model prediction with 95% CI. Statistics: ", table_ref("h3"), "."))
-}
-
-h3_model_table <- function(keys) {
-  m <- read_stats(main_scenario, "h3_models")
-  m <- m[match(keys[keys %in% m$analysis], m$analysis), ]
-  data.frame(
-    Analysis = unname(h3_labels[m$analysis]),
-    Response = ifelse(m$response == "mean_macro_f1", "Macro-F1",
-                      ifelse(m$response == "log_retention", "Log retention", "Retention")),
-    `Records (n)` = m$n_observations,
-    `beta [95 % CI]` = est_ci(m$estimate, m$ci_low, m$ci_high),
-    SE = num(m$std_error),
-    `LR chi2 (df)` = paste0(num(m$lr_chisq, 2), " (", m$lr_df, ")"),
-    p = p_txt(m$lr_p_value),
-    `R2 marginal` = num(m$r2_marginal, 2),
-    `R2 conditional` = num(m$r2_conditional, 2),
-    `Singular fit` = yes_no(m$singular_reml),
-    check.names = FALSE)
-}
-h3_header <- function(out) {
-  names(out) <- sub("beta", paste(BETA, "per SD"), sub("LR chi2", paste("LR", CHI2), sub("^R2", "R\u00b2", names(out))))
-  out
+    "Cross-species Macro-F1 in relation to functional-biomechanical distance. Points represent directed source", DASH,
+    "target species pairs (n = ", nrow(pairs), "), with Macro-F1 averaged over dataset pairs, classifiers, and training seeds. ",
+    "The line shows the estimated mean Macro-F1 from the primary mixed model, averaged across classifiers; ",
+    "the shaded band represents its 95% confidence interval."))
 }
 
 # Table 3: distance effect for the core traits (test of H3) and the alternative distances.
@@ -569,22 +545,321 @@ table_3 <- function() {
   labels <- c("Core functional traits", "EltonTraits", "Body mass difference", "Phylogenetic distance")
   m <- read_stats(main_scenario, "h3_models")
   m <- m[match(keys, m$analysis), ]
-  keep <- !is.na(m$analysis)
-  m <- m[keep, ]
-  out <- data.frame(a = labels[keep], b = est_ci(m$estimate, m$ci_low, m$ci_high), c = num(m$lr_chisq, 2),
+  if (anyNA(m$analysis)) stop("analyses missing in h3_models.csv: ", paste(keys[is.na(m$analysis)], collapse = ", "))
+  out <- data.frame(a = labels, b = minus(est_ci(m$estimate, m$ci_low, m$ci_high)), c = num(m$lr_chisq, 2),
                     d = p_txt(m$lr_p_value), e = num(m$r2_marginal, 2))
-  names(out) <- c("Distance measure", paste0(BETA, " per SD (95% CI)"), paste0("LR ", CHI2, "(1)"), "p",
-                  "Marginal R\u00b2")
+  names(out) <- c("Distance measure", paste0(BETA, " [95% CI]"), CHI2, "p", R2)
   write_table("h3", "Associations between biological distance and cross-species Macro-F1.", out,
-              c(paste0("Macro-F1 ~ distance (z-scored) + classifier + random intercepts of the unordered and ordered species pair and of source and target species; ",
-                       m$n_observations[1], " records (", m$n_ordered_pairs[1], " ordered pairs of 9 species, 6 classifiers)."),
-                paste0(BETA, " and 95% CI from the REML fit (Satterthwaite df); LR: likelihood-ratio test of ML fits against the model without distance; R\u00b2 after Nakagawa."),
-                paste0("The core trait distance is the test of H3. Full model: ", table_ref("h3_model"), "; further variants: ", table_ref("h3_variants"),
-                       "; distances: ", table_ref("distances"), ".")),
+              paste0("Each distance measure was analyzed separately using the same mixed-model structure (",
+                     m$n_observations[1], " observations across ", words(m$n_models[1]), " classifiers and ",
+                     m$n_ordered_pairs[1], " directed species pairs). ", BETA, ": change in Macro-F1 per standard deviation ",
+                     "increase in distance, with 95% confidence intervals from restricted maximum-likelihood fits using ",
+                     "Satterthwaite degrees of freedom. ", CHI2, ": likelihood-ratio test statistic (df = 1), comparing ",
+                     "maximum-likelihood models with and without distance; ", R2, ": marginal ", R2, " for the fixed effects ",
+                     "of distance and classifier. The core trait distance represents the primary H3 analysis (full model: ",
+                     table_ref("h3_model"), ")."),
               paste0("04_Statistics/results/", main_scenario, "/h3_models.csv"))
 }
 
-# Table S16 (h3_model): the primary model of H3 (fixed and random effects, tests and fit).
+# =========================================================
+# Supplement: tables S1-S8 (data, preprocessing, classifiers, traits)
+# =========================================================
+used_sensor_rows <- function(id) {
+  s <- read_registry(sensor_file)
+  s[s$dataset_id == id & s$used == "yes", ]
+}
+rate_text <- function(hz) sub("\\.?0+$", "", formatC(as.numeric(hz), format = "f", digits = 2))
+dataset_ids <- function() sort(unique(read.csv(class_summary_file)$dataset_id))
+
+# Table S1: datasets and recording conditions. The recording text of datasets.csv is checked
+# against the settings in sensor_settings.csv (rate, burst duration and interval).
+table_s_datasets <- function() {
+  ids <- dataset_ids()
+  ds <- registry[match(ids, registry$dataset_id), ]
+  for (i in seq_along(ids)) {
+    s <- used_sensor_rows(ids[i])
+    rec <- ds$recording_settings[i]
+    ok <- startsWith(rec, paste(unique(rate_text(s$native_hz)), "Hz;")) &&
+      all(ifelse(nzchar(s$burst_s), grepl(paste0(s$burst_s, "-s bursts"), rec, fixed = TRUE), grepl("continuous", rec))) &&
+      all(!nzchar(s$burst_interval_s) | grepl(paste0("every ", s$burst_interval_s, " s"), rec, fixed = TRUE))
+    if (!ok) stop("recording_settings of ", ids[i], " in datasets.csv do not match sensor_settings.csv")
+  }
+  out <- data.frame(a = paste0(dataset_label(ids), BR, ds$scientific_name), b = ds$source, c = ds$setting,
+                    d = ds$sensor_position, e = paste0(ds$sensor_label, BR, ds$recording_settings))
+  names(out) <- c("Dataset and species", "Source", "Study setting", "Sensor position", "Sensor and recording settings")
+  public <- dataset_label(ids[ds$public == "yes"])
+  write_table("datasets", "Datasets and recording conditions.", out,
+              paste0(join_and(public), " are publicly available; the remaining datasets are non-public. ",
+                     "Burst durations and intervals describe nominal recording settings; retained segments may be shorter. ",
+                     "IMU = inertial measurement unit. For Raccoon 2, the juvenile was recorded at 30-s intervals from 27 to ",
+                     "30 September 2022; otherwise, the interval was 60 s."),
+              c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv"))
+}
+
+# Table S2: analytical units and window counts (class_summary.csv; within-dataset test units
+# are the valid leave-one-individual-out folds, h1_values.csv).
+table_s_windows <- function() {
+  cs <- read.csv(class_summary_file)
+  cs <- cs[cs$mapping == "primary" & cs$class %in% classes, ]
+  v <- read_stats(main_scenario, "h1_values")
+  v <- v[v$model == model_keys[1], ]
+  ids <- dataset_ids()
+  out <- do.call(rbind, lapply(ids, function(id) {
+    c1 <- cs[cs$dataset_id == id, ]
+    w <- vapply(classes, function(cl) sum(c1$test_windows[c1$class == cl]), numeric(1))
+    folds <- v$folds[v$dataset == id]
+    data.frame(a = dataset_label(id), b = length(unique(c1$individual_id)), c = if (length(folds) == 1L) folds else 0,
+               d = sum(c1$windows), r = w[[1]], l = w[[2]], f = w[[3]], t = sum(w))
+  }))
+  no_fold <- out$a[out$c == 0]
+  total <- data.frame(a = "Total", b = sum(out$b), c = sum(out$c), d = sum(out$d), r = sum(out$r), l = sum(out$l),
+                      f = sum(out$f), t = sum(out$t))
+  out <- rbind(out, total)
+  for (k in c("d", "r", "l", "f", "t")) out[[k]] <- int(out[[k]])
+  names(out) <- c("Dataset", "Units", "Within test units", "Training windows", "Evaluation windows", "", "", "")
+  n_dog2 <- length(unique(cs$individual_id[cs$dataset_id == "Dog_dataset_2"]))
+  write_table("windows", "Analytical units and window counts for the primary analysis.", out,
+              paste0("Units are individuals, except in Dog 2, where ", words(n_dog2), " recordings served as separate ",
+                     "analytical units. Within test units contributed to valid leave-one-individual-out evaluations, ",
+                     "requiring at least 10 test windows and 30 remaining training windows per class",
+                     if (length(no_fold)) paste0("; ", join_and(no_fold), " had no valid fold"), ". ",
+                     "Training counts describe the available pool of fully labeled, class-homogeneous 2.0-s windows generated ",
+                     "at 1.0-s intervals, before subsampling and the cap of 250 windows per dataset and class. Evaluation counts ",
+                     "include all retained non-overlapping windows used for cross-dataset evaluation; within-dataset evaluation ",
+                     "may include fewer windows because of eligibility requirements."),
+              c("01_Preprocessing/reports/pipeline_reports/class_summary.csv", paste0("04_Statistics/results/", main_scenario, "/h1_values.csv")),
+              header2 = c("", "", "", "", classes, "Total"))
+}
+
+# Table S3: original labels per harmonized class (labels in code-point order).
+table_s_mapping <- function() {
+  m <- read_registry(mapping_file)
+  m <- m[m$dataset_id %in% dataset_ids(), ]
+  groups <- c(classes, "Other", "Exclude")
+  if (!all(m$class %in% groups)) stop("unknown class in behavior_mapping.csv: ", paste(setdiff(m$class, groups), collapse = ", "))
+  keys <- unique(m[order(m$dataset_id, match(m$class, groups)), c("dataset_id", "class")])
+  # Code-point order (uppercase before lowercase, umlauts after z), the same in every locale.
+  code_points <- function(x) vapply(x, function(s) paste(sprintf("%06x", utf8ToInt(enc2utf8(s))), collapse = ""), character(1))
+  labels <- vapply(seq_len(nrow(keys)), function(i) {
+    x <- m$label[m$dataset_id == keys$dataset_id[i] & m$class == keys$class[i]]
+    paste(x[order(code_points(x))], collapse = "; ")
+  }, character(1))
+  out <- data.frame(a = dataset_label(keys$dataset_id), b = keys$class, c = labels)
+  names(out) <- c("Dataset", "Mapping", "Original labels")
+  write_table("mapping", "Mapping of original behavior labels to harmonized classes.", out,
+              paste0("Resting, locomotion and foraging were retained in the primary analysis. Other was excluded from the ",
+                     "primary analysis but included as a fourth class in the four-class sensitivity analysis; Exclude was ",
+                     "omitted from both. Codes are dataset-specific, and Giraffe mappings use the full category/code ",
+                     "combination. In the primary analysis, windows were retained only if every sample was labeled and mapped ",
+                     "to the same retained class."),
+              "00_Documentation/behavior_mapping.csv")
+}
+
+# Table S4: dataset-specific preprocessing and conversion.
+table_s_preprocessing <- function() {
+  ids <- dataset_ids()
+  ds <- registry[match(ids, registry$dataset_id), ]
+  unit <- c(eobs_counts = "e-obs counts", g = "g", m_s2 = "m/s²")
+  rates <- vapply(ids, function(id) paste(unique(rate_text(used_sensor_rows(id)$native_hz)), collapse = ", "), character(1))
+  out <- data.frame(a = dataset_label(ids), b = unname(rates), c = unname(unit[ds$raw_unit]), d = ds$segment_definition,
+                    e = ds$dataset_rules)
+  names(out) <- c("Dataset", "Native rate (Hz)", "Input unit", "Segment definition", "Dataset-specific processing")
+  write_table("preprocessing", "Dataset-specific preprocessing and conversion.", out,
+              paste0("Acceleration was expressed in g: e-obs counts were converted as (value ", MINUS, " 2048)/512, ",
+                     "Horse 2 values were divided by 9.80665, and Cattle values were already in g. Segments were processed ",
+                     "separately at 25 Hz using polyphase resampling with anti-aliasing where resampling was required. Windows ",
+                     "contained 50 samples (2.0 s) and never crossed segment boundaries; training windows used a 1.0-s step, ",
+                     "whereas evaluation windows were non-overlapping. Label mapping and exclusions followed ",
+                     table_ref("mapping"), "."),
+              c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv"))
+}
+
+# Table S5: the 26 window features of RF and LightGBM (01_Preprocessing/features.py).
+table_s_features <- function() {
+  out <- data.frame(
+    a = c("VeDBA mean, SD and maximum", "ODBA mean and SD", "Axis SD", "Axis RMS", "Axis IQR", "Axis skewness",
+          "Axis excess kurtosis", "Axis zero crossings", "Dominant frequency", "Spectral centroid", "Spectral entropy"),
+    b = c("Window mean, sample SD and maximum of vectorial dynamic body acceleration, calculated as the Euclidean norm of the three dynamic axes at each sample.",
+          "Window mean and sample SD of overall dynamic body acceleration, calculated as the sum of the absolute dynamic acceleration values on the three axes at each sample.",
+          "Sample standard deviation of each dynamic axis, with n minus 1 in the variance denominator.",
+          "Square root of the mean squared dynamic acceleration, computed separately for x, y and z.",
+          "The 75th percentile minus the 25th percentile of each dynamic axis, using linearly interpolated quantiles equivalent to R type 7.",
+          "Mean cubed deviations from the axis mean, divided by the cube of the sample SD, computed separately for x, y and z.",
+          "Mean fourth-power deviations from the axis mean, divided by the fourth power of the sample SD, minus 3, for each axis.",
+          "Number of adjacent sample pairs with opposite signs on each dynamic axis. Pairs containing an exact zero are not counted.",
+          "Frequency of the largest squared Fourier magnitude in the retained spectrum of mean-centered VeDBA.",
+          "Mean retained frequency weighted by the normalized spectral power of mean-centered VeDBA.",
+          "Shannon entropy of normalized VeDBA spectral power, divided by the natural logarithm of the number of retained frequency bins."),
+    c = c("g", "g", "g", "g", "g", "Unitless", "Unitless", "Count", "Hz", "Hz", "Unitless"),
+    d = c(3, 2, 3, 3, 3, 3, 3, 3, 1, 1, 1))
+  names(out) <- c("Feature group", "Definition", "Unit", "Number")
+  write_table("features", "Handcrafted features used by Random Forest and LightGBM.", out,
+              paste0("The ", sum(out$Number), " features were calculated from 2.0-s windows at 25 Hz after subtracting each ",
+                     "axis mean; static acceleration was not included. Axis features were computed separately for x, y and z, ",
+                     "and spectral features were derived from mean-centered VeDBA. SD = sample standard deviation; RMS = root ",
+                     "mean square; IQR = interquartile range; VeDBA = vectorial dynamic body acceleration; ODBA = overall ",
+                     "dynamic body acceleration."),
+              "01_Preprocessing/features.py")
+}
+
+# Table S6: classifiers (02_Models/models.py; package versions from requirements-lock.txt).
+table_s_models <- function() {
+  raw <- paste0("Raw acceleration (3 ", TIMES, " 50 samples)")
+  out <- data.frame(
+    a = c("Random Forest", "LightGBM", "CNN", "ResNet", "HYDRA", "MultiRocket"),
+    b = c(rep("26 handcrafted features", 2), rep(raw, 4)),
+    c = c(paste("scikit-learn", lock_version("scikit-learn")), paste("LightGBM", lock_version("lightgbm")),
+          rep(paste("PyTorch", lock_version("torch")), 2), rep(paste("aeon", lock_version("aeon")), 2)),
+    d = c("Default parameters; 100 trees", "Default parameters; multiclass objective",
+          "3 convolutional blocks (32, 64, 128 filters; kernels 5, 5, 3); batch normalization, ReLU, pooling; dropout 0.25",
+          "Stem convolution (64 filters, kernel 7); 3 residual blocks (64, 128, 128 filters; kernels 7, 5, 3); dropout 0.25",
+          "Default parameters", "Default parameters"))
+  names(out) <- c("Classifier", "Input", "Implementation", "Configuration")
+  write_table("models", "Classifier implementations and training settings.", out,
+              paste0("CNN and ResNet used training-set channel standardization, Adam optimization (learning rate = 0.001), ",
+                     "cross-entropy loss, a batch size of 256, and 30 epochs without early stopping. All classifiers were ",
+                     "evaluated using five random seeds (42", DASH, "46). Training was limited to 250 windows per dataset and ",
+                     "behavioral class, sampled across segments, with at least 30 training windows required per class."),
+              c("02_Models/models.py", "requirements-lock.txt"))
+}
+
+# Table S7: definitions of the five core traits.
+table_s_trait_definitions <- function() {
+  d <- read_registry(trait_definitions_file)
+  out <- data.frame(a = d$trait, b = d$definition, c = d$coding, d = d$sources)
+  names(out) <- c("Trait", "Definition", "Coding", "Sources")
+  write_table("trait_definitions", "Functional-biomechanical traits: definitions, coding and sources.", out,
+              source = "00_Documentation/traits/core_trait_definitions.csv")
+}
+
+# Table S8: core trait values per species (data codes back to labels, first letter capital).
+table_s_traits <- function() {
+  tr <- read.csv(traits_file)
+  pretty <- function(x) {
+    x <- gsub("_", " ", x)
+    x <- sub("long necked", "long-necked", sub("low profile", "low-profile", x))
+    paste0(toupper(substring(x, 1, 1)), substring(x, 2))
+  }
+  out <- data.frame(a = paste0(species_label(tr$species), " (", tr$species, ")"), b = num(tr$log_body_mass_g, 3),
+                    c = pretty(tr$dominant_locomotor_mode), d = pretty(tr$body_configuration_type),
+                    e = pretty(tr$relative_neck_length), f = pretty(tr$food_acquisition_handling))
+  out <- out[order(species_label(tr$species)), ]
+  names(out) <- c("Species", "Body mass (ln g)", "Locomotor specialization", "Body configuration", "Relative neck length",
+                  "Food acquisition and handling")
+  write_table("traits", "Species-specific functional-biomechanical trait values.", out,
+              paste0("Body mass was expressed as the natural logarithm of mass in grams. Relative neck length was classified ",
+                     "using r = C/(T + L + S), where C, T, L, and S represent cervical, thoracic, lumbar, and sacral vertebral ",
+                     "lengths, respectively. Categories were defined as short (r < 0.30), intermediate (0.30 ≤ r < 0.40), ",
+                     "long (0.40 ≤ r < 1.00), and very long (r ≥ 1.00). All categorical trait assignments were ",
+                     "study-specific. The hedgehog neck-length classification was based on expert judgement, while the raccoon ",
+                     "classification relied on indirect anatomical evidence. The five traits were combined using equally ",
+                     "weighted Gower distance. Body mass values came from EltonTraits for six taxa, Gerstner and Gerstein (2008) ",
+                     "for Horse 1, and study-specific records for Hedgehog and Dog; the Dog value was the unweighted mean of the ",
+                     "two study means."),
+              "00_Documentation/traits/species_traits_core.csv")
+}
+
+# =========================================================
+# Supplement: tables S9-S11 (H1, H2)
+# =========================================================
+# Table S9: H1 in the datasets in which within- and cross-dataset evaluation score the same
+# windows; p unadjusted, Holm adjustment over the six classifiers in the note (D51).
+table_s_h1_same_windows <- function() {
+  t <- read_stats(main_scenario, "h1_tests")
+  t <- t[t$datasets == "same_test_windows" & t$metric == "macro_f1", ]
+  t <- t[match(model_keys, t$model), ]
+  v <- read_stats(main_scenario, "h1_values")
+  v <- v[v$model == model_keys[1], ]
+  sm <- read_stats(main_scenario, "seed_means")
+  no_within <- setdiff(unique(sm$test[sm$mode == "cross"]), v$dataset)
+  out <- data.frame(a = unname(model_labels[t$model]), b = med_iqr(t$within_median, t$within_q1, t$within_q3),
+                    c = med_iqr(t$cross_median, t$cross_q1, t$cross_q3), d = med_iqr(t$gap_median, t$gap_q1, t$gap_q3),
+                    e = stat_v(t$V), f = p_txt(t$p_value), g = num(t$rank_biserial, 2))
+  names(out) <- c("Classifier", "Within-dataset Macro-F1", "Cross-dataset Macro-F1", "Difference", "Wilcoxon V", "p",
+                  "Rank-biserial r")
+  holm <- unique(p_txt(t$p_holm))
+  holm_text <- if (length(holm) == 1L) paste("all comparisons yielded an adjusted p-value of", holm) else
+    paste("the adjusted p-values were", join_and(paste0(p_txt(t$p_holm), " (", model_labels[t$model], ")")))
+  exact <- all(t$test_method == "exact")
+  write_table("h1_same_windows", paste0("Sensitivity analysis of within- and cross-dataset Macro-F1 in ", words(max(t$n_pairs)),
+                                        " fully eligible datasets."), out,
+              paste0("Values are medians [first quartile, third quartile] across ", words(max(t$n_pairs)), " datasets, with ",
+                     "each dataset-level score averaged over five training seeds. The analysis included ",
+                     join_and(dataset_label(v$dataset[v$same_test_windows])), ", for which within- and cross-dataset evaluation ",
+                     "scored identical windows. ", join_and(dataset_label(v$dataset[!v$same_test_windows])), " were excluded ",
+                     "because some analytical units were ineligible for within-dataset testing",
+                     if (length(no_within)) paste0("; ", join_and(dataset_label(no_within)), " had no valid within-dataset evaluation"),
+                     ". Difference denotes within-dataset minus cross-dataset Macro-F1. Tests were two-sided ",
+                     if (exact) "exact " else "", "Wilcoxon signed-rank tests",
+                     if (!exact) " (exact, or the normal approximation with continuity correction where there were ties or zero differences)",
+                     ". Reported p-values are unadjusted. After Holm adjustment across the ", words(t$holm_tests[1]),
+                     " classifiers, ", holm_text, ". Rank-biserial r is the matched-pairs effect size."),
+              paste0("04_Statistics/results/", main_scenario, c("/h1_tests.csv", "/h1_values.csv", "/seed_means.csv")))
+}
+
+# Table S10: post-hoc class comparisons (Holm over the three pairs of a classifier and response).
+table_s_h2_posthoc <- function() {
+  raw <- read_stats(main_scenario, "h2_posthoc")
+  raw <- raw[raw$datasets == "all", ]
+  ph <- do.call(rbind, lapply(c("cross_f1", "transfer_loss_f1"), function(resp) {
+    do.call(rbind, lapply(model_keys, function(m) {
+      do.call(rbind, lapply(class_pairs, function(pair) posthoc_pair(raw[raw$response == resp, ], m, pair)))
+    }))
+  }))
+  out <- data.frame(a = ifelse(ph$response == "cross_f1", "Cross-dataset F1", "Transfer loss"),
+                    b = unname(model_labels[ph$model]), c = paste(ph$behavior_1, "vs.", ph$behavior_2),
+                    d = med_iqr(ph$diff_median, ph$diff_q1, ph$diff_q3), e = stat_v(ph$V), f = p_txt(ph$p_value),
+                    g = p_txt(ph$p_holm), h = num(ph$rank_biserial, 2))
+  names(out) <- c("Response", "Classifier", "Comparison", "Difference", "Wilcoxon V", "p", "p (Holm)", "Rank-biserial r")
+  n_cross <- unique(ph$n_pairs[ph$response == "cross_f1"])
+  n_loss <- unique(ph$n_pairs[ph$response == "transfer_loss_f1"])
+  if (length(n_cross) != 1L || length(n_loss) != 1L) stop("different numbers of datasets in the post-hoc tests")
+  significant <- any(ph$friedman_significant_holm)
+  write_table("h2_posthoc", "Pairwise post-hoc comparisons of behavioral classes.", out,
+              paste0("Cross-dataset F1 comparisons included ", n_cross, " target datasets; transfer-loss comparisons included ",
+                     "the ", words(n_loss), " datasets with both within- and cross-dataset scores. Dataset-level scores were ",
+                     "averaged over five training seeds. Difference is the median [first quartile, third quartile] of paired ",
+                     "differences, calculated as the first class minus the second. Transfer loss denotes within-dataset minus ",
+                     "cross-dataset F1. Tests were two-sided ", if (all(ph$test_method == "exact")) "exact " else "",
+                     "Wilcoxon signed-rank tests, with Holm adjustment across the three class comparisons within each ",
+                     "classifier and response. Rank-biserial r is the matched-pairs effect size. ",
+                     if (!significant) paste0("None of the corresponding Friedman tests remained significant after Holm ",
+                                              "adjustment across the ", words(length(model_keys)), " classifiers. All ",
+                                              "post-hoc comparisons are therefore reported descriptively, including those ",
+                                              "with pairwise Holm-adjusted p-values below 0.05.")
+                     else paste0("Post-hoc comparisons are interpreted only where the corresponding Friedman test remained ",
+                                 "significant after Holm adjustment across the ", words(length(model_keys)), " classifiers.")),
+              paste0("04_Statistics/results/", main_scenario, "/h2_posthoc.csv"))
+}
+
+# Table S11: transfer loss by class, primary dataset set and the datasets with identical
+# evaluation windows (D44).
+table_s_h2_loss <- function() {
+  v <- read_stats(main_scenario, "h1_values")
+  excluded <- dataset_label(unique(v$dataset[!v$same_test_windows]))
+  sets <- c(all = "Primary", same_test_windows = "Sensitivity")
+  out <- do.call(rbind, lapply(names(sets), function(ds) {
+    data.frame(Dataset = paste0(sets[[ds]], ", n = ", n_blocks("transfer_loss_f1", ds)),
+               class_table("transfer_loss_f1", datasets = ds), check.names = FALSE)
+  }))
+  names(out) <- c("Dataset", "Classifier", classes, paste("Friedman", CHI2), "p", "p (Holm)", paste0("Kendall", APOS, "s W"))
+  write_table("h2_loss", "Behavior-specific transfer losses and sensitivity analysis.", out,
+              paste0("Transfer loss is within-dataset minus cross-dataset F1, summarized as median [first quartile, third ",
+                     "quartile] across datasets after averaging scores over five training seeds. Positive values indicate lower ",
+                     "F1 under cross-dataset transfer. The primary comparison included ", words(n_blocks("transfer_loss_f1")),
+                     " datasets with both evaluation scores. The sensitivity analysis excluded ", join_and(excluded),
+                     ", retaining the ", words(n_blocks("transfer_loss_f1", "same_test_windows")), " datasets for which both ",
+                     "evaluations scored identical windows. Friedman tests compared the three behavioral classes within each ",
+                     "classifier and dataset set (df = 2). Holm adjustment was applied across the ", words(length(model_keys)),
+                     " classifier-specific tests separately for each dataset set. Kendall", APOS, "s W is the effect size. ",
+                     "Pairwise comparisons for the primary dataset set are reported in ", table_ref("h2_posthoc"), "."),
+              paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv", "/h1_values.csv")))
+}
+
+# =========================================================
+# Supplement: tables S12-S16 (H3)
+# =========================================================
+# Table S12: the primary mixed model (fixed and random effects, tests and fit).
 table_s_h3_model <- function() {
   fe <- read_stats(main_scenario, "h3_fixed_effects")
   fe <- fe[fe$analysis == "primary", ]
@@ -594,87 +869,149 @@ table_s_h3_model <- function() {
   re <- read_stats(main_scenario, "h3_random_effects")
   d <- read_stats(main_scenario, "h3_data")
   term_label <- function(t) {
-    if (t == "(Intercept)") return("Intercept (CNN, mean distance)")
-    if (t == "z_distance") return("Trait distance (per SD)")
-    paste0("Classifier: ", model_labels[[tolower(sub("^model", "", t))]], " vs. CNN")
+    if (t == "(Intercept)") return("Intercept: CNN at mean distance")
+    if (t == "z_distance") return("Trait distance, per SD")
+    paste(model_labels[[tolower(sub("^model", "", t))]], "vs. CNN")
   }
-  fixed <- data.frame(Component = "Fixed effects", Term = vapply(fe$term, term_label, character(1)),
-                      Estimate = est_ci(fe$estimate, fe$ci_low, fe$ci_high), SE = num(fe$std_error),
-                      df = num(fe$df, 1), t = num(fe$statistic, 2), p = p_txt(fe$p_value))
+  fixed <- data.frame(a = "Fixed effects", b = vapply(fe$term, term_label, character(1)),
+                      c = est_ci(fe$estimate, fe$ci_low, fe$ci_high), d = num(fe$std_error), e = num(fe$df, 1),
+                      f = num(fe$statistic, 2), g = p_txt(fe$p_value))
   groups <- c(unordered_species_pair = "Unordered species pair", ordered_species_pair = "Ordered species pair",
               train_species = "Source species", test_species = "Target species", Residual = "Residual")
   re <- re[match(names(groups), re$group), ]
-  random <- data.frame(Component = "Random intercepts (SD)", Term = unname(groups), Estimate = num(re$std_dev),
-                       SE = "", df = "", t = "", p = "")
-  n_species <- length(unique(c(d$train_species, d$test_species)))
+  random <- data.frame(a = ifelse(re$group == "Residual", "Residual SD", "Random-effect SD"), b = unname(groups),
+                       c = num(re$std_dev), d = NA, e = NA, f = NA, g = NA)
   tests <- data.frame(
-    Component = "Tests and fit",
-    Term = c("Trait distance (likelihood-ratio test)", "Distance \u00d7 classifier interaction (likelihood-ratio test)",
-             "R\u00b2 marginal / conditional", "Records"),
-    Estimate = c(paste0(CHI2, "(", prim$lr_df, ") = ", num(prim$lr_chisq, 2)),
-                 paste0(CHI2, "(", inter$lr_df, ") = ", num(inter$lr_chisq, 2)),
-                 paste0(num(prim$r2_marginal, 2), " / ", num(prim$r2_conditional, 2)),
-                 paste0(prim$n_observations, " (", prim$n_ordered_pairs, " ordered pairs of ", n_species, " species, ",
-                        prim$n_models, " classifiers)")),
-    SE = "", df = "", t = "", p = c(p_txt(prim$lr_p_value), p_txt(inter$lr_p_value), "", ""))
+    a = c("Likelihood-ratio test", "Likelihood-ratio test", "Model fit", "Sample size"),
+    b = c("Trait distance", paste("Distance", TIMES, "classifier interaction"), paste("Marginal / conditional", R2), "Observations"),
+    c = c(paste0(CHI2, "(", prim$lr_df, ") = ", num(prim$lr_chisq, 2)), paste0(CHI2, "(", inter$lr_df, ") = ", num(inter$lr_chisq, 2)),
+          r2_pair(prim$r2_marginal, prim$r2_conditional), as.character(prim$n_observations)),
+    d = NA, e = NA, f = NA, g = c(p_txt(prim$lr_p_value), p_txt(inter$lr_p_value), NA, NA))
   out <- rbind(fixed, random, tests)
-  names(out)[names(out) == "Estimate"] <- "Estimate [95 % CI]"
-  zero <- unname(groups[re$group[re$std_dev < 1e-4 & re$group != "Residual"]])
-  write_table("h3_model", "Primary mixed model (H3).", out,
-              c("Model: Macro-F1 ~ trait distance (z-scored) + classifier + random intercepts of the unordered species pair, the ordered species pair, the source and the target species.",
-                paste0("One record per classifier and ordered pair of source and target species (pairs of the same species left out); Macro-F1 as mean over the dataset pairs and five training seeds. ",
-                       "Trait distance: Gower distance of five core traits (", table_ref("traits"), ")."),
-                "Estimates, 95 % CI and t tests from the REML fit (Satterthwaite df); likelihood-ratio tests of ML fits against the model without the distance (interaction: against this model); R\u00b2 after Nakagawa.",
-                if (isTRUE(prim$singular_reml) && length(zero) > 0L)
-                  paste0("The REML fit is singular: the variance of ", paste(tolower(zero), collapse = " and "), " is estimated as 0.") else NULL,
-                paste0("Summary: ", table_ref("h3"), "; variants: ", table_ref("h3_variants"), "; leave one species out: ", table_ref("loso"),
-                       "; slopes per classifier: ", table_ref("per_classifier"), ".")),
+  names(out) <- c("Component", "Term", "Estimate [95% CI] or value", "SE", "df", "t", "p")
+  n_species <- length(unique(c(d$train_species, d$test_species)))
+  write_table("h3_model", "Primary mixed-effects model for cross-species transfer.", out,
+              paste0("The response was cross-species Macro-F1, with one observation per classifier and ordered source", DASH,
+                     "target species pair, averaged over the contributing dataset pairs and five training seeds. The analysis ",
+                     "included ", prim$n_ordered_pairs, " ordered pairs of ", words(n_species), " species and ",
+                     words(prim$n_models), " classifiers; same-species transfers were excluded. Fixed effects were standardized ",
+                     "trait distance and classifier, with CNN as the reference. Random intercepts represented unordered species ",
+                     "pair, ordered species pair, source species and target species. Fixed-effect estimates, confidence ",
+                     "intervals and t tests were obtained from the restricted maximum-likelihood fit using Satterthwaite degrees ",
+                     "of freedom. Likelihood-ratio tests compared maximum-likelihood fits with and without the distance term; the ",
+                     "interaction test compared the interaction model with the additive model. The distance t-test p-value and ",
+                     "likelihood-ratio p-value therefore refer to different tests. Marginal ", R2, " represents fixed effects, and ",
+                     "conditional ", R2, " represents fixed and random effects."),
               paste0("04_Statistics/results/", main_scenario, c("/h3_fixed_effects.csv", "/h3_models.csv", "/h3_random_effects.csv")))
 }
 
+# Table S13: robustness analyses of the distance effect (model variants, alternative
+# distances, trait sensitivity).
+table_s_h3_robustness <- function() {
+  m <- read_stats(main_scenario, "h3_models")
+  missing <- setdiff(names(h3_labels), m$analysis)
+  if (length(missing)) stop("analyses missing in h3_models.csv: ", paste(missing, collapse = ", "))
+  m <- m[match(names(h3_labels), m$analysis), ]
+  out <- data.frame(a = unname(h3_labels), b = m$n_observations, c = est_ci(m$estimate, m$ci_low, m$ci_high),
+                    d = paste0(num(m$lr_chisq, 2), " (", m$lr_df, ")"), e = p_txt(m$lr_p_value),
+                    f = r2_pair(m$r2_marginal, m$r2_conditional), g = yes_no(m$singular_reml))
+  names(out) <- c("Analysis", "n", paste(BETA, "per SD [95% CI]"), paste("LR", CHI2, "(df)"), "p",
+                  paste(R2, "marginal / conditional"), "Singular fit")
+  write_table("h3_robustness", "Robustness analyses of the biological-distance association.", out,
+              paste0(BETA, " represents the change in the response per standard deviation of distance. Estimates and 95% ",
+                     "confidence intervals were obtained from restricted maximum-likelihood fits using Satterthwaite degrees of ",
+                     "freedom. LR denotes likelihood-ratio tests of maximum-likelihood fits against the corresponding model ",
+                     "without distance; the interaction test compared the interaction and additive models. These robustness ",
+                     "analyses are exploratory, and p-values are unadjusted for multiple testing. The model without the unordered ",
+                     "pair retained random intercepts for ordered pair, source species and target species. The ordered-pair-only ",
+                     "model omitted the species effects. Adjustment for within-dataset Macro-F1 included source and target ",
+                     "performance as covariates and excluded pairs involving Hedgehog. Retention was transfer Macro-F1 divided by ",
+                     "the target", APOS, "s within-dataset Macro-F1; Hedgehog was excluded as a target. Alternative distances ",
+                     "replaced the core trait distance in the primary model. EltonTraits variable selection and coding are ",
+                     "described in Supplementary ", text_ref("elton"), ". Trait sensitivity analyses changed one coding decision ",
+                     "or omitted one core trait, retaining equal weights for the remaining traits. The cattle neck-length variant ",
+                     "was added after the results were known. Singular fit indicates a boundary fit of the random-effects ",
+                     "structure. Values are rounded."),
+              paste0("04_Statistics/results/", main_scenario, "/h3_models.csv"))
+}
+
+# Table S14: slopes per classifier (interaction model) and Spearman correlations.
+table_s_per_classifier <- function() {
+  sl <- read_stats(main_scenario, "h3_slopes")
+  sp <- read_stats(main_scenario, "h3_spearman")
+  inter <- read_stats(main_scenario, "h3_models")
+  inter <- inter[inter$analysis == "interaction distance x model", ]
+  keys <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")
+  sl <- sl[match(keys, sl$model), ]
+  sp <- sp[match(keys, sp$model), ]
+  out <- data.frame(a = unname(model_labels[tolower(keys)]), b = est_ci(sl$estimate, sl$ci_low, sl$ci_high),
+                    c = p_txt(sl$p_value), d = est_ci(sp$rho, sp$ci_low, sp$ci_high), e = p_txt(sp$p_value),
+                    f = p_txt(sp$p_holm))
+  names(out) <- c("Classifier", paste(BETA, "per SD [95% CI]"), "p (slope)", paste("Spearman", RHO, "[95% CI]"),
+                  "p (Spearman)", "p (Spearman, Holm)")
+  n <- unique(sp$n)
+  if (length(n) != 1L) stop("different numbers of species pairs per classifier")
+  write_table("per_classifier", "Classifier-specific associations between trait distance and cross-species Macro-F1.", out,
+              paste0("Each classifier contributed ", n, " ordered source", DASH, "target species pairs. ", BETA, " represents the ",
+                     "classifier-specific slope of standardized core trait distance in the mixed-effects model containing the ",
+                     "distance ", TIMES, " classifier interaction. Estimates and confidence intervals were obtained from the ",
+                     "restricted maximum-likelihood fit using Satterthwaite degrees of freedom. The overall interaction was ",
+                     if (inter$lr_p_value < 0.05) "significant" else "not significant", " (likelihood-ratio ", CHI2, "(",
+                     inter$lr_df, ") = ", num(inter$lr_chisq, 2), ", ", p_eq(inter$lr_p_value), "). Spearman correlations are ",
+                     "descriptive summaries of the species-pair associations. Their confidence intervals were calculated using ",
+                     "Fisher", APOS, "s z transformation, and their p-values were Holm-adjusted across the ",
+                     words(length(keys)), " classifiers. These correlations do not account for the dyadic dependence ",
+                     "represented in the mixed-effects model."),
+              paste0("04_Statistics/results/", main_scenario, c("/h3_slopes.csv", "/h3_spearman.csv", "/h3_models.csv")))
+}
+
+# Table S15: leave-one-species-out refits of the primary model.
+table_s_loso <- function() {
+  l <- read_stats(main_scenario, "h3_loso")
+  l <- l[order(species_label(l$left_out)), ]
+  out <- data.frame(a = species_label(l$left_out, long = TRUE), b = est_ci(l$estimate, l$ci_low, l$ci_high),
+                    c = num(l$std_error), d = num(l$lr_chisq, 2), e = p_txt(l$lr_p_value),
+                    f = r2_pair(l$r2_marginal, l$r2_conditional), g = yes_no(l$singular_reml))
+  names(out) <- c("Species excluded", paste(BETA, "per SD [95% CI]"), "SE", paste("LR", CHI2), "p",
+                  paste(R2, "marginal / conditional"), "Singular fit")
+  n <- unique(l[c("n_observations", "n_ordered_pairs", "n_models")])
+  if (nrow(n) != 1L) stop("the leave-one-species-out refits differ in size")
+  n_species <- length(unique(l$left_out)) - 1L
+  write_table("loso", "Leave-one-species-out robustness analysis.", out,
+              paste0("Each analysis removed all source", DASH, "target pairs involving the indicated species and refitted the ",
+                     "primary mixed-effects model. Each refit included ", n$n_observations, " observations: ", n$n_ordered_pairs,
+                     " ordered pairs of ", words(n_species), " remaining species across ", words(n$n_models), " classifiers. ",
+                     "Trait distance was standardized again within each refit. ", BETA, " and its 95% confidence interval were ",
+                     "obtained from the restricted maximum-likelihood fit. LR denotes the likelihood-ratio test against the ",
+                     "corresponding model without distance (df = 1). These exploratory p-values are unadjusted for multiple ",
+                     "testing. Singular fit indicates a boundary fit of the random-effects structure."),
+              paste0("04_Statistics/results/", main_scenario, "/h3_loso.csv"))
+}
+
+# Table S16: the primary model per training seed.
+table_s_seeds <- function() {
+  s <- read_stats(main_scenario, "h3_seeds")
+  out <- data.frame(a = s$seed, b = est_ci(s$estimate, s$ci_low, s$ci_high), c = num(s$std_error),
+                    d = num(s$lr_chisq, 2), e = p_txt(s$lr_p_value), f = r2_pair(s$r2_marginal, s$r2_conditional),
+                    g = yes_no(s$singular_reml))
+  names(out) <- c("Training seed", paste(BETA, "per SD [95% CI]"), "SE", paste("LR", CHI2), "p",
+                  paste(R2, "marginal / conditional"), "Singular fit")
+  n <- unique(s[c("n_observations", "n_ordered_pairs", "n_models")])
+  if (nrow(n) != 1L) stop("the seed fits differ in size")
+  write_table("seeds", "Seed-level robustness analysis of the biological-distance association.", out,
+              paste0("The primary mixed-effects model was fitted separately to the results of each training seed. Each fit ",
+                     "included ", n$n_observations, " observations representing ", n$n_ordered_pairs, " ordered species pairs ",
+                     "and ", words(n$n_models), " classifiers. ", BETA, " is the change in cross-species Macro-F1 per standard ",
+                     "deviation of core trait distance, with confidence intervals obtained from the restricted maximum-likelihood ",
+                     "fit. LR denotes the likelihood-ratio test against the corresponding model without distance (df = 1). These ",
+                     "analyses describe variability between training runs; the primary H3 analysis uses scores averaged over all ",
+                     words(nrow(s)), " seeds. Singular fit indicates a boundary fit of the random-effects structure."),
+              paste0("04_Statistics/results/", main_scenario, "/h3_seeds.csv"))
+}
+
 # =========================================================
-# Supplement: figures
+# Supplement: table S17 (sensitivity scenarios)
 # =========================================================
-figure_s1 <- function() {
-  cs <- read.csv(class_summary_file)
-  cs <- cs[cs$mapping == "primary", ]
-  cs <- cs[cs$class %in% classes, ]
-  win <- aggregate(test_windows ~ dataset_id + class, data = cs, FUN = sum)
-  total <- tapply(win$test_windows, win$dataset_id, sum)
-  order_ds <- names(sort(total))
-  win$dataset <- factor(short(win$dataset_id), levels = short(order_ds))
-  win$class <- factor(win$class, levels = classes)
-  p <- ggplot(win, aes(test_windows, dataset)) +
-    geom_col(aes(fill = class), width = 0.65, colour = "white", linewidth = 0.4,
-             position = position_stack(reverse = TRUE)) +
-    scale_fill_manual(values = class_colors, breaks = classes) +
-    scale_x_continuous(labels = function(x) int(x), expand = expansion(mult = c(0, 0.04))) +
-    labs(x = "Evaluation windows", y = NULL) +
-    theme_paper() +
-    theme(legend.position = "top", legend.justification = "center", panel.grid.major.y = element_blank(), axis.line.y = element_blank(),
-          axis.ticks.y = element_blank(),
-          axis.text.y = element_text(colour = INK, size = rel(1)))
-  save_figure(p, "class_windows", 130, 85, "Evaluation windows per dataset and behavioral class.",
-              "01_Preprocessing/reports/pipeline_reports/class_summary.csv")
-  write_caption("class_windows", paste0(
-    "Evaluation windows per dataset and behavioral class. Counts: ", table_ref("datasets"), "."))
-}
-
-figure_s2 <- function() {
-  p <- plot_within_cross("accuracy", "Accuracy")
-  save_figure(p, "h1_accuracy", 180, 118, "Within- and cross-dataset accuracy across classifiers.",
-              paste0("04_Statistics/results/", main_scenario, "/h1_values.csv"))
-  write_caption("h1_accuracy", caption_within_cross("Within- and cross-dataset accuracy across classifiers.", "accuracy", table_ref("h1_tests")))
-}
-
-figure_s3 <- function() {
-  p <- plot_classes("transfer_loss_f1", "Transfer loss (F1)")
-  save_figure(p, "h2_loss", 180, 118, "Transfer loss by behavioral class and classifier.",
-              paste0("04_Statistics/results/", main_scenario, c("/h2_values.csv", "/h2_friedman.csv")))
-  write_caption("h2_loss", sub("Points:", "Within- minus cross-dataset F1; points:",
-    caption_classes("Transfer loss by behavioral class and classifier.", "transfer_loss_f1", table_ref("h2_loss"))))
-}
-
 scenario_rows <- function() {
   present <- names(scenarios)[file.exists(file.path(stats_dir, names(scenarios), "h1_tests.csv"))]
   h1 <- do.call(rbind, lapply(present, function(s) {
@@ -689,481 +1026,144 @@ scenario_rows <- function() {
   }))
   h3 <- do.call(rbind, lapply(present[file.exists(file.path(stats_dir, present, "h3_models.csv"))], function(s) {
     m <- read_stats(s, "h3_models")
-    key <- if (s == "primary" && "RF and LGBM only (D27)" %in% m$analysis) "RF and LGBM only (D27)" else "primary"
+    key <- if (s == "primary") "RF and LGBM only (D27)" else "primary"
     cbind(scenario = s, m[m$analysis == key, ])
   }))
   list(present = present, h1 = h1, h2 = h2, h3 = h3)
 }
 
-# =========================================================
-# Supplement: tables
-# =========================================================
-read_registry <- function(file) read.csv(file, colClasses = "character", fileEncoding = "UTF-8", check.names = FALSE)
-
-# Sensor and sampling per dataset (settings that give windows; sensor_settings.csv).
-recording_text <- function(id) {
-  s <- read_registry(sensor_file)
-  s <- s[s$dataset_id == id & s$used == "yes", ]
-  parts <- vapply(seq_len(nrow(s)), function(i) {
-    r <- s[i, ]
-    rate <- paste0(sub("\\.?0+$", "", formatC(as.numeric(r$native_hz), format = "f", digits = 2)), " Hz",
-                   if (r$status == "assumed") " (assumed)" else "")
-    rec <- if (nzchar(r$burst_s)) {
-      paste0(r$burst_s, "-s bursts", if (nzchar(r$burst_interval_s)) paste0(" every ", r$burst_interval_s, " s") else "")
-    } else "continuous"
-    paste(c(if (nzchar(r$sensor)) r$sensor, rate, rec), collapse = ", ")
-  }, character(1))
-  paste(parts, collapse = "; ")
-}
-
-# Table S1 (datasets): provenance, setting, sensor and sample sizes.
-table_s_datasets <- function() {
-  cs <- read.csv(class_summary_file)
-  cs <- cs[cs$mapping == "primary" & cs$class %in% classes, ]
-  ds <- read_registry(datasets_file)
-  v <- read_stats(main_scenario, "h1_values")
-  v <- v[v$model == v$model[1], ]
-  ids <- sort(unique(cs$dataset_id))
-  rows <- lapply(ids, function(id) {
-    c1 <- cs[cs$dataset_id == id, ]
-    d <- ds[ds$dataset_id == id, ]
-    w <- vapply(classes, function(cl) sum(c1$test_windows[c1$class == cl]), numeric(1))
-    vi <- v[v$dataset == id, ]
-    data.frame(Dataset = short(id), Species = common(d$scientific_name),
-               Source = paste0(d$source, if (d$public == "yes") "; public" else ""),
-               Setting = d$setting, `Sensor position` = d$sensor_position, `Sensor and sampling` = recording_text(id),
-               Individuals = length(unique(c1$individual_id)),
-               `Within-dataset test units` = if (nrow(vi) == 1L) as.character(vi$eligible_individuals) else DASH,
-               `Training windows` = sum(c1$windows), r = w[[1]], l = w[[2]], f = w[[3]], total = sum(w),
-               check.names = FALSE)
-  })
-  out <- do.call(rbind, rows)
-  total <- out[1, ]
-  total[] <- ""
-  total$Dataset <- "Total"
-  total$Individuals <- sum(out$Individuals)
-  for (k in c("Training windows", "r", "l", "f", "total")) total[[k]] <- sum(out[[k]])
-  out <- rbind(out, total)
-  for (k in c("Training windows", "r", "l", "f", "total")) out[[k]] <- int(out[[k]])
-  names(out)[names(out) %in% c("r", "l", "f", "total")] <- c(paste("Evaluation windows", classes), "Evaluation windows total")
-  n_dog2 <- length(unique(cs$individual_id[cs$dataset_id == "Dog_dataset_2"]))
-  write_table("datasets", "Datasets and sample sizes.", out,
-              c("Source: thesis or publication; public: openly available dataset (all others are not public).",
-                paste0("Individuals: Dog 2 had no animal identities; each of its ", n_dog2,
-                       " recordings is treated as an individual (analytical unit)."),
-                "Training windows: 2 s windows with 1 s step before the cap of 250 per dataset and class; evaluation windows: non-overlapping 2 s windows. Only windows within one of the three classes.",
-                "Within-dataset test units: individuals with at least 10 evaluation windows in every class. Hedgehog 1 has no within-dataset value (one eligible individual)."),
-              c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv",
-                "01_Preprocessing/reports/pipeline_reports/class_summary.csv", paste0("04_Statistics/results/", main_scenario, "/h1_values.csv")))
-}
-
-# Table S2 (mapping): original labels and their class.
-table_s_mapping <- function() {
-  m <- read_registry(mapping_file)
-  m <- m[m$dataset_id %in% read.csv(class_summary_file)$dataset_id, ]
-  # Alphabetical within class, umlauts as base letters, the same in every locale.
-  key <- chartr("\u00e4\u00f6\u00fc\u00df", "aous", tolower(m$label))
-  m <- m[order(m$dataset_id, match(m$class, c(classes, "Other", "Exclude")), key, method = "radix"), ]
-  cls <- ifelse(m$class == "Other", "Other (excluded)", ifelse(m$class == "Exclude", "Excluded", m$class))
-  out <- data.frame(Dataset = short(m$dataset_id), `Original label` = m$label, Class = cls,
-                    `Evaluation windows` = int(as.numeric(m$test_windows)), check.names = FALSE)
-  e <- m[nzchar(m$sensitivity_class), ]
-  e_text <- vapply(split(e, paste(e$dataset_id, e$sensitivity_class)), function(x) {
-    paste0(short(x$dataset_id[1]), ": ", paste(x$label, collapse = ", "), " as ", x$sensitivity_class[1])
-  }, character(1))
-  write_table("mapping", "Behavior label mapping.", out,
-              c(paste0("Original labels as recorded in the source datasets (codes and German terms of the theses); their definitions are given in the sources (",
-                       table_ref("datasets"), ") and are available from the authors on request."),
-                "Other: outside the three classes; used only in the four-class sensitivity scenario. Excluded: not animal behavior, mixed or unlabeled.",
-                "Evaluation windows: non-overlapping 2 s windows with this label only.",
-                paste0("Sensitivity scenario E (", table_ref("scenarios"), "): ", paste(e_text, collapse = "; "), ".")),
-              "00_Documentation/behavior_mapping.csv")
-}
-
-# Table S4 (features): the 26 window features of RF and LightGBM (01_Preprocessing/features.py).
-table_s_features <- function() {
-  out <- data.frame(
-    Feature = c("VeDBA mean, SD, maximum", "ODBA mean, SD", "SD (x, y, z)", "RMS (x, y, z)", "IQR (x, y, z)",
-                "Skewness (x, y, z)", "Excess kurtosis (x, y, z)", "Zero crossings (x, y, z)",
-                "Dominant frequency, spectral centroid, spectral entropy"),
-    Definition = c("Vectorial dynamic body acceleration per sample, √(dx² + dy² + dz²), summarized over the window",
-                   "Overall dynamic body acceleration per sample, |dx| + |dy| + |dz|, summarized over the window",
-                   "Standard deviation of the dynamic acceleration of each axis (n − 1)",
-                   "Root mean square of the dynamic acceleration of each axis",
-                   "Interquartile range of the dynamic acceleration of each axis",
-                   "Third standardized moment of each axis", "Fourth standardized moment minus 3 of each axis",
-                   "Sign changes of the dynamic acceleration of each axis",
-                   "Of the VeDBA series (mean removed; FFT without the 0 Hz bin); entropy normalized to 0–1"),
-    Number = c(3, 2, 3, 3, 3, 3, 3, 3, 3), check.names = FALSE)
-  write_table("features", "Window features.", out,
-              c(paste0("Dynamic acceleration (dx, dy, dz): each axis minus its window mean; windows of 2 s at 25 Hz (50 samples). Total: ", sum(out$Number), " features."),
-                "Static acceleration (posture) is not a feature."),
-              "01_Preprocessing/features.py")
-}
-
-# Table S3 (preprocessing): dataset-specific preprocessing.
-table_s_preprocessing <- function() {
-  ds <- read_registry(datasets_file)
-  s <- read_registry(sensor_file)
-  ids <- sort(unique(read.csv(class_summary_file)$dataset_id))
-  ds <- ds[match(ids, ds$dataset_id), ]
-  unit <- c(eobs_counts = "e-obs counts: (raw − 2048) / 512", g = "g (as recorded)", m_s2 = "m s⁻² / 9.80665")
-  segments <- vapply(ids, function(id) {
-    r <- s[s$dataset_id == id & s$used == "yes", ]
-    if (all(nzchar(r$burst_s))) "one per burst" else if (id == "Horse_dataset_2") "dataset segments (≤ 10 s)" else "continuous, split at gaps"
-  }, character(1))
-  rates <- vapply(ids, function(id) {
-    r <- s[s$dataset_id == id & s$used == "yes", ]
-    paste(unique(sub("\\.?0+$", "", formatC(as.numeric(r$native_hz), format = "f", digits = 2))), collapse = ", ")
-  }, character(1))
-  out <- data.frame(Dataset = short(ids), `Conversion to g` = unname(unit[ds$raw_unit]), Segments = unname(segments),
-                    `Native rate (Hz)` = unname(rates), `Dataset-specific steps` = ifelse(nzchar(ds$dataset_rules), ds$dataset_rules, DASH),
-                    check.names = FALSE)
-  write_table("preprocessing", "Dataset-specific preprocessing.", out,
-              c("All datasets: each segment resampled to 25 Hz (polyphase filter with anti-aliasing); 2 s windows with 1 s step within segments; segments shorter than 2 s give no window.",
-                "Labels assigned after windowing: only windows whose samples all belong to one class (primary analysis). e-obs: 12-bit counts, ±4 g."),
-              c("00_Documentation/datasets.csv", "00_Documentation/sensor_settings.csv", "00_Documentation/decisions.md (D03-D07, D15, D19, D20)"))
-}
-
-# Table S5 (models): classifiers (02_Models/models.py; package versions from requirements-lock.txt).
-table_s_models <- function() {
-  out <- data.frame(
-    Classifier = c("RF", "LightGBM", "CNN", "ResNet", "HYDRA", "MultiRocket"),
-    Input = c(rep("26 window features", 2), rep("Tri-axial window (3 × 50 samples)", 4)),
-    Implementation = c("scikit-learn 1.9.1, RandomForestClassifier", "lightgbm 4.7.0, LGBMClassifier", "PyTorch 2.14.1",
-                       "PyTorch 2.14.1", "aeon 1.6.0, HydraClassifier", "aeon 1.6.0, MultiRocketClassifier"),
-    Configuration = c("Defaults (100 trees)", "Defaults, multiclass objective",
-                      "3 convolution blocks (32, 64, 128 filters; kernels 5, 5, 3; batch normalization, ReLU, max pooling), global average pooling, dense layer (64), dropout 0.25",
-                      "Stem convolution (64 filters, kernel 7), 3 residual blocks (64, 128, 128 filters; kernels 7, 5, 3), global average pooling, dropout 0.25",
-                      "Defaults", "Defaults"),
-    check.names = FALSE)
-  write_table("models", "Classifier configurations.", out,
-              c("CNN and ResNet: channels standardized with mean and SD of the training windows; Adam (learning rate 0.001), cross-entropy loss, batch size 256, 30 epochs, no early stopping.",
-                "All classifiers: training seeds 42–46; at most 250 training windows per dataset and class, drawn across segments."),
-              c("02_Models/models.py", "requirements-lock.txt"))
-}
-
-# Table S6 (trait_definitions): definitions of the five core traits.
-table_s_trait_definitions <- function() {
-  d <- read_registry(trait_definitions_file)
-  out <- data.frame(Trait = d$trait, Definition = d$definition, Coding = d$coding, Sources = d$sources,
-                    `Main uncertainty` = d$uncertainty, check.names = FALSE)
-  write_table("trait_definitions", "Core trait definitions.", out,
-              c(paste0("Species assignments: ", table_ref("traits"), "; pairwise distances: ", table_ref("distances"), ". Categories are study-specific; Gower distance with equal weights."),
-                "Full text and references: 00_Documentation/traits/core_traits.md."),
-              "00_Documentation/traits/core_trait_definitions.csv")
-}
-
-table_s_h1_values <- function() {
-  v <- read_stats(main_scenario, "h1_values")
-  # Test datasets without a within-dataset value (Hedgehog 1): cross-dataset values only.
-  sm <- read_stats(main_scenario, "seed_means")
-  extra <- sm[sm$mode == "cross" & !sm$test %in% v$dataset, ]
-  cols <- c("model", "dataset", "macro_f1_within", "macro_f1_sd_within", "accuracy_within", "accuracy_sd_within",
-            "macro_f1_cross", "macro_f1_sd_cross", "accuracy_cross", "accuracy_sd_cross", "gap_macro_f1",
-            "gap_accuracy", "n_test_within", "n_test_cross", "eligible_individuals", "individuals")
-  if (nrow(extra) > 0L) {
-    add <- data.frame(model = extra$model, dataset = extra$test, macro_f1_within = NA, macro_f1_sd_within = NA,
-                      accuracy_within = NA, accuracy_sd_within = NA, macro_f1_cross = extra$macro_f1,
-                      macro_f1_sd_cross = extra$macro_f1_sd, accuracy_cross = extra$accuracy,
-                      accuracy_sd_cross = extra$accuracy_sd, gap_macro_f1 = NA, gap_accuracy = NA, n_test_within = NA,
-                      n_test_cross = extra$n_test, eligible_individuals = NA, individuals = NA)
-    v <- rbind(v[cols], add)
-  }
-  no_within <- sort(unique(short(extra$test)))
-  v <- v[order(match(v$model, model_keys), v$dataset), ]
-  out <- data.frame(
-    Classifier = unname(model_labels[v$model]), `Test dataset` = short(v$dataset),
-    `Within-dataset Macro-F1` = mean_sd(v$macro_f1_within, v$macro_f1_sd_within),
-    `Cross-dataset Macro-F1` = mean_sd(v$macro_f1_cross, v$macro_f1_sd_cross),
-    `Difference Macro-F1` = num(v$gap_macro_f1),
-    `Within-dataset accuracy` = mean_sd(v$accuracy_within, v$accuracy_sd_within),
-    `Cross-dataset accuracy` = mean_sd(v$accuracy_cross, v$accuracy_sd_cross),
-    `Difference accuracy` = num(v$gap_accuracy),
-    `Test windows within-dataset` = int(v$n_test_within), `Test windows cross-dataset` = int(v$n_test_cross),
-    `Within-dataset test units` = ifelse(is.na(v$eligible_individuals), DASH,
-                                         paste0(v$eligible_individuals, " of ", v$individuals)),
-    check.names = FALSE)
-  write_table("h1_values", "Within- and cross-dataset performance per dataset (H1).", out,
-              c(paste0("Macro-F1 and accuracy: mean ", PM, " SD over five training seeds. Difference: within-dataset minus cross-dataset value of the seed means."),
-                "Within-dataset: leave one individual out, predictions of all folds pooled; cross-dataset: model trained on all other datasets and tested on the whole dataset.",
-                "Where not every individual is a within-dataset test unit, the cross-dataset test also includes the other individuals (more test windows).",
-                if (length(no_within) > 0L)
-                  paste0(paste(no_within, collapse = ", "), ": cross-dataset values only; its only eligible test individual could not be held out without leaving fewer than 30 foraging windows for training (not in the H1 tests).")),
-              paste0("04_Statistics/results/", main_scenario, c("/h1_values.csv", "/seed_means.csv")))
-}
-
-table_s_h1_tests <- function() {
-  t <- read_stats(main_scenario, "h1_tests")
-  v <- read_stats(main_scenario, "h1_values")
-  not_all <- sort(unique(short(v$dataset[!v$same_test_windows])))
-  t <- t[order(match(t$metric, c("macro_f1", "accuracy")), match(t$datasets, c("all", "same_test_windows")),
-               match(t$model, model_keys)), ]
-  out <- data.frame(
-    Metric = ifelse(t$metric == "macro_f1", "Macro-F1", "Accuracy"),
-    `Test datasets` = ifelse(t$datasets == "all", "All with a within-dataset value",
-                             paste("Without", paste(not_all, collapse = ", "))),
-    Classifier = unname(model_labels[t$model]), `Test datasets (n)` = t$n_pairs,
-    `Within-dataset` = med_iqr(t$within_median, t$within_q1, t$within_q3),
-    `Cross-dataset` = med_iqr(t$cross_median, t$cross_q1, t$cross_q3),
-    Difference = med_iqr(t$gap_median, t$gap_q1, t$gap_q3),
-    `Wilcoxon V` = stat_v(t$V), p = p_txt(t$p_value), `Rank-biserial r` = num(t$rank_biserial, 2),
-    `p method` = ifelse(t$test_method == "exact", "exact", "normal approximation"),
-    check.names = FALSE)
-  names(out)[names(out) == "Difference"] <- paste0("Difference (within ", MINUS, " cross)")
-  write_table("h1_tests", "Wilcoxon tests for both metrics (H1).", out,
-              c("Values: median [interquartile range] over the test datasets; the value of a dataset is the mean over five training seeds.",
-                paste0("Without ", paste(not_all, collapse = ", "), ": only datasets in which every individual is a within-dataset test unit, so both tests score the same windows."),
-                "Two-sided p, exact, or the normal approximation with continuity correction if there are ties or zero differences; rank-biserial r: matched-pairs rank-biserial correlation."),
-              paste0("04_Statistics/results/", main_scenario, c("/h1_tests.csv", "/h1_values.csv")))
-}
-
-table_s_h2_values <- function() {
-  v <- read_stats(main_scenario, "h2_values")
-  keys <- unique(v[order(match(v$model, model_keys), v$dataset), c("model", "dataset")])
-  rows <- lapply(seq_len(nrow(keys)), function(i) {
-    r <- v[v$model == keys$model[i] & v$dataset == keys$dataset[i], ]
-    r <- r[match(classes, r$behavior), ]
-    as.data.frame(as.list(c(Classifier = model_labels[[keys$model[i]]], `Test dataset` = short(keys$dataset[i]),
-                            setNames(mean_sd(r$cross_f1, r$cross_f1_sd), paste("Cross-dataset F1", classes)),
-                            setNames(num(r$transfer_loss_f1), paste("Transfer loss", classes)))),
-                  check.names = FALSE)
-  })
-  out <- do.call(rbind, rows)
-  write_table("h2_values", "Class-specific F1 per dataset (H2).", out,
-              c(paste0("Cross-dataset F1: mean ", PM, " SD over five training seeds. Transfer loss: within-dataset minus cross-dataset F1 of the seed means (",
-                       DASH, ": no within-dataset value)."),
-                paste0("Test windows per class: ", table_ref("datasets"), ".")),
-              paste0("04_Statistics/results/", main_scenario, "/h2_values.csv"))
-}
-
-table_s_h2_loss <- function() {
-  fr <- read_stats(main_scenario, "h2_friedman")
-  v <- read_stats(main_scenario, "h1_values")
-  not_all <- sort(unique(short(v$dataset[!v$same_test_windows])))
-  sets <- c(all = "All with a within-dataset value", same_test_windows = paste("Without", paste(not_all, collapse = ", ")))
-  out <- do.call(rbind, lapply(names(sets), function(ds) {
-    t <- class_table("transfer_loss_f1", datasets = ds)
-    f <- fr[fr$response == "transfer_loss_f1" & fr$datasets == ds, ]
-    n <- f$n_blocks[match(model_keys, f$model)]
-    data.frame(`Test datasets` = unname(sets[ds]), t[1], `Test datasets (n)` = n, t[-1], check.names = FALSE)
-  }))
-  write_table("h2_loss", "Transfer loss by behavioral class (H2).", out,
-              c("Transfer loss: median [interquartile range] over the test datasets with a within-dataset value; the value of a dataset is the difference of the means over five training seeds.",
-                paste0("Without ", paste(not_all, collapse = ", "), ": only datasets in which every individual is a within-dataset test unit, so within- and cross-dataset F1 score the same windows (as in ",
-                       table_ref("h1_tests"), "); sensitivity analysis."),
-                "Friedman test (df = 2) with Kendall's W; p: unadjusted; p (Holm): Holm adjustment over the six Friedman tests of a block (one per classifier).",
-                paste0("Post-hoc statistics: ", table_ref("h2_posthoc"), " (block of the seven datasets: 04_Statistics/results/", main_scenario, "/h2_posthoc.csv).")),
-              paste0("04_Statistics/results/", main_scenario, c("/h2_descriptives.csv", "/h2_friedman.csv", "/h2_posthoc.csv", "/h1_values.csv")))
-}
-
-table_s_h2_posthoc <- function() {
-  raw <- read_stats(main_scenario, "h2_posthoc")
-  raw <- raw[raw$datasets == "all", ]
-  ph <- do.call(rbind, lapply(c("cross_f1", "transfer_loss_f1"), function(resp) {
-    do.call(rbind, lapply(model_keys, function(m) {
-      do.call(rbind, lapply(class_pairs, function(pair) posthoc_pair(raw[raw$response == resp, ], m, pair)))
-    }))
-  }))
-  out <- data.frame(
-    Response = ifelse(ph$response == "cross_f1", "Cross-dataset F1", "Transfer loss"),
-    Classifier = unname(model_labels[ph$model]),
-    Comparison = paste(ph$behavior_1, "vs.", ph$behavior_2), `Test datasets (n)` = ph$n_pairs,
-    `Difference (median [IQR])` = med_iqr(ph$diff_median, ph$diff_q1, ph$diff_q3),
-    `Wilcoxon V` = stat_v(ph$V), p = p_txt(ph$p_value), `p (Holm)` = p_txt(ph$p_holm),
-    `Rank-biserial r` = num(ph$rank_biserial, 2), `Friedman test significant` = yes_no(ph$friedman_significant),
-    `Friedman test significant (Holm)` = yes_no(ph$friedman_significant_holm),
-    check.names = FALSE)
-  write_table("h2_posthoc", "Post-hoc class comparisons (H2).", out,
-              c("Difference: first minus second class, per test dataset; rank-biserial r > 0: the first class is higher. Holm adjustment over the three pairs of a classifier and response.",
-                paste0("Friedman test significant: unadjusted p < 0.05; (Holm): p < 0.05 after Holm adjustment over the six classifiers (", table_ref("h2"), "; ", table_ref("h2_loss"), ")."),
-                "Post-hoc comparisons are interpreted only after a Friedman test that is significant after the Holm adjustment; otherwise they are descriptive."),
-              paste0("04_Statistics/results/", main_scenario, "/h2_posthoc.csv"))
-}
-
-table_s_pairwise <- function() {
-  h <- read_stats(main_scenario, "h3_input")
-  m <- aggregate(macro_f1 ~ train + test, data = h, FUN = mean)
-  same <- unique(paste(h$train, h$test)[as.logical(h$same_species)])
-  names_ds <- sort(unique(c(m$train, m$test)))
-  out <- data.frame(`Training dataset` = short(names_ds), check.names = FALSE)
-  for (te in names_ds) {
-    out[[short(te)]] <- vapply(names_ds, function(tr) {
-      v <- m$macro_f1[m$train == tr & m$test == te]
-      if (length(v) == 0L) return(DASH)
-      paste0(num(v, 2), if (paste(tr, te) %in% same) "*" else "")
-    }, character(1))
-  }
-  write_table("pairwise", "Pairwise transfer between datasets.", out,
-              c("Mean over the six classifiers and five training seeds. *: pair of the same species, left out in H3.",
-                paste0("The diagonal is empty (within-dataset values: ", table_ref("h1_values"), ").")),
-              paste0("04_Statistics/results/", main_scenario, "/h3_input.csv"))
-}
-
-table_s_traits <- function() {
-  tr <- read.csv(traits_file)
-  # Data codes back to the labels of the D37 document (codes replace spaces and hyphens by "_").
-  hyphenated <- c(compact_low_profile_body = "compact low-profile body",
-                  tall_long_necked_quadruped = "tall long-necked quadruped")
-  pretty <- function(x) ifelse(x %in% names(hyphenated), hyphenated[x], gsub("_", " ", x))
-  # D37: the five core traits.
-  out <- data.frame(Species = common(tr$species), `Scientific name` = tr$species,
-                    `Body mass (ln g)` = num(tr$log_body_mass_g, 3),
-                    `Locomotor specialization` = pretty(tr$dominant_locomotor_mode),
-                    `Body configuration` = pretty(tr$body_configuration_type),
-                    `Relative neck length` = pretty(tr$relative_neck_length),
-                    `Food acquisition and handling` = pretty(tr$food_acquisition_handling),
-                    check.names = FALSE)
-  write_table("traits", "Core trait values.", out,
-              c("Gower distance with equal weights; relative neck length ordinal (short < intermediate < long < very long), body mass numeric, the other traits nominal.",
-                "Relative neck length: hedgehog by expert judgement (intermediate as alternative); raccoon supported indirectly (Davis 1964).",
-                paste0("Definitions and sources: ", table_ref("trait_definitions"), ".")),
-              "00_Documentation/traits/species_traits_core.csv")
-}
-
-table_s_distances <- function() {
-  dd <- read_stats(main_scenario, "h3_distances")
-  out <- data.frame(`Species 1` = common(dd$species_1), `Species 2` = common(dd$species_2),
-                    `Core traits (Gower)` = num(dd$gower_core), `Weighted trait distance (gawdis)` = num(dd$gawdis),
-                    EltonTraits = num(dd$elton_core),
-                    `EltonTraits with diet` = num(dd$elton_extended), `Body mass difference` = num(dd$log_body_mass),
-                    `Phylogenetic distance (Myr)` = vapply(dd$divergence_time, function(x) num(x, if (!is.na(x) && x < 1) 3 else 1),
-                                                           character(1)), check.names = FALSE)
-  write_table("distances", "Distances between species.", out,
-              c("Gower distances range from 0 to 1. Body mass difference: absolute difference of the natural log of body mass (g). Phylogenetic distance: divergence time from TimeTree (million years); domestic vs. Przewalski's horse 0.055 Myr, the midpoint of their population divergence of 38–72 kyr (Orlando et al. 2013), since TimeTree gives 10.1 Myr for Equus caballus vs. Equus ferus.",
-                "EltonTraits (Wilman et al. 2014): log body mass, foraging stratum and activity; with diet: also the diet composition. Dog as Canis lupus, Przewalski's horse as Equus ferus.",
-                paste0("Weighted trait distance (gawdis) and EltonTraits with diet: used only in the robustness analyses (", table_ref("h3_variants"), ").")),
-              paste0("04_Statistics/results/", main_scenario, "/h3_distances.csv"))
-}
-
-table_s_per_classifier <- function() {
-  sl <- read_stats(main_scenario, "h3_slopes")
-  sp <- read_stats(main_scenario, "h3_spearman")
-  keys <- c("CNN", "ResNet", "HYDRA", "MultiRocket", "RF", "LGBM")
-  rows <- lapply(keys, function(k) {
-    s <- sp[sp$model == k, ]
-    l <- sl[sl$model == k, ]
-    data.frame(Classifier = unname(model_labels[tolower(k)]),
-               `Records (n)` = s$n,
-               Slope = if (nrow(l) == 1L) est_ci(l$estimate, l$ci_low, l$ci_high) else DASH,
-               `p (slope)` = if (nrow(l) == 1L) p_txt(l$p_value) else DASH,
-               Spearman = est_ci(s$rho, s$ci_low, s$ci_high), `p (Spearman)` = p_txt(s$p_value),
-               `p (Spearman, Holm)` = p_txt(s$p_holm), check.names = FALSE)
-  })
-  out <- do.call(rbind, rows)
-  names(out)[names(out) == "Slope"] <- paste(BETA, "per SD [95 % CI]")
-  names(out)[names(out) == "Spearman"] <- paste("Spearman", RHO, "[95 % CI]")
-  write_table("per_classifier", "Distance effect per classifier (H3).", out,
-              c(paste0(BETA, " per SD: slope of the core trait distance for each classifier in the mixed model with the interaction distance \u00d7 classifier (REML, Satterthwaite df); the interaction is not significant (", table_ref("h3_model"), ")."),
-                "Spearman correlations: descriptive, 95 % CI by Fisher z, Holm adjustment over the six classifiers."),
-              paste0("04_Statistics/results/", main_scenario, c("/h3_slopes.csv", "/h3_spearman.csv")))
-}
-
-table_s_h3_variants <- function() {
-  keys <- c("primary", setdiff(h3_variants, "primary"))
-  out <- rbind(cbind(Group = "Model variant", h3_model_table(keys)),
-               cbind(Group = "Other distance", h3_model_table(h3_distances)),
-               cbind(Group = "Trait sensitivity", h3_model_table(h3_trait_sensitivity)),
-               cbind(Group = "Exploratory", h3_model_table(h3_addbacks)))
-  write_table("h3_variants", "Robustness of the distance effect (H3).", h3_header(out),
-              c(paste0(BETA, " per SD: change per SD of the distance with 95 % CI (REML fit, Satterthwaite df); LR: likelihood-ratio test of ML fits against the model without the distance ",
-                       "(interaction: against the primary model); R\u00b2 after Nakagawa."),
-                "Random effects without unordered pair: random intercepts of the ordered pair, the source and the target species; random effect of ordered pair only: no species effects.",
-                "Adjusted for within-dataset Macro-F1: within-dataset Macro-F1 of source and target as covariates (pairs with the hedgehog left out).",
-                "Retention as response: transfer Macro-F1 / within-dataset Macro-F1 of the target (hedgehog as target left out). Weighted trait distance: Gower distance with gawdis trait weights.",
-                "RF and LightGBM only: the two classifiers of the sensitivity scenarios.",
-                paste0("Other distances, each z-scored in the primary model: EltonTraits with and without diet; body mass difference; phylogenetic distance (", table_ref("distances"), ")."),
-                "Exploratory: Gower distance of the five core traits plus one trait excluded from the core distance (trunk motion amplitude or directional change tendency; ordinal low < moderate < high < very high), equal weights; not part of the test of H3.",
-                "Trait sensitivity: the core trait distance after one change, all other inputs fixed: the raccoon in a separate body configuration group, the hedgehog's relative neck length intermediate, the cattle's short, or one of the five traits left out (equal weights over the other four); robustness checks, not tests of H3. \u2020 Added after the results were known."),
-              paste0("04_Statistics/results/", main_scenario, "/h3_models.csv"))
-}
-
-table_s_loso <- function() {
-  l <- read_stats(main_scenario, "h3_loso")
-  out <- data.frame(`Species left out` = common(l$left_out), `Scientific name` = l$left_out,
-                    `Records (n)` = l$n_observations, `Ordered species pairs` = l$n_ordered_pairs,
-                    `beta [95 % CI]` = est_ci(l$estimate, l$ci_low, l$ci_high), SE = num(l$std_error),
-                    `LR chi2 (df)` = paste0(num(l$lr_chisq, 2), " (", l$lr_df, ")"), p = p_txt(l$lr_p_value),
-                    `R2 marginal` = num(l$r2_marginal, 2), `R2 conditional` = num(l$r2_conditional, 2),
-                    `Singular fit` = yes_no(l$singular_reml), check.names = FALSE)
-  write_table("loso", "Leave-one-species-out refits (H3).", h3_header(out),
-              c(paste0("Distance z-scored again in each refit. Range of ", BETA, ": ", num(min(l$estimate)), " to ", num(max(l$estimate)),
-                       "; p < 0.05 in ", sum(l$lr_p_value < 0.05), " of ", nrow(l), " refits.")),
-              paste0("04_Statistics/results/", main_scenario, "/h3_loso.csv"))
-}
-
-table_s_seeds <- function() {
-  s <- read_stats(main_scenario, "h3_seeds")
-  out <- data.frame(`Training seed` = s$seed, `Records (n)` = s$n_observations,
-                    `beta [95 % CI]` = est_ci(s$estimate, s$ci_low, s$ci_high),
-                    SE = num(s$std_error), `LR chi2 (df)` = paste0(num(s$lr_chisq, 2), " (", s$lr_df, ")"),
-                    p = p_txt(s$lr_p_value), `R2 marginal` = num(s$r2_marginal, 2),
-                    `R2 conditional` = num(s$r2_conditional, 2), `Singular fit` = yes_no(s$singular_reml),
-                    check.names = FALSE)
-  write_table("seeds", "Primary model per training seed (H3).", h3_header(out),
-              paste0("The test of H3 uses the mean over the seeds (", table_ref("h3"), "); the single seeds show the variability between training runs."),
-              paste0("04_Statistics/results/", main_scenario, "/h3_seeds.csv"))
-}
-
 table_s_scenarios <- function() {
   s <- scenario_rows()
-  rows <- lapply(s$present, function(sc) {
+  out <- do.call(rbind, lapply(s$present, function(sc) {
     h1 <- s$h1[s$h1$scenario == sc, ]
     h2 <- s$h2[s$h2$scenario == sc, ]
     h3 <- s$h3[s$h3$scenario == sc, ]
     cell_h1 <- function(m) {
       r <- h1[h1$model == m, ]
-      if (nrow(r) == 0L) return(c(DASH, DASH))
+      if (nrow(r) == 0L) return(c(EMDASH, EMDASH))
       c(med_iqr(r$gap_median, r$gap_q1, r$gap_q3), p_txt(r$p_value))
     }
     cell_h2 <- function(m) {
       r <- h2[h2$model == m, ]
-      if (nrow(r) == 0L) return(DASH)
-      paste0(CHI2, "(", r$df, ") = ", num(r$chi_sq, 2), ", p ", if (r$p_value < 0.001) "< 0.001" else paste("=", p_txt(r$p_value)))
+      if (nrow(r) == 0L) return(EMDASH)
+      paste0(CHI2, "(", r$df, ") = ", num(r$chi_sq, 2), ", ", p_eq(r$p_value))
     }
     rf <- cell_h1("rf")
     lg <- cell_h1("lgbm")
-    data.frame(Scenario = unname(scenarios[sc]), `H1 test datasets (n)` = max(h1$n_pairs),
-               `H1 difference, RF` = rf[1], `H1 p, RF` = rf[2], `H1 difference, LightGBM` = lg[1], `H1 p, LightGBM` = lg[2],
-               `H2 Friedman test, RF` = cell_h2("rf"), `H2 Friedman test, LightGBM` = cell_h2("lgbm"),
-               `H3 beta [95 % CI]` = if (nrow(h3) == 1L) est_ci(h3$estimate, h3$ci_low, h3$ci_high) else DASH,
-               `H3 p` = if (nrow(h3) == 1L) p_txt(h3$lr_p_value) else DASH, check.names = FALSE)
-  })
-  out <- do.call(rbind, rows)
-  names(out) <- sub("beta", paste(BETA, "per SD"), names(out))
-  # Test datasets of H1 that a scenario loses (no within-dataset value there).
+    data.frame(a = unname(scenarios[sc]), b = max(h1$n_pairs), c = rf[1], d = rf[2], e = lg[1], f = lg[2],
+               g = cell_h2("rf"), h = cell_h2("lgbm"),
+               i = if (nrow(h3) == 1L) est_ci(h3$estimate, h3$ci_low, h3$ci_high) else EMDASH,
+               j = if (nrow(h3) == 1L) p_txt(h3$lr_p_value) else EMDASH)
+  }))
+  names(out) <- c("Scenario", "H1 n", "H1 difference, RF", "H1 p, RF", "H1 difference, LightGBM", "H1 p, LightGBM",
+                  "H2 Friedman test, RF", "H2 Friedman test, LightGBM", paste("H3", BETA, "per SD [95% CI]"), "H3 p")
+  # Datasets of H1 that a scenario loses (no valid within-dataset evaluation there).
   h1_sets <- lapply(setNames(s$present, s$present), function(sc) unique(read_stats(sc, "h1_values")$dataset))
-  lost <- vapply(s$present, function(sc) paste(short(setdiff(h1_sets[["primary"]], h1_sets[[sc]])), collapse = " and "),
-                 character(1))
-  lost_text <- paste(paste0(unname(scenarios[s$present[nzchar(lost)]]), ": without ", lost[nzchar(lost)]), collapse = "; ")
-  write_table("scenarios", "Sensitivity scenarios.", out,
-              c(paste0("H1: within-dataset minus cross-dataset Macro-F1, median [interquartile range] over the test datasets, paired Wilcoxon signed-rank test. ",
-                       "H2: Friedman test of the cross-dataset F1 of the classes (four classes: df 3), p unadjusted."),
-                "H3: primary model fitted to the RF and LightGBM results only (also in the primary scenario, so all rows are comparable).",
-                "Scenario definitions: Text S1.",
-                if (nzchar(lost_text)) paste0("H1 test datasets: datasets with a within-dataset value; ", lost_text,
-                                              " (no individual that meets the rule for a test unit and can be held out with at least 30 training windows per class).")),
-              c("04_Statistics/results/<scenario>/h1_tests.csv", "04_Statistics/results/<scenario>/h2_friedman.csv",
-                "04_Statistics/results/<scenario>/h3_models.csv"))
+  lost <- lapply(s$present, function(sc) setdiff(h1_sets[["primary"]], h1_sets[[sc]]))
+  lost_text <- unlist(lapply(seq_along(lost), function(i) {
+    if (length(lost[[i]]) == 0L) return(NULL)
+    sc <- s$present[i]
+    name <- if (sc == "four_classes") "the four-class scenario" else paste0("the scenario “", scenarios[[sc]], "”")
+    paste0("In ", name, ", ", join_and(dataset_label(lost[[i]])), " additionally lacked valid within-dataset evaluations, ",
+           "leaving ", words(length(h1_sets[[sc]])), " paired datasets.")
+  }))
+  write_table("scenarios", paste0("Sensitivity analyses of H1", DASH, "H3 using Random Forest and LightGBM."), out,
+              c(paste(c("H1 difference is within-dataset minus cross-dataset Macro-F1, summarized as median [first quartile, third quartile] across datasets with both evaluation scores. H1 p-values are unadjusted and are from paired Wilcoxon signed-rank tests. H1 n denotes the number of paired datasets.",
+                        lost_text), collapse = " "),
+                "H2 reports Friedman tests of cross-dataset F1 across behavioral classes. All H2 p-values shown here are unadjusted. The four-class scenario compares four classes and is therefore not directly equivalent to the three-class comparisons.",
+                paste0("H3 reports the standardized distance coefficient and unadjusted likelihood-ratio p-value from the primary ",
+                       "mixed-effects model fitted to RF and LightGBM only. This restriction also applies to the primary reference ",
+                       "row, ensuring comparable classifier coverage across scenarios. All H1", DASH, "H3 p-values in this table are ",
+                       "unadjusted and are reported for exploratory comparison across scenarios. Scenario definitions are provided ",
+                       "in Supplementary ", text_ref("scenarios"), ".")),
+              c("04_Statistics/results/<scenario>/h1_tests.csv", "04_Statistics/results/<scenario>/h1_values.csv",
+                "04_Statistics/results/<scenario>/h2_friedman.csv", "04_Statistics/results/<scenario>/h3_models.csv"))
+}
+
+# =========================================================
+# Supplement: figures
+# =========================================================
+# Figure S1: the workflow diagram (drawn by hand; 05_Paper_Outputs/assets/).
+figure_s_workflow <- function() {
+  it <- output_item("Figure", "workflow")
+  if (!file.exists(workflow_file)) stop(rel_path(workflow_file), " not found")
+  dir.create(file.path(out_dir, it$folder), recursive = TRUE, showWarnings = FALSE)
+  file <- file.path(out_dir, it$folder, paste0(it$name, ".png"))
+  file.copy(workflow_file, file, overwrite = TRUE)
+  register(it, file, "Overview of the analytical workflow.", rel_path(workflow_file))
+  cat("[OK]", rel_path(file), "\n")
+  write_caption("workflow", paste0(
+    "Overview of the analytical workflow. Eleven accelerometer datasets representing nine terrestrial mammal species ",
+    "were processed using a common preprocessing and behavioral harmonization framework. Six classifiers were evaluated ",
+    "across three generalization settings to address hypotheses H1", DASH, "H3. The Horse branch groups Horse 1 ",
+    "(Przewalski", APOS, "s horse) and Horse 2 (domestic horse), which were treated as separate species in the ",
+    "cross-species analyses."))
+}
+
+# Figure S2: transfer loss by class.
+figure_s_h2_loss <- function() {
+  p <- plot_classes("transfer_loss_f1", "Transfer loss (F1)")
+  save_figure(p, "h2_loss", 180, 118, "Transfer loss by behavioral class and classifier.",
+              paste0("04_Statistics/results/", main_scenario, c("/h2_values.csv", "/h2_friedman.csv")))
+  write_caption("h2_loss", paste0("Transfer loss by behavioral class and classifier. Within- minus cross-dataset F1; ",
+                                  "points: test datasets (n = ", n_blocks("transfer_loss_f1"), "), mean of five training seeds; ",
+                                  "boxes: median and interquartile range. Statistics: ", table_ref("h2_loss"), "."))
+}
+
+# Figure S3: mean row-normalized cross-dataset confusion matrices (h2_confusion_cross.csv of
+# 04_Statistics/stats_h1_h2.py, from 03_Evaluation/results/primary/<model>/confusion.csv).
+figure_s_confusion <- function() {
+  file <- file.path(stats_dir, main_scenario, "h2_confusion_cross.csv")
+  if (!file.exists(file)) {
+    need <- file.path("03_Evaluation", "results", main_scenario, model_keys, "confusion.csv")
+    stop(rel_path(file), " not found; it needs ", paste(need[!file.exists(file.path(root, need))], collapse = ", "),
+         " and a run of 04_Statistics/stats_h1_h2.py")
+  }
+  d <- read.csv(file)
+  d <- d[d$truth %in% classes & d$pred %in% classes, ]
+  d$model <- model_factor(d$model)
+  d$truth <- factor(d$truth, levels = rev(classes))
+  d$pred <- factor(d$pred, levels = classes)
+  d$label <- paste0(formatC(d$percent_mean, format = "f", digits = 1), "%")
+  p <- ggplot(d, aes(pred, truth, fill = percent_mean)) +
+    geom_tile(colour = "white", linewidth = 0.8) +
+    geom_text(aes(label = label, colour = percent_mean > 50), size = 2.9) +
+    scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = INK), guide = "none") +
+    scale_fill_gradient(low = "white", high = CONFUSION_HIGH, limits = c(0, 100), breaks = seq(0, 100, 25),
+                        labels = function(x) paste0(x, "%"), name = "Proportion") +
+    facet_wrap(~ model, ncol = 3) +
+    coord_equal() +
+    labs(x = "Predicted behavior", y = "True behavior") +
+    theme_minimal(base_size = 10) +
+    theme(panel.grid = element_blank(), strip.text = element_text(face = "bold", size = 10),
+          axis.text = element_text(colour = INK_2), axis.text.x = element_text(angle = 30, hjust = 1),
+          legend.title = element_text(size = 10), plot.background = element_rect(fill = "white", colour = NA))
+  save_figure(p, "confusion", 180, 112.5, "Row-normalized confusion matrices for cross-dataset evaluation by classifier.",
+              paste0("04_Statistics/results/", main_scenario, "/h2_confusion_cross.csv"))
+  write_caption("confusion", paste0(
+    "Row-normalized confusion matrices for cross-dataset evaluation by classifier. Rows represent true behaviors and columns ",
+    "represent predicted behaviors. For each classifier, counts were normalized within each true behavior for each target ",
+    "dataset and training seed. Cell values show the resulting percentages averaged across ", max(d$n_datasets),
+    " target datasets and ", words(max(d$n_seeds)), " training seeds, with equal weight given to each dataset and seed. ",
+    "Diagonal cells show the percentage of correctly classified windows for each behavior."))
 }
 
 # =========================================================
 # Run
 # =========================================================
 main <- function() {
-  jobs <- list(figure_1 = figure_1, table_1 = table_1, figure_2 = figure_2, table_2 = table_2,
-               figure_3 = figure_3, table_3 = table_3,
-               table_s_mapping = table_s_mapping, table_s_features = table_s_features,
-               table_s_preprocessing = table_s_preprocessing, table_s_models = table_s_models,
-               table_s_trait_definitions = table_s_trait_definitions, table_s_h3_model = table_s_h3_model,
-               figure_s1 = figure_s1, figure_s2 = figure_s2, figure_s3 = figure_s3,
-               table_s_datasets = table_s_datasets, table_s_h1_values = table_s_h1_values,
-               table_s_h1_tests = table_s_h1_tests, table_s_h2_values = table_s_h2_values,
-               table_s_h2_loss = table_s_h2_loss, table_s_h2_posthoc = table_s_h2_posthoc,
-               table_s_pairwise = table_s_pairwise, table_s_traits = table_s_traits,
-               table_s_distances = table_s_distances, table_s_per_classifier = table_s_per_classifier,
-               table_s_h3_variants = table_s_h3_variants, table_s_loso = table_s_loso, table_s_seeds = table_s_seeds,
-               table_s_scenarios = table_s_scenarios)
+  jobs <- list(table_1 = table_1, figure_1 = figure_1, table_2 = table_2, figure_2 = figure_2,
+               table_3 = table_3, figure_3 = figure_3,
+               table_s_datasets = table_s_datasets, table_s_windows = table_s_windows,
+               table_s_mapping = table_s_mapping, table_s_preprocessing = table_s_preprocessing,
+               table_s_features = table_s_features, table_s_models = table_s_models,
+               table_s_trait_definitions = table_s_trait_definitions, table_s_traits = table_s_traits,
+               table_s_h1_same_windows = table_s_h1_same_windows, table_s_h2_posthoc = table_s_h2_posthoc,
+               table_s_h2_loss = table_s_h2_loss, table_s_h3_model = table_s_h3_model,
+               table_s_h3_robustness = table_s_h3_robustness, table_s_per_classifier = table_s_per_classifier,
+               table_s_loso = table_s_loso, table_s_seeds = table_s_seeds, table_s_scenarios = table_s_scenarios,
+               figure_s_workflow = figure_s_workflow, figure_s_h2_loss = figure_s_h2_loss,
+               figure_s_confusion = figure_s_confusion)
   dir.create(out_dir, showWarnings = FALSE)
   # Remove the generated files of the last run (not the hand-written texts), so a renumbered
   # or dropped item leaves no file with an outdated number behind.
@@ -1183,12 +1183,13 @@ main <- function() {
     }
   }
   for (i in seq_len(nrow(texts))) {
+    label <- text_ref(texts$key[i])
     if (file.exists(file.path(out_dir, texts$file[i]))) {
-      contents <<- rbind(contents, data.frame(item = texts$item[i], section = SUPP, title = texts$title[i],
+      contents <<- rbind(contents, data.frame(item = label, section = SUPP, title = texts$title[i],
                                               file = rel_path(file.path(out_dir, texts$file[i])), caption_file = "",
                                               sources = texts$sources[i]))
     } else {
-      errors <- c(errors, paste0(texts$item[i], ": ", texts$file[i], " not found"))
+      errors <- c(errors, paste0(label, ": ", texts$file[i], " not found"))
     }
   }
   # output_manifest.csv: main, then supplementary; tables, figures, texts; by number.

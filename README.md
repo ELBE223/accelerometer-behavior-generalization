@@ -35,12 +35,30 @@ The repository is organized around six stages:
 - **04_Statistics** — Hypothesis testing and robustness analyses
 - **05_Paper_Outputs** — Manuscript figures, tables, and supplementary materials
 
+## Running the analysis
+
+Requirements: Python 3.11 and R (packages lme4, lmerTest, cluster, ggplot2, patchwork).
+From the project folder:
+
+1. Set up the Python environment with the locked package versions:
+   `python3.11 setup_project.py`
+2. Preprocess the raw data (needs the raw datasets in `data/raw/`):
+   `bash run_pipeline.sh pipeline`
+3. Train and evaluate the six classifiers, then the sensitivity scenarios:
+   `bash run_pipeline.sh models all` and `bash run_pipeline.sh sensitivity`
+4. Statistics, tables, figures and checks from the stored model results
+   (`03_Evaluation/results/`, no raw data needed): `bash run_pipeline.sh stats`
+
+Step 4 runs `04_Statistics/stats_h1_h2.py`, `04_Statistics/stats_h3.R`,
+`05_Paper_Outputs/paper_figures.R` and `tests/check_paper_outputs.py`. Methodological
+decisions are listed in `00_Documentation/decisions.md`.
+
 ## Data availability
 
 Two datasets are publicly available:
 
 - [Horsing Around – A Dataset Comprising Horse Movement](https://doi.org/10.4121/uuid:2e08745c-4178-4183-8551-f248c992cb14)
-- [Japanese Black Beef Cow Behavior Classification Dataset](https://doi.org/10.5281/zenodo.5399258)
+- [Japanese Black Beef Cow Behavior Classification Dataset](https://doi.org/10.5281/zenodo.5849025)
 
 The remaining datasets are subject to access restrictions and cannot be redistributed.
 

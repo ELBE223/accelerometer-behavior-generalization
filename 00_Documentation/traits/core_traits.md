@@ -1,7 +1,9 @@
 # Core Trait Definitions Sources and Coding
 
 > Definitions and coding of the five core traits (D37). Machine-readable values:
-> [species_traits_core.csv](species_traits_core.csv).
+> [species_traits_core.csv](species_traits_core.csv) (Table S8); definitions, coding and
+> sources as in the supplement: [core_trait_definitions.csv](core_trait_definitions.csv)
+> (Table S7).
 
 The final core set covers body mass, locomotor specialization, body configuration, relative neck length, and food acquisition and handling. Literature supports the traits and source data; some categories are our own analytical assignments.
 
@@ -65,9 +67,11 @@ Each trait describes a way in which the same behavior may produce a different ac
 
 **Body mass provenance.** EltonTraits provides six references: European bison, cattle, domestic horse, giraffe, raccoon, and fox. The 300 kg reference for Przewalski’s horse comes from Gerstner & Gerstein [2], Table 1. The hedgehog value of 1.032 kg comes from Cibis (2017), Table 4. The dog value of 26.7464 kg is the equally weighted mean of two study means from Szangolies (2017), Table 2, and Groth (2020), Table 2. It is not a pooled mean of all dogs analysed in the model. Full cohort sources are available from the authors on request.
 
-**Scope and next step.** Literature data, derived categories, and expert assignments are documented separately. Sources and clearly defined categories do not by themselves validate an association with transfer performance. The adopted classification should be evaluated through sensitivity analyses of uncertain assignments and omission of individual traits; these analyses have not yet been performed.
+**Scope and sensitivity.** Literature data, derived categories, and expert assignments are documented separately. Sources and clearly defined categories do not by themselves validate an association with transfer performance. The uncertain assignments (raccoon body configuration, hedgehog and cattle relative neck length) and the omission of each trait were evaluated as sensitivity analyses of the H3 model (D38, D43; Table S13).
 
-**Decision status.** Final (5 November 2026, decision D37). Body mass, locomotor specialization, and body configuration are retained from the previous decisions. Relative neck length and the three food acquisition and handling groups are adopted; they replace the earlier head-neck contribution and feeding/foraging mode traits. Trunk motion amplitude and directional change tendency are excluded from the main distance and used only in exploratory comparisons. These tables do not report a newly calculated H3 analysis.
+**Decision status.** Final (5 November 2026, decision D37). Body mass, locomotor specialization, and body configuration are retained from the previous decisions. Relative neck length and the three food acquisition and handling groups are adopted; they replace the earlier head-neck contribution and feeding/foraging mode traits. Trunk motion amplitude and directional change tendency are not core traits; their exploratory add-back analyses and the weighted (gawdis) trait distance were removed from the final analysis (D51) and are archived with their scores in `04_Statistics/archive/h3_exploratory/`.
+
+**EltonTraits.** The alternative EltonTraits distances (Table 3, Table S13, Text S2) use the species-level data of Wilman et al. (2014). The rows of the nine study species (with the matched names *Canis lupus* and *Equus caballus*) are kept in [eltontraits_study_species.txt](eltontraits_study_species.txt); `04_Statistics/stats_h3.R` rewrites this file whenever `data/raw/EltonTraits/MamFuncDat.txt` is present and reads it otherwise.
 
 ## Selected references
 
@@ -99,4 +103,4 @@ Each trait describes a way in which the same behavior may produce a different ac
 
 ### Traceability of species values
 
-Decisions on the traits are in [decisions.md](../decisions.md) (D30–D38, D43, D48). The detailed evidence behind each value (cohort sources for body mass, vertebral measurements and r values of the relative neck length) is available from the authors on request. The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.
+Decisions on the traits are in [decisions.md](../decisions.md) (D30–D38, D43, D48, D51). The detailed evidence behind each value (cohort sources for body mass, vertebral measurements and r values of the relative neck length) is available from the authors on request. The references listed here are a targeted selection and do not imply complete direct evidence for every assignment.

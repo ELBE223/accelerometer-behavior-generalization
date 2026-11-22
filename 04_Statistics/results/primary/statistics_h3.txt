@@ -17,19 +17,16 @@ likelihood-ratio test of ML fits; S2 on the retention scale)
   S1 within covariates           n 336  beta -0.010 [-0.054, 0.035]  SE 0.022  LR chi2(1) 0.21  p 0.649
   S2 retention                   n 384  beta -0.017 [-0.062, 0.028]  SE 0.022  LR chi2(1) 0.63  p 0.428
   S2 log retention               n 384  beta -0.026 [-0.108, 0.055]  SE 0.040  LR chi2(1) 0.46  p 0.499
-  S3 gawdis distance             n 432  beta -0.037 [-0.074, -0.000]  SE 0.018  LR chi2(1) 4.21  p 0.040  (singular fit)
   RF and LGBM only (D27)         n 144  beta -0.010 [-0.043, 0.023]  SE 0.016  LR chi2(1) 0.40  p 0.526
 
   R2 (Nakagawa) of the primary model: marginal 0.390, conditional 0.821
 
-OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)
-  core + C4 / core + C5: exploratory six-trait add-backs of one excluded trait each.
-  exploratory core + C4 (D36)    n 432  beta -0.036 [-0.073, 0.001]  SE 0.018  LR chi2(1) 3.94  p 0.047  (singular fit)
-  exploratory core + C5 (D37)    n 432  beta -0.020 [-0.055, 0.014]  SE 0.017  LR chi2(1) 2.18  p 0.140
+OTHER DISTANCES (D28; primary model, distance z-scored)
   EltonTraits core               n 432  beta -0.024 [-0.057, 0.010]  SE 0.016  LR chi2(1) 2.19  p 0.139
   EltonTraits extended           n 432  beta -0.007 [-0.042, 0.028]  SE 0.017  LR chi2(1) 0.16  p 0.689
   divergence time (TimeTree)     n 432  beta 0.002 [-0.030, 0.033]  SE 0.015  LR chi2(1) 0.01  p 0.935
   log body mass                  n 432  beta -0.018 [-0.052, 0.015]  SE 0.016  LR chi2(1) 2.17  p 0.141
+  EltonTraits source: data/raw/EltonTraits/MamFuncDat.txt
   EltonTraits names: Canis lupus familiaris = Canis lupus; Equus ferus przewalskii = Equus caballus
 
 TRAIT SENSITIVITY (D38, D43; primary model with the core distance after one change, z-scored; robustness only)
@@ -90,14 +87,6 @@ S1: VARIANCE INFLATION FACTORS
            model 4.265119
  z_source_within 2.450950
  z_target_within 2.446834
-
-S3: GAWDIS TRAIT WEIGHTS (equal weights reproduce the Gower distance: max. difference 1.1e-16)
-                     trait weight_equal correlation_equal weight_analytic weight_optimized correlation_optimized
-           log_body_mass_g          0.2         0.8355795      -0.3636564      0.008008989             0.7286163
-   dominant_locomotor_mode          0.2         0.7410796       0.1477552      0.130288362             0.6220316
-   body_configuration_type          0.2         0.4325427       0.4112123      0.311096464             0.6043716
-      relative_neck_length          0.2         0.5522574       0.3642563      0.311835546             0.6210533
- food_acquisition_handling          0.2         0.6829983       0.4404327      0.238770638             0.5673634
 
 NOTES
   Species without within value (left out in S1; as target in S2): Erinaceus europaeus
