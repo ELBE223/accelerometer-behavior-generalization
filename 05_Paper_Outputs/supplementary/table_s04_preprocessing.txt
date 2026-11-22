@@ -1,0 +1,16 @@
+Table S4. Dataset-specific preprocessing and conversion.
+
+Dataset	Native rate (Hz)	Input unit	Segment definition	Dataset-specific processing
+Bison	33.33	e-obs counts	Burst time and sample-number boundaries	Individual sheets were read; summary sheets were omitted.
+Cattle	25	g	Continuous data split at timestamp discontinuities	Repeated or decreasing timestamps also started new segments.
+Dog 1	33.33	e-obs counts	Reconstructed bursts	Rows coded for another dog were removed. HH.MM:SS times were interpreted as HH:MM:SS.
+Dog 2	20	e-obs counts	Reconstructed bursts	Only sensor 6568; 124 samples per burst. Duplicate recording files were read once, with one analytical unit per distinct recording.
+Fox	33.33	e-obs counts	Reconstructed bursts	Recording identifiers were used to distinguish burst boundaries.
+Giraffe	33.33	e-obs counts	Reconstructed bursts	Sampling rate based on sample timestamps. Behavior category and source code combined for label mapping.
+Hedgehog	100	e-obs counts	Reconstructed bursts	Many bursts were incomplete. Animal names, rather than reused tag IDs, identified individuals.
+Horse 1	33.33	e-obs counts	Burst time and sample-number boundaries	The sheet excluded by the original author was omitted; two sheets representing the same horse were combined.
+Horse 2	100	m/s²	Original segments (up to 10 s; no absolute timestamps)	Source boundaries were retained. Parts without a label column and entirely unlabeled segments were omitted.
+Raccoon 1	33.33	e-obs counts	Reconstructed bursts	Only the 96-sample setting (2.88 s) contributed windows; the 54-sample setting (1.62 s) was too short.
+Raccoon 2	33.33	e-obs counts	Reconstructed bursts	Empty spreadsheet rows were removed; recording IDs were distinguished from sample-row indices.
+
+Acceleration was expressed in g: e-obs counts were converted as (value − 2048)/512, Horse 2 values were divided by 9.80665, and Cattle values were already in g. Segments were processed separately at 25 Hz using polyphase resampling with anti-aliasing where resampling was required. Windows contained 50 samples (2.0 s) and never crossed segment boundaries; training windows used a 1.0-s step, whereas evaluation windows were non-overlapping. Label mapping and exclusions followed Table S3.

@@ -1,0 +1,10 @@
+Table S16. Seed-level robustness analysis of the biological-distance association.
+
+Training seed	β per SD [95% CI]	SE	LR χ²	p	R² marginal / conditional	Singular fit
+42	-0.020 [-0.055, 0.016]	0.018	1.28	0.257	0.34 / 0.78	No
+43	-0.023 [-0.058, 0.012]	0.017	1.78	0.182	0.34 / 0.75	No
+44	-0.027 [-0.064, 0.009]	0.018	2.33	0.127	0.37 / 0.77	Yes
+45	-0.020 [-0.055, 0.015]	0.017	1.38	0.239	0.37 / 0.82	No
+46	-0.027 [-0.062, 0.008]	0.017	2.99	0.084	0.41 / 0.81	No
+
+The primary mixed-effects model was fitted separately to the results of each training seed. Each fit included 432 observations representing 72 ordered species pairs and six classifiers. β is the change in cross-species Macro-F1 per standard deviation of core trait distance, with confidence intervals obtained from the restricted maximum-likelihood fit. LR denotes the likelihood-ratio test against the corresponding model without distance (df = 1). These analyses describe variability between training runs; the primary H3 analysis uses scores averaged over all five seeds. Singular fit indicates a boundary fit of the random-effects structure.

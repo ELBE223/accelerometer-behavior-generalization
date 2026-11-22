@@ -1,0 +1,14 @@
+Table S8. Species-specific functional-biomechanical trait values.
+
+Species	Body mass (ln g)	Locomotor specialization	Body configuration	Relative neck length	Food acquisition and handling
+Bison (Bison bonasus)	13.122	Cursorial	Robust quadruped	Intermediate	Vegetation cropping
+Cattle (Bos taurus)	13.710	Cursorial	Robust quadruped	Intermediate	Vegetation cropping
+Dog (Canis lupus familiaris)	10.194	Cursorial	Standard quadruped	Intermediate	Oral item acquisition
+Fox (Vulpes vulpes)	8.608	Cursorial	Standard quadruped	Intermediate	Oral item acquisition
+Giraffe (Giraffa camelopardalis)	13.710	Cursorial	Tall long-necked quadruped	Very long	Vegetation cropping
+Hedgehog (Erinaceus europaeus)	6.939	Terrestrial generalist	Compact low-profile body	Short	Oral item acquisition
+Horse 1 (Equus ferus przewalskii)	12.612	Cursorial	Standard quadruped	Long	Vegetation cropping
+Horse 2 (Equus caballus)	12.429	Cursorial	Standard quadruped	Long	Vegetation cropping
+Raccoon (Procyon lotor)	8.617	Scansorial	Standard quadruped	Short	Manual food handling
+
+Body mass was expressed as the natural logarithm of mass in grams. Relative neck length was classified using r = C/(T + L + S), where C, T, L, and S represent cervical, thoracic, lumbar, and sacral vertebral lengths, respectively. Categories were defined as short (r < 0.30), intermediate (0.30 ≤ r < 0.40), long (0.40 ≤ r < 1.00), and very long (r ≥ 1.00). All categorical trait assignments were study-specific. The hedgehog neck-length classification was based on expert judgement, while the raccoon classification relied on indirect anatomical evidence. The five traits were combined using equally weighted Gower distance. Body mass values came from EltonTraits for six taxa, Gerstner and Gerstein (2008) for Horse 1, and study-specific records for Hedgehog and Dog; the Dog value was the unweighted mean of the two study means.

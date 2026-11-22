@@ -1,0 +1,11 @@
+Table S6. Classifier implementations and training settings.
+
+Classifier	Input	Implementation	Configuration
+Random Forest	26 handcrafted features	scikit-learn 1.9.1	Default parameters; 100 trees
+LightGBM	26 handcrafted features	LightGBM 4.7.0	Default parameters; multiclass objective
+CNN	Raw acceleration (3 × 50 samples)	PyTorch 2.14.1	3 convolutional blocks (32, 64, 128 filters; kernels 5, 5, 3); batch normalization, ReLU, pooling; dropout 0.25
+ResNet	Raw acceleration (3 × 50 samples)	PyTorch 2.14.1	Stem convolution (64 filters, kernel 7); 3 residual blocks (64, 128, 128 filters; kernels 7, 5, 3); dropout 0.25
+HYDRA	Raw acceleration (3 × 50 samples)	aeon 1.6.0	Default parameters
+MultiRocket	Raw acceleration (3 × 50 samples)	aeon 1.6.0	Default parameters
+
+CNN and ResNet used training-set channel standardization, Adam optimization (learning rate = 0.001), cross-entropy loss, a batch size of 256, and 30 epochs without early stopping. All classifiers were evaluated using five random seeds (42–46). Training was limited to 250 windows per dataset and behavioral class, sampled across segments, with at least 30 training windows required per class.

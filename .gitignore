@@ -5,9 +5,11 @@ data/*
 
 # Written by the pipeline and the model runs, kept only locally: per-dataset logs of the
 # preprocessing (the summaries *.csv are in git) and the model details that no analysis
-# reads (the statistics use metrics.csv only), and the run overview
+# reads (the statistics use metrics.csv and, for Figure S3, the confusion matrices of the
+# primary analysis), and the run overview
 01_Preprocessing/reports/pipeline_reports/*.txt
 03_Evaluation/results/*/*/confusion.csv
+!03_Evaluation/results/primary/*/confusion.csv
 03_Evaluation/results/*/*/importance.csv
 03_Evaluation/results/*/*/training_sets.csv
 03_Evaluation/results/*/*/within_folds.csv
@@ -27,3 +29,6 @@ __pycache__/
 # macOS
 .DS_Store
 ._*
+
+# Log of a failed run of 05_Paper_Outputs/paper_figures.R
+05_Paper_Outputs/errors.txt

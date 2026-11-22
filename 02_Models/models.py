@@ -1,7 +1,7 @@
 # models.py
 #
 # Purpose:
-# - The six classifiers (D22, D25; Table S5), behind one
+# - The six classifiers (D22, D25; Table S6), behind one
 #   interface: make_model(name, seed, classes) returns an object with fit(X, y) and
 #   predict(X); INPUT[name] says whether X are the window features ("features",
 #   n x 26) or the window signals ("signals", n x 3 x samples, in g).
@@ -25,7 +25,7 @@ INPUT = {"rf": "features", "lgbm": "features", "cnn": "signals", "resnet": "sign
          "hydra": "signals", "multirocket": "signals"}
 MODEL_NAMES = list(INPUT)
 
-# Settings of CNN and ResNet (Table S5)
+# Settings of CNN and ResNet (Table S6)
 BATCH_SIZE = 256
 EPOCHS = 30
 LEARNING_RATE = 1e-3

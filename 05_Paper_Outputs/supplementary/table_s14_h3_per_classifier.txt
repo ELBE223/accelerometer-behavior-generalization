@@ -1,0 +1,11 @@
+Table S14. Classifier-specific associations between trait distance and cross-species Macro-F1.
+
+Classifier	β per SD [95% CI]	p (slope)	Spearman ρ [95% CI]	p (Spearman)	p (Spearman, Holm)
+CNN	-0.023 [-0.062, 0.015]	0.234	-0.231 [-0.439, 0.001]	0.051	0.154
+ResNet	-0.030 [-0.069, 0.008]	0.120	-0.292 [-0.491, -0.065]	0.013	0.076
+HYDRA	-0.028 [-0.066, 0.011]	0.155	-0.249 [-0.455, -0.019]	0.035	0.138
+MultiRocket	-0.029 [-0.068, 0.010]	0.138	-0.278 [-0.479, -0.049]	0.018	0.090
+RF	-0.019 [-0.058, 0.020]	0.330	-0.200 [-0.413, 0.033]	0.092	0.154
+LightGBM	-0.017 [-0.055, 0.022]	0.393	-0.218 [-0.428, 0.014]	0.066	0.154
+
+Each classifier contributed 72 ordered source–target species pairs. β represents the classifier-specific slope of standardized core trait distance in the mixed-effects model containing the distance × classifier interaction. Estimates and confidence intervals were obtained from the restricted maximum-likelihood fit using Satterthwaite degrees of freedom. The overall interaction was not significant (likelihood-ratio χ²(5) = 2.09, p = 0.836). Spearman correlations are descriptive summaries of the species-pair associations. Their confidence intervals were calculated using Fisher’s z transformation, and their p-values were Holm-adjusted across the six classifiers. These correlations do not account for the dyadic dependence represented in the mixed-effects model.

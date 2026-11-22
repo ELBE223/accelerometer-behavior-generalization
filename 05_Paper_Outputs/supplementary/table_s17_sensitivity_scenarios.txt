@@ -1,0 +1,14 @@
+Table S17. Sensitivity analyses of H1–H3 using Random Forest and LightGBM.
+
+Scenario	H1 n	H1 difference, RF	H1 p, RF	H1 difference, LightGBM	H1 p, LightGBM	H2 Friedman test, RF	H2 Friedman test, LightGBM	H3 β per SD [95% CI]	H3 p
+Primary	10	0.101 [0.080, 0.111]	0.002	0.096 [0.065, 0.119]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.010 [-0.043, 0.023]	0.526
+No training overlap	10	0.096 [0.085, 0.124]	0.002	0.090 [0.075, 0.118]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 9.45, p = 0.009	-0.010 [-0.042, 0.022]	0.500
+2.4-s windows, no overlap	10	0.088 [0.080, 0.109]	0.002	0.099 [0.076, 0.108]	0.002	χ²(2) = 4.91, p = 0.086	χ²(2) = 7.09, p = 0.029	-0.008 [-0.041, 0.025]	0.589
+Majority label: 80%	10	0.101 [0.083, 0.121]	0.002	0.097 [0.067, 0.123]	0.002	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.009 [-0.042, 0.024]	0.546
+Four classes, including Other	8	0.158 [0.092, 0.210]	0.016	0.148 [0.098, 0.220]	0.023	χ²(3) = 23.64, p < 0.001	χ²(3) = 25.32, p < 0.001	-0.011 [-0.035, 0.013]	0.347
+Ridden gaits and jumping as locomotion	10	0.092 [0.081, 0.123]	0.002	0.087 [0.067, 0.124]	0.002	χ²(2) = 7.82, p = 0.020	χ²(2) = 7.82, p = 0.020	-0.005 [-0.039, 0.029]	0.761
+Eligible individuals only	10	0.099 [0.077, 0.125]	0.004	0.094 [0.062, 0.133]	0.004	χ²(2) = 8.91, p = 0.012	χ²(2) = 8.91, p = 0.012	-0.001 [-0.033, 0.032]	0.941
+
+H1 difference is within-dataset minus cross-dataset Macro-F1, summarized as median [first quartile, third quartile] across datasets with both evaluation scores. H1 p-values are unadjusted and are from paired Wilcoxon signed-rank tests. H1 n denotes the number of paired datasets. In the four-class scenario, Dog 2 and Raccoon 1 additionally lacked valid within-dataset evaluations, leaving eight paired datasets.
+H2 reports Friedman tests of cross-dataset F1 across behavioral classes. All H2 p-values shown here are unadjusted. The four-class scenario compares four classes and is therefore not directly equivalent to the three-class comparisons.
+H3 reports the standardized distance coefficient and unadjusted likelihood-ratio p-value from the primary mixed-effects model fitted to RF and LightGBM only. This restriction also applies to the primary reference row, ensuring comparable classifier coverage across scenarios. All H1–H3 p-values in this table are unadjusted and are reported for exploratory comparison across scenarios. Scenario definitions are provided in Supplementary Text S1.

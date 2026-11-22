@@ -41,16 +41,17 @@ H1: WITHIN VS. CROSS (Macro-F1 per dataset, mean ± SD over the seeds)
     Raccoon_dataset_2    within 0.763 ± 0.017   cross 0.782 ± 0.007   gap -0.019
 
   Paired Wilcoxon tests (datasets 'all': every dataset with a within value; 'same_test_windows':
-  only datasets in which every individual is a test unit, so within and cross test the same windows)
+  only datasets in which every individual is a test unit, so within and cross test the same windows);
+  Holm: adjusted over the models of a dataset set and metric (D51)
 
-  RF           all                macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  r_rb 0.96  (exact)
-  RF           all                accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  r_rb 0.93  (exact)
-  LGBM         all                macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  r_rb 0.96  (exact)
-  LGBM         all                accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  r_rb 0.93  (exact)
-  RF           same_test_windows  macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  r_rb 0.96  (exact)
-  RF           same_test_windows  accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  r_rb 0.93  (exact)
-  LGBM         same_test_windows  macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  r_rb 0.96  (exact)
-  LGBM         same_test_windows  accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  r_rb 0.93  (exact)
+  RF           all                macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  Holm 0.008 (2 tests)  r_rb 0.96  (exact)
+  RF           all                accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  Holm 0.012 (2 tests)  r_rb 0.93  (exact)
+  LGBM         all                macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  Holm 0.008 (2 tests)  r_rb 0.96  (exact)
+  LGBM         all                accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  Holm 0.012 (2 tests)  r_rb 0.93  (exact)
+  RF           same_test_windows  macro_f1  n 10  within higher  9  gap median 0.099 [0.077, 0.125]  V 54  p 0.004  Holm 0.008 (2 tests)  r_rb 0.96  (exact)
+  RF           same_test_windows  accuracy  n 10  within higher  9  gap median 0.093 [0.072, 0.125]  V 53  p 0.006  Holm 0.012 (2 tests)  r_rb 0.93  (exact)
+  LGBM         same_test_windows  macro_f1  n 10  within higher  9  gap median 0.094 [0.062, 0.133]  V 54  p 0.004  Holm 0.008 (2 tests)  r_rb 0.96  (exact)
+  LGBM         same_test_windows  accuracy  n 10  within higher  9  gap median 0.078 [0.066, 0.127]  V 53  p 0.006  Holm 0.012 (2 tests)  r_rb 0.93  (exact)
 
 
 H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
@@ -109,6 +110,12 @@ H2: DIFFERENCES BETWEEN THE CLASSES (Foraging, Locomotion, Resting)
       Foraging - Resting: median diff +0.004, V 30, p 0.846, Holm 0.984  (not interpreted: Friedman not significant)
       Locomotion - Resting: median diff +0.019, V 38, p 0.322, Holm 0.967  (not interpreted: Friedman not significant)
 
+
+CROSS-DATASET CONFUSION MATRICES (row percentages, mean over target datasets and seeds; Figure S3)
+
+  not computed; missing:
+    03_Evaluation/results/F/rf/confusion.csv
+    03_Evaluation/results/F/lgbm/confusion.csv
 
 H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)
 

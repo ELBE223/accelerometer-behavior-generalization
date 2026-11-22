@@ -5,7 +5,11 @@
 #   seeds     the mean over the seeds is the value of a model and dataset (or dataset
 #             pair) in the tests; the SD over the seeds is reported descriptively
 #   H1        within vs. cross Macro-F1 (and accuracy) per dataset: paired Wilcoxon
-#             signed-rank test per model, rank-biserial correlation, gaps
+#             signed-rank test per model, rank-biserial correlation, gaps; the p-values
+#             are also Holm-adjusted over the models (six in the primary analysis), separately
+#             for each dataset set ("all": ten datasets, "same_test_windows": seven) and
+#             metric (D51); the adjustment uses the unrounded p-values, and the unadjusted
+#             p-values stay in the output (the sensitivity scenarios report them unadjusted)
 #   H2        cross F1 per class: Friedman test per model (blocks: test datasets with all
 #             classes), Kendall's W, pairwise Wilcoxon tests between the classes with Holm
 #             correction per model; the same for the transfer loss (within F1 - cross F1
@@ -14,6 +18,11 @@
 #             that is significant after this adjustment. The transfer loss is also tested on
 #             the datasets in which within and cross score the same windows (datasets
 #             "same_test_windows", as in H1; D44)
+#   confusion cross-dataset confusion matrices (03_Evaluation/results/<scenario>/<model>/
+#             confusion.csv, Figure S3; D51): counts normalized within each true class per
+#             target dataset and seed (row percentages), then averaged over the datasets and
+#             seeds with equal weight; written only if every model of the scenario has its
+#             confusion.csv (the missing files are listed otherwise)
 #   H3 input  pairwise Macro-F1 per model and dataset pair (mean and SD over the seeds) with
 #             the scientific species names and the within Macro-F1 of both datasets, for
 #             04_Statistics/stats_h3.R
@@ -21,7 +30,8 @@
 #   correction only with ties or zero differences (column test_method), as wilcox.test in R.
 # - Output: 04_Statistics/results/<scenario>/seed_means.csv, seed_variability.csv, h1_values.csv,
 #   h1_tests.csv, h2_values.csv, h2_descriptives.csv, h2_friedman.csv, h2_posthoc.csv,
-#   h3_input.csv, h3_input_by_seed.csv, statistics_h1_h2.txt
+#   h2_confusion_cross.csv (if the confusion files exist), h3_input.csv, h3_input_by_seed.csv,
+#   statistics_h1_h2.txt
 #
 # Usage (from the project folder, venv active):
 #   python 04_Statistics/stats_h1_h2.py                 # every scenario with results in 03_Evaluation/results
@@ -195,7 +205,15 @@ def h1(sm: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
                               "n_within_higher": int((g[f"gap_{metric}"] > 0).sum()),
                               **describe(g[f"gap_{metric}"], "gap"), **describe(g[f"{metric}_within"], "within"),
                               **describe(g[f"{metric}_cross"], "cross")})
-    return v, pd.DataFrame(tests)
+    t = pd.DataFrame(tests)
+    # D51: Holm over the models of a dataset set and metric, from the unrounded p-values
+    # (before the csv is written with six significant digits).
+    t.insert(t.columns.get_loc("p_value") + 1, "p_holm", np.nan)
+    t.insert(t.columns.get_loc("p_holm") + 1, "holm_tests", 0)
+    for _, idx in t.groupby(["datasets", "metric"], sort=False).groups.items():
+        t.loc[idx, "p_holm"] = holm(t.loc[idx, "p_value"].to_numpy(float))
+        t.loc[idx, "holm_tests"] = int(t.loc[idx, "p_value"].notna().sum())
+    return v, t
 
 
 # --- H2 -------------------------------------------------------------------------------
@@ -273,6 +291,31 @@ def h2_tests(v: pd.DataFrame, classes: list[str],
     return pd.DataFrame(fried)[FRIEDMAN_COLS], pd.DataFrame(post), pd.DataFrame(desc)
 
 
+# --- confusion matrices ---------------------------------------------------------------
+
+def confusion_cross(scenario: str, models: list[str], classes: list[str]) -> tuple[pd.DataFrame | None, list[Path]]:
+    # Mean row-normalized cross-dataset confusion matrix per model (Figure S3): percentages
+    # within each true class per target dataset and seed, averaged with equal weight.
+    files = [RESULT_DIR / scenario / m / "confusion.csv" for m in models]
+    missing = [f for f in files if not f.exists()]
+    if missing:
+        return None, missing
+    c = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+    c = c[(c["mode"] == "cross") & c["truth"].isin(classes) & c["pred"].isin(classes)].copy()
+    row = c.groupby(["model", "seed", "test", "truth"])["n"].transform("sum")
+    c["percent"] = np.where(row > 0, 100 * c["n"] / row.where(row > 0), np.nan)
+    g = c.groupby(["model", "truth", "pred"], observed=True)
+    out = g["percent"].mean().rename("percent_mean").to_frame()
+    out = out.join(g["percent"].count().rename("n_matrices"))
+    out = out.join(g["test"].nunique().rename("n_datasets")).join(g["seed"].nunique().rename("n_seeds"))
+    out = out.join(g["n"].sum().rename("windows")).reset_index()
+    out["model"] = pd.Categorical(out["model"], [x for x in MODEL_ORDER if x in set(out["model"])], ordered=True)
+    for col in ["truth", "pred"]:
+        out[col] = pd.Categorical(out[col], [x for x in ["Resting", "Locomotion", "Foraging", "Other"] if x in classes],
+                                  ordered=True)
+    return out.sort_values(["model", "truth", "pred"]).reset_index(drop=True), []
+
+
 # --- H3 input -------------------------------------------------------------------------
 
 def h3_input(sm: pd.DataFrame, m: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -302,7 +345,7 @@ def fmt_p(p: float) -> str:
     return "NA" if not np.isfinite(p) else ("< 0.001" if p < 0.001 else f"{p:.3f}")
 
 
-def report(scenario: str, sm, var, h1v, h1t, h2f, h2p, h2d, h3, classes) -> list[str]:
+def report(scenario: str, sm, var, h1v, h1t, h2f, h2p, h2d, conf, missing_conf, h3, classes) -> list[str]:
     lines = [f"STATISTICS H1 AND H2 – scenario {scenario}", "=" * WIDTH, "",
              "Values: mean over the seeds per model and dataset (or dataset pair); SD = SD over the seeds.",
              "Wilcoxon: exact two-sided p unless ties or zero differences (test_method in the csv files).", ""]
@@ -318,11 +361,13 @@ def report(scenario: str, sm, var, h1v, h1t, h2f, h2p, h2d, h3, classes) -> list
             lines.append(f"    {r.dataset:<20} within {r.macro_f1_within:.3f} ± {r.macro_f1_sd_within:.3f}   "
                          f"cross {r.macro_f1_cross:.3f} ± {r.macro_f1_sd_cross:.3f}   gap {r.gap_macro_f1:+.3f}{note}")
     lines += ["", "  Paired Wilcoxon tests (datasets 'all': every dataset with a within value; 'same_test_windows':",
-              "  only datasets in which every individual is a test unit, so within and cross test the same windows)", ""]
+              "  only datasets in which every individual is a test unit, so within and cross test the same windows);",
+              "  Holm: adjusted over the models of a dataset set and metric (D51)", ""]
     for r in h1t.itertuples():
         lines.append(f"  {DISPLAY[r.model]:<12} {r.datasets:<18} {r.metric:<9} n {r.n_pairs:>2}  within higher "
                      f"{r.n_within_higher:>2}  gap median {r.gap_median:.3f} [{r.gap_q1:.3f}, {r.gap_q3:.3f}]  "
-                     f"V {r.V:g}  p {fmt_p(r.p_value)}  r_rb {r.rank_biserial:.2f}  ({r.test_method.split(',')[0]})")
+                     f"V {r.V:g}  p {fmt_p(r.p_value)}  Holm {fmt_p(r.p_holm)} ({r.holm_tests} tests)  "
+                     f"r_rb {r.rank_biserial:.2f}  ({r.test_method.split(',')[0]})")
 
     lines += ["", "", f"H2: DIFFERENCES BETWEEN THE CLASSES ({', '.join(classes)})", "",
               "  Friedman p: unadjusted and Holm-adjusted over the models of a response (D44); post-hoc tests",
@@ -353,6 +398,14 @@ def report(scenario: str, sm, var, h1v, h1t, h2f, h2p, h2d, h3, classes) -> list
                              f"V {q.V:g}, p {fmt_p(q.p_value)}, Holm {fmt_p(q.p_holm)}{flag}")
         lines.append("")
 
+    lines += ["", "CROSS-DATASET CONFUSION MATRICES (row percentages, mean over target datasets and seeds; Figure S3)", ""]
+    if conf is None:
+        lines += ["  not computed; missing:"] + [f"    {f.relative_to(ROOT)}" for f in missing_conf]
+    else:
+        for model, g in conf.groupby("model", observed=True):
+            m = g.pivot(index="truth", columns="pred", values="percent_mean")
+            lines += [f"  {DISPLAY[model]} (datasets {g['n_datasets'].max()}, seeds {g['n_seeds'].max()}; rows: true, "
+                      "columns: predicted)"] + ["    " + ln for ln in m.round(1).to_string().splitlines()]
     lines += ["", "H3 INPUT (h3_input.csv, for 04_Statistics/stats_h3.R)", ""]
     n_pairs = h3.groupby("model")["train"].size()
     lines.append("  Dataset pairs per model: " + ", ".join(f"{m} {n}" for m, n in n_pairs.items()))
@@ -374,14 +427,22 @@ def run(scenario: str) -> bool:
     same_windows = set(zip(h1v.loc[h1v["same_test_windows"], "model"], h1v.loc[h1v["same_test_windows"], "dataset"]))
     h2f, h2p, h2d = h2_tests(h2v, classes, same_windows)
     h3, h3_seeds = h3_input(sm, m)
+    models = [x for x in MODEL_ORDER if x in set(m["model"])]
+    conf, missing_conf = confusion_cross(scenario, models, classes)
     out = STATS_DIR / scenario
     out.mkdir(parents=True, exist_ok=True)
     tables = {"seed_means": sm, "seed_variability": var, "h1_values": h1v, "h1_tests": h1t, "h2_values": h2v,
               "h2_descriptives": h2d, "h2_friedman": h2f, "h2_posthoc": h2p, "h3_input": h3,
               "h3_input_by_seed": h3_seeds}
+    if conf is not None:
+        tables["h2_confusion_cross"] = conf
+    elif scenario == "primary":
+        # Figure S3 needs the confusion matrices of all six classifiers of the primary analysis.
+        log(f"{scenario}: h2_confusion_cross.csv not written; missing: "
+            + ", ".join(str(f.relative_to(ROOT)) for f in missing_conf))
     for name, df in tables.items():
         df.to_csv(out / f"{name}.csv", index=False, float_format="%.6g")
-    text = report(scenario, sm, var, h1v, h1t, h2f, h2p, h2d, h3, classes)
+    text = report(scenario, sm, var, h1v, h1t, h2f, h2p, h2d, conf, missing_conf, h3, classes)
     (out / "statistics_h1_h2.txt").write_text("\n".join(text) + "\n", encoding="utf-8")
     log(f"{scenario}: {len(m)} result rows, models {', '.join(sorted(set(m['model'])))} -> {out}")
     return True

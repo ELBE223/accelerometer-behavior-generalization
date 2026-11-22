@@ -4,11 +4,11 @@
 # - Creates the local folders that are not in git: one folder per dataset in
 #   data/raw/ and data/processed/ (datasets from 00_Documentation/datasets.csv).
 # - Creates a Python virtual environment (.venv) and installs the exact package versions
-#   of requirements-lock.txt: the versions that produced the results (Table S5, D46). The
+#   of requirements-lock.txt: the versions that produced the results (Table S6, D46). The
 #   lock file is not changed, so every run gives the same environment.
 # - --update installs the newest versions of requirements.txt instead and writes them to
 #   requirements-lock.txt. Only for a deliberate change, with a decision entry: the results
-#   and Table S5 refer to the locked versions.
+#   and Table S6 refer to the locked versions.
 # - Safe to run again: existing folders and files are never removed.
 #
 # Usage (from the project folder; the venv uses the Python that runs this script):
@@ -91,7 +91,7 @@ def install_requirements(update: bool) -> None:
         subprocess.run([python, "-m", "pip", "install", "--upgrade", "-r", str(REQUIREMENTS)], check=True)
         REQUIREMENTS_LOCK.write_text("\n".join(installed(python)) + "\n", encoding="utf-8")
         log(f"[WARN] {REQUIREMENTS_LOCK.name} now lists the new versions; record the change in "
-            "00_Documentation/decisions.md (results and Table S5 refer to the locked versions)")
+            "00_Documentation/decisions.md (results and Table S6 refer to the locked versions)")
         return
     log(f"[INFO] Installing the package versions of {REQUIREMENTS_LOCK.name} ...")
     subprocess.run([python, "-m", "pip", "install", "-r", str(REQUIREMENTS_LOCK)], check=True)

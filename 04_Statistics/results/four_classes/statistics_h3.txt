@@ -17,18 +17,15 @@ likelihood-ratio test of ML fits; S2 on the retention scale)
   S1 within covariates           n  84  beta -0.003 [-0.032, 0.026]  SE 0.014  LR chi2(1) 0.07  p 0.792
   S2 retention                   n  84  beta 0.000 [-0.038, 0.039]  SE 0.019  LR chi2(1) 0.00  p 0.988
   S2 log retention               n  84  beta -0.002 [-0.063, 0.060]  SE 0.030  LR chi2(1) 0.00  p 0.958
-  S3 gawdis distance             n 128  beta -0.014 [-0.038, 0.010]  SE 0.012  LR chi2(1) 1.37  p 0.242
 
   R2 (Nakagawa) of the primary model: marginal 0.012, conditional 0.974
 
-OTHER DISTANCES (D28/D36/D37; primary model, distance z-scored)
-  core + C4 / core + C5: exploratory six-trait add-backs of one excluded trait each.
-  exploratory core + C4 (D36)    n 128  beta -0.014 [-0.039, 0.011]  SE 0.012  LR chi2(1) 1.30  p 0.255
-  exploratory core + C5 (D37)    n 128  beta -0.011 [-0.034, 0.012]  SE 0.011  LR chi2(1) 0.96  p 0.326
+OTHER DISTANCES (D28; primary model, distance z-scored)
   EltonTraits core               n 128  beta -0.005 [-0.027, 0.018]  SE 0.011  LR chi2(1) 0.17  p 0.678
   EltonTraits extended           n 128  beta -0.001 [-0.025, 0.024]  SE 0.012  LR chi2(1) 0.00  p 0.980
   divergence time (TimeTree)     n 128  beta 0.003 [-0.018, 0.024]  SE 0.010  LR chi2(1) 0.10  p 0.756
   log body mass                  n 128  beta -0.010 [-0.030, 0.010]  SE 0.010  LR chi2(1) 1.03  p 0.311
+  EltonTraits source: 00_Documentation/traits/eltontraits_study_species.txt
   EltonTraits names: Canis lupus familiaris = Canis lupus; Equus ferus przewalskii = Equus caballus
 
 TRAIT SENSITIVITY (D38, D43; primary model with the core distance after one change, z-scored; robustness only)
@@ -74,21 +71,6 @@ S1: CORRELATIONS OF THE COVARIATES WITH THE DISTANCE
       variable r_with_trait_distance
  source_within            -0.2332443
  target_within            -0.1058528
-
-S1: VARIANCE INFLATION FACTORS
-            Term      VIF
-      z_distance 1.035486
-           model 1.031075
- z_source_within 1.052793
- z_target_within 1.035038
-
-S3: GAWDIS TRAIT WEIGHTS (equal weights reproduce the Gower distance: max. difference 1.1e-16)
-                     trait weight_equal correlation_equal weight_analytic weight_optimized correlation_optimized
-           log_body_mass_g          0.2         0.8355795      -0.3636564      0.008008989             0.7286163
-   dominant_locomotor_mode          0.2         0.7410796       0.1477552      0.130288362             0.6220316
-   body_configuration_type          0.2         0.4325427       0.4112123      0.311096464             0.6043716
-      relative_neck_length          0.2         0.5522574       0.3642563      0.311835546             0.6210533
- food_acquisition_handling          0.2         0.6829983       0.4404327      0.238770638             0.5673634
 
 NOTES
   Species without within value (left out in S1; as target in S2): none

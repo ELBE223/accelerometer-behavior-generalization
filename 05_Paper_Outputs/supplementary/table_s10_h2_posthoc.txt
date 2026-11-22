@@ -1,0 +1,41 @@
+Table S10. Pairwise post-hoc comparisons of behavioral classes.
+
+Response	Classifier	Comparison	Difference	Wilcoxon V	p	p (Holm)	Rank-biserial r
+Cross-dataset F1	CNN	Resting vs. Locomotion	0.204 [-0.031, 0.310]	56	0.042	0.097	0.70
+Cross-dataset F1	CNN	Resting vs. Foraging	0.238 [0.167, 0.365]	57	0.032	0.097	0.73
+Cross-dataset F1	CNN	Locomotion vs. Foraging	-0.002 [-0.079, 0.164]	35	0.898	0.898	0.06
+Cross-dataset F1	ResNet	Resting vs. Locomotion	0.146 [0.059, 0.296]	60	0.014	0.027	0.82
+Cross-dataset F1	ResNet	Resting vs. Foraging	0.240 [0.116, 0.338]	62	0.007	0.021	0.88
+Cross-dataset F1	ResNet	Locomotion vs. Foraging	0.004 [-0.065, 0.131]	39	0.638	0.638	0.18
+Cross-dataset F1	HYDRA	Resting vs. Locomotion	0.076 [0.008, 0.299]	56	0.042	0.084	0.70
+Cross-dataset F1	HYDRA	Resting vs. Foraging	0.164 [0.089, 0.329]	61	0.010	0.029	0.85
+Cross-dataset F1	HYDRA	Locomotion vs. Foraging	0.077 [-0.036, 0.219]	47	0.240	0.240	0.42
+Cross-dataset F1	MultiRocket	Resting vs. Locomotion	0.148 [0.020, 0.323]	57	0.032	0.064	0.73
+Cross-dataset F1	MultiRocket	Resting vs. Foraging	0.147 [0.102, 0.310]	59	0.019	0.056	0.79
+Cross-dataset F1	MultiRocket	Locomotion vs. Foraging	0.001 [-0.072, 0.120]	36	0.831	0.831	0.09
+Cross-dataset F1	RF	Resting vs. Locomotion	0.198 [0.038, 0.283]	57	0.032	0.064	0.73
+Cross-dataset F1	RF	Resting vs. Foraging	0.127 [0.066, 0.309]	61	0.010	0.029	0.85
+Cross-dataset F1	RF	Locomotion vs. Foraging	0.024 [-0.041, 0.108]	37	0.765	0.765	0.12
+Cross-dataset F1	LightGBM	Resting vs. Locomotion	0.130 [0.035, 0.277]	56	0.042	0.084	0.70
+Cross-dataset F1	LightGBM	Resting vs. Foraging	0.124 [0.069, 0.317]	60	0.014	0.041	0.82
+Cross-dataset F1	LightGBM	Locomotion vs. Foraging	0.021 [-0.042, 0.114]	40	0.577	0.577	0.21
+Transfer loss	CNN	Resting vs. Locomotion	-0.204 [-0.343, 0.028]	9	0.064	0.193	-0.67
+Transfer loss	CNN	Resting vs. Foraging	-0.065 [-0.183, 0.030]	13	0.160	0.320	-0.53
+Transfer loss	CNN	Locomotion vs. Foraging	0.036 [-0.012, 0.105]	42	0.160	0.320	0.53
+Transfer loss	ResNet	Resting vs. Locomotion	-0.129 [-0.270, -0.071]	6	0.027	0.055	-0.78
+Transfer loss	ResNet	Resting vs. Foraging	-0.095 [-0.144, -0.052]	4	0.014	0.041	-0.85
+Transfer loss	ResNet	Locomotion vs. Foraging	0.025 [0.009, 0.076]	44	0.105	0.105	0.60
+Transfer loss	HYDRA	Resting vs. Locomotion	-0.104 [-0.206, -0.005]	13	0.160	0.480	-0.53
+Transfer loss	HYDRA	Resting vs. Foraging	-0.035 [-0.139, 0.024]	17	0.322	0.645	-0.38
+Transfer loss	HYDRA	Locomotion vs. Foraging	0.021 [-0.054, 0.068]	33	0.625	0.645	0.20
+Transfer loss	MultiRocket	Resting vs. Locomotion	-0.095 [-0.195, -0.012]	11	0.105	0.316	-0.60
+Transfer loss	MultiRocket	Resting vs. Foraging	-0.045 [-0.129, 0.023]	17	0.322	0.645	-0.38
+Transfer loss	MultiRocket	Locomotion vs. Foraging	0.020 [-0.029, 0.070]	37	0.375	0.645	0.35
+Transfer loss	RF	Resting vs. Locomotion	-0.039 [-0.214, 0.032]	18	0.375	1.000	-0.35
+Transfer loss	RF	Resting vs. Foraging	-0.008 [-0.051, 0.071]	25	0.846	1.000	-0.09
+Transfer loss	RF	Locomotion vs. Foraging	0.011 [-0.026, 0.031]	33	0.625	1.000	0.20
+Transfer loss	LightGBM	Resting vs. Locomotion	-0.033 [-0.129, 0.026]	17	0.322	0.967	-0.38
+Transfer loss	LightGBM	Resting vs. Foraging	-0.013 [-0.064, 0.083]	25	0.846	0.967	-0.09
+Transfer loss	LightGBM	Locomotion vs. Foraging	0.016 [-0.018, 0.047]	36	0.432	0.967	0.31
+
+Cross-dataset F1 comparisons included 11 target datasets; transfer-loss comparisons included the ten datasets with both within- and cross-dataset scores. Dataset-level scores were averaged over five training seeds. Difference is the median [first quartile, third quartile] of paired differences, calculated as the first class minus the second. Transfer loss denotes within-dataset minus cross-dataset F1. Tests were two-sided exact Wilcoxon signed-rank tests, with Holm adjustment across the three class comparisons within each classifier and response. Rank-biserial r is the matched-pairs effect size. None of the corresponding Friedman tests remained significant after Holm adjustment across the six classifiers. All post-hoc comparisons are therefore reported descriptively, including those with pairwise Holm-adjusted p-values below 0.05.

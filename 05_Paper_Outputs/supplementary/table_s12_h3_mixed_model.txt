@@ -1,0 +1,21 @@
+Table S12. Primary mixed-effects model for cross-species transfer.
+
+Component	Term	Estimate [95% CI] or value	SE	df	t	p
+Fixed effects	Intercept: CNN at mean distance	0.328 [0.252, 0.404]	0.030	5.5	10.84	< 0.001
+Fixed effects	Trait distance, per SD	-0.024 [-0.060, 0.011]	0.017	34.8	-1.39	0.172
+Fixed effects	ResNet vs. CNN	-0.013 [-0.037, 0.012]	0.013	355.0	-1.01	0.311
+Fixed effects	HYDRA vs. CNN	0.099 [0.075, 0.124]	0.013	355.0	7.94	< 0.001
+Fixed effects	MultiRocket vs. CNN	0.174 [0.150, 0.199]	0.013	355.0	13.92	< 0.001
+Fixed effects	RF vs. CNN	0.254 [0.229, 0.278]	0.013	355.0	20.26	< 0.001
+Fixed effects	LightGBM vs. CNN	0.252 [0.227, 0.276]	0.013	355.0	20.10	< 0.001
+Random-effect SD	Unordered species pair	0.079	—	—	—	—
+Random-effect SD	Ordered species pair	0.040	—	—	—	—
+Random-effect SD	Source species	0.042	—	—	—	—
+Random-effect SD	Target species	0.063	—	—	—	—
+Residual SD	Residual	0.075	—	—	—	—
+Likelihood-ratio test	Trait distance	χ²(1) = 2.58	—	—	—	0.108
+Likelihood-ratio test	Distance × classifier interaction	χ²(5) = 2.09	—	—	—	0.836
+Model fit	Marginal / conditional R²	0.39 / 0.82	—	—	—	—
+Sample size	Observations	432	—	—	—	—
+
+The response was cross-species Macro-F1, with one observation per classifier and ordered source–target species pair, averaged over the contributing dataset pairs and five training seeds. The analysis included 72 ordered pairs of nine species and six classifiers; same-species transfers were excluded. Fixed effects were standardized trait distance and classifier, with CNN as the reference. Random intercepts represented unordered species pair, ordered species pair, source species and target species. Fixed-effect estimates, confidence intervals and t tests were obtained from the restricted maximum-likelihood fit using Satterthwaite degrees of freedom. Likelihood-ratio tests compared maximum-likelihood fits with and without the distance term; the interaction test compared the interaction model with the additive model. The distance t-test p-value and likelihood-ratio p-value therefore refer to different tests. Marginal R² represents fixed effects, and conditional R² represents fixed and random effects.
